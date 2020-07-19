@@ -1,0 +1,26 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME}\.php -f
+##RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+##Change default homepage
+DirectoryIndex inde.php
+
+##Set the Time Zone for Your Server
+SetEnv TZ Asia/Malaysia
+
+##Redirect Browser to https
+##RewriteCond %{HTTPS} !on
+##RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+##Disable or Enable Directory browsing
+##disable directory browsing
+Options All -Indexes
+##enable directory browsing
+Options All +Indexes
+
+
+##ErrorDocument 404 /hddocs/Personal_Projects/myrunproject/error/404.php
+ErrorDocument 404 /hddocs/myrun-project/error/404.php
+ErrorDocument 404 /hddocs/myrun-project/admin/error/404.php
+
