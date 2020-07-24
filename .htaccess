@@ -1,3 +1,5 @@
+##this is a server configuration file
+
     RewriteEngine on
     RewriteCond %{REQUEST_FILENAME}\.php -f
     ##RewriteCond %{REQUEST_FILENAME}\.html -f
@@ -23,4 +25,6 @@
 ##ErrorDocument 404 /hddocs/Personal_Projects/myrunproject/error/404.php
     ErrorDocument 404 /hddocs/myrun-project/error/404.php
     ErrorDocument 404 /hddocs/myrun-project/admin/error/404.php
+
+
 
