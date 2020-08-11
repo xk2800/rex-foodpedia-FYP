@@ -40,10 +40,10 @@ if(isset($_POST["submit"])){
         $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
         //Recipients
-        $mail->Sender=('reset@myrun.com.my');
-        $mail->setFrom('reset@myrun.com.my', 'Myrun Reset', FALSE);
+        $mail->Sender=('noreply.rexfoodipedia@gmail.com');
+        $mail->setFrom('noreply.rexfoodipedia@gmail.com', 'Rex Foodipedia Reset', FALSE);
         $mail->addAddress($emailTo);     // Add a recipient
-        $mail->addReplyTo('anythingwetest@gmail.com', 'No-Reply');
+        $mail->addReplyTo('noreply.rexfoodipedia@gmail.com', 'No-Reply');
 
         $url = "http://" .$_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"]) . "/resetPassword.php?code=$code";
 
