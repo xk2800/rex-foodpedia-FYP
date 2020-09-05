@@ -1,0 +1,26 @@
+1) Lexend - Main title (Our Story, FAQ, How to use)
+2) Oswald - Description
+3) Bangers - Eye catching/ Attention button font (Login,Signup,Order button etc)
+
+--Lexend--
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
+</style>
+
+font-family: 'Lexend Deca', sans-serif;
+
+
+--Oswald--
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+</style>
+
+font-family: 'Oswald', sans-serif;
+
+
+--Bangers--
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+</style>
+
+font-family: 'Bangers', cursive;
