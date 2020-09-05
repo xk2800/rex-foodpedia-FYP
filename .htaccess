@@ -2,11 +2,11 @@
 
     RewriteEngine on
     RewriteCond %{REQUEST_FILENAME}\.php -f
-    ##RewriteCond %{REQUEST_FILENAME}\.html -f
+    RewriteCond %{REQUEST_FILENAME}\.html -f
     RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
 ##Change default homepage
-    DirectoryIndex inde.php
+    ##DirectoryIndex inde.php
 
 ##Set the Time Zone for Your Server
     SetEnv TZ Asia/Malaysia
