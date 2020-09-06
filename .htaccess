@@ -3,10 +3,13 @@
     RewriteEngine on
     RewriteCond %{REQUEST_FILENAME}\.php -f
     RewriteCond %{REQUEST_FILENAME}\.html -f
+
+    ##need to change this when change default file format/scripting lang
     RewriteRule ^([^\.]+)$ $1.php [NC,L]
+    RewriteRule ^([^\.]+)$ $1.html [NC,L]
 
 ##Change default homepage
-    ##DirectoryIndex inde.php
+    ##DirectoryIndex index.html
 
 ##Set the Time Zone for Your Server
     SetEnv TZ Asia/Malaysia
@@ -25,6 +28,5 @@
 ##ErrorDocument 404 /hddocs/Personal_Projects/myrunproject/error/404.php
     ErrorDocument 404 /hddocs/myrun-project/error/404.php
     ErrorDocument 404 /hddocs/myrun-project/admin/error/404.php
-
 
 
