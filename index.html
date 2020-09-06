@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REX Foodipedia</title>
+    <title>Home | REX Foodipedia</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     
@@ -14,60 +14,114 @@
             background-color: #e8ded2;
         }
         .logo img{
-            width: 20%;
-            height: 20%;
+            width: 10%;
+            height: 10%;
+        }
+        .main img{
+            width: 100%;
+            height: 401px;
+        }
+        #typewriter{
+            color: white;
+            font-size: 40px;
+        }
+        .hungry{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-150%, -50%);
+        }
+        .typewriter{
+            position: absolute;
+            top: 50%;
+            left: 80%;
+            transform: translate(-100%, -50%);
+            /*position: fixed;*/
         }
     </style>
 </head>
 <body>
 
+<!--LEVEL 1-->
 <!--TOP nav bar start-->
-    <!--LOGO-->
-        <span class="logo" id="logo"><img src="img/logo/logo.jpg"></span>
-    <!--CART-->
-        <span class="cart" id="cart"><i class="fas fa-shopping-cart"></i></span>
-
-
-    <nav class="navbar">
-        <a class="navbrand-brand" href="index"></a>
-
+    
+    <nav class="navbar navbar-expand-sm">
+        <!--LOGO-->
+        <a class="navbar-brand" href="index"> <span class="logo" id="logo"><img src="img/logo/logo.jpg"></span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="right-end">
+        <!--CART-->
+        <span class="navbar-item">
+            <span class="cart" id="cart"><i class="fas fa-shopping-cart"></i></span>
+        </span>
+        <!--USERNAME-->
+        <span class="navbar-item">&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="fas fa-user"></i>
+            !Username!
+        </span>
+        </div>
     </nav>
-
-<br><br>
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-              </ul>
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-            </div>
-          </nav>
 <!--TOP nav bar end-->
+<!--LEVEL 1 END-->
 
+<!--LEVEL 2-->
+    <span class="main"><img src="img/test/food1.jpg"></span>
+    <span class="over-img-txt">
+        <span class="hungry">Hungry?</span>
+        
+    <!--TYPING EFFECT-->
+    <div class="typewriter">
+        <div id="typewriter"></div>
+        <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+        <script>
+            const instance = new Typewriter('#typewriter', {
+            strings: ['Order Now', 'Get food from us'],
+            autoStart: true,
+            loop: true,
+            });
+        </script>
+    </div>
+    </span>
+<!--LEVEL 2 END-->
 
+<!--LEVEL 3-->
 <!--Main Bootstrap container-->
     <div class="container">
-        
+        <!--OUR STORY-->
+        <div class="story"><p>Our Story<br>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+        <!--HOW TO USE-->
+        <div class="story"><p>How to Use<br>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+        <!--FAQ-->
+        <div class="story"><p>FAQ<br>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
 
     </div>
 <!--Main Bootstrap end-->
+<!--LEVEL 3 END-->
+
+<!--LEVEL 4-->
+<!--Footer Start-->
+    <!--Logo + Address-->
+    <div class="logo"><img src="img/logo/logo.jpg"></div>
+    <div class="address"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer</p></div>
+
+    <!--sitemap-->
+    <span class="main"><p>About</p></span>
+
+    <span class="supp">
+        <p>Our Story<br>
+        test</p>
+    </span>
+
+    <!--Footer End-->
+<!--LEVEL 4 END-->
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
