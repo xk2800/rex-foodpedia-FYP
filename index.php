@@ -97,7 +97,7 @@
 
 <!--LEVEL 3-->
 <?php
-    include ("navbar.html")
+    include("navbar.html")
 ?>
 <!--LEVEL 3 END-->
 
