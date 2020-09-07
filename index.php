@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href= "img/logo/logo.jpg">
+
     <title>Home | REX Foodipedia</title>
 
     <!--Bootstrap CDN-->
@@ -14,6 +17,20 @@
     <!--Scroll Effect CDN https://michalsnik.github.io/aos/-->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script src="js/disableMouseRightClick.js">
+        
+        var options = {
+
+        // Set this false to deactivate alert
+        enableAlert: true, 
+
+        // Customize this to change alert text
+        alertText: "Mouse right click is disabled!" 
+
+        }
+
+    </script>
 
 
     <style>
@@ -50,7 +67,7 @@
 <body>
 
 <div id="all">
-    
+
 <!--LEVEL 1-->
 <!--TOP nav bar start-->
     
