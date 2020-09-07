@@ -6,10 +6,10 @@
 
     ##need to change this when change default file format/scripting lang
     RewriteRule ^([^\.]+)$ $1.php [NC,L]
-    RewriteRule ^([^\.]+)$ $1.html [NC,L]
+    ##RewriteRule ^([^\.]+)$ $1.html [NC,L]
 
 ##Change default homepage
-    ##DirectoryIndex index.html
+    DirectoryIndex index.php
 
 ##Set the Time Zone for Your Server
     SetEnv TZ Asia/Malaysia
