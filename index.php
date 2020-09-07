@@ -18,6 +18,20 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+    <script src="js/disableMouseRightClick.js">
+        
+        var options = {
+
+        // Set this false to deactivate alert
+        enableAlert: true, 
+
+        // Customize this to change alert text
+        alertText: "Mouse right click is disabled!" 
+
+        }
+
+    </script>
+
 
     <style>
         #all{
