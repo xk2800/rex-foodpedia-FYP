@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href= "img/logo/logo.jpg">
+
     <title>Home | REX Foodipedia</title>
 
     <!--Bootstrap CDN-->
@@ -50,7 +53,7 @@
 <body>
 
 <div id="all">
-    
+
 <!--LEVEL 1-->
 <!--TOP nav bar start-->
     
