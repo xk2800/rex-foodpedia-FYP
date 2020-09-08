@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" type="image/png" href= "img/logo/logo.jpg">
+    <link rel="icon" type="image/png" href= "img/logo/logo.png">
 
     <title>Home | REX Foodipedia</title>
 
@@ -79,7 +79,7 @@
         <span class="hungry">Hungry?</span>
         
     <!--TYPING EFFECT-->
-        <div class="typewritter">
+        <!--div class="typewritter">
             <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
             <script>
 
@@ -105,11 +105,11 @@ var typed = new Typed("#typed", {
     
             </script>
 
-        </div>
+        </div-->
 
 
 
-    <!--div class="typewriter">
+    <div class="typewriter">
         <div id="typewriter"></div>
         <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
         <script>
@@ -120,7 +120,7 @@ var typed = new Typed("#typed", {
             deleteSpeed: 5,
             });
         </script>
-    </div-->
+    </div>
     </span>
 <!--LEVEL 2 END-->
 
