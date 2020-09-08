@@ -18,6 +18,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+    <!--Disable Right Click-->
     <script src="js/disableMouseRightClick.js">
         var options = {
 
@@ -103,6 +104,7 @@
             strings: ['Order Now', 'Get food from us'],
             autoStart: true,
             loop: true,
+            deleteSpeed: 5,
             });
         </script>
     </div>
