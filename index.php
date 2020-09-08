@@ -47,16 +47,18 @@
             font-size: 40px;
         }
         .hungry{
+            font-size: 2em;
+            color: white;
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-150%, -50%);
+            transform: translate(-150%, -190%);
         }
         .typewriter{
             position: absolute;
             top: 50%;
-            left: 80%;
-            transform: translate(-100%, -50%);
+            left: 65%;
+            transform: translate(-100%, -160%);
             /*position: fixed;*/
         }
     </style>
@@ -77,7 +79,37 @@
         <span class="hungry">Hungry?</span>
         
     <!--TYPING EFFECT-->
-    <div class="typewriter">
+        <div class="typewritter">
+            <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+            <script>
+
+var typed = new Typed("#typed", {
+    stringsElement: '#typed-strings',
+    typeSpeed: 0,
+    backSpeed: 0,
+    backDelay: 500,
+    startDelay: 1000,
+    loop: false,
+    onBegin: function(self) { prettyLog('onBegin ' + self) },
+    onComplete: function(self) { prettyLog('onCmplete ' + self) },
+    preStringTyped: function(pos, self) { prettyLog('preStringTyped ' + pos + ' ' + self); },
+    onStringTyped: function(pos, self) { prettyLog('onStringTyped ' + pos + ' ' + self) },
+    onLastStringBackspaced: function(self) { prettyLog('onLastStringBackspaced ' + self) },
+    onTypingPaused: function(pos, self) { prettyLog('onTypingPaused ' + pos + ' ' + self) },
+    onTypingResumed: function(pos, self) { prettyLog('onTypingResumed ' + pos + ' ' + self) },
+    onReset: function(self) { prettyLog('onReset ' + self) },
+    onStop: function(pos, self) { prettyLog('onStop ' + pos + ' ' + self) },
+    onStart: function(pos, self) { prettyLog('onStart ' + pos + ' ' + self) },
+    onDestroy: function(self) { prettyLog('onDestroy ' + self) }
+  });
+    
+            </script>
+
+        </div>
+
+
+
+    <!--div class="typewriter">
         <div id="typewriter"></div>
         <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
         <script>
@@ -88,7 +120,7 @@
             deleteSpeed: 5,
             });
         </script>
-    </div>
+    </div-->
     </span>
 <!--LEVEL 2 END-->
 
@@ -125,7 +157,7 @@
 <!--LEVEL 5-->
 <!--Footer Start-->
     <!--Logo + Address-->
-    <div class="logo"><img src="img/logo/logo.jpg"></div>
+    <div class="logo"><img src="img/logo/logo.png"></div>
     <div class="address"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer</p></div>
 
     <!--sitemap-->

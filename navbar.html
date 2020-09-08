@@ -34,8 +34,8 @@
         color: black; 
       }
       img{
-        width: 10%;
-        height: 10%;
+        width: 20%;
+        height: 20%;
       }
       #nav{
           background-color: #5eaaa8;
@@ -43,8 +43,11 @@
       .nav-link {
           padding-left: .5em !important;
           padding-right: .5em !important;
+          
       }
-    
+      /*.nav-link{
+        margin-top: 20%;
+      }*/
     </style>
 </head>
 <body>
@@ -53,7 +56,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark" id="nav">
         <div class="container-fluid">
           <a class="navbar-brand" href="index">
-            <img class="logo horizontal-logo" src="img/logo/logo.jpg" alt="REX Foodipedia logo">
+            <img class="logo horizontal-logo" src="img/logo/logo.png" alt="REX Foodipedia logo">
             </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -71,33 +74,36 @@
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    About
+                    About Us
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
                   <a class="dropdown-item" href="contact-us">Contact Us</a>
-                  <a class="dropdown-item" href="about-us">About Us</a>
-                  <a class="dropdown-item" href="about-us"></a>
+                  <a class="dropdown-item" href="about-us">Location</a>
+                  <a class="dropdown-item" href="about-us">Our Background</a>
+                  <a class="dropdown-item" href="about-us">FAQ</a>
                   <!--div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">Something else here</a-->
                 </div>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                GET INTO RACE
+                  <i class="fas fa-user"></i>
+                  !Username!
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                  <a class="dropdown-item" href="acc-reg-page">REGISTER</a>
-                  <a class="dropdown-item" href="feedback-page">Feedback</a>
+                  <a class="dropdown-item" href="acc-reg-page">My Orders</a>
+                  <a class="dropdown-item" href="feedback-page">Profile</a>
+                  <a class="dropdown-item" href="feedback-page">Loyalty Points</a>
+                  <a class="dropdown-item" href="feedback-page">Feedback to Us</a>
                   <!--div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">Something else here</a-->
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" href="login-page"><i class="fas fa-user"></i>
-                    !Username!</a>
+                <a class="nav-link text-dark" href="login-page" class="cart" id="cart"><i class="fas fa-shopping-cart"></i> Cart</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" href="login-page" class="cart" id="cart"><i class="fas fa-shopping-cart"></i></a>
+                <a class="nav-link text-dark" href="login-page">Login/Register</a>
               </li>
             </ul>
           </div>
