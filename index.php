@@ -18,18 +18,16 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+    <!--Disable Right Click-->
     <script src="js/disableMouseRightClick.js">
-        
         var options = {
 
         // Set this false to deactivate alert
         enableAlert: true, 
-
         // Customize this to change alert text
         alertText: "Mouse right click is disabled!" 
 
         }
-
     </script>
 
 
@@ -65,7 +63,7 @@
     </style>
 </head>
 <body>
-
+    
 <div id="all">
 
 <!--LEVEL 1-->
@@ -106,6 +104,7 @@
             strings: ['Order Now', 'Get food from us'],
             autoStart: true,
             loop: true,
+            deleteSpeed: 5,
             });
         </script>
     </div>
@@ -159,6 +158,7 @@
 
     <!--Footer End-->
 <!--LEVEL 5 END-->
+
 </div>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
