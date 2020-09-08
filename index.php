@@ -30,7 +30,6 @@
         }
     </script>
 
-
     <style>
         #all{
             background-color: #e8ded2;
@@ -99,6 +98,7 @@
 
 <!--LEVEL 4-->
 <!--Main Bootstrap container-->
+    <br><br><br>
     <div class="container">
         <!--OUR STORY-->
         <div data-aos="fade-right">
