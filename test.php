@@ -67,9 +67,27 @@
 <div id="all">
 
 <!--LEVEL 1-->
-<?php
-    include ("navbar.html")
-?>
+<!--TOP nav bar start-->
+    
+    <nav class="navbar navbar-expand-sm navi">
+        <!--LOGO-->
+        <a class="navbar-brand" href="index"> <span class="logo" id="logo"><img src="img/logo/logo.jpg"></span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="right-end">
+        <!--CART-->
+        <span class="navbar-item">
+            <span class="cart" id="cart"><i class="fas fa-shopping-cart"></i></span>
+        </span>
+        <!--USERNAME-->
+        <span class="navbar-item">&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="fas fa-user"></i>
+            !Username!
+        </span>
+        </div>
+    </nav>
+<!--TOP nav bar end-->
 <!--LEVEL 1 END-->
 
 <!--LEVEL 2-->
@@ -94,7 +112,9 @@
 <!--LEVEL 2 END-->
 
 <!--LEVEL 3-->
-
+<?php
+    include ("navbar.html")
+?>
 <!--LEVEL 3 END-->
 
 <!--LEVEL 4-->
