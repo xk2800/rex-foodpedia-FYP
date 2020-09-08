@@ -68,7 +68,7 @@
 
 <!--LEVEL 1-->
 <?php
-    include ("navbar.html")
+    include("navbar.html")
 ?>
 <!--LEVEL 1 END-->
 
