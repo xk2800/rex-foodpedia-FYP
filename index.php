@@ -8,17 +8,20 @@
 
     <title>Home | REX Foodipedia</title>
 
-    <!--Bootstrap CDN-->
+<!--FONTS.CSS-->
+    <link rel="stylesheet" href="css/fonts.css">
+
+<!--Bootstrap CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     
-    <!--Font Awesome CDN-->
+<!--Font Awesome CDN-->
     <script src="https://kit.fontawesome.com/daa253e478.js" crossorigin="anonymous"></script>
 
-    <!--Scroll Effect CDN https://michalsnik.github.io/aos/-->
+<!--Scroll Effect CDN https://michalsnik.github.io/aos/-->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-    <!--Disable Right Click-->
+<!--Disable Right Click-->
     <script src="js/disableMouseRightClick.js">
         var options = {
 
@@ -31,7 +34,7 @@
     </script>
 
     <style>
-        #all{
+        #overlay{
             background-color: #e8ded2;
         }
         .logo img{
@@ -52,21 +55,32 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-150%, -190%);
+            transform: translate(-50%, -250%);
         }
         .typewriter{
             position: absolute;
             top: 50%;
             left: 65%;
-            transform: translate(-100%, -160%);
+            transform: translate(-50%, -10%);
             /*position: fixed;*/
+        }
+        header{
+            background: black;
+            overflow: hidden;
+        }
+        main .img{
+            object-fit: cover;
+            opacity: 0.4;
+        }
+        .slides{
+            font-family: 'Lexend Deca', sans-serif;
         }
     </style>
 </head>
 <body>
     
-<div id="all">
 
+<div id="overlay">
 <!--LEVEL 1-->
 <?php
     include ("navbar.html")
@@ -74,40 +88,11 @@
 <!--LEVEL 1 END-->
 
 <!--LEVEL 2-->
-    <span class="main"><img src="img/test/food1.jpg"></span>
+    <span class="main"><img src="img/food1(home).jpg"></span>
     <span class="over-img-txt">
         <span class="hungry">Hungry?</span>
         
-    <!--TYPING EFFECT-->
-        <!--div class="typewritter">
-            <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-            <script>
-
-var typed = new Typed("#typed", {
-    stringsElement: '#typed-strings',
-    typeSpeed: 0,
-    backSpeed: 0,
-    backDelay: 500,
-    startDelay: 1000,
-    loop: false,
-    onBegin: function(self) { prettyLog('onBegin ' + self) },
-    onComplete: function(self) { prettyLog('onCmplete ' + self) },
-    preStringTyped: function(pos, self) { prettyLog('preStringTyped ' + pos + ' ' + self); },
-    onStringTyped: function(pos, self) { prettyLog('onStringTyped ' + pos + ' ' + self) },
-    onLastStringBackspaced: function(self) { prettyLog('onLastStringBackspaced ' + self) },
-    onTypingPaused: function(pos, self) { prettyLog('onTypingPaused ' + pos + ' ' + self) },
-    onTypingResumed: function(pos, self) { prettyLog('onTypingResumed ' + pos + ' ' + self) },
-    onReset: function(self) { prettyLog('onReset ' + self) },
-    onStop: function(pos, self) { prettyLog('onStop ' + pos + ' ' + self) },
-    onStart: function(pos, self) { prettyLog('onStart ' + pos + ' ' + self) },
-    onDestroy: function(self) { prettyLog('onDestroy ' + self) }
-  });
-    
-            </script>
-
-        </div-->
-
-
+<!--TYPING EFFECT-->
 
     <div class="typewriter">
         <div id="typewriter"></div>
@@ -127,26 +112,26 @@ var typed = new Typed("#typed", {
 <!--LEVEL 3-->
 
 <!--LEVEL 3 END-->
-
+<div id="overlay">
 <!--LEVEL 4-->
 <!--Main Bootstrap container-->
     <br><br><br>
     <div class="container">
         <!--OUR STORY-->
         <div data-aos="fade-right">
-            <div class="story"><p>Our Story<br>
+            <div class="slides"><p>Our Story<br>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
             </div>
         </div>
         <!--HOW TO USE-->
         <div data-aos="fade-left">
-            <div class="story"><p>How to Use<br>
+            <div class="slides"><p>How to Use<br>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
             </div>
         </div>
         <!--FAQ-->
         <div data-aos="fade-right">
-            <div class="story"><p>FAQ<br>
+            <div class="slides"><p>FAQ<br>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
             </div>
         </div>
@@ -182,5 +167,7 @@ var typed = new Typed("#typed", {
     <script>
         AOS.init();
     </script>
+</div>
+
 </body>
 </html>
