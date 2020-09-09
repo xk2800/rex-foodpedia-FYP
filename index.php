@@ -59,21 +59,19 @@
         }
         .typewriter{
             position: absolute;
-            top: 50%;
-            left: 65%;
-            transform: translate(-50%, -10%);
+            top: 42%;
+            left: 45%;
+            transform: translate(-10%, -10%);
             /*position: fixed;*/
-        }
-        header{
-            background: black;
-            overflow: hidden;
-        }
-        main .img{
-            object-fit: cover;
-            opacity: 0.4;
         }
         .slides{
             font-family: 'Lexend Deca', sans-serif;
+        }
+        .orderbtn{
+            position: absolute;
+            top: 55%;
+            left: 47%;
+            transform: translate(-10%, -10%);
         }
     </style>
 </head>
@@ -106,6 +104,8 @@
             });
         </script>
     </div>
+<!--ORDER NOT BTN-->
+    <button type="submit" name="orderbtn" class="orderbtn">ORDER NOW</button>
     </span>
 <!--LEVEL 2 END-->
 
