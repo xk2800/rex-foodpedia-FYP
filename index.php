@@ -9,7 +9,7 @@
     <title>Home | REX Foodipedia</title>
 
 <!--FONTS.CSS-->
-    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="preload" href="css/fonts.css" as="style">
 
 <!--Bootstrap CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -22,7 +22,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 <!--Disable Right Click-->
-    <script src="js/disableMouseRightClick.js">
+    <script src="js/index/disableMouseRightClick.js">
         var options = {
 
         // Set this false to deactivate alert
@@ -132,7 +132,9 @@
         <!--FAQ-->
         <div data-aos="fade-right">
             <div class="slides"><p>FAQ<br>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <?php
+                include("basic-faq.html");
+            ?>
             </div>
         </div>
     </div>
@@ -140,20 +142,9 @@
 <!--LEVEL 4 END-->
 
 <!--LEVEL 5-->
-<!--Footer Start-->
-    <!--Logo + Address-->
-    <div class="logo"><img src="img/logo/logo.png"></div>
-    <div class="address"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer</p></div>
-
-    <!--sitemap-->
-    <span class="main"><p>About</p></span>
-
-    <span class="supp">
-        <p>Our Story<br>
-        test</p>
-    </span>
-
-    <!--Footer End-->
+<?php
+    include ("footer.html")
+?>
 <!--LEVEL 5 END-->
 
 </div>
