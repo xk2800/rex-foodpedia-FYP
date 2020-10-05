@@ -19,14 +19,13 @@
 
     <style>
         #sitemap{
-            transform: translate( 35%, -88%);
             color: black;
         }
-        .sitemapList a:link, .sitemapList a:active, .sitemapList a:hover{
+        .sitemaplist a:link, .sitemaplist a:active, .sitemaplist a:hover, li a:link, li a:active, li a:hover{
             color: black;
             list-style-type: none;
         }
-        .sitemapList{
+        .sitemaplist{
             list-style-type: none;
             transform: translate( -35%, 0%);
             size: 14px;
@@ -34,11 +33,25 @@
         .space{
             width: 400px;
         }
+
+        @media screen and (max-width: 991px){
+
+            #sitemap{
+            transform: translate( 0%, 5%);
+            }
+
+        }
+        @media screen and (min-width: 992px){
+
+            #sitemap{
+            transform: translate( 35%, -135%);
+            }
+        }
     </style>
 </head>
 <body>
 
-<!--Footer Start-->
+<!--Footer START-->
     
 
     <section class="sitemap nav-sitemap" data-no-translation>
@@ -77,68 +90,52 @@
                                 
                                             <div class="col-sm-4 col-md-2 space">
                                                 <h5 class="text-caps">How To Use</h5>
-                                                <ul class="sitemapList">
-                                                    <li><a href="how-to-use" style="color: black;">How To</a></li>
+                                                <!--ul class="sitemapList"-->
+                                                <span class="sitemaplist">
+                                                    <li><a href="how-to-use">How To</a></li>
                                                     
-                                                </ul>
+                                                <!--/ul-->
+                                                </span>
                                             </div>
 
 
                                             <div class="col-sm-4 col-md-2 space">
                                                 <h5 class="text-caps">Menu</h5>
-                                                <ul class="sitemapList">
+                                                <span class="sitemaplist">
                                                     <li><a href="">blanker</a></li>
                                                     <li><a href="">blanker</a></li>
-                                                </ul>
+                                                </span>
                                             </div>
 
 
                                             <div class="col-sm-4 col-md-2 space">
                                                 <h5 class="text-caps">About Us</h5>
-                                                <ul class="sitemapList">
+                                                <span class="sitemaplist">
                                                     <li><a href="contact-us">Contact Us</a></li>
                                                     <li><a href="location">Location</a></li>
                                                     <li><a href="our-background">Our Background</a></li>
                                                     <li><a href="faq">Frequently Asked Questions(FAQ)</a></li>
                                                     
-                                                </ul>
+                                                </span>
                                             </div>
-
-
-                                            <!--div class="col-sm-4 col-md-2 space">
-                                                <h5 class="text-caps">Merchant</h5>
-                                                <ul class="sitemapList">
-                                                    <li><a href="/my/merchant-blog/">What's New</a></li>
-                                                    
-                                                </ul>
-                                            </div>
-
-
-                                            <div class="col-sm-4 col-md-2 space">
-                                                <h5 class="text-caps">Enterprise</h5>
-                                                <ul class="sitemapList">
-                                                    <li><a href="/my/business/">Grab for Business</a></li>
-                                                    
-                                            </div>
-
 
                                             <div class="col-sm-4 col-md-2 space">
                                                 <h5 class="text-caps">Quick Links</h5>
-                                                <ul class="sitemapList">
-                                                    <li><a href="https://help.grab.com/passenger/en-my/">Help Centre</a></li>
-                                                    
-                                                </ul>
-                                            </div-->                           
+                                                <span class="sitemaplist">
+                                                    <li><a href="my-orders">My Orders</a></li>
+                                                    <li><a href="profile">Profile</a></li>
+                                                    <li><a href="loyalty-points">Loyalty Points</a></li>
+                                                    <li><a href="feedback">Feedback To Us</a></li>
+                                                </span>
+                                            </div>
                             </div>
 <!--sitemap END-->
-
                         </div>
                 </div>
             </div>
         </div>
     </section>
-<!--  -->
-    <!--Footer End-->
+    <!--Footer END-->
 
 </body>
 </html>

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
-    <head><title>Welcome | REX Foodpedia</title>
+<?php
+    include("../db-connect.php");
+?>
+
+    <head><title>404 Opps | REX Foodpedia</title>
 	
 	<link rel="icon" type="image/png" href= "image/MYRUN 1.png">
 
@@ -17,12 +21,30 @@
 <!--THIS IS BOOTSTRAP CSS PART START-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <!--THIS IS BOOTSTRAP CSS PART END-->
+    
+<link rel="stylesheet" href="../css/404.css">
+
+    <style>
+        body{
+            background-color: #e8ded2;
+        }
+    </style>
 
 </head>
 <body>
 <div id="overlay">
 <!--START CODE BETWEEN THIS 2 DIV, if not, navbar will error-->
 
+    <div class="overlay">
+        <a href="index"><img src="./img/logo/logo.png"></a>
+
+        
+
+
+
+
+
+    </div>
 
 
 

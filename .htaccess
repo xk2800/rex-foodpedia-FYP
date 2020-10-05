@@ -25,8 +25,8 @@
     Options All +Indexes
 
 
-##ErrorDocument 404 /hddocs/Personal_Projects/myrunproject/error/404.php
-    ErrorDocument 404 /hddocs/myrun-project/error/404.php
-    ErrorDocument 404 /hddocs/myrun-project/admin/error/404.php
+##Router page Error to custom page
+    ErrorDocument 404 /hddocs/rex-foodpedia-FYP/error/404.php
+    ##ErrorDocument 404 /hddocs/myrun-project/admin/error/404.php
 
 
