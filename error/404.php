@@ -4,7 +4,7 @@
     include("../db-connect.php");
 ?>
 
-    <head><title>404 Opps | REX Foodpedia</title>
+    <head><title>Opps 404 | REX Foodpedia</title>
 	
 	<link rel="icon" type="image/png" href= "image/MYRUN 1.png">
 
@@ -35,10 +35,13 @@
 <div id="overlay">
 <!--START CODE BETWEEN THIS 2 DIV, if not, navbar will error-->
 
-    <div class="overlay">
+    <div class="container">
         <a href="index"><img src="./img/logo/logo.png"></a>
 
-        
+        <div class="opps">
+            <p>Opps, looks like something went wrong.</p>
+            <p>Don't worry,</p>
+        </div>
 
 
 
