@@ -15,7 +15,7 @@
 
     <link rel="icon" type="image/png" href= "img/logo/logo.png">
 
-    <title>Home | REX Foodipedia</title>
+    <!--title>Home | REX Foodipedia</title-->
 
 <?php
 
@@ -46,9 +46,9 @@
     
 ?>
 <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true){?>
-              <title> Welcome <?php echo $_SESSION['uname']?> | REX Foodpedia</title>
+                <title> Welcome <?php echo $_SESSION['uname']?> | REX Foodpedia</title>
          <?php } else { ?>
-              <title>Home | REX Foodipedia</title>
+                <title>Home | REX Foodipedia</title>
          <?php } ?>
 <!--FONTS.CSS-->
     <link rel="preload" href="css/fonts.css" as="style">
@@ -89,7 +89,7 @@
         }
         #typewriter{
             color: white;
-            font-size: 40px;
+            font-size: 3em;
         }
         .hungry{
             font-size: 2em;
@@ -97,13 +97,13 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -250%);
+            transform: translate(-50%, -400%);
         }
         .typewriter{
             position: absolute;
             top: 42%;
             left: 45%;
-            transform: translate(-10%, -10%);
+            transform: translate(-10%, -110%);
             /*position: fixed;*/
         }
         .slides{
@@ -113,7 +113,17 @@
             position: absolute;
             top: 55%;
             left: 47%;
-            transform: translate(-10%, -10%);
+            transform: translate(-25%, -100%);
+            background-color: transparent;
+            border-color: #5eaaa8;
+            border-width: 3px;
+            color: white;
+            font-weight: bold;
+            padding: 15px 32px;
+            display: inline-block;
+            font-size: 1.1em;
+            /*box-shadow: none;
+            border-radius: 0px;*/
         }
     </style>
 </head>
