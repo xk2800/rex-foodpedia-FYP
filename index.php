@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    include("db-connect.php");
+
+    /**
+     * using if else statement for homepage
+     */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +17,39 @@
 
     <title>Home | REX Foodipedia</title>
 
+<?php
+
+    //$_SESSION['logged-in'];
+
+    /**
+     * <p class="menu"><a href="index.html">Home</a></p> 
+     *    <p class="menu"><a href="Product1.html">Products</a> </p> 
+     * 
+     *  <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true): ?>
+     *   
+     * <p class="menu"><a href="logout.php">Logout</a></p>
+     * 
+     *   <?php else: ?>
+     * 
+     *   <p class="menu"><a href="login.html">Login</a></p> 
+     * 
+     *   <?php endif; ?>
+     * 
+     * 
+     * <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true){?>
+     *      <title> Welcome <?php echo $_SESSION['uname']?> | REX Foodpedia</title>
+     * <?php } else { ?>
+     *      <title>Home | REX Foodipedia</title>
+     * <?php } ?>
+     * 
+     */
+    
+?>
+<?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true){?>
+              <title> Welcome <?php echo $_SESSION['uname']?> | REX Foodpedia</title>
+         <?php } else { ?>
+              <title>Home | REX Foodipedia</title>
+         <?php } ?>
 <!--FONTS.CSS-->
     <link rel="preload" href="css/fonts.css" as="style">
 
