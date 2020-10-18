@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    padding: 10px;
+  }
+  
+  /* ================================= */
+  
+  section {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    padding: 80px 0;
+    border-bottom: 1px solid #4A4A4A;
+    h1 {
+      font-size: 36px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0 12px;
+    }
+    p {
+      font-size: 16px;
+      letter-spacing: 1px;
+      text-transform: capitalize;
+      padding: 10px 12px;
+    }
+  }
+  
+  /* ================================= */
+  
+  .container {
+    width: 100%;
+  }
+  
+  .Accordions {
+    display: block;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .Accordion_item {
+    width: 100%;
+    height: auto;
+    margin: 5px 0;
+    &:first-child {
+      margin-top: 50px;
+    }
+    .title_tab {
+      width: 100%;
+      background-color: #51adf6;
+      color: #FCFCFC;
+      padding: 12px 30px;
+      cursor: pointer;
+      transition: background-color .3s ease-in;
+      border-radius:4px;
+      .title {
+        font-size: 24px;
+        letter-spacing: 1px;
+        position: relative;
+        .icon {
+          position: absolute;
+          right: 1%;
+          top: calc(50% - 8px);
+          width: 16px;
+          height: 16px;
+          background-color: transparent;
+          transform: rotate(-90deg);
+          transition: transform 0.3s ease-in;
+          &:before, &:after {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 2px;
+            background-color: #FCFCFC;
+          }
+          &:before {
+            top: 0;
+            left: 2px;
+            transform: rotate(-45deg);
+          }
+          &:after {
+            top: 0;
+            right: 2px;
+            transform: rotate(45deg);
+          }
+        }
+      }
+    }
+  }
+  
+  .inner_content {
+    width: 100%;
+    height: auto;
+    display: none;
+    overflow: hidden;
+    p {
+      width: 98%;
+      margin: auto;
+      padding: 18px 15px;
+      font-size: 16px;
+      line-height: 28px;
+      letter-spacing: 1px;
+      opacity: 0;
+      transform: translate3d(0px, 60px, 0px);
+      transition: transform 0.6s cubic-bezier(0, 0.99, 0.44, 1.01), opacity 0.8s 0.1s cubic-bezier(0, 0.99, 0.44, 1.01);
+    }
+  }
+  
+  /* ================================= */
+  
+  .Accordion_item {
+    .title_tab {
+      &.active {
+        .title .icon {
+          transform: rotate(0deg);
+          transition: transform .3s ease-in;
+        }
+        background-color: #2196F3;
+        transition: background-color .3s ease-in;
+      }
+      &:hover {
+        background-color: #2196F3;
+        transition: background-color .3s ease-in;
+      }
+    }
+    .inner_content p.show {
+      opacity: 1;
+      transform: translate3d(0px, 0px, 0px);
+      transition: opacity 0.8s cubic-bezier(0, 0.99, 0.44, 1.01), transform 0.6s 0.1s cubic-bezier(0, 0.99, 0.44, 1.01);
+    }
+  }
+  
+  /* ================================= */
+  
+  .inner_content p {
+    span {
+      font-size: 14px;
+      line-height: 30px;
+    }
+    b {
+      color: #F44336;
+      font-size: 18px;
+    }
+  }

@@ -185,7 +185,8 @@
         <div data-aos="fade-right">
             <div class="slides"><p>FAQ<br>
             <?php
-                include("basic-faq.html");
+                //include("basic-faq.html");
+                include("test.html");
             ?>
             </div>
         </div>
