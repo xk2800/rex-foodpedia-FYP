@@ -140,7 +140,7 @@
             <div class="slides"><p>FAQ<br>
             <?php
                 //include("basic-faq.html");
-                include("test.html");
+                include("homepage-elements/faq-front.html");
             ?>
             </div>
         </div>
