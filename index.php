@@ -50,6 +50,7 @@
          <?php } else { ?>
                 <title>Home | REX Foodipedia</title>
          <?php } ?>
+
 <!--FONTS.CSS-->
     <link rel="stylesheet" href="css/fonts.css">
 
@@ -75,57 +76,9 @@
         }
     </script>
 
-    <style>
-        #overlay{
-            background-color: #e8ded2;
-        }
-        .logo img{
-            width: 10%;
-            height: 10%;
-        }
-        .main img{
-            width: 100%;
-            height: 401px;
-        }
-        #typewriter{
-            color: white;
-            font-size: 3em;
-        }
-        .hungry{
-            font-size: 2em;
-            color: white;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -400%);
-        }
-        .typewriter{
-            position: absolute;
-            top: 42%;
-            left: 45%;
-            transform: translate(-10%, -110%);
-            /*position: fixed;*/
-        }
-        .slides{
-            font-family: 'Lexend Deca', sans-serif;
-        }
-        .orderbtn{
-            position: absolute;
-            top: 55%;
-            left: 47%;
-            transform: translate(-25%, -100%);
-            background-color: transparent;
-            border-color: #5eaaa8;
-            border-width: 3px;
-            color: white;
-            font-weight: bold;
-            padding: 15px 32px;
-            display: inline-block;
-            font-size: 1.1em;
-            /*box-shadow: none;
-            border-radius: 0px;*/
-        }
-    </style>
+<!--EXTERNAL HTML-->
+<link rel="stylesheet" href="css/homepage.css">
+
 </head>
 <body>
     
@@ -157,7 +110,8 @@
         </script>
     </div>
 <!--ORDER NOT BTN-->
-    <button type="submit" name="orderbtn" class="orderbtn">ORDER NOW</button>
+    <button type="submit" name="orderbtn" class="orderbtn from-center">ORDER NOW</button>
+    <!--div class="orderbtn from-center">ORDER NOW</div-->
     </span>
 <!--LEVEL 2 END-->
 

@@ -1,0 +1,24 @@
+Customer:
++homepage
++payment gateway
++menu page 
++purchase history
++logout page
++receipt page
++checkout page/order confirmation
++FAQ page 
++logout->end session page
+
+Staff:
++ * View important info: *
+      - view transactions
+      - view order list
+      - add, delete, update items
+
+Admin:
++Login
++edit staff page
+
+Error pages:
+404
+500
