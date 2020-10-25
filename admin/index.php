@@ -1,10 +1,7 @@
 <?php
 //FULLY WORKING
-include "../db-connect.php";
 
-?>
-
-<?php
+    include "../db-connect.php";
     session_start();
 ?>
 <!DOCTYPE html>
@@ -17,19 +14,7 @@ include "../db-connect.php";
         <link rel="stylesheet" href="../css/admin-landing.css" />
         <link rel="stylesheet" href="../css/index-admin.css" />
         <meta charset="UTF-8"/>
-        <script>
-            function sanitizeInputs() {
-                var str = $("#uname").val();
-                str = str.replace(/[^a-zA-Z 0-9,]/gim, "");
-                str = str.trim();
-                $("#uname").val(str);
-
-                str = $("#pwd").val();
-                str = str.replace(/[^a-zA-Z 0-9]/gim, "");
-                str = str.trim();
-                $("#pwd").val(str);
-            }
-        </script>
+        
 </head>
 <body>
     
@@ -58,6 +43,20 @@ include "../db-connect.php";
 <!--FOOTER END-->
 
 </body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>
+    function sanitizeInputs() {
+  var str = $("#uname").val();
+  str = str.replace(/[^a-zA-Z 0-9 .*$%&]/gim, "");
+  str = str.trim();
+  $("#uname").val(str);
+
+  str = $("#pwd").val();
+  str = str.replace(/[^a-zA-Z 0-9 !@#$%^&*()-+=.]/gim, "");
+  str = str.trim();
+  $("#pwd").val(str);
+}
+</script>
 </html>
 
 <?php
@@ -68,9 +67,8 @@ include "../db-connect.php";
 $fullUrl ="http:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
     if(strpos($fullUrl, "login=empty") == true){
-        echo '<script>document.getElementById("error").innerHTML = "You did not fill in all fields<br><br>"</script>'
+        echo '<script>document.getElementById("error").innerHTML = "You did not fill in all fields<br><br>"</script>';
         
-        /*("<p class="msg">You did not fill in all fields</p>")*/; //add css for color
     }
 
 /**
@@ -82,7 +80,6 @@ if(isset($_POST["loginbtn"])){
     $uname = $_POST['uname'];
     $pwd = $_POST['pwd'];
 
-    
     $pwdd = md5($pwd);
 
     //salt variable
