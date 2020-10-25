@@ -1,0 +1,112 @@
+/*NAV BAR START*/
+.upnav{
+    overflow: hidden;
+    background-color: gray;
+}
+
+.upnav a{
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 2em;
+}
+
+.upnav a:hover{
+    background-color: green;
+    font-weight: bold;
+    color: white;
+}
+
+.upnav a:active{
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+/*NAV BAR END*/
+
+
+/*FOOTER START*/
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #a9a9a9;
+    text-align: justify;
+    text-indent: 20px;
+}
+#access{
+    text-indent: 1280px;
+    margin-top: -35px;
+    font-weight: bold;
+    color: red;
+}
+#topaccess{
+    text-indent: 1250px;
+    margin-top: -35px;
+    font-weight: bold;
+    color: red;
+}
+/*FOOTER END*/
+
+
+/*body{
+    background-color: black;
+}*/
+
+
+body{
+    margin: 0;
+    padding: 0;
+}
+#outside
+{
+    background-color: #6975A7;
+    height: 75px;
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+}
+.logo{
+    position:absolute; 
+    left: 45%;
+    top: 1%;
+    height: 15%;
+    width: 8%;
+}
+#bottom
+{
+    height: 55px;
+    width: 100%;
+}
+.panel{
+    margin-top: 1% ;
+    text-align: center;
+    font-size: 16px;
+}
+.gap{
+    margin: 2% ; 
+}
+.box{
+    border: 2px solid #6975A7;
+    text-align: center;
+    /*width: 50%;*/
+    display: table;
+    padding: 50px;
+    margin: 0 auto;
+}
+.user, .pass, .in{
+    font-size: 18px;
+}
+.in:focus{
+    border: 2px solid #2AEBAE;
+}
+.reset:link{
+    color: black;
+    text-decoration: none;
+}
+.reset:hover{
+    text-decoration: underline;
+}

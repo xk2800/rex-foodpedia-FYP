@@ -27,6 +27,7 @@
     <style>
         body{
             background-color: #e8ded2;
+            font-family: 'Bangers', cursive;
         }
     </style>
 
@@ -36,7 +37,7 @@
 <!--START CODE BETWEEN THIS 2 DIV, if not, navbar will error-->
 
     <div class="container">
-        <a href="index"><img src="./img/logo/logo.png"></a>
+        <a href="index"><img src="../img/logo/logo.png"></a>
 
         <div class="opps">
             <p>Opps, looks like something went wrong.</p>
