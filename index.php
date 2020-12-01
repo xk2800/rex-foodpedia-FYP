@@ -51,20 +51,23 @@
                 <title>Home | REX Foodipedia</title>
          <?php } ?>
 
-<!--FONTS.CSS-->
+    <!--FONTS.CSS-->
     <link rel="stylesheet" href="css/fonts.css">
 
-<!--Bootstrap CDN-->
+    <!--EXTERNAL HTML-->
+    <link rel="stylesheet" href="css/homepage.css">
+
+    <!--Bootstrap CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     
-<!--Font Awesome CDN-->
+    <!--Font Awesome CDN-->
     <script src="https://kit.fontawesome.com/daa253e478.js" crossorigin="anonymous"></script>
 
-<!--Scroll Effect CDN https://michalsnik.github.io/aos/-->
+    <!--Scroll Effect CDN https://michalsnik.github.io/aos/-->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-<!--Disable Right Click-->
+    <!--Disable Right Click-->
     <script src="js/index/disableMouseRightClick.js">
         var options = {
 
@@ -76,8 +79,25 @@
         }
     </script>
 
-<!--EXTERNAL HTML-->
-<link rel="stylesheet" href="css/homepage.css">
+    <style>
+    .parallax-one {
+    padding-top: 200px; 
+    padding-left: 50px; 
+    padding-right: 50px; 
+    padding-bottom: 200px; 
+    overflow: hidden; 
+    position: relative; 
+    width: 100%;
+    background-image: url("img/food1.jpg"); 
+    background-attachment: fixed; 
+    background-size: cover; 
+    -moz-background-size: cover; 
+    -webkit-background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: top center;
+    z-index:2;
+}
+    </style>
 
 </head>
 <body>
@@ -91,28 +111,31 @@
 <!--LEVEL 1 END-->
 
 <!--LEVEL 2-->
-    <span class="main"><img src="img/food1(home).jpg"></span>
-    <span class="over-img-txt">
-        <span class="hungry">Hungry?</span>
-        
-<!--TYPING EFFECT-->
 
-    <div class="typewriter">
-        <div id="typewriter"></div>
-        <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
-        <script>
-            const instance = new Typewriter('#typewriter', {
-            strings: ['Order Now', 'Get food from us'],
-            autoStart: true,
-            loop: true,
-            deleteSpeed: 5,
-            });
-        </script>
-    </div>
-<!--ORDER NOT BTN-->
-    <button type="submit" name="orderbtn" class="orderbtn from-center">ORDER NOW</button>
-    <!--div class="orderbtn from-center">ORDER NOW</div-->
-    </span>
+    <section id="top">
+        <div class="parallax-one main">
+            <span class="over-img-txt">
+                <span class="hungry">Hungry?</span>
+                
+            <!--TYPING EFFECT-->
+            <div class="typewriter">
+                <div id="typewriter"></div>
+                <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+                <script>
+                    const instance = new Typewriter('#typewriter', {
+                    strings: ['Order Now', 'Get food from us'],
+                    autoStart: true,
+                    loop: true,
+                    deleteSpeed: 5,
+                    });
+                </script>
+            </div>
+            <!--ORDER NOT BTN-->
+            <button type="submit" name="orderbtn" class="orderbtn from-center">ORDER NOW</button>
+            <!--div class="orderbtn from-center">ORDER NOW</div-->
+            </span>
+        </div>
+    </section>
 <!--LEVEL 2 END-->
 
 <!--LEVEL 3-->

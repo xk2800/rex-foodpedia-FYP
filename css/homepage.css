@@ -6,7 +6,25 @@ body{
     background-color: #e8ded2;
 }
 
-.logo img{
+.parallax-one {
+    padding-top: 200px; 
+    padding-left: 50px; 
+    padding-right: 50px; 
+    padding-bottom: 200px; 
+    overflow: hidden; 
+    position: relative; 
+    width: 100%;
+    background-image: url("img/food1.jpg"); 
+    background-attachment: fixed; 
+    background-size: cover; 
+    -moz-background-size: cover; 
+    -webkit-background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: top center;
+    
+}
+
+/*.logo img{
     width: 10%;
     height: 10%;
 }
@@ -14,7 +32,7 @@ body{
 .main img{
     width: 100%;
     height: 401px;
-}
+}*/
 
 #typewriter{
     color: white;
@@ -27,14 +45,14 @@ body{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -400%);
+    transform: translate(-50%, -150%);
 }
 
 .typewriter{
     position: absolute;
     top: 42%;
     left: 45%;
-    transform: translate(-10%, -110%);
+    transform: translate(-10%, -0%);
 }
 
 .slides{
@@ -46,7 +64,7 @@ body{
     position: absolute;
     top: 55%;
     left: 47%;
-    transform: translate(-26%, -100%);
+    transform: translate(-26%, 100%);
     background-color: transparent;
     border-color: #5eaaa8;
     border-width: 3px;

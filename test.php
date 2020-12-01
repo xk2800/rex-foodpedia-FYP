@@ -4,39 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-    <style>
-        *{
-            color: black;
-        }
 
+    <style>
+    .parallax-one {
+    padding-top: 200px; 
+    padding-left: 50px; 
+    padding-right: 50px; 
+    padding-bottom: 200px; 
+    overflow: hidden; 
+    position: relative; 
+    width: 100%;
+    background-image: url("img/food1.jpg"); 
+    background-attachment: fixed; 
+    background-size: cover; 
+    -moz-background-size: cover; 
+    -webkit-background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: top center;
+    z-index:2;
+}
     </style>
 </head>
 <body>
-<div class="typewritter">
-<div id="typewriter"></div>
-            
-            <script>
+<div class="parallax-one main">
 
-var typed = new Typed('.element', {
-  strings: ['This is a JavaScript library', 'This is an ES6 module'],
-  smartBackspace: true // Default value
-});
-    
-    
-            </script>
-<!--div class="typewriter">
-        <div id="typewriter"></div>
-        <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
-        <script>
-            const instance = new Typewriter('#typewriter', {
-            strings: ['Order Now', 'Get food from us'],
-            autoStart: true,
-            loop: true,
-            deleteSpeed: 5,
-            });
-        </script>
-    </div-->
-        </div>
+</div>
 </body>
 </html>
