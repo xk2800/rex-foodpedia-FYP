@@ -26,27 +26,25 @@
             z-index: 9999;
         }*/
         img{
-            width: 90px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
         }
         /*.nav-link{
           /*padding-left: .5em !important;
           padding-right: .5em !important;
         }*/
         #navbar{
-            background-color: #15243C;
+            background-color: #5eaaa8;
         }
     </style>
 </head>
 <body>
     
     <nav class="sticky-top navbar navbar-expand-lg navbar-dark" id="navbar">
-    
-        <!--div class="container"-->
-
-            <a class="navbar-brand" href="index.html">
-                <img src="images/logo/LOGO standard.png" alt="Tech Career Days 2020 Logo">
+            <a class="navbar-brand" href="index">
+                <img class="logo horizontal-logo" src="img/logo/logo.png" alt="REX Foodipedia logo">
             </a>
+            <!-- Button for mobile -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -54,22 +52,43 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto w-100 justify-content-end">
                     <li class="nav-item active">
-                        <a class="nav-link text-center" href="#home">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link text-center" href="index">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link text-center" href="#about">About</a>
+                        <a class="nav-link text-center" href="how-to-use">How To Use</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-center disabled" href="#sponsor&partners">Sponsors & <br> Partners </a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About Us
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                            <a class="dropdown-item" href="contact-us">Contact Us</a>
+                            <a class="dropdown-item" href="location">Location</a>
+                            <a class="dropdown-item" href="our-background">Our Background</a>
+                            <a class="dropdown-item" href="faq">FAQ</a>
+                            <!--div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a-->
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-center disabled" href="#agenda">Agenda</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                            Account
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                            <a class="dropdown-item" href="my-orders">My Orders</a>
+                            <a class="dropdown-item" href="profile">Profile</a>
+                            <a class="dropdown-item" href="loyalty-points">Loyalty Points</a>
+                            <a class="dropdown-item" href="feedback">Feedback to Us</a>
+                            <!--div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a-->
+                        </div>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link text-center" href="#faq">FAQ</a>
+                        <a class="nav-link text-center" href="cart"><i class="fas fa-shopping-cart"></i> Cart</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled text-center" href="#">Submit Resume <br> (Coming Soon)</a>
+                    <li class="nav-item active">
+                        <a class="nav-link text-center" href="user-login">Login/Register</a>
                     </li>
                 </ul>
             </div>
