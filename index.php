@@ -106,7 +106,7 @@
 <div id="overlay">
 <!--LEVEL 1-->
 <?php
-    include ("navbar.html")
+    include ("nav.html");
 ?>
 <!--LEVEL 1 END-->
 
