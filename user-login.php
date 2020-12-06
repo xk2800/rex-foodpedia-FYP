@@ -24,19 +24,18 @@
         <style>       
             #card-whole {
                 margin: auto;
-                margin-top: 150px;
+                margin-top: 80px;
                 width: 150%;
                 padding: 10px;
                 padding-bottom: 35px;
                 border-radius: 20px;
                 height: auto;
-                border-color: grey;
-                border-width:2px;
+                background-color: #F8F7F5;
             }
             
             #card-login-button {
-                padding: 15px 90px;
-                margin-bottom: 30px;
+                padding: 50px 90px;
+                font-style:italic;
             }
 
             #card-input {
@@ -50,22 +49,22 @@
                 border:none;
             }
             
-            #card-misc a{
+            #card-misc a, #card-misc2 a{
                 color: black;
                 text-decoration: none;
                 font-style: italic;
                 letter-spacing: 1px;
+                font-size: 13px;
             }
 
-            #card-misc a:hover{
-                color:red;
+            #card-misc a:hover, #card-misc2 a:hover{
+                color:#F4AC9C;
             }
-
         </style>
     
     </head>
 
-    <body>
+    <body style="background-color: #e8ded2;">
         
         <?php
             include("nav.html");
@@ -88,11 +87,14 @@
                             </div>
                         </form>
                     </div>
+                    <div id="card-misc">
+                        <a href="https://www.youtube.com/?gl=US" style="float:left; padding-left:20px;">Forgot passord ?</a>
+                    </div>
                     <div id="card-login-button">
                         <a href="https://www.youtube.com/?gl=US" class="btn btn-dark btn-block" >Login</a>
                     </div>
-                    <div id="card-misc">
-                        <a href="https://www.youtube.com/?gl=US" style="float:left;">Forgot passord ? </a> <a href="https://www.youtube.com/?gl=US" style="padding-left: 220px;"> Register</a>
+                    <div id="card-misc2">
+                        <a href="https://www.youtube.com/?gl=US" style="text-align:center;"> No account yet ? Create one</a>
                     </div>
                     <hr/>
                 </div>
