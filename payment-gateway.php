@@ -11,6 +11,11 @@
 
 <!--EXTERNAL STYLE SHEET-->
     <link rel="stylesheet" href="css/payment-gateway.css">
+
+    <style>
+        
+    </style>
+
 </head>
 <body>
 
@@ -424,8 +429,13 @@ securitycode.addEventListener('focus', function () {
 </script>
 </body>
 </html>
-
+<?php
+/*
 name on card: name-card
 card number:
 exp date:
 cvv:
+
+*/
+
+?>

@@ -16,7 +16,7 @@ body {
     min-height: 100vh;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-        font-family: 'Lexend Deca', sans-serif;
+        font-family: 'Lexend Deca', arial;
         background-color: #e8ded2;
 }
 
