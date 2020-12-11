@@ -24,12 +24,10 @@
         <style>       
             #card-whole {
                 margin: auto;
-                margin-top: 80px;
-                width: 150%;
+                margin-top: 60px;
                 padding: 10px;
                 padding-bottom: 35px;
                 border-radius: 20px;
-                height: auto;
                 background-color: #F8F7F5;
             }
             
@@ -38,7 +36,7 @@
                 font-style: italic;
             }
 
-            #card-input {
+            #card-input-login {
                 padding: 30px 10px 25px 10px;
                 width: 95%
             }
