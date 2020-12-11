@@ -121,28 +121,31 @@
             </div>
         </div>
     </div>
-    <div class="form-container">
-        <div class="field-container">
-            <label for="name">Name on card</label>
-            <input id="name" maxlength="20" type="text" name="name-card">
-        </div>
-        <div class="field-container">
-            <label for="cardnumber">Card Number</label><!--span id="generatecard"></span-->
-            <input id="cardnumber" type="text" pattern="[0-9]*" inputmode="numeric" >
-            <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink">
+    <form method="POST">
+        <div class="form-container">
+        
+            <div class="field-container">
+                <label for="name">Name on card</label><input id="name" maxlength="20" type="text" name="name-card">
+            </div>
+            <div class="field-container">
+                <label for="cardnumber">Card Number</label><!--span id="generatecard"></span-->
+                <input id="cardnumber" type="text" inputmode="numeric" name="card-number">
+                <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                </svg>
+            </div>
 
-            </svg>
+            <div class="field-container">
+                <label for="expirationdate">Expiration (MM/YY)</label><input id="expirationdate" type="text" inputmode="numeric" name="exp-date">
+            </div>
+
+            <div class="field-container">
+                <label for="securitycode">CVV</label><input id="securitycode" type="password" pattern="[0-9]*" inputmode="numeric" name="cvv-num">
+            </div>
         </div>
-        <div class="field-container">
-            <label for="expirationdate">Expiration (MM/YY)</label>
-            <input id="expirationdate" type="text" pattern="[0-9]*" inputmode="numeric">
-        </div>
-        <div class="field-container">
-            <label for="securitycode">CVV</label>
-            <input id="securitycode" type="text" pattern="[0-9]*" inputmode="numeric">
-        </div>
-    </div>
+            <button type="submit" name="paybtn">Make payment</button>
+            <button type="submit" name="cancelbtn">Back to checkout</button>
+    </form>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script>
 
@@ -432,10 +435,26 @@ securitycode.addEventListener('focus', function () {
 <?php
 /*
 name on card: name-card
-card number:
-exp date:
-cvv:
+card number: card-number
+exp date: exp-name
+cvv: cvv-num
 
 */
+
+    if(isset($_POST["paybtn"])){
+        
+        $name_card  = ($_POST["name-card"]);
+        $card_num   = ($_POST["card-number"]);
+        $exp_date   = ($_POST["exp-date"]);
+        $cvv        =  ($_POST["cvv-num"]);
+
+        echo $name_card;
+        echo '<br>';
+        echo $card_num;
+        echo '<br>';
+        echo $exp_date;
+        echo '<br>';
+        echo $cvv;
+    }
 
 ?>
