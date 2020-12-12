@@ -37,7 +37,7 @@
 
 <!--FOOTER START-->
 <div class="footer">
-    <p>&#9400; 2020 REX Foodipedia Copyright
+    <p>&#9400; <script>document.write(new Date().getFullYear())</script> REX Foodipedia Copyright
         <div id="access">Restricted Access For Admins Only</div></p>
 </div>
 <!--FOOTER END-->
