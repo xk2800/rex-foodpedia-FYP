@@ -125,22 +125,22 @@
         <div class="form-container">
         
             <div class="field-container">
-                <label for="name">Name on card</label><input id="name" maxlength="20" type="text" name="name-card">
+                <label for="name">Name on card</label><input id="name" maxlength="20" type="text" name="name-card" required>
             </div>
             <div class="field-container">
                 <label for="cardnumber">Card Number</label><!--span id="generatecard"></span-->
-                <input id="cardnumber" type="text" inputmode="numeric" name="card-number">
+                <input id="cardnumber" type="text" inputmode="numeric" name="card-number" required>
                 <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink">
                 </svg>
             </div>
 
             <div class="field-container">
-                <label for="expirationdate">Expiration (MM/YY)</label><input id="expirationdate" type="text" inputmode="numeric" name="exp-date">
+                <label for="expirationdate">Expiration (MM/YY)</label><input id="expirationdate" type="text" inputmode="numeric" name="exp-date" required>
             </div>
 
             <div class="field-container">
-                <label for="securitycode">CVV</label><input id="securitycode" type="password" pattern="[0-9]*" inputmode="numeric" name="cvv-num">
+                <label for="securitycode">CVV</label><input id="securitycode" type="password" pattern="[0-9]*" inputmode="numeric" name="cvv-num" required>
             </div>
         </div>
             <button type="submit" name="paybtn">Make payment</button>
