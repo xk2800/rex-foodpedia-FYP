@@ -143,8 +143,11 @@
                 <label for="securitycode">CVV</label><input id="securitycode" type="password" pattern="[0-9]*" inputmode="numeric" name="cvv-num" required>
             </div>
         </div>
+        <div class="buttons">    
             <button type="submit" name="paybtn">Make payment</button>
             <button type="submit" name="cancelbtn">Back to checkout</button>
+            <br><br>
+        </div>
     </form>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js"></script>
