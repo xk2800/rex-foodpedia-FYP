@@ -4,73 +4,88 @@
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>ADMIN LOGIN PAGE | REX Foodipedia ADMIN</title>
-        
-        <link rel="icon" type="image/png" href= "../img/logo/logo.png">
+<head>
+    <title>ADMIN LOGIN PAGE | REX Foodipedia ADMIN</title>
+    
+    <link rel="icon" type="image/png" href= "../img/logo/logo.png">
 
-        <link rel="stylesheet" href="../css/admin-landing.css" />
-        <link rel="stylesheet" href="../css/index-admin.css" />
-        <meta charset="UTF-8"/>
-        <script>
-            function sanitizeInputs() {
-                var str = $("#uname").val();
-                str = str.replace(/[^a-zA-Z 0-9,]/gim, "");
-                str = str.trim();
-                $("#uname").val(str);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-                str = $("#pwd").val();
-                str = str.replace(/[^a-zA-Z 0-9]/gim, "");
-                str = str.trim();
-                $("#pwd").val(str);
-            }
-        </script>
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <!--Font Awesome CDN-->
+    <script src="https://kit.fontawesome.com/daa253e478.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../css/admin-landing.css" />
+    <link rel="stylesheet" href="../css/index-admin.css" />
+
+    <script>
+        function sanitizeInputs() {
+            var str = $("#uname").val();
+            str = str.replace(/[^a-zA-Z 0-9,]/gim, "");
+            str = str.trim();
+            $("#uname").val(str);
+
+            str = $("#pwd").val();
+            str = str.replace(/[^a-zA-Z 0-9]/gim, "");
+            str = str.trim();
+            $("#pwd").val(str);
+        }
+    </script>
+
+
 </head>
 <body>
     
-    <div id="outside">
-        <span><img class="logo" src="../img/logo/logo.png"/></span></div>
-    <div id="bottom"></div>
+    
+        <div id="outside">
+            <span><img class="logo" src="../img/logo/logo.png"/></span></div>
+        <div id="bottom"></div>
+
+    <div class="container">
 
         <p class="panel">Register staff for REX Foodipedia admin account</p>
         <div class="gap"></div>
 
-            <div class="box">
-            <form name="add-account" method="POST">
+        <div class="box">
+        <form name="add-account" method="POST">
 
-                <span class="label">Name:</span><br>
-                <span class="input"><input type="text" name="name"></span>
-                <br><br>
+            <span class="label">Name:</span><br>
+            <span class="input"><input type="text" name="name"></span>
+            <br><br>
 
-                <span class="label">Staff ID Number:</span><br>
-                <span class="input"><input type="text" name="staff_id"></span>
-                <br><br>
+            <span class="label">Staff ID Number:</span><br>
+            <span class="input"><input type="text" name="staff_id"></span>
+            <br><br>
 
-                <span class="label">Username:</span><br>
-                <span class="input"><input type="text" name="username"></span>
-                <br><br>
+            <span class="label">Username:</span><br>
+            <span class="input"><input type="text" name="username"></span>
+            <br><br>
 
-                <span class="label">Email:</span><br>
-                <span class="input"><input type="text" name="email"></span>
-                <br><br>
+            <span class="label">Email:</span><br>
+            <span class="input"><input type="text" name="email"></span>
+            <br><br>
 
-                <span class="label">Password:</span><br>
-                <span class="input"><input type="text" name="password"></span>
-                <br><br>
+            <span class="label">Password:</span><br>
+            <span class="input"><input type="text" name="password"></span>
+            <br><br>
 
-                <span class="role-radio"><br>
-                        <span class="rad-role">I am looking for</span><br>
-                        <span class="rad"><input type="radio" class="staff" value="staff" name="role" required > Staff</span><br>
-                        <span class="rad"><input type="radio" class="admin" value="admin" name="role"> Admin</span><br>
-                </span>
+            <span class="role-radio"><br>
+                    <span class="rad-role">I am looking for</span><br>
+                    <span class="rad"><input type="radio" class="staff" value="staff" name="role" required > Staff</span><br>
+                    <span class="rad"><input type="radio" class="admin" value="admin" name="role"> Admin</span><br>
+            </span>
 
-                <br><br>
-                <button type="submit" name="regbtn">Register Staff</button>
-                <button type="submit" name="cancelbtn" href="connect.php">Cancel</button>
+            <br><br>
+            <button type="submit" name="regbtn">Register Staff</button>
+            <button type="submit" name="cancelbtn" href="connect.php">Cancel</button>
 
-            </form>
-            </div>
-
+        </form>
+        </div>
+        <br><br>
+    </div>
 <!--FOOTER START-->
 <!--div class="footer">
     <p>&#9400; <script>document.write(new Date().getFullYear())</script> REX Foodipedia Copyright
@@ -85,6 +100,11 @@
             }
         </style>
 
+    <!-- BOOTSTRAP -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    
 </body>
 </html>
 
