@@ -8,7 +8,7 @@ if(!isset($_SESSION['login_id'])){
 
 $id = $_SESSION['login_id'];
 
-$get_user = mysqli_query($db_connection, "SELECT * FROM `users` WHERE `google_id`='$id'");
+$get_user = mysqli_query($db_connection, "SELECT * FROM `user_acc` WHERE `google_id`='$id'");
 
 if(mysqli_num_rows($get_user) > 0){
     $user = mysqli_fetch_assoc($get_user);
