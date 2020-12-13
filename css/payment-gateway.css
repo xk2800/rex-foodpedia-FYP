@@ -19,6 +19,15 @@ body {
         font-family: 'Lexend Deca', arial;
         background-color: #e8ded2;
 }
+@media only screen and (max-width: 600px){
+    .buttons{
+        padding-left: 65px;
+    }
+}
+
+.buttons{
+    padding-left: 95px;
+}
 
 .payment-title {
     width: 100%;

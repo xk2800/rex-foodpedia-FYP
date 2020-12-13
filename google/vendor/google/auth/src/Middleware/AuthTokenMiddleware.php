@@ -17,8 +17,9 @@
 
 namespace Google\Auth\Middleware;
 
+use Google\Auth\CacheTrait;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Auth\GetQuotaProjectInterface;
+use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -30,10 +31,19 @@ use Psr\Http\Message\RequestInterface;
  *
  * Requests will be accessed with the authorization header:
  *
- * 'authorization' 'Bearer <value of auth_token>'
+ * 'Authorization' 'Bearer <value of auth_token>'
  */
 class AuthTokenMiddleware
 {
+    use CacheTrait;
+
+    const DEFAULT_CACHE_LIFETIME = 1500;
+
+    /**
+     * @var CacheItemPoolInterface
+     */
+    private $cache;
+
     /**
      * @var callback
      */
@@ -45,6 +55,11 @@ class AuthTokenMiddleware
     private $fetcher;
 
     /**
+     * @var array configuration
+     */
+    private $cacheConfig;
+
+    /**
      * @var callable
      */
     private $tokenCallback;
@@ -53,17 +68,28 @@ class AuthTokenMiddleware
      * Creates a new AuthTokenMiddleware.
      *
      * @param FetchAuthTokenInterface $fetcher is used to fetch the auth token
+     * @param array $cacheConfig configures the cache
+     * @param CacheItemPoolInterface $cache (optional) caches the token.
      * @param callable $httpHandler (optional) callback which delivers psr7 request
      * @param callable $tokenCallback (optional) function to be called when a new token is fetched.
      */
     public function __construct(
         FetchAuthTokenInterface $fetcher,
+        array $cacheConfig = null,
+        CacheItemPoolInterface $cache = null,
         callable $httpHandler = null,
         callable $tokenCallback = null
     ) {
         $this->fetcher = $fetcher;
         $this->httpHandler = $httpHandler;
         $this->tokenCallback = $tokenCallback;
+        if (!is_null($cache)) {
+            $this->cache = $cache;
+            $this->cacheConfig = array_merge([
+                'lifetime' => self::DEFAULT_CACHE_LIFETIME,
+                'prefix' => '',
+            ], $cacheConfig);
+        }
     }
 
     /**
@@ -76,7 +102,11 @@ class AuthTokenMiddleware
      *
      *   $config = [..<oauth config param>.];
      *   $oauth2 = new OAuth2($config)
-     *   $middleware = new AuthTokenMiddleware($oauth2);
+     *   $middleware = new AuthTokenMiddleware(
+     *       $oauth2,
+     *       ['prefix' => 'OAuth2::'],
+     *       $cache = new Memcache()
+     *   );
      *   $stack = HandlerStack::create();
      *   $stack->push($middleware);
      *
@@ -89,6 +119,7 @@ class AuthTokenMiddleware
      *   $res = $client->get('myproject/taskqueues/myqueue');
      *
      * @param callable $handler
+     *
      * @return \Closure
      */
     public function __invoke(callable $handler)
@@ -99,50 +130,40 @@ class AuthTokenMiddleware
                 return $handler($request, $options);
             }
 
-            $request = $request->withHeader('authorization', 'Bearer ' . $this->fetchToken());
-
-            if ($quotaProject = $this->getQuotaProject()) {
-                $request = $request->withHeader(
-                    GetQuotaProjectInterface::X_GOOG_USER_PROJECT_HEADER,
-                    $quotaProject
-                );
-            }
+            $request = $request->withHeader('Authorization', 'Bearer ' . $this->fetchToken());
 
             return $handler($request, $options);
         };
     }
 
     /**
-     * Call fetcher to fetch the token.
+     * Determine if token is available in the cache, if not call fetcher to
+     * fetch it.
      *
      * @return string
      */
     private function fetchToken()
     {
+        // TODO: correct caching; update the call to setCachedValue to set the expiry
+        // to the value returned with the auth token.
+        //
+        // TODO: correct caching; enable the cache to be cleared.
+        $cached = $this->getCachedValue();
+        if (!empty($cached)) {
+            return $cached;
+        }
+
         $auth_tokens = $this->fetcher->fetchAuthToken($this->httpHandler);
 
         if (array_key_exists('access_token', $auth_tokens)) {
+            $this->setCachedValue($auth_tokens['access_token']);
+
             // notify the callback if applicable
             if ($this->tokenCallback) {
-                call_user_func(
-                    $this->tokenCallback,
-                    $this->fetcher->getCacheKey(),
-                    $auth_tokens['access_token']
-                );
+                call_user_func($this->tokenCallback, $this->getFullCacheKey(), $auth_tokens['access_token']);
             }
 
             return $auth_tokens['access_token'];
-        }
-
-        if (array_key_exists('id_token', $auth_tokens)) {
-            return $auth_tokens['id_token'];
-        }
-    }
-
-    private function getQuotaProject()
-    {
-        if ($this->fetcher instanceof GetQuotaProjectInterface) {
-            return $this->fetcher->getQuotaProject();
         }
     }
 }

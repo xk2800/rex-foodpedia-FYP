@@ -1,9 +1,7 @@
 <?php
-
 namespace GuzzleHttp\Psr7;
 
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 
 /**
  * PSR-7 response implementation.
@@ -74,18 +72,18 @@ class Response implements ResponseInterface
         511 => 'Network Authentication Required',
     ];
 
-    /** @var string */
+    /** @var null|string */
     private $reasonPhrase = '';
 
     /** @var int */
     private $statusCode = 200;
 
     /**
-     * @param int                                  $status  Status code
-     * @param array                                $headers Response headers
-     * @param string|null|resource|StreamInterface $body    Response body
-     * @param string                               $version Protocol version
-     * @param string|null                          $reason  Reason phrase (when empty a default will be used based on the status code)
+     * @param int    $status  Status code for the response, if any.
+     * @param array  $headers Headers for the response, if any.
+     * @param mixed  $body    Stream body.
+     * @param string $version Protocol version.
+     * @param string $reason  Reason phrase (a default will be used if possible).
      */
     public function __construct(
         $status = 200,
@@ -94,19 +92,15 @@ class Response implements ResponseInterface
         $version = '1.1',
         $reason = null
     ) {
-        $this->assertStatusCodeIsInteger($status);
-        $status = (int) $status;
-        $this->assertStatusCodeRange($status);
+        $this->statusCode = (int) $status;
 
-        $this->statusCode = $status;
-
-        if ($body !== '' && $body !== null) {
-            $this->stream = Utils::streamFor($body);
+        if ($body !== null) {
+            $this->stream = stream_for($body);
         }
 
         $this->setHeaders($headers);
-        if ($reason == '' && isset(self::$phrases[$this->statusCode])) {
-            $this->reasonPhrase = self::$phrases[$this->statusCode];
+        if (!$reason && isset(self::$phrases[$this->statusCode])) {
+            $this->reasonPhrase = self::$phrases[$status];
         } else {
             $this->reasonPhrase = (string) $reason;
         }
@@ -126,30 +120,12 @@ class Response implements ResponseInterface
 
     public function withStatus($code, $reasonPhrase = '')
     {
-        $this->assertStatusCodeIsInteger($code);
-        $code = (int) $code;
-        $this->assertStatusCodeRange($code);
-
         $new = clone $this;
-        $new->statusCode = $code;
-        if ($reasonPhrase == '' && isset(self::$phrases[$new->statusCode])) {
+        $new->statusCode = (int) $code;
+        if (!$reasonPhrase && isset(self::$phrases[$new->statusCode])) {
             $reasonPhrase = self::$phrases[$new->statusCode];
         }
-        $new->reasonPhrase = (string) $reasonPhrase;
+        $new->reasonPhrase = $reasonPhrase;
         return $new;
-    }
-
-    private function assertStatusCodeIsInteger($statusCode)
-    {
-        if (filter_var($statusCode, FILTER_VALIDATE_INT) === false) {
-            throw new \InvalidArgumentException('Status code must be an integer value.');
-        }
-    }
-
-    private function assertStatusCodeRange($statusCode)
-    {
-        if ($statusCode < 100 || $statusCode >= 600) {
-            throw new \InvalidArgumentException('Status code must be an integer value between 1xx and 5xx.');
-        }
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace GuzzleHttp\Psr7;
 
 use Psr\Http\Message\StreamInterface;
@@ -9,16 +8,16 @@ use Psr\Http\Message\StreamInterface;
  */
 trait MessageTrait
 {
-    /** @var array Map of all registered headers, as original name => array of values */
+    /** @var array Cached HTTP header collection with lowercase key to values */
     private $headers = [];
 
-    /** @var array Map of lowercase header name => original name at registration */
-    private $headerNames  = [];
+    /** @var array Actual key to list of values per header. */
+    private $headerLines = [];
 
     /** @var string */
     private $protocol = '1.1';
 
-    /** @var StreamInterface|null */
+    /** @var StreamInterface */
     private $stream;
 
     public function getProtocolVersion()
@@ -39,25 +38,18 @@ trait MessageTrait
 
     public function getHeaders()
     {
-        return $this->headers;
+        return $this->headerLines;
     }
 
     public function hasHeader($header)
     {
-        return isset($this->headerNames[strtolower($header)]);
+        return isset($this->headers[strtolower($header)]);
     }
 
     public function getHeader($header)
     {
-        $header = strtolower($header);
-
-        if (!isset($this->headerNames[$header])) {
-            return [];
-        }
-
-        $header = $this->headerNames[$header];
-
-        return $this->headers[$header];
+        $name = strtolower($header);
+        return isset($this->headers[$name]) ? $this->headers[$name] : [];
     }
 
     public function getHeaderLine($header)
@@ -67,50 +59,59 @@ trait MessageTrait
 
     public function withHeader($header, $value)
     {
-        $this->assertHeader($header);
-        $value = $this->normalizeHeaderValue($value);
-        $normalized = strtolower($header);
-
         $new = clone $this;
-        if (isset($new->headerNames[$normalized])) {
-            unset($new->headers[$new->headerNames[$normalized]]);
+        $header = trim($header);
+        $name = strtolower($header);
+
+        if (!is_array($value)) {
+            $new->headers[$name] = [trim($value)];
+        } else {
+            $new->headers[$name] = $value;
+            foreach ($new->headers[$name] as &$v) {
+                $v = trim($v);
+            }
         }
-        $new->headerNames[$normalized] = $header;
-        $new->headers[$header] = $value;
+
+        // Remove the header lines.
+        foreach (array_keys($new->headerLines) as $key) {
+            if (strtolower($key) === $name) {
+                unset($new->headerLines[$key]);
+            }
+        }
+
+        // Add the header line.
+        $new->headerLines[$header] = $new->headers[$name];
 
         return $new;
     }
 
     public function withAddedHeader($header, $value)
     {
-        $this->assertHeader($header);
-        $value = $this->normalizeHeaderValue($value);
-        $normalized = strtolower($header);
-
-        $new = clone $this;
-        if (isset($new->headerNames[$normalized])) {
-            $header = $this->headerNames[$normalized];
-            $new->headers[$header] = array_merge($this->headers[$header], $value);
-        } else {
-            $new->headerNames[$normalized] = $header;
-            $new->headers[$header] = $value;
+        if (!$this->hasHeader($header)) {
+            return $this->withHeader($header, $value);
         }
 
+        $new = clone $this;
+        $new->headers[strtolower($header)][] = $value;
+        $new->headerLines[$header][] = $value;
         return $new;
     }
 
     public function withoutHeader($header)
     {
-        $normalized = strtolower($header);
-
-        if (!isset($this->headerNames[$normalized])) {
+        if (!$this->hasHeader($header)) {
             return $this;
         }
 
-        $header = $this->headerNames[$normalized];
-
         $new = clone $this;
-        unset($new->headers[$header], $new->headerNames[$normalized]);
+        $name = strtolower($header);
+        unset($new->headers[$name]);
+
+        foreach (array_keys($new->headerLines) as $key) {
+            if (strtolower($key) === $name) {
+                unset($new->headerLines[$key]);
+            }
+        }
 
         return $new;
     }
@@ -118,7 +119,7 @@ trait MessageTrait
     public function getBody()
     {
         if (!$this->stream) {
-            $this->stream = Utils::streamFor('');
+            $this->stream = stream_for('');
         }
 
         return $this->stream;
@@ -137,78 +138,21 @@ trait MessageTrait
 
     private function setHeaders(array $headers)
     {
-        $this->headerNames = $this->headers = [];
+        $this->headerLines = $this->headers = [];
         foreach ($headers as $header => $value) {
-            if (is_int($header)) {
-                // Numeric array keys are converted to int by PHP but having a header name '123' is not forbidden by the spec
-                // and also allowed in withHeader(). So we need to cast it to string again for the following assertion to pass.
-                $header = (string) $header;
-            }
-            $this->assertHeader($header);
-            $value = $this->normalizeHeaderValue($value);
-            $normalized = strtolower($header);
-            if (isset($this->headerNames[$normalized])) {
-                $header = $this->headerNames[$normalized];
-                $this->headers[$header] = array_merge($this->headers[$header], $value);
+            $header = trim($header);
+            $name = strtolower($header);
+            if (!is_array($value)) {
+                $value = trim($value);
+                $this->headers[$name][] = $value;
+                $this->headerLines[$header][] = $value;
             } else {
-                $this->headerNames[$normalized] = $header;
-                $this->headers[$header] = $value;
+                foreach ($value as $v) {
+                    $v = trim($v);
+                    $this->headers[$name][] = $v;
+                    $this->headerLines[$header][] = $v;
+                }
             }
-        }
-    }
-
-    private function normalizeHeaderValue($value)
-    {
-        if (!is_array($value)) {
-            return $this->trimHeaderValues([$value]);
-        }
-
-        if (count($value) === 0) {
-            throw new \InvalidArgumentException('Header value can not be an empty array.');
-        }
-
-        return $this->trimHeaderValues($value);
-    }
-
-    /**
-     * Trims whitespace from the header values.
-     *
-     * Spaces and tabs ought to be excluded by parsers when extracting the field value from a header field.
-     *
-     * header-field = field-name ":" OWS field-value OWS
-     * OWS          = *( SP / HTAB )
-     *
-     * @param string[] $values Header values
-     *
-     * @return string[] Trimmed header values
-     *
-     * @see https://tools.ietf.org/html/rfc7230#section-3.2.4
-     */
-    private function trimHeaderValues(array $values)
-    {
-        return array_map(function ($value) {
-            if (!is_scalar($value) && null !== $value) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Header value must be scalar or null but %s provided.',
-                    is_object($value) ? get_class($value) : gettype($value)
-                ));
-            }
-
-            return trim((string) $value, " \t");
-        }, array_values($values));
-    }
-
-    private function assertHeader($header)
-    {
-        if (!is_string($header)) {
-            throw new \InvalidArgumentException(sprintf(
-                'Header name must be a string but %s provided.',
-                is_object($header) ? get_class($header) : gettype($header)
-            ));
-        }
-
-        if ($header === '') {
-            throw new \InvalidArgumentException('Header name can not be empty.');
         }
     }
 }
