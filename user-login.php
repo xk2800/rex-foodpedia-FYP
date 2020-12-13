@@ -1,3 +1,6 @@
+<?php
+    
+?>
 <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -7,19 +10,18 @@
         <meta name="viewpoint" content="width=device-width, initial-scale=1">
         <meta name="viewpoint" content="width=device-width">
         <!--SIGN-IN WITH GOOGLE META-->
-        <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
     
         <!--INCLUDE START HERE-->
         <link rel="icon" type="image/png" href= "image/MYRUN 1.png">
-
-        <!--FONTS.CSS-->
-        <link rel="preload" href="css/fonts.css" as="style">
 
         <!--FONT AWESOME JAVASCRIPT-->
         <script src="https://kit.fontawesome.com/daa253e478.js" crossorigin="anonymous"></script>
 
         <!--BOOTSTRAP CSS-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <!--FONTS.CSS-->
+        <link rel="preload" href="css/fonts.css" as="style">
 
         <style>       
             #card-whole {
@@ -82,26 +84,24 @@
                     <div id="card-input-login">
                         <form>
                             <div class="form-group">
-                                <input type="email" class="form-control" id="card-email-login" aria-describedby="emailHelp" placeholder="Enter email" 
-                                 style="margin-bottom: 40px;">
+                                <input type="email" class="form-control" id="card-email-login" aria-describedby="emailHelp" placeholder="Enter email" style="margin-bottom: 40px;">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" id="card-pass-login" placeholder="Password"
-                                style="margin-bottom: 30px;">
+                                <input type="password" class="form-control" id="card-pass-login" placeholder="Password" style="margin-bottom: 30px;">
                             </div>
                         </form>
                     </div>
 
                     <div id="card-misc">
-                        <a href="https://www.youtube.com/?gl=US" style="float: left; padding-left: 20px;">Forgot passord ?</a>
+                        <a href="#" style="float: left; padding-left: 20px;">Forgot password ?</a>
                     </div>
 
                     <div id="card-login-button">
-                        <a href="https://www.youtube.com/?gl=US" class="btn btn-dark btn-block">Login</a>
+                        <button type="submit" name="loginbtn" class="btn btn-dark btn-block">Login</button>
                     </div>
 
                     <div id="card-misc2">
-                        <a href="https://www.youtube.com/?gl=US" style="text-align: center;"> No account yet ? Create one</a>
+                        <a href="https://www.youtube.com/?gl=US" style="text-align: center;">No account yet ? Create one</a>
                     </div>
 
                     <hr/>
@@ -109,6 +109,87 @@
                 </div>
                 
                 <label style="padding: 0px 0px 20px 0px;"><i><b>OR</b></i></label>
+                <?php
+require 'db_connection.php';
+
+if(isset($_SESSION['login_id'])){
+    header('Location: home.php');
+    exit;
+}
+
+require 'google/vendor/autoload.php';
+
+// Creating new google client instance
+$client = new Google_Client();
+
+// Enter your Client ID
+$client->setClientId('1089186199872-1o3m7kppdappg45qutva7mpbf3lg639h.apps.googleusercontent.com');
+// Enter your Client Secrect
+$client->setClientSecret('JUeq5h9RNnlcwm1J-dxlDE9A');
+// Enter the Redirect URL
+$client->setRedirectUri('http://localhost/hddocs/rex-foodpedia-FYP/menu.php');
+
+// Adding those scopes which we want to get (email & profile Information)
+$client->addScope("email");
+$client->addScope("profile");
+
+
+if(isset($_GET['code'])):
+
+    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+
+    if(!isset($token["error"])){
+
+        $client->setAccessToken($token['access_token']);
+
+        // getting profile information
+        $google_oauth = new Google_Service_Oauth2($client);
+        $google_account_info = $google_oauth->userinfo->get();
+    
+        // Storing data into database
+        $id = mysqli_real_escape_string($db_connection, $google_account_info->id);
+        $full_name = mysqli_real_escape_string($db_connection, trim($google_account_info->name));
+        $email = mysqli_real_escape_string($db_connection, $google_account_info->email);
+        $profile_pic = mysqli_real_escape_string($db_connection, $google_account_info->picture);
+
+        // checking user already exists or not
+        $get_user = mysqli_query($db_connection, "SELECT `google_id` FROM `users` WHERE `google_id`='$id'");
+        if(mysqli_num_rows($get_user) > 0){
+
+            $_SESSION['login_id'] = $id; 
+            header('Location: home.php');
+            exit;
+
+        }
+        else{
+
+            // if user not exists we will insert the user
+            $insert = mysqli_query($db_connection, "INSERT INTO `users`(`google_id`,`name`,`email`,`profile_image`) VALUES('$id','$full_name','$email','$profile_pic')");
+
+            if($insert){
+                $_SESSION['login_id'] = $id; 
+                header('Location: home.php');
+                exit;
+            }
+            else{
+                echo "Sign up failed!(Something went wrong).";
+            }
+
+        }
+
+    }
+    else{
+        header('Location: login.php');
+        exit;
+    }
+    
+else: 
+    // Google Login Url = $client->createAuthUrl(); 
+?>
+
+    <a class="login-btn" href="<?php echo $client->createAuthUrl(); ?>">Login-test</a>
+
+<?php endif; ?>
 
                 <!--SIGN IN WITH GOOGLE API (need further setup https://developers.google.com/identity/sign-in/web/build-button // https://www.webslesson.info/2019/09/how-to-make-login-with-google-account-using-php.html) -->
                 <center><div id="my-signin2"></div></center>
@@ -145,3 +226,5 @@
     
     </body>
 </html>
+
+
