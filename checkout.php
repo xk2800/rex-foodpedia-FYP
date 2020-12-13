@@ -27,10 +27,22 @@
 </head>
 <body>
 
+    <div class="container">
+
+        <div class="payment">
+            <span id="payment-title">Payment</span>
+            <span class="rad"><input type="radio" class="full-time" value="Full time" name="job" required > Full time</span><br>
+            <span class="rad"><input type="radio" class="internship" value="Internship" name="job"> Internship</span><br>
+            <span class="rad"><input type="radio" class="Freelance" value="Freelance" name="job"> Freelance</span><br>
+                                    
+        </div>
 
 
 
-</div>
+    </div>
+
+
+
 <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
