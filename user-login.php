@@ -1,6 +1,84 @@
 <?php
+require 'db_connection.php';
+
+if(isset($_SESSION['login_id'])){
+    header('Location: home.php');
+    exit;
+}
+
+require 'vendor/autoload.php';
+
+// Creating new google client instance
+$client = new Google_Client();
+
+// Enter your Client ID
+$client->setClientId('981967059646-u56d1fku9i52fb53rb9o7t6deav37ddq.apps.googleusercontent.com');
+// Enter your Client Secrect
+$client->setClientSecret('_TTBH-saxhTlvSHZVt-COrHw');
+// Enter the Redirect URL
+$client->setRedirectUri('http://localhost/hddocs/rex-foodpedia-FYP/user-login.php');
+
+// Adding those scopes which we want to get (email & profile Information)
+$client->addScope("email");
+$client->addScope("profile");
+
+
+if(isset($_GET['code'])){
+
+    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+
+    if(!isset($token["error"])){
+
+        $client->setAccessToken($token['access_token']);
+
+        // getting profile information
+        $google_oauth = new Google_Service_Oauth2($client);
+        $google_account_info = $google_oauth->userinfo->get();
     
+        // Storing data into database
+        $id = mysqli_real_escape_string($db_connection, $google_account_info->id);
+        $full_name = mysqli_real_escape_string($db_connection, trim($google_account_info->name));
+        $email = mysqli_real_escape_string($db_connection, $google_account_info->email);
+        $profile_pic = mysqli_real_escape_string($db_connection, $google_account_info->picture);
+
+        // checking user already exists or not
+        $get_user = mysqli_query($db_connection, "SELECT `google_id` FROM `users` WHERE `google_id`='$id'");
+        if(mysqli_num_rows($get_user) > 0){
+
+            $_SESSION['login_id'] = $id; 
+            header('Location: home.php');
+            exit;
+
+        }
+        else{
+
+            // if user not exists we will insert the user
+            $insert = mysqli_query($db_connection, "INSERT INTO `users`(`google_id`,`name`,`email`,`profile_image`) VALUES('$id','$full_name','$email','$profile_pic')");
+
+            if($insert){
+                $_SESSION['login_id'] = $id; 
+                header('Location: home.php');
+                exit;
+            }
+            else{
+                echo "Sign up failed!(Something went wrong).";
+            }
+
+        }
+
+    }
+    else{
+        header('Location: login.php');
+        exit;
+    }
+}
+ 
+    // Google Login Url = $client->createAuthUrl(); 
 ?>
+
+    
+
+<?php// endif; ?>
 <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -109,87 +187,9 @@
                 </div>
                 
                 <label style="padding: 0px 0px 20px 0px;"><i><b>OR</b></i></label>
-                <?php
-require 'db_connection.php';
-
-if(isset($_SESSION['login_id'])){
-    header('Location: home.php');
-    exit;
-}
-
-require 'google/vendor/autoload.php';
-
-// Creating new google client instance
-$client = new Google_Client();
-
-// Enter your Client ID
-$client->setClientId('1089186199872-1o3m7kppdappg45qutva7mpbf3lg639h.apps.googleusercontent.com');
-// Enter your Client Secrect
-$client->setClientSecret('JUeq5h9RNnlcwm1J-dxlDE9A');
-// Enter the Redirect URL
-$client->setRedirectUri('http://localhost/hddocs/rex-foodpedia-FYP/menu.php');
-
-// Adding those scopes which we want to get (email & profile Information)
-$client->addScope("email");
-$client->addScope("profile");
 
 
-if(isset($_GET['code'])):
-
-    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-
-    if(!isset($token["error"])){
-
-        $client->setAccessToken($token['access_token']);
-
-        // getting profile information
-        $google_oauth = new Google_Service_Oauth2($client);
-        $google_account_info = $google_oauth->userinfo->get();
-    
-        // Storing data into database
-        $id = mysqli_real_escape_string($db_connection, $google_account_info->id);
-        $full_name = mysqli_real_escape_string($db_connection, trim($google_account_info->name));
-        $email = mysqli_real_escape_string($db_connection, $google_account_info->email);
-        $profile_pic = mysqli_real_escape_string($db_connection, $google_account_info->picture);
-
-        // checking user already exists or not
-        $get_user = mysqli_query($db_connection, "SELECT `google_id` FROM `users` WHERE `google_id`='$id'");
-        if(mysqli_num_rows($get_user) > 0){
-
-            $_SESSION['login_id'] = $id; 
-            header('Location: home.php');
-            exit;
-
-        }
-        else{
-
-            // if user not exists we will insert the user
-            $insert = mysqli_query($db_connection, "INSERT INTO `users`(`google_id`,`name`,`email`,`profile_image`) VALUES('$id','$full_name','$email','$profile_pic')");
-
-            if($insert){
-                $_SESSION['login_id'] = $id; 
-                header('Location: home.php');
-                exit;
-            }
-            else{
-                echo "Sign up failed!(Something went wrong).";
-            }
-
-        }
-
-    }
-    else{
-        header('Location: login.php');
-        exit;
-    }
-    
-else: 
-    // Google Login Url = $client->createAuthUrl(); 
-?>
-
-    <a class="login-btn" href="<?php echo $client->createAuthUrl(); ?>">Login-test</a>
-
-<?php endif; ?>
+                <a class="login-btn" href="<?php echo $client->createAuthUrl(); ?>">Login</a>
 
                 <!--SIGN IN WITH GOOGLE API (need further setup https://developers.google.com/identity/sign-in/web/build-button // https://www.webslesson.info/2019/09/how-to-make-login-with-google-account-using-php.html) -->
                 <center><div id="my-signin2"></div></center>

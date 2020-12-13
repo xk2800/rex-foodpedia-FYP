@@ -2,8 +2,7 @@
 //FULLY WORKING
 
     include "../db-connect.php";
-    session_start();
-    ob_start();
+    
 ?>
 <!DOCTYPE html>
 <html>
