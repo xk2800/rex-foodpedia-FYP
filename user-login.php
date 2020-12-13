@@ -1,4 +1,4 @@
-<?php
+ <?php
 require 'db_connection.php';
 
 if(isset($_SESSION['login_id'])){
@@ -98,15 +98,8 @@ if(isset($_GET['code'])){
         <!--BOOTSTRAP CSS-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-<<<<<<< HEAD
         <style> 
 
-=======
-        <!--FONTS.CSS-->
-        <link rel="preload" href="css/fonts.css" as="style">
-
-        <style>       
->>>>>>> a70556cd686275b782ca2e349e05a69b92bdbb5d
             #card-whole {
                 margin: auto;
                 margin-top: 65px;
@@ -205,7 +198,7 @@ if(isset($_GET['code'])){
                 <label style="padding: 0px 0px 20px 0px;"><i><b>OR</b></i></label>
 
 
-                <a class="login-btn" href="<?php echo $client->createAuthUrl(); ?>">Login</a>
+                <a class="login-btn" href="<?php echo $client->createAuthUrl(); ?>">Login with Google</a>
 
                 <!--SIGN IN WITH GOOGLE API (need further setup https://developers.google.com/identity/sign-in/web/build-button // https://www.webslesson.info/2019/09/how-to-make-login-with-google-account-using-php.html) -->
                 <center><div id="my-signin2" style="padding-bottom: 22px;"></div></center>
