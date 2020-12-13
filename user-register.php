@@ -18,26 +18,47 @@
 
             <style>
 
+                h5 {
+                    padding-bottom: 10px; 
+                    font-family: Lato;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                }
+
+                ::placeholder {
+                    font-style: italic;
+                }
+                
                 #card-whole-register {
                     margin: auto;
                     margin-top: 140px;
-                    margin-bottom: 30px;
-                    padding: 10px;
-                    padding-bottom: 35px;
-                    border-radius: 20px;
-                    height: 45rem;
-                    background-color: #F8F7F5;
+                    margin-bottom: 50px;
+                    padding: 0px 10px 0px 20px;
+                    /*border-radius: 20px;*/
+                    height: 54rem;
+                    /*background-color: #F8F7F5;*/
                 }
 
                 #card-input-register {
-                    padding: 10px 10px 0px 20px;
-                    /*padding: auto;*/
-                    width: 95%
+                    padding: 30px 10px 25px 10px;
+                    width: 95%;
                 }
 
-                #card-register-button {
-                    padding: 35px 0px 0px 20px;
-                    font-style: italic;
+                #card-input-register input[type="email"], #card-input-register input[type="password"],
+                #card-input-register input[type="tel"], #card-input-register input[type="text"] {
+                    border: 0px black solid;
+                    border-bottom-width: 1px;
+                    border-bottom-color: #d4d9d5;
+                    background-color: transparent;
+                
+                }
+
+                #card-register-button, label {
+                    padding: 10px 0px 10px 5px;
+                    /*font-style: italic;*/
+                    letter-spacing: 1px;
+                    font-size: 1.0em;
+                    font-family: Oswald;
                 }
 
             </style>
@@ -51,50 +72,50 @@
             ?>
 
             <div class="container">
-                <div class="card" id="card-whole-register" style="width: 45rem;">
+                <div class="card shadow-lg p-3 mb-5 bg-white rounded" id="card-whole-register" style="width: 45rem;">
                     <div class="card-body">
                     <h5 class="card-title"><center>Register</center></h5>
 
                     <form>
                         <div id="card-input-register"> 
                             <div class="form-group">
-                                <label for="card-email-register">Email Address</label>
-                                <input type="text" class="form-control" id="card-email-register" placeholder="example@gmail.com">
+                                <label for="card-email-register">Email Address : </label>
+                                <input type="email" class="form-control" id="card-email-register" placeholder="example@gmail.com">
                             </div>
                         
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="card-pass-register">Password</label>
-                                    <input type="email" class="form-control" id="card-pass-register" placeholder="Enter a password">
+                                    <label for="card-pass-register">Password : </label>
+                                    <input type="password" class="form-control" id="card-pass-register" placeholder="Enter a password">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="card-con-pass-register">Confirm Password</label>
+                                    <label for="card-con-pass-register">Confirm Password : </label>
                                     <input type="password" class="form-control" id="card-con-pass-register" placeholder="Re-enter the password">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="card-contact-register">Contact Number</label>
+                                <label for="card-contact-register">Contact Number : </label>
                                 <input type="tel" class="form-control" id="card-contact-register" placeholder="+60123456789">
                             </div>
 
                             <div class="form-group">
-                                <label for="card-address-register">Address</label>
+                                <label for="card-address-register">Address : </label>
                                 <input type="text" class="form-control" id="card-address-register" placeholder="1234 Main St">
                             </div>
 
                             <div class="form-group">
-                                <label for="card-address-2-register">Address 2</label>
+                                <label for="card-address-2-register">Address 2 : </label>
                                 <input type="text" class="form-control" id="card-address-2-register" placeholder="Apartment, studio, or floor">
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="card-city-register">City</label>
+                                    <label for="card-city-register">City : </label>
                                     <input type="text" class="form-control" id="card-city-register">
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="card-state-register">State</label>
+                                    <label for="card-state-register">State : </label>
                                     <select id="card-state-register" class="form-control">
                                         <option selected>Choose...</option>
                                             <option>Johor</option> <option>Kedah</option> <option>Kelantan</option> <option>Malacca</option> <option>Negeri Sembilan</option>
@@ -103,14 +124,14 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <label for="card-zip-register">Zip</label>
+                                    <label for="card-zip-register">Zip : </label>
                                         <input type="text" class="form-control" id="card-zip-register">
                                 </div>
                             </div>
                         </div>
 
                         <div id="card-register-button">
-                            <button type="submit" class="btn btn-primary">Sign up</button>
+                            <a href="https://www.youtube.com/?gl=US" class="btn btn-primary btn-block">Sign Up</a>
                         </div>
                     </form>
                 

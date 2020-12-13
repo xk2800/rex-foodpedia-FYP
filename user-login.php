@@ -21,14 +21,15 @@
         <!--BOOTSTRAP CSS-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-        <style>       
+        <style> 
+
             #card-whole {
                 margin: auto;
-                margin-top: 60px;
-                padding: 10px;
-                padding-bottom: 35px;
-                border-radius: 20px;
-                background-color: #F8F7F5;
+                margin-top: 65px;
+                padding: 0px 0px 35px 10px;
+                /*border-radius: 20px;*/
+                /*background-color: #F8F7F5;*/
+                height: 40em;
             }
             
             #card-login-button {
@@ -45,6 +46,17 @@
                 background-color: #ccc;
                 height: 0px;
                 border: none;
+            }
+
+            h5 {
+                padding-bottom: 20px; 
+                font-family: Lato;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            ::placeholder {
+                font-style: italic;
             }
             
             #card-misc a, #card-misc2 a{
@@ -75,9 +87,9 @@
         ?>
 
         <div class = "container">
-            <div class="card text-center" id="card-whole" style="width: 30rem;">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded text-center" id="card-whole" style="width: 40rem;">
                 <div class="card-body">    
-                    <h5 class="card-title" style="padding-bottom: 20px;">Login</h5>
+                    <h5 class="card-title">Login</h5>
 
                     <div id="card-input-login">
                         <form>
@@ -111,7 +123,7 @@
                 <label style="padding: 0px 0px 20px 0px;"><i><b>OR</b></i></label>
 
                 <!--SIGN IN WITH GOOGLE API (need further setup https://developers.google.com/identity/sign-in/web/build-button // https://www.webslesson.info/2019/09/how-to-make-login-with-google-account-using-php.html) -->
-                <center><div id="my-signin2"></div></center>
+                <center><div id="my-signin2" style="padding-bottom: 22px;"></div></center>
 
                     <script>
                         function onSuccess(googleUser) {
