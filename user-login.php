@@ -99,59 +99,154 @@ if(isset($_GET['code'])){
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
         <style> 
+/*FOR SIGN IN GOOGLE BTN*/
+        #google-img{
+            margin-top: -10px;
+        }
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
+        #google-button{
+            margin-left: 0px;
+        }
+        .g-sign-in-button {
+            margin: 10px;
+            display: inline-block;
+            width: 240px;
+            height: 50px;
+            background-color: #4285f4;
+            color: #fff;
+            border-radius: 1px;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+            transition: background-color .218s, border-color .218s, box-shadow .218s;
+        }
 
-            #card-whole {
-                margin: auto;
-                margin-top: 65px;
-                padding: 0px 0px 35px 10px;
-                /*border-radius: 20px;*/
-                /*background-color: #F8F7F5;*/
-                height: 40em;
-            }
-            
-            #card-login-button {
-                padding: 50px 90px;
-                font-style: italic;
-            }
+        .login-btn, .login-btn:hover{
+            color: white;
+            text-decoration: none;
+        }
 
-            #card-input-login {
-                padding: 30px 10px 25px 10px;
-                width: 95%
-            }
-            
-            hr {
-                background-color: #ccc;
-                height: 0px;
-                border: none;
-            }
+        .g-sign-in-button:hover {
+            cursor: pointer;
+            -webkit-box-shadow: 0 0 3px 3px rgba(66, 133, 244, 0.3);
+            box-shadow: 0 0 3px 3px rgba(66, 133, 244, 0.3);
+        }
 
-            h5 {
-                padding-bottom: 20px; 
-                font-family: Lato;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-            }
+        .g-sign-in-button:active {
+            background-color: #3367D6;
+            transition: background-color 0.2s;
+        }
 
-            ::placeholder {
-                font-style: italic;
-            }
-            
-            #card-misc a, #card-misc2 a{
-                color: black;
-                text-decoration: none;
-                font-style: italic;
-                letter-spacing: 1px;
-                font-size: 13px;
-            }
+        .g-sign-in-button .content-wrapper {
+            height: 100%;
+            width: 100%;
+            border: 1px solid transparent;
+        }
 
-            #card-misc a:hover, #card-misc2 a:hover{
-                color: #F4AC9C;
-            }
-            
-            #card-input-login input[type="email"],  #card-input-login input[type="password"] {
-                border-radius: 10px; 
-                border-color: #F1F0ED;
-            }
+        .g-sign-in-button img {
+            width: 18px;
+            height: 18px;
+        }
+
+        .g-sign-in-button .logo-wrapper {
+            padding: 15px;
+            background: #fff;
+            width: 48px;
+            height: 100%;
+            border-radius: 1px;
+            display: inline-block;
+        }
+
+        .g-sign-in-button .text-container {
+            font-family: Roboto,arial,sans-serif;
+            font-weight: 500;
+            letter-spacing: .21px;
+            font-size: 16px;
+            line-height: 48px;
+            vertical-align: top;
+            border: none;
+            display: inline-block;
+            text-align: center;
+            width: 180px;
+        }
+
+
+        h6 {
+            overflow: hidden;
+            text-align: center;
+        }
+        h6:before,
+        h6:after {
+            background-color: #000;
+            content: "";
+            display: inline-block;
+            height: 1px;
+            position: relative;
+            vertical-align: middle;
+            width: 50%;
+        }
+        h6:before {
+            right: 0.5em;
+            margin-left: -50%;
+        }
+        h6:after {
+            left: 0.5em;
+            margin-right: -50%;
+        }
+
+        #card-whole {
+            margin: auto;
+            margin-top: 65px;
+            padding: 0px 0px 35px 10px;
+            /*border-radius: 20px;*/
+            /*background-color: #F8F7F5;*/
+            height: 40em;
+            /*width: 40rem;*/
+        }
+        
+        #card-login-button {
+            padding: 50px 90px;
+            font-style: italic;
+        }
+
+        #card-input-login {
+            padding: 30px 10px 25px 10px;
+            width: 95%
+        }
+        
+        hr {
+            background-color: #ccc;
+            height: 0px;
+            border: none;
+        }
+
+        h5 {
+            padding-bottom: 20px; 
+            font-family: Lato;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        ::placeholder {
+            font-style: italic;
+        }
+        
+        #card-misc a, #card-misc2 a{
+            color: black;
+            text-decoration: none;
+            font-style: italic;
+            letter-spacing: 1px;
+            font-size: 13px;
+        }
+
+        #card-misc a:hover, #card-misc2 a:hover{
+            color: #F4AC9C;
+        }
+        
+        #card-input-login input[type="email"],  #card-input-login input[type="password"] {
+            border-radius: 10px; 
+            border-color: #F1F0ED;
+        }
 
         </style>
     
@@ -164,7 +259,7 @@ if(isset($_GET['code'])){
         ?>
 
         <div class = "container">
-            <div class="card shadow-lg p-3 mb-5 bg-white rounded text-center" id="card-whole" style="width: 40rem;">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded text-center" id="card-whole">
                 <div class="card-body">    
                     <h5 class="card-title">Login</h5>
 
@@ -191,13 +286,23 @@ if(isset($_GET['code'])){
                         <a href="https://www.youtube.com/?gl=US" style="text-align: center;">No account yet ? Create one</a>
                     </div>
 
-                    <hr/>
-
                 </div>
-                
-                <label style="padding: 0px 0px 20px 0px;"><i><b>OR</b></i></label>
+                <!--hr/-->
+                <!--label style="padding: 0px 0px 20px 0px;"><i><b>OR</b></i></label-->
+                <h6><span>OR</span></h6>
 
-
+                <div id="google-button">
+                    <div class='g-sign-in-button'>
+                        <div class=content-wrapper>
+                            <div class='logo-wrapper'>
+                                <img id="google-img" src='https://developers.google.com/identity/images/g-logo.png'>
+                            </div>
+                            <span class='text-container'>
+                                <span><a class="login-btn" href="<?php echo $client->createAuthUrl(); ?>">Sign in with Google</a></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
                 <a class="login-btn" href="<?php echo $client->createAuthUrl(); ?>">Login with Google</a>
 
                 <!--SIGN IN WITH GOOGLE API (need further setup https://developers.google.com/identity/sign-in/web/build-button // https://www.webslesson.info/2019/09/how-to-make-login-with-google-account-using-php.html) -->
@@ -227,7 +332,7 @@ if(isset($_GET['code'])){
                     <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
                 </div>
                 <!--SIGN IN WITH GOOGLE API END-->
-
+        </div>
         <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
