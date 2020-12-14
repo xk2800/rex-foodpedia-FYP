@@ -4,7 +4,7 @@
     include("../db-connect.php");
 ?>
 
-    <head><title>Opps 404 | REX Foodpedia</title>
+    <head><title>Opps 404 | REX Foodipedia</title>
 	
 	<link rel="icon" type="image/png" href= "image/MYRUN 1.png">
 

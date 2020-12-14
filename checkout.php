@@ -5,7 +5,7 @@
 
 ?>
 <html>
-    <head><title>Checkout | REX Foodpedia</title>
+    <head><title>Checkout | REX Foodipedia</title>
 
     <meta name="viewpoint" content="width=device-width, initial-scale=1">
     <meta name="viewpoint" content="width=device-width">

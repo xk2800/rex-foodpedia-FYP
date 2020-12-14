@@ -5,7 +5,7 @@
 
 ?>
 <html>
-    <head><title>Your Receipt | REX Foodpedia</title>
+    <head><title>Your Receipt | REX Foodipedia</title>
 
     <meta name="viewpoint" content="width=device-width, initial-scale=1">
     <meta name="viewpoint" content="width=device-width">
