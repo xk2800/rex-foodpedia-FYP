@@ -305,34 +305,6 @@ if(isset($_GET['code'])){
                 </div>
                 <a class="login-btn" href="<?php echo $client->createAuthUrl(); ?>">Login with Google</a>
 
-                <!--SIGN IN WITH GOOGLE API (need further setup https://developers.google.com/identity/sign-in/web/build-button // https://www.webslesson.info/2019/09/how-to-make-login-with-google-account-using-php.html) -->
-                <center><div id="my-signin2" style="padding-bottom: 22px;"></div></center>
-
-                    <script>
-                        function onSuccess(googleUser) {
-                            console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-                        }
-
-                        function onFailure(error) {
-                            console.log(error);
-                        }
-
-                        function renderButton() {
-                            gapi.signin2.render('my-signin2', {
-                                'scope': 'profile email',
-                                'width': 240,
-                                'height': 50,
-                                'longtitle': true,
-                                'theme': 'dark',
-                                'onsuccess': onSuccess,
-                                'onfailure': onFailure
-                            });
-                        }
-                    </script>
-                    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-                </div>
-                <!--SIGN IN WITH GOOGLE API END-->
-        </div>
         <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
