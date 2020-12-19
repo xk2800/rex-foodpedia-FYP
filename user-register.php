@@ -134,7 +134,7 @@
                             <a href="https://www.youtube.com/?gl=US" class="btn btn-primary btn-block">Sign Up</a>
                         </div>
                     </form>
-                
+            </div>    
          
 
             <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
