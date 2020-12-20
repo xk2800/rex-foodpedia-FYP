@@ -97,9 +97,15 @@ if(isset($_GET['code'])){
 
         <!--BOOTSTRAP CSS-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+        <!--GOOGLE MATERIAL ICON-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <style> 
-/*FOR SIGN IN GOOGLE BTN*/
+        
+        /*FOR SIGN IN GOOGLE BTN*/
         #google-img{
             margin-top: -10px;
         }
@@ -262,7 +268,7 @@ if(isset($_GET['code'])){
             <div class="card shadow-lg p-3 mb-5 bg-white rounded text-center" id="card-whole">
                 <div class="card-body">    
                     <h5 class="card-title">Login</h5>
-
+                    
                     <div id="card-input-login">
                         <form>
                             <div class="form-group">
@@ -283,10 +289,11 @@ if(isset($_GET['code'])){
                     </div>
 
                     <div id="card-misc2">
-                        <a href="https://www.youtube.com/?gl=US" style="text-align: center;">No account yet ? Create one</a>
+                        <a href="https://www.youtube.com/?gl=US" style="text-align: center; padding-bottom:60px;">No account yet ? Create one</a>
                     </div>
 
                 </div>
+                <br/>
                 <!--hr/-->
                 <!--label style="padding: 0px 0px 20px 0px;"><i><b>OR</b></i></label-->
                 <h6><span>OR</span></h6>
