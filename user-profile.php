@@ -22,9 +22,39 @@
             <style>
 
                 #card-whole-profile {
-                    margin-top: 10em;
+                    margin-top: 8em;
                     width: 45rem;
                     position: relative;
+                    background-color: #e8ded2;
+                    border-style: none;
+                    letter-spacing: 1px;
+                }
+
+                #card-input-title {
+                    font-family: Lato;
+                    letter-spacing: 2px;
+                    text-decoration:none;
+                    /*text-align:center;*/
+                    text-transform: uppercase;
+                }
+
+                #card-input-profile input[type="email"], #card-input-profile input[type="text"],
+                #card-input-profile input[type="tel"], #card-input-profile input[type="password"] {
+                    border: 0px black solid;
+                    border-bottom-width: 1px;
+                    border-bottom-color: #a8a7a7;
+                    background-color: transparent;
+                }
+
+                #card-profile-button a {
+                    border-radius: 0px;
+                    float:right;
+                    margin-top: 40px;
+                }
+
+                 .card .card-header {
+                   /* background-color:transparent;*/
+                    padding: 20px 0px 20px 15px;
                 }
 
             </style>
@@ -37,11 +67,11 @@
             ?>
 
             <div class="container">
-                <div class="card shadow p-3 mb-5 bg-white rounded mx-auto" id="card-whole-profile">
-                    <div class="card-header">
+                <div class="card p-3 mb-5 rounded mx-auto" id="card-whole-profile">
+                    <div class="card-header" id="card-input-title">
                         Account Details
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" >
                         <form>
                             <div id="card-input-profile"> 
                             
@@ -76,22 +106,22 @@
                                 </div>
                             </div>
 
-                            <div id="card-register-button">
+                            <div id="card-profile-button">
                                 <div class="text-center">
-                                    <center><a href="https://www.youtube.com/?gl=US" class="btn btn-primary btn-block w-50 p-1">Save Details</a></center>
+                                    <center><a href="https://www.youtube.com/?gl=US" class="btn btn-dark btn-block w-25 p-1">Save Details</a></center>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <div class="card shadow-sm p-3 mb-5 bg-white rounded mx-auto" style="width: 45rem;">
-                    <div class="card-header">
+                <div class="card p-3 mb-5 rounded mx-auto" id="card-whole-profile">
+                    <div class="card-header" id="card-input-title">
                         Manage Payment Method
                     </div>
                     <div class="card-body">
                         <form>
-                            <div id="card-input-profile-4">  
+                            <div id="card-input-profile">  
                                 <div class="form-group pl-5 pb-3">
                                     <i class="fa fa-university" aria-hidden="true"></i>
                                     &ensp;
@@ -114,22 +144,22 @@
                                 </div>
                             </div>
                             
-                            <div id="card-register-button-4">
+                            <div id="card-profile-button">
                                 <div class="text-center">
-                                    <center><a href="https://www.youtube.com/?gl=US" class="btn btn-primary btn-block w-50 p-1">Save Payment Method Details</a></center>
+                                    <center><a href="https://www.youtube.com/?gl=US" class="btn btn-dark btn-block w-25 p-1">Save Payment<br/>Method Details</a></center>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <div class="card shadow-sm p-3 mb-5 bg-white rounded mx-auto" style="width: 45rem;">
-                    <div class="card-header">
+                <div class="card p-3 mb-5 rounded mx-auto" id="card-whole-profile">
+                    <div class="card-header" id="card-input-title">
                         Manage Password
                     </div>
                     <div class="card-body">
                         <form>
-                            <div id="card-input-profile-2"> 
+                            <div id="card-input-profile"> 
                                 <div class="form-row">
                                     <div class="form-group col-md-5 pl-5 pb-3 w-75">
                                         <i class="fa fa-key" aria-hidden="true"></i>
@@ -146,39 +176,39 @@
                                 </div>
                             </div>
                             
-                            <div id="card-register-button-2">
+                            <div id="card-profile-button">
                                 <div class="text-center">
-                                    <center><a href="https://www.youtube.com/?gl=US" class="btn btn-primary btn-block w-50 p-1">Change Password</a></center>
+                                    <center><a href="https://www.youtube.com/?gl=US" class="btn btn-dark btn-block w-25 p-1">Change Password</a></center>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
                 
-                <div class="card shadow-sm p-3 mb-5 bg-white rounded mx-auto" style="width: 45rem;">
-                    <div class="card-header">
+                <div class="card p-3 mb-5 rounded mx-auto" id="card-whole-profile">
+                    <div class="card-header" id="card-input-title">
                         Manage Shipment Address
                     </div>
                     <div class="card-body">
                         <form>
-                            <div id="card-input-profile-3"> 
+                            <div id="card-input-profile"> 
                                     <div class="form-group pl-5 pb-3 w-100">
                                         <i class="fa fa-map-marker" aria-hidden="true"></i>
                                         &nbsp;
                                         <label for="card-address1-profile">Address 1</label>
-                                        <input type="password" class="form-control" id="card-address1-profile">
+                                        <input type="text" class="form-control" id="card-address1-profile">
                                     </div>
                                     <div class="form-group pl-5 pb-3 w-100">
                                         <i class="fa fa-map-marker" aria-hidden="true"></i>
                                         &nbsp;
                                         <label for="card-address2-profile">Address 2</label>
-                                        <input type="password" class="form-control" id="card-address2-profile">
+                                        <input type="text" class="form-control" id="card-address2-profile">
                                     </div>
                             </div>
                             
-                            <div id="card-register-button-3">
+                            <div id="card-profile-button">
                                 <div class="text-center">
-                                    <center><a href="https://www.youtube.com/?gl=US" class="btn btn-primary btn-block w-50 p-1">Change Address</a></center>
+                                    <center><a href="https://www.youtube.com/?gl=US" class="btn btn-dark btn-block w-25 p-1">Change Address</a></center>
                                 </div>
                             </div>
                         </form>
