@@ -1,5 +1,15 @@
+
+
 <!DOCTYPE html>
-    <html>
+
+<?php 
+
+/**
+  *TODO: change the <a> to <button> for the form*
+  */
+
+?>
+    <html lang="en">
         <head>
             <meta charset="UTF-8">
             <title>Profile | REX Foodipedia</title>

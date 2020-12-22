@@ -80,6 +80,15 @@ if(isset($_GET['code'])){
 
 <?php// endif; ?>
 <!DOCTYPE html>
+
+<?php 
+
+/**
+  *TODO: change the <a> to <button> for the form*
+  */
+
+?>
+
     <html lang="en">
         <head>
         
@@ -101,7 +110,7 @@ if(isset($_GET['code'])){
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
         <!--GOOGLE MATERIAL ICON-->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
 
         <style> 
         
