@@ -3,7 +3,7 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Assests | REX Foodipedia</title>
+            <title>Menu | REX Foodipedia</title>
 
         <!--FONTS.CSS STARTS-->
             <link rel="preload" href="css/fonts.css" as="style">
@@ -52,7 +52,7 @@
                 }
             
             /* Menu Navigation (FOOD SELECTION) STARTS */
-                .text-center a{
+                #btns{
                     background-color: #a3d2ca;
                     color: black;
                     margin: 40px 25px 20px 25px;
@@ -61,13 +61,13 @@
                     padding:5px;
                 }
         
-                .text-center a:hover {
+                #btns:hover {
                     background-color: #056676;
                     color:black;
                     text-decoration: none;
                 }
 
-                .text-center a.active {
+                #btns.active {
                     background-color:blue;
                     color: gold;
                 }
@@ -108,6 +108,7 @@
                     border-radius: 12px;
                 }
 </style>
+
         
         </head>
         <body style="background-color: #e7ded2;">
@@ -125,135 +126,164 @@
 
     <!-- Menu Nav Start-->
     <div class="text-center">
-        <a class="active" type="button" href="#">Home</a>
+        <!--a class="active" type="button" href="#">Home</a>
         <a type="button" href="#">Chinese Cuisine</a>
         <a type="button" href="#">Malaysian Cuisine</a>
         <a type="button" href="#">Japanese Cuisine</a>
-        <a type="button" href="https://www.youtube.com/">Indian Cuisine</a>
+        <a type="button" href="https://www.youtube.com/">Indian Cuisine</a-->
+        <!--div class="tab"-->
+        <button id="btns" class="tablinks" onclick="openCity(event, 'home')">Home</button>
+        <button id="btns" class="tablinks" onclick="openCity(event, 'chinese')">Chinese Cuisine</button>
+        <button id="btns" class="tablinks" onclick="openCity(event, 'malaysian')">Malaysian Cuisine</button>
+        <button id="btns" class="tablinks" onclick="openCity(event, 'japanese')">Japanese Cuisine</button>
+        <button id="btns" class="tablinks" onclick="openCity(event, 'indian')">Indian Cuisine</button>
+        <!--/div-->
     </div>
     <!-- Menu Nav End -->
 
     <!-- Menu Item 1st row Starts -->
-    <div class="container">
+    <div id="home" class="tabcontent">
+        <div class="container" >
         
-        <p>Random Picks</p>
-        <hr>
+            <p>Random Picks</p>
+            <hr>
 
-        <div class="row">
+            <div class="row">
 
-            <div class="col">
-                <div class="panel">
-                    <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                        <img src="img/food1.jpg">
-                    </a>
-                <b>Chicken Curry</b>
-                <div>
-                Chicken curry is a dish originating from the Indian subcontinent. 
+                <div class="col">
+                    <div class="panel">
+                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
+                            <img src="img/food1.jpg">
+                        </a>
+                    <b>Chicken Curry</b>
+                    <div>
+                    Chicken curry is a dish originating from the Indian subcontinent. 
+                    </div>
+                    </div>
                 </div>
+
+                <div class="col">
+                    <div class="panel">
+                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
+                            <img src="img/food1.jpg">
+                        </a> 
+                    <b>Rendang</b>
+                    <div>
+                    Rendang is an Indonesian spicy meat dish originating from the 
+                    Minangkabau region in West Sumatra, Indonesia.
+                    </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col">
-                <div class="panel">
-                    <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                        <img src="img/food1.jpg">
-                    </a> 
-                <b>Rendang</b>
-                <div>
-                Rendang is an Indonesian spicy meat dish originating from the 
-                Minangkabau region in West Sumatra, Indonesia.
-                </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="panel">
-                    <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                        <img src="img/food1.jpg">
-                    </a>     
-                <b>Nasi Lemak</b>
-                <div>
-                Nasi lemak is a Malay cuisine dish consisting of fragrant rice 
-                cooked in coconut milk and pandan leaf.   
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Menu Item 1st row End -->
-
-    <!-- Menu Item 2nd row Starts -->
-    <div class="container">
-
-        <p>Recommended Restaurants</p>
-        <hr>
-
-        <div class="row">
-
-            <div class="col">
-                <div class="panel">
-                    <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                        <img src="img/food1.jpg">
-                    </a>
-                    Abcd
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="panel">
-                    <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                        <img src="img/food1.jpg">
-                    </a> 
-                    Efgh
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="panel">
-                    <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                        <img src="img/food1.jpg">
-                    </a>     
-                    Ijkl
+                <div class="col">
+                    <div class="panel">
+                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
+                            <img src="img/food1.jpg">
+                        </a>     
+                    <b>Nasi Lemak</b>
+                    <div>
+                    Nasi lemak is a Malay cuisine dish consisting of fragrant rice 
+                    cooked in coconut milk and pandan leaf.   
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Menu Item 2nd row End -->
+        <!-- Menu Item 1st row End -->
 
-    <!-- Menu Item 3rd row Start -->
-    <div class="container">
-        <div class="row">
+        <!-- Menu Item 2nd row Starts -->
+        <div class="container">
 
-            <div class="col">
-                <div class="panel">
-                    <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                        <img src="img/food1.jpg">
-                    </a>
-                    Mno
+            <p>Recommended Restaurants</p>
+            <hr>
+
+            <div class="row">
+
+                <div class="col">
+                    <div class="panel">
+                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
+                            <img src="img/food1.jpg">
+                        </a>
+                        Abcd
+                    </div>
                 </div>
-            </div>
 
-            <div class="col">
-                <div class="panel">
-                    <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                        <img src="img/food1.jpg">
-                    </a> 
-                    Pqrs
+                <div class="col">
+                    <div class="panel">
+                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
+                            <img src="img/food1.jpg">
+                        </a> 
+                        Efgh
+                    </div>
                 </div>
-            </div>
 
-            <div class="col">
-                <div class="panel">
-                    <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                        <img src="img/food1.jpg">
-                    </a>     
-                    Tuv
+                <div class="col">
+                    <div class="panel">
+                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
+                            <img src="img/food1.jpg">
+                        </a>     
+                        Ijkl
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        <!-- Menu Item 2nd row End -->
+
+        <!-- Menu Item 3rd row Start -->
+        <div class="container">
+            <div class="row">
+
+                <div class="col">
+                    <div class="panel">
+                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
+                            <img src="img/food1.jpg">
+                        </a>
+                        Mno
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="panel">
+                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
+                            <img src="img/food1.jpg">
+                        </a> 
+                        Pqrs
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="panel">
+                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
+                            <img src="img/food1.jpg">
+                        </a>     
+                        Tuv
+                    </div>
+                </div>
+            </div>
+        </div>
     <!-- Menu Item 3rd row End -->
+    </div>
 
+
+    <div id="chinese" class="tabcontent">
+
+    </div>
+
+    <script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
         <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
