@@ -19,30 +19,61 @@
             <link rel="stylesheet" href="css/fonts.css">
 
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+            <style>
+
+                #form-title-edit {
+                    text-align: center;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                    background-color: #D1FBD6;
+                }
+
+                table {
+                    background-color:white;
+                    /*border-radius: 20px;*/
+                    box-shadow: 7px 7px 5px #888888;
+                    margin-top: 10em;
+                }
+
+                #form-header-edit {
+                    text-align: center;
+                    /*font-style: italic;*/
+                    letter-spacing: 2px;
+                    font-family: Lato;
+                    font-size:0.85em;
+                }
+                
+            </style>
+
         </head>
         
-        <body style="background-color: #b8dec2">
+        <body style="background-color: #E4F6E6">
 
             <?php
                 include("nav.html");
             ?>
 
-            <h2>Edit Food Menu</h2>
             <div class="container">
-                <table class="table table-bordered table-hover">
+                <table class="table table-hover" >
                     <thead>
-                        <tr>
-                            <th scope="col">Dish #ID</th>
-                            <th scope="col">Dish Name</th>
+                        <tr id="form-title-edit">
+                            <th colspan="7" scope="col" height="auto">Edit Food Menu</th>
+                        </tr>   
+                        
+                        <tr id="form-header-edit">
+                            <th scope="col">#ID</th>
+                            <th scope="col">Dish</th>
                             <th scope="col">Image</th>
                             <th scope="col">Desciption</th>
                             <th scope="col">Stock Quantity</th>
-                            <th scope="col">Unit Price (MYR)</th>
+                            <th scope="col">Unit Price </th>
                             <th scopre="col">Action</th>
                         </tr>
+                       
                     </thead>
 
-                    <tbody>
+                    <tbody style="font-size: 0.8em">
                         <tr>
                             <th scope="row">01</th>
                             <td>Lorem ipsum dolor</td>
@@ -67,10 +98,7 @@
                         </tr>
                     </tbody>
                 </table>
-                
-                <br/><br/>
 
-                <button class="btn btn-lg rounded pmd-btn-fab pmd-ripple-effect btn-light pmd-btn-raised" type="button" style="float:right;"><i class="material-icons pmd-lg">add</i></button>
             </div>
 
             <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
