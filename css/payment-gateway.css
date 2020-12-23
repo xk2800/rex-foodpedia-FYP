@@ -16,7 +16,17 @@ body {
     min-height: 100vh;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    font-family: 'Raleway';
+        font-family: 'Lexend Deca', arial;
+        background-color: #e8ded2;
+}
+@media only screen and (max-width: 600px){
+    .buttons{
+        padding-left: 65px;
+    }
+}
+
+.buttons{
+    padding-left: 95px;
 }
 
 .payment-title {
@@ -218,7 +228,7 @@ input {
 }
 
 #cardfront .st3 {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Lato', sans-serif;
     font-weight: 600;
 }
 
@@ -227,7 +237,7 @@ input {
 }
 
 #cardfront .st5 {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Oswald', sans-serif;
     font-weight: 400;
 }
 
@@ -249,7 +259,7 @@ input {
 }
 
 #cardfront .st10 {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Lato', sans-serif;
     font-weight: 300;
 }
 
@@ -285,7 +295,7 @@ input {
 }
 
 #cardback .st6 {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Lato', sans-serif;
     font-weight: 400;
 }
 
@@ -310,7 +320,7 @@ input {
 }
 
 #cardback .st12 {
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Lato', sans-serif;
 }
 
 #cardback .st13 {
