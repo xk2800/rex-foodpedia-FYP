@@ -51,7 +51,7 @@
         <body style="background-color: #E4F6E6">
 
             <?php
-                include("nav.html");
+                include("../nav.html");
             ?>
 
             <div class="container">
@@ -77,7 +77,7 @@
                         <tr>
                             <th scope="row">01</th>
                             <td>Lorem ipsum dolor</td>
-                            <td rowspan=""><img src="dummy.jpg" alt="Girl in a jacket" style="width:20em; height:10em"></td>
+                            <td rowspan=""><img src="../img/dummy.jpg" alt="Girl in a jacket" style="width:20em; height:10em"></td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
                                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
