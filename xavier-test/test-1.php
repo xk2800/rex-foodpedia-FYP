@@ -1,83 +1,97 @@
 <?php
-    session_start();
-    include("db-connect.php");
-
-    /**
-     * using if else statement for homepage
-     */
+//index.php
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon" type="image/png" href= "img/logo/logo.png">
-
-    <!--title>Home | REX Foodipedia</title-->
-
-<?php
-
-    //$_SESSION['logged-in'];
-
-    /**
-     * <p class="menu"><a href="index.html">Home</a></p> 
-     *    <p class="menu"><a href="Product1.html">Products</a> </p> 
-     * 
-     *  <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true): ?>
-     *   
-     * <p class="menu"><a href="logout.php">Logout</a></p>
-     * 
-     *   <?php else: ?>
-     * 
-     *   <p class="menu"><a href="login.html">Login</a></p> 
-     * 
-     *   <?php endif; ?>
-     * 
-     * 
-     * <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true){?>
-     *      <title> Welcome <?php echo $_SESSION['uname']?> | REX Foodipedia</title>
-     * <?php } else { ?>
-     *      <title>Home | REX Foodipedia</title>
-     * <?php } ?>
-     * 
-     */
-    
-?>
-<?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true){?>
-                <title> Welcome <?php echo $_SESSION['uname']?> | REX Foodipedia</title>
-         <?php } else { ?>
-                <title>Home | REX Foodipedia</title>
-         <?php } ?>
-
-    
-    <!--Bootstrap CDN-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    
-    
-
+<html>
+ <head>
+  <title>Make Stylish Toggles Checkboxes  & Use in Form with PHP Ajax</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 </head>
-<body></body>
+ <body>
+  <br /><br />
+  <div class="container" style="width:600px;">
+   <h2 align="center">Make Stylish Toggles Checkboxes & Use in Form with PHP Ajax</h2><br /><br />
+   <form method="post" id="insert_data">
     
+    <!--div class="form-group"-->
+     <!--label>Define Gender</label-->
+     <!--div id="error" style="color: yellow;"></div-->
 
-<div id="overlay">
-<!--LEVEL 1-->
-<?php
-    include ("navbar.html")
-?>
-<!--LEVEL 1 END-->
-
-<!--LEVEL 2-->
-
-    
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    
-
-
-
-</body>
+     <div class="checkbox">
+      <input type="checkbox" name="gender" id="gender" checked />
+     </div>
+    <!--/div-->
+    <input type="text" name="hidden_gender" id="hidden_gender" value="Contactless" />
+    <br />
+    <input type="submit" name="insert" id="action" class="btn btn-info" value="Insert" />
+   </form>
+  </div>
+ </body>
 </html>
+
+<script>
+$(document).ready(function(){
+ 
+ $('#gender').bootstrapToggle({
+  on: 'Contactless',
+  off: 'Non-Contactless',
+  onstyle: 'success',
+  offstyle: 'danger'
+ });
+
+ $('#gender').change(function(){
+  if($(this).prop('checked'))
+  {
+   $('#hidden_gender').val('Contactless');
+  }
+  else
+  {
+   $('#hidden_gender').val('Non-Contactless');
+  }
+ });
+
+ /*$('#insert_data').on('submit', function(event){
+  event.preventDefault();
+  if($('#name').val() == '')
+  {
+   alert("Please Enter Name");
+   return false;
+  }
+  else
+  {
+   var form_data = $(this).serialize();
+   $.ajax({
+    url:"insert.php",
+    method:"POST",
+    data:form_data,
+    success:function(data){
+     if(data == 'done')
+     {
+      $('#insert_data')[0].reset();
+      $('#gender').bootstrapToggle('on');
+      alert("Data Inserted");
+     }
+    }
+   });
+  }
+ });*/
+
+});
+</script>
+
+<?php
+    if(isset($_POST["insert"])){
+        $gender  = $_POST['hidden_gender'];
+
+        echo "<script>document.getElementById('error').innerHTML = ''</script>";
+        echo $gender;
+
+
+    }
+
+
+?>

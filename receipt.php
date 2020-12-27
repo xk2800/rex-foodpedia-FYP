@@ -41,7 +41,7 @@
 
         <?php
         //$query = "SELECT * FROM order_rec WHERE trans_id";
-        $result = mysqli_query($connect, $query);
+        /*$result = mysqli_query($connect, $query);
         if(mysqli_num_rows($result3)>0){
         ?>
         <span id="label">
@@ -83,7 +83,7 @@
         ?>
                 </span>
         <?php
-        }
+        }*/
         ?>
         <p id="hori-line"><hr></p>
 
