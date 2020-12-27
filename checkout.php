@@ -7,8 +7,8 @@
 <html>
     <head><title>Checkout | REX Foodipedia</title>
 
-    <meta name="viewpoint" content="width=device-width, initial-scale=1">
-    <meta name="viewpoint" content="width=device-width">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
 <!--INCLUDE START HERE-->
     <link rel="icon" type="image/png" href= "image/MYRUN 1.png">
@@ -22,22 +22,59 @@
 <!--THIS IS BOOTSTRAP CSS PART END-->
 
 <!--FONTS.CSS-->
-<link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/fonts.css">
+
+    <link rel="stylesheet" href="css/checkout.css">
 
 </head>
 <body>
 
     <div class="container">
 
-        <div class="payment">
-            <span id="payment-title">Payment</span>
-            <span class="rad"><input type="radio" class="full-time" value="Full time" name="job" required > Full time</span><br>
-            <span class="rad"><input type="radio" class="internship" value="Internship" name="job"> Internship</span><br>
-            <span class="rad"><input type="radio" class="Freelance" value="Freelance" name="job"> Freelance</span><br>
-                                    
+        <div class="row">
+
+            <div class="col-lg-8 col-md-7">
+                <div class="delivery-details">
+
+
+                </div>
+
+                <div class="personal-details">
+
+                </div>
+
+                <div class="payment-details">
+                    <span class="step">Step 3</span>
+                    <span id="payment-title">Payment</span><br>
+                    <!--span class="rad"><input type="radio" class="full-time" value="Cash on Delivery" name="job" required > Cash on Delivery (COD)</span><br>
+                    <span class="rad"><input type="radio" class="internship" value="Credit / Debit Card" name="job"> Credit / Debit Card</span><br>
+                    <span class="rad"><input type="radio" class="Freelance" value="Online Banking" name="job"> Online Banking</span><br>
+                    -->
+
+                    <div class="col-xl-10 pb-5">
+                        <input class="checkbox-budget" type="radio" name="payment-type" id="budget-1" value="Cash on Delivery">
+                        <label class="for-checkbox-budget" for="budget-1">
+                            <span data-hover="Cash on Delivery (COD)">Cash on Delivery (COD)</span>
+                        </label>
+                    
+                        <input class="checkbox-budget" type="radio" name="payment-type" id="budget-2" value="Credit / Debit Card">
+                        <label class="for-checkbox-budget" for="budget-2">
+                            <span data-hover="Credit / Debit Card">Credit / Debit Card</span>
+                        </label>
+                        
+                        <input class="checkbox-budget" type="radio" name="payment-type" id="budget-3" value="Online Banking">
+                        <label class="for-checkbox-budget" for="budget-3">
+                            <span data-hover="Online Banking">Online Banking</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-5">
+
+                <span style="box-shadow:0 4px 16px 0 black; width: 50px;">text hererrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr</span>
+            </div>
         </div>
-
-
 
     </div>
 
