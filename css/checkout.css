@@ -85,11 +85,15 @@
 
 
 
-
+#payment{
+  border: 2px solid red;
+  margin: 0 10px;
+}
 
 
 
 /*REMOVE RADIO BUTTON DOT*/
+/*
 [type="radio"]:checked,
 [type="radio"]:not(:checked){
 	position: absolute;
@@ -97,18 +101,18 @@
 	width: 0;
 	height: 0;
     visibility: hidden;
-}
+}*/
 
 /*SET BUTTON POSITION*/
 .checkbox-budget:checked + label,
 .checkbox-budget:not(:checked) + label{
-    font-family: 'Oswald', sans-serif;
+  font-family: 'Oswald', sans-serif;
 	position: relative;
 	display: inline-block;
 	padding: 0;
 	/*padding-top: 20px;
     padding-bottom: 20px;*/
-    padding: 2px 0;
+  padding: 2px 0;
 	width: 200px;
 	font-size: 20px;
 	/*line-height: 52px;*/
@@ -146,8 +150,8 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-    border-radius: 4px;
-    background-color: #a3d2ca ;
+  border-radius: 4px;
+  background-color: #a3d2ca ;
 	/*background-image: linear-gradient(138deg, var(--red), var(--yellow));*/
 	z-index: -1;
 }
@@ -169,14 +173,14 @@
 	width: 100%;
 	overflow: hidden;
 	-webkit-text-stroke: transparent;
-    text-stroke: transparent;
-    -webkit-text-fill-color: #FFF;
-    text-fill-color: #FFF;
-    color: #FFF;
-    background-color: #056676;
-	-webkit-transition: max-height 0.3s;
+  text-stroke: transparent;
+  /*-webkit-text-fill-color: #FFF;
+  text-fill-color: #FFF;
+  color: #FFF;*/
+  background-color: #056676;
+	/*-webkit-transition: max-height 0.3s;
 	-moz-transition: max-height 0.3s;
-	transition: max-height 0.3s;
+	transition: max-height 0.3s;*/
 }
 /*make non selected box no effect*/
 .checkbox-budget:not(:checked) + label span::before{
@@ -188,4 +192,25 @@
     max-height: 100%;
 }
 
+.alignRow{
+  padding-left: 40px;
+}
 
+.imageColumn {
+  float: left;
+  width: 25%;
+  /*padding: 10px;*/
+}
+
+#amex{
+  width: 70%;
+}
+
+#mastercard{
+  width: 65%;
+
+}
+
+#visa{
+  width: 70%;
+}
