@@ -15,13 +15,35 @@
 /*font-family: 'Oswald', sans-serif;*/
 
 
-.delivery-details, .personal-details, .payment-details{
-    box-shadow:0 4px 16px 0 black;
+body{
+  font-family: 'Oswald', sans-serif;
+  background-color: #e8ded2;
+  font-size: 18px;
 }
 
+.delivery-details, .personal-details, .payment-details{
+    box-shadow:0 4px 16px 0 black;
+    background-color: #FFF;
+}
 
-/*PERSONAL DETAILS*/
+#payment-title, #title{
+  font-weight: bold;
+}
 
+#contect, #contect:hover{
+  cursor: pointer;
+}
+
+#editbtn, #removebtn{
+  color: black;
+}
+
+#editbtn:hover, #removebtn:hover{
+  color: white;
+  text-decoration: none;
+}
+
+/*PERSONAL DETAILS
 .switch {
     position: relative;
     display: inline-block;
@@ -73,7 +95,7 @@
     transform: translateX(26px);
   }
   
-  /* Rounded sliders */
+  /* Rounded sliders 
   .slider.round {
     border-radius: 34px;
   }
@@ -82,15 +104,77 @@
     border-radius: 50%;
   }
 
+*/
 
+  .radio-toolbar {
+    text-align: center;
+    display: block;
+    /*margin: 10px;*/
+    font-family: 'Oswald', sans-serif;
+  }
+  
+  .radio-toolbar input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+    font-family: 'Oswald', sans-serif;
+  }
+  
+  .radio-toolbar label {
+      display: inline-block;
+      background-color: #a3d2ca;
+      padding: 10px 20px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      border: 2px solid #444;
+      border-radius: 4px;
+  }
+  
+  .radio-toolbar label:hover {
+    border: 2px solid #FFF;
+    background-color: #056676;
+    color: #FFF;
+    cursor: pointer;
+  }
+  
+  .radio-toolbar input[type="radio"]:focus + label {
+    border: 2px solid #FFF;
+    cursor: pointer;
+  }
+  
+  .radio-toolbar input[type="radio"]:checked + label {
+    color: black;
+    background-color: #FFF;
+    border-color: black;
+    cursor: pointer;
+  }
 
+.COD_payment{
+  text-align: center;
+  display: block;
+}
 
-#payment{
+.alignicon{
+    text-align: center;
+    display: block;
+}
+
+#addinfo{
+  text-decoration: none;
+  color: #056676;
+  cursor: pointer;
+}
+
+/*
+#payment[type="radio"]:checked{
   border: 2px solid red;
   margin: 0 10px;
 }
 
-
+#payment_type[type="radio"]:checked+#payment{
+  font-weight: bold;
+}
+*/
 
 /*REMOVE RADIO BUTTON DOT*/
 /*
@@ -110,30 +194,18 @@
 	position: relative;
 	display: inline-block;
 	padding: 0;
-	/*padding-top: 20px;
-    padding-bottom: 20px;*/
   padding: 2px 0;
 	width: 200px;
 	font-size: 20px;
-	/*line-height: 52px;*/
-	/*font-weight: 700;*/
-	/*letter-spacing: 1px;*/
 	margin: 0 auto;
-    margin: 0 5px 10px 5px;
+  margin: 0 5px 10px 5px;
 	text-align: center;
 	border-radius: 4px;
 	overflow: hidden;
 	cursor: pointer;
-    /*text-transform: uppercase;*/
-    /*ADD HOVER TRANSITION*/
 	-webkit-transition: all 300ms linear;
-    transition: all 300ms linear; 
-    color: #FFF;
-    /*text-stroke: 1px var(--white);*/
-    /*-webkit-text-stroke: 0.5px #FFFF;*/
-    /*-webkit-text-fill-color: transparent;
-    text-fill-color: transparent;*/
-    /*color: transparent;*/
+  transition: all 300ms linear; 
+  color: #FFF;
 }
 
 /*BOX SHADOW ON HOVER*/
@@ -152,7 +224,6 @@
 	height: 100%;
   border-radius: 4px;
   background-color: #a3d2ca ;
-	/*background-image: linear-gradient(138deg, var(--red), var(--yellow));*/
 	z-index: -1;
 }
 
@@ -174,13 +245,7 @@
 	overflow: hidden;
 	-webkit-text-stroke: transparent;
   text-stroke: transparent;
-  /*-webkit-text-fill-color: #FFF;
-  text-fill-color: #FFF;
-  color: #FFF;*/
   background-color: #056676;
-	/*-webkit-transition: max-height 0.3s;
-	-moz-transition: max-height 0.3s;
-	transition: max-height 0.3s;*/
 }
 /*make non selected box no effect*/
 .checkbox-budget:not(:checked) + label span::before{
@@ -192,25 +257,33 @@
     max-height: 100%;
 }
 
-.alignRow{
-  padding-left: 40px;
+.order-list{
+  border: 2px solid black;
 }
 
-.imageColumn {
-  float: left;
-  width: 25%;
-  /*padding: 10px;*/
+
+
+
+
+#pay{
+  background-color: #a3d2ca;
+  color: black;
+  font-family: 'Lato', sans-serif;
 }
 
-#amex{
-  width: 70%;
+#pay:hover{
+  background-color: #056676;
+  color: white;
+  font-family: 'Lato', sans-serif;
 }
 
-#mastercard{
-  width: 65%;
 
-}
 
-#visa{
-  width: 70%;
+@media screen and (max-width: 990px) {
+
+  .order-list{
+    padding-left: 30px;
+    padding-top: 20px;
+  }
+
 }
