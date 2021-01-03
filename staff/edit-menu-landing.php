@@ -41,7 +41,7 @@
                     /*font-style: italic;*/
                     letter-spacing: 2px;
                     font-family: Lato;
-                    font-size:0.85em;
+                    font-size:1em;
                 }
                 
             </style>

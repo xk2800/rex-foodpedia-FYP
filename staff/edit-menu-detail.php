@@ -35,6 +35,26 @@
                     font-weight: bold;
                 }
 
+                label {
+                    font-family: Lato;
+                    letter-spacing: 1px;
+                    padding-top:20px;
+                }
+
+                #card-input-edit-menu input[type="text"], #card-input-edit-menu input[type="number"] {
+                    border: 0px black solid;
+                    border-bottom-width: 1px;
+                    border-bottom-color: #d4d9d5;
+                    width: 50em;
+                }
+
+                #card-button-edit-menu {
+                    letter-spacing: 1px;
+                    font-size: 1.0em;
+                    /*font-family: Oswald;*/
+                    margin:50px 0px 30px 0px;
+                }
+
             </style>    
         </head>
 
@@ -95,7 +115,7 @@
                             </form>
                         </div>
                         
-                        <a href="#" class="btn btn-primary">Update</a>
+                        <a href="#" class="btn btn-primary btn-block" id="card-button-edit-menu">Update</a>
                     </div>
                 </div> 
             </div>
