@@ -32,7 +32,7 @@
                 table {
                     background-color:white;
                     /*border-radius: 20px;*/
-                    box-shadow: 7px 7px 5px #888888;
+                    box-shadow: 6px 6px 5px #888888;
                     margin-top: 10em;
                 }
 

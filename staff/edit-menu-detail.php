@@ -17,6 +17,25 @@
         
             <!--FONTS.CSS-->
             <link rel="stylesheet" href="css/fonts.css">
+
+            <style>
+                
+                #card-whole-edit-menu {
+                   margin: 120px 0px 60px 0px;
+                   border-style: none;
+                   position: relative;
+                   box-shadow: 6px 6px 5px #888888;
+                }
+
+                #card-title-edit-menu {
+                    text-align: center;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                    background-color: #D1FBD6;
+                    font-weight: bold;
+                }
+
+            </style>    
         </head>
 
         <body style="background-color: #E4F6E6">
@@ -26,8 +45,8 @@
             ?>
 
             <div class="container">
-                <div class="card">
-                    <h5 class="card-header">Edit Food Menu Details</h5>
+                <div class="card" id="card-whole-edit-menu">
+                    <h6 class="card-header" id="card-title-edit-menu">Edit Food Menu Details</h6>
                   
                     <div class="card-body"> 
                         <div id="card-input-edit-menu">
