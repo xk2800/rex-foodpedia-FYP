@@ -17,6 +17,45 @@
         
             <!--FONTS.CSS-->
             <link rel="stylesheet" href="css/fonts.css">
+
+            <style>
+                
+                #card-whole-edit-menu {
+                   margin: 120px 0px 60px 0px;
+                   border-style: none;
+                   position: relative;
+                   box-shadow: 6px 6px 5px #888888;
+                }
+
+                #card-title-edit-menu {
+                    text-align: center;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                    background-color: #D1FBD6;
+                    font-weight: bold;
+                }
+
+                label {
+                    font-family: Lato;
+                    letter-spacing: 1px;
+                    padding-top:20px;
+                }
+
+                #card-input-edit-menu input[type="text"], #card-input-edit-menu input[type="number"] {
+                    border: 0px black solid;
+                    border-bottom-width: 1px;
+                    border-bottom-color: #d4d9d5;
+                    width: 50em;
+                }
+
+                #card-button-edit-menu {
+                    letter-spacing: 1px;
+                    font-size: 1.0em;
+                    /*font-family: Oswald;*/
+                    margin:50px 0px 30px 0px;
+                }
+
+            </style>    
         </head>
 
         <body style="background-color: #E4F6E6">
@@ -26,8 +65,8 @@
             ?>
 
             <div class="container">
-                <div class="card">
-                    <h5 class="card-header">Edit Food Menu Details</h5>
+                <div class="card" id="card-whole-edit-menu">
+                    <h6 class="card-header" id="card-title-edit-menu">Edit Food Menu Details</h6>
                   
                     <div class="card-body"> 
                         <div id="card-input-edit-menu">
@@ -76,7 +115,7 @@
                             </form>
                         </div>
                         
-                        <a href="#" class="btn btn-primary">Update</a>
+                        <a href="#" class="btn btn-primary btn-block" id="card-button-edit-menu">Update</a>
                     </div>
                 </div> 
             </div>
