@@ -1,197 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="test.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
+<meta charset="utf-8">
+<title>jQuery Show Hide Elements Using Radio Buttons</title>
+<style>
+    .box{
+        color: #fff;
+        padding: 20px;
+        display: none;
+        margin-top: 20px;
+    }
+    .red{ background: #ff0000; }
+    .green{ background: #228B22; }
+    .blue{ background: #0000ff; }
+</style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('input[type="radio"]').click(function(){
+        var inputValue = $(this).attr("value");
+        var targetBox = $("." + inputValue);
+        $(".box").not(targetBox).hide();
+        $(targetBox).show();
+    });
+});
+</script>
 </head>
 <body>
-    <section>
-		<h1>Smooth FAQ Accordion</h1>
-		<p>This is my work , hope you like it ! - Chris Li</p>
-	</section>
-	<div class="container">
-		<div class="Accordions">
-			<div class="Accordion_item">
-				<div class="title_tab">
-					<h3 class="title">HOW TO BUY<span class="icon"></span></h3>
-				</div>
-				<div class="inner_content">
-					<p>
-						<b>In which countries is it possible to shop online?</b></br>
-
-						<span>You can currently shop in Spain, Portugal, France, Monaco, Italy, Germany, Poland, Austria, Switzerland, Greece, Malta, Romania, Bulgaria, Croatia, Slovenia, Hungary, Czech Republic, Slovakia, Estonia, Latvia, Lithuania, UK, Ireland, Belgium, Holland, Luxembourg, Sweden, Norway, Denmark, Finland, Russia, USA, Canada, Mexico, Japan, Taiwan, Macau, Hong Kong, South Korea, China and Turkey.</span><br>
-
-						<b>How many languages is it possible to browse in?</b></br>
-
-						<span>The XXX.com browsing languages are: English, Spanish, Catalan, Galician, Basque, Portuguese, French, Italian, German, Polish, Greek, Romanian, Bulgarian, Croatian, Czech, Slovak, Estonian, Latvian, Lithuanian, Dutch, Swedish, Norwegian, Danish, Russian, Korean, Japanese, Chinese and Turkish.</span><br>
-
-						<b>Are the online store prices the same as those in my usual XXX store?</b></br>
-
-						<span>Yes, but if there is any difference between the prices shown on the website and those marked on the label on the clothes, the correct price will be the one shown on the purchase ticket.</span><br>
-
-						<b>What is your price adjustment policy?</b></br>
-
-						<span>Price adjustments will not be done for items with a reduced price.</span><br>
-
-					</p>
-				</div>
-			</div>
-			<div class="Accordion_item">
-				<div class="title_tab">
-					<h3 class="title">GENERAL INFORMATION<span class="icon"></span></h3>
-				</div>
-				<div class="inner_content">
-					<p>
-						<b>Are out-of-stock items restocked?</b></br>
-
-						<span>If an item is out of stock, we will try to restock it as soon as possible. If no stock is available, it will be removed from the website.</span><br>
-
-						<b>Will I receive the same product that I see in the photo?</b></br>
-
-						<span>Yes, except in the case of products which are hand crafted in which there may be slight differences in the final product.</span><br>
-
-						<b>Is it possible to receive periodic information via email about XXX's latest new products and offers?</b></br>
-
-						<span>Yes. By simply clicking on Newsletter you will receive information on XXX's latest products, lookbook and events.</span><br>
-
-						<b>Can I cancel my XXX Newsletter subscription?</b></br>
-
-						<span>You can easily cancel your subscription by clicking on the Newsletter menu. Fill in the details and select send.</span><br>
-
-						<b>How do I recover my forgotten password?</b></br>
-
-						<span>If you've forgotten your password, you can recover it in the Log-in section. Enter your e-mail address and we'll send you an e-mail telling you what you need to do.</span><br>
-
-						<b>How can I be sure that I've made my purchase correctly?</b></br>
-
-						<span>Once you have placed your order, you will receive a confirmation email. If you do not receive an email, contact our customer service.</span><br>
-
-						<b>Can I track my order?</b></br>
-
-						<span>Yes. Click on the order menu in your account and you will be able to track your order in real time.</span><br>
-
-						<b>Can I remove items from my order?</b></br>
-
-						<span>Yes. You can delete any unwanted items from your shopping bag as long as the order hasn’t been processed yet.</span><br>
-
-						<b>Can I cancel my order?</b></br>
-
-						<span>Yes. You can cancel your order from the order menu in your account.</span><br>
-
-						<b>What should I do if I receive a faulty item?</b></br>
-
-						<span>XXX.com only sells items in perfect condition so, in the rare event of receiving a faulty item, please contact our customer service.</span><br>
-
-						<b>What should I do if I receive an incorrect item?</b></br>
-
-						<span>If you were to accidentally receive an item that you did not order, please contact our customer service.</span><br>
-					</p>
-				</div>
-			</div>
-			<div class="Accordion_item">
-				<div class="title_tab">
-					<h3 class="title">PAYMENT<span class="icon"></span></h3>
-				</div>
-				<div class="inner_content">
-					<p>
-						<b>How do I recover my forgotten password?</b></br>
-
-						<span>If you've forgotten your password, you can recover it in the Log-in section. Enter your e-mail address and we'll send you an e-mail telling you what you need to do.</span><br>
-
-						<b>How can I be sure that I've made my purchase correctly?</b></br>
-
-						<span>Once you have placed your order, you will receive a confirmation email. If you do not receive an email, contact our customer service.</span><br>
-
-						<b>Can I track my order?</b></br>
-
-						<span>Yes. Click on the order menu in your account and you will be able to track your order in real time.</span><br>
-
-						<b>Can I remove items from my order?</b></br>
-
-						<span>Yes. You can delete any unwanted items from your shopping bag as long as the order hasn’t been processed yet.</span><br>
-
-						<b>Can I cancel my order?</b></br>
-
-						<span>Yes. You can cancel your order from the order menu in your account.</span><br>
-					</p>
-				</div>
-			</div>
-			<div class="Accordion_item">
-				<div class="title_tab">
-					<h3 class="title">DELIVERY<span class="icon"></span></h3>
-				</div>
-				<div class="inner_content">
-					<p>
-						<b>What should I do if I receive a faulty item?</b></br>
-
-						<span>XXX.com only sells items in perfect condition so, in the rare event of receiving a faulty item, please contact our customer service.</span><br>
-
-						<b>What should I do if I receive an incorrect item?</b></br>
-
-						<span>If you were to accidentally receive an item that you did not order, please contact our customer service.</span><br>
-					</p>
-				</div>
-			</div>
-			<div class="Accordion_item">
-				<div class="title_tab">
-					<h3 class="title">RETURNS<span class="icon"></span></h3>
-				</div>
-				<div class="inner_content">
-					<p>
-						<b>Can I cancel my XXX Newsletter subscription?</b></br>
-
-						<span>You can easily cancel your subscription by clicking on the Newsletter menu. Fill in the details and select send.</span><br>
-
-						<b>How do I recover my forgotten password?</b></br>
-
-						<span>If you've forgotten your password, you can recover it in the Log-in section. Enter your e-mail address and we'll send you an e-mail telling you what you need to do.</span><br>
-
-						<b>How can I be sure that I've made my purchase correctly?</b></br>
-
-						<span>Once you have placed your order, you will receive a confirmation email. If you do not receive an email, contact our customer service.</span><br>
-
-						<b>Can I track my order?</b></br>
-
-						<span>Yes. Click on the order menu in your account and you will be able to track your order in real time.</span><br>
-
-						<b>Can I remove items from my order?</b></br>
-
-						<span>Yes. You can delete any unwanted items from your shopping bag as long as the order hasn’t been processed yet.</span><br>
-					</p>
-				</div>
-			</div>
-		</div>
+    <div>
+        <label><input type="radio" name="colorRadio" value="red"> red</label>
+        <label><input type="radio" name="colorRadio" value="green"> green</label>
+        <label><input type="radio" name="colorRadio" value="blue"> blue</label>
     </div>
-    
-    <script>
-
-var $titleTab = $('.title_tab');
-	$('.Accordion_item:eq(0)').find('.title_tab').addClass('active').next().stop().slideDown(300);
-	$('.Accordion_item:eq(0)').find('.inner_content').find('p').addClass('show');
-	$titleTab.on('click', function(e) {
-	e.preventDefault();
-		if ( $(this).hasClass('active') ) {
-			$(this).removeClass('active');
-			$(this).next().stop().slideUp(500);
-			$(this).next().find('p').removeClass('show');
-		} else {
-			$(this).addClass('active');
-			$(this).next().stop().slideDown(500);
-			$(this).parent().siblings().children('.title_tab').removeClass('active');
-			$(this).parent().siblings().children('.inner_content').slideUp(500);
-			$(this).parent().siblings().children('.inner_content').find('p').removeClass('show');
-			$(this).next().find('p').addClass('show');
-		}
-    });
-    
-    
-    </script>
-
+    <div class="red box">You have selected <strong>red radio button</strong> so i am here</div>
+    <div class="green box">You have selected <strong>green radio button</strong> so i am here</div>
+    <div class="blue box">You have selected <strong>blue radio button</strong> so i am here</div>
 </body>
 </html>

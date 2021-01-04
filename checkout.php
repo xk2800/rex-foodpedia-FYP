@@ -42,17 +42,64 @@
     $(this).parent().find('input').val(val);
 });
 */
-
-
 function others(val){
-            var element=document.getElementById('other');
-            if(val=='Credit / Debit Card'){
+            var element=document.QuerySelector('#other');
+            if(val=='others'){
                 element.style.display='block';
 
             }else{
                 element.style.display='none';
             }
+
+            document.QuerySelector
         }
+
+        function others(val){
+            var element=document.getElementById('other')
+            var elements=document.getElementById('others');
+            if(val=='others' || val!='checkOB'){
+                element.style.display='block';
+                elements.style.display='block';
+
+            }else if(val=='checkOB'){
+                element.style.display='none';
+            }
+        }
+        function payment_drop() {
+            if ((document.getElementById('radioCard').checked == true) || (document.getElementById('radioCOD').unchecked == false) || (document.getElementById('radioOB').unchecked == false)) {
+                
+                //show card payment options
+                document.getElementById('card').style.display = 'block';
+                document.getElementById('cash').style.display = 'none';
+                document.getElementById('online_banking').style.display = 'none';
+            }
+            else if((document.getElementById('radioCard').unchecked == false) || (document.getElementById('radioCOD').checked == true) || (document.getElementById('radioOB').unchecked == false)){
+                
+                //show COD payment options
+                document.getElementById('cash').style.display = 'block';
+                document.getElementById('card').style.display = 'none';
+                document.getElementById('online_banking').style.display = 'none';
+            }
+            else if((document.getElementById('radioCard').unchecked == false) || (document.getElementById('radioCOD').unchecked == false) || (document.getElementById('radioOB').checked == true)){
+                
+                //show online banking payment options
+                document.getElementById('card').style.display = 'none';
+                document.getElementById('cash').style.display = 'none';
+                document.getElementById('online_banking').style.display = 'block';
+            }
+        }
+
+/*function payment_drop() {
+    if (document.getElementById('radioCard').checked =true) {
+        document.getElementById('card').style.display = 'block';
+    }
+    else if(document.getElementById('radioCard').checked =false) {
+        document.getElementById('card').style.display = 'none';
+    }
+
+}*/
+
+
 </script>
 
 
@@ -198,7 +245,7 @@ function others(val){
                                 
                                     <div class="radio-toolbar">
                                         <span class="COD_payment">
-                                            <input type="radio" id="radioCOD" name="payment" value="Cash on Delivery (COD)">
+                                            <input type="radio" id="radioCOD" name="payment" value="other" onclick="javascript:payment_drop();">
                                             <label for="radioCOD" class="col-lg-12 col-md-10 col-sm-10">
                                                 <i class="fa fa-money alignicon" aria-hidden="true"></i>
                                                 <!--br-->
@@ -207,7 +254,7 @@ function others(val){
                                         </span>
 
                                         <span class="card_payment">
-                                            <input type="radio" id="radioCard" name="payment" value="Credit / Debit Card" onchange='others(this.value);'>
+                                            <input type="radio" id="radioCard" name="payment" value="others" onclick="javascript:payment_drop();">
                                             <label for="radioCard" class="col-lg-12 col-md-10 col-sm-10">
                                                 <div class="alignicon">
                                                     <i class="fa fa-cc-amex" aria-hidden="true"></i>
@@ -216,24 +263,77 @@ function others(val){
                                                 </div>
                                                 Credit / Debit Card
                                             </label>
-                                            <input type="text" name="other" id="other" style='display:none;'/>
-
                                         </span>
 
                                         <span class="onlinebanking_payment">
-                                            <input type="radio" id="radioOB" name="payment" value="Online Banking">
+                                            <input type="radio" id="radioOB" name="payment" value="checkOB" onclick="javascript:payment_drop();">
                                             <label for="radioOB" class="col-lg-12 col-md-10 col-sm-10">
                                                 <i class="fa fa-university alignicon" aria-hidden="true"></i>
                                                 Online Banking
                                             </label> 
                                         </span>
 
+                                        <input type="text" name="other" id="other" style='display:none;'/>
+                                        <input type="text" name="other" id="others" style='display:none;'/>
+
+                                        <form method="post" id="others">
+                                            <input type="radio" name="other" id="other" style='display:none;' value="" >
+                                            <input type="text" name="other" id="other" style='display:none;'/>
+                                        </form>
+                                        
                                     </div>
-                                
+                    <?php
+                                        $card_info = mysqli_query($connect, "SELECT * from card_info WHERE email='xavierkhew00@gmail.com'"); //where email='$email'
+                                        
+
+                    ?>
+
+                                    <!-- JS appear msg -->
+                                    <div class="container">
+                                        <div id="cash" style='display:none;'><p id="title">PAY BY CASH ON DELIVERY</p><p>Simply pay the rider, when he delivers the food to your doorstep.</p></div>
+                                        <div id="card" style="display:none">
+                    <?php
+                                        while($card_out = mysqli_fetch_assoc($card_info)){
+                    ?>
+                                                <input type='radio' id='card_option' name="card-num" value='<?php echo $card_out ["card_num"]?>'> 
+                    <?php
+                                                if($card_out["card_type"] == "MasterCard"){
+                                                    echo '&emsp;<i class="fa fa-cc-mastercard" aria-hidden="true"></i>';
+
+                                                } else if($card_out["card_type"] == "Visa"){
+                                                    echo '&emsp;<i class="fa fa-cc-visa" aria-hidden="true"></i>';
+
+                                                } else if($card_out["card_type"] == "Amex"){
+                                                    echo '&emsp;<i class="fa fa-cc-amex" aria-hidden="true"></i>';
+
+                                                } else{
+                                                    echo '&emsp;Card selected invalid type';
+                                                }
+
+
+                                                $number =  $card_out ["card_num"]; //https://stackoverflow.com/questions/45588890/displaying-last-4-digit-credit-card/45588941
+                                                $masked =  str_pad(substr($number, -4), strlen($number), '*', STR_PAD_LEFT);
+                                                //echo $masked;
+                    ?>
+                                                <?php echo $masked;?>&emsp;
+                                                <?php echo $card_out ["name_on_card"]?>,
+                                                <?php echo $card_out ["exp_date"]?>
+                                                <br><br>
+                    <?php
+                                        }
+                    ?>                                           
+                                                <!-- What can we do to accommodate you?  <input type='text' id='acc' name='acc'> -->
+                                        </div>
+                                        <div id="online_banking" style="display:none"><p id="title">PAY WITH ONLINE BANKING</p><p>Pay with Online Banking: 
+                                            You will not be redirected to secure payment page as we do not have a payment system. After you click, you will 
+                                            be redirected back to REX Foodipedia again.</p></div>
+
+                                    </div>
                                 </div>
 
                         <!-- PAYMENT BUTTON -->
-                            <span id="voucher">Do you have a voucher?</span>
+                            <br>
+                            <span id="voucher">Do you have a voucher?</span><br>
                             <span id="t&c">By making this purchase, you agree to our Terms and conditions</span><br><br>
 
                             <!--p><button type="submit" name="makepaymentbtn" id="pay">MAKE PAYMENT & PLACE ORDER</button></p-->
@@ -252,45 +352,43 @@ function others(val){
             </div>
 
 <!-- col-lg-8 col-md-10 col-sm-10-->
-            <div class="order-list col-lg-4 col-md-10 col-sm-10">
+            <div class="order-list col-lg-4 col-md-10 col-sm-10" id="order-list">
 
+                    <span id="rest">Your order from REX Foodipedia</span>
+                    <br>
+                    <span id="order"><p>food</p></span>
+                    
+                    <span class="payment-breakdown">
+                        <table id="default-text">
+                            <tr>
+                                <th id="subtotal">Subtotal</th>
+                                <th id="db-subtotal">RM SUBTOTAL</th>
+                            </tr>
+                            <tr>
+                                <td id="discount">- Discount</td>
+                                <td id="db-discount">RM DISCOUNT</td>
+                            </tr>
+                            <tr>
+                                <td id="voucher">- Voucher</td>
+                                <td id="db-voucher">RM VOUCHER</td>
+                            </tr>
+                            <tr>
+                                <p id="hori-line"><hr></p>
+                            </tr>
+                            <tr>
+                                <td id="tax">+Service Tax(6%)</td>
+                                <td id="db-tax">RM SERVICE TAX</td>
+                            </tr>
+                            <tr>
+                                <th id="total">Total</th>
+                                <th id="db-total">RM TOTAL</th>
+                            </tr>
+                            <tr>
+                                <th id="payment-type">Payment method: PAYMENT METHOD</th>
+                            </tr>
+                        </table>
 
-                <span id="rest">Your order from REX Foodipedia</span>
-                <br>
-                <span id="order"><p>food</p></span>
-                
-                <span class="payment-breakdown">
-                    <table id="default-text">
-                        <tr>
-                            <th id="subtotal">Subtotal</th>
-                            <th id="db-subtotal">RM SUBTOTAL</th>
-                        </tr>
-                        <tr>
-                            <td id="discount">- Discount</td>
-                            <td id="db-discount">RM DISCOUNT</td>
-                        </tr>
-                        <tr>
-                            <td id="voucher">- Voucher</td>
-                            <td id="db-voucher">RM VOUCHER</td>
-                        </tr>
-                        <tr>
-                            <p id="hori-line"><hr></p>
-                        </tr>
-                        <tr>
-                            <td id="tax">+Service Tax(6%)</td>
-                            <td id="db-tax">RM SERVICE TAX</td>
-                        </tr>
-                        <tr>
-                            <th id="total">Total</th>
-                            <th id="db-total">RM TOTAL</th>
-                        </tr>
-                        <tr>
-                            <th id="payment-type">Payment method: PAYMENT METHOD</th>
-                        </tr>
-                    </table>
-
-                </span>
-            
+                    </span>
             
             </div>
         </div>

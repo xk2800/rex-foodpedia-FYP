@@ -1,47 +1,69 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>On off toggle</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.0/flatly/bootstrap.min.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!--script type="text/javascript">
-        $(document).ready(function () {
-            $.ajax({
-                type: "GET",
-                url: "status.php",
-                data: {"id": <?php echo $machine_id;?>},
-                success: function (data) {
-                    console.log(data)
-                }
-            });
-        });
-    </script-->
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
 
-<body>
-<div class="container">
-    <div class="row text-center">
-        <div class="col-12">
-            <form method="post">
-                <fieldset>
-                    <legend>on/off status for machine: <?php echo $machine_id; ?></legend>
-                    <div class="form-group">
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="customSwitch1"
-                                   name='machine_state' <?php echo $checked_status; ?>>
-                            <label class="custom-control-label"
-                                   for="customSwitch1">Currently <?php echo $status_str; ?></label>
-                        </div>
-                        <input type="hidden" name="form_submit" value="">
-                    </div>
-                </fieldset>
-                <input type="submit" class="btn btn-info btn-sm" name="submit" value="Update"/>
-            </form>
-        </div>
-    </div>
-</div>
+
+
+<script>
+    document.querySelectorAll('input')
+  .forEach(input => {
+    input.addEventListener('change', function() {
+      document.querySelectorAll('select').forEach(select => select.style.display = "none");
+      const selectEle = this.parentElement.querySelector('select');
+      selectEle.style.display = "block";
+    });
+  });
+  
+  document.querySelector('input:checked').parentElement.querySelector('select').style.display = "block";
+    </script>
+        <style>
+        select {
+    display: none;
+}
+    </style>
+    </head>
+        <body>
+
+            <h2>Choose Your Date</h2>
+            <div>
+              <input type="radio" value="sat_feb8" name="date1" id="day1" checked="checked">
+              <label for="size1">Saturday, February 8</label>
+            
+              <select>
+                <option value="2pm">2:00 PM</option>
+                <option value="5pm">5:00 PM</option>
+                <option value="8pm">8:00 PM</option>
+              </select>
+            </div>
+            <div>
+              <input type="radio" value="sun_feb9" name="date1" id="day2">
+              <label for="size2">Sunday, February 9</label>
+              <select>
+                <option value="1pm">1:00 PM</option>
+                <option value="4pm">4:00 PM</option>
+              </select>
+            </div>
+            <div>
+              <input type="radio" value="sat_feb15" name="date1" id="day3">
+              <label for="size3">Saturday, February 15</label>
+            
+              <select>
+                <option value="2pm">2:00 PM</option>
+                <option value="5pm">5:00 PM</option>
+                <option value="8pm">8:00 PM</option>
+              </select>
+            </div>
+            <div>
+              <input type="radio" value="sun_feb15" name="date1" id="day4">
+              <label for="size4">Sunday, February 16</label>
+              <select>
+                <option value="1pm">1:00 PM</option>
+                <option value="4pm">4:00 PM</option>
+              </select>
+            </div>
 </body>
 </html>
