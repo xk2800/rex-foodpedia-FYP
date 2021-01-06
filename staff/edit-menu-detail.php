@@ -24,7 +24,7 @@
                    margin: 120px 0px 60px 0px;
                    border-style: none;
                    position: relative;
-                   box-shadow: 6px 6px 5px #888888;
+                   box-shadow: 7px 7px 6px #888888;
                 }
 
                 #card-title-edit-menu {
