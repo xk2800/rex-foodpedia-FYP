@@ -27,99 +27,104 @@
 </head>
 <body>
 
+<?php
+
+    $result = mysqli_query($connect, "SELECT * from transaction WHERE email = 'xavierkhew00@gmail.com'");
+    $row = mysqli_fetch_assoc($result);
+
+
+    $company_info = "REX Foodipedia";
+
+    //echo $row["subtotal"];
+    $tax = 0.06 * $row["subtotal"];
+    $grand_total = $tax + $row["subtotal"];
+    echo "RM ".$grand_total;
+?>
+
     <div class="container">
 
     <div class="paper">
         <img src="img/logo/logo.png" alt="REX Foodipedia Logo" id="logo">
         <p id="receipt title">RECEIPT</p>
-        <p id="send-type">....</p>
-        <p id="receipt_id">Receipt Number: ...</p>
-        <p id="date">Date: </p>
+        <p id="send-type"><?php echo $row ["send_type"]?></p>
+        <p id="receipt_id">Receipt Number: <?php echo $row ["receipt_id"]?></p>
+        <p id="date">Date: <?php echo $row ["date"]?></p>
         <p id="hori-line"><hr></p>
-        <p id="company-info">...</p>
-        <p id="cust-address">Delivery Address: ...</p>
+        <p id="company-info"><?php echo $company_info ?></p>
+        <p id="cust-address">Delivery Address: <?php echo $row ["address"]?></p>
 
-        <?php
-        //$query = "SELECT * FROM order_rec WHERE trans_id";
-        /*$result = mysqli_query($connect, $query);
-        if(mysqli_num_rows($result3)>0){
-        ?>
-        <span id="label">
-            <table>
-                <th id="dish-label">Dish</th>
-                <th id="quantity">Quantity</th>
-                <th id="unit-price">Unit Price</th>
-                <th id="price">Price</th>
-            </table>
-        </span>
-        <?php
-            while ($row3 = mysqli_fetch_assoc($result)) {
-            ?>
-                <span id="db-items">
-        <?php
-                echo '<table>';
-                echo '<tr>';
-                echo '<td>'.$row3['name'].'</td>';
-                echo '<td>'.$row3['email'].'</td>';
-                echo '<td style="width: 130px;">';
-                if($row3['vetting'] == "0"){
-                    echo "No submission";
-                }
-                else if($row3['vetting'] == "1")
-                {
-                    echo "Pending";
-                }else if($row3['vetting'] == "2"){
-                    echo "Reject";
-                } else if($row3['vetting'] == "3"){
-                    echo "Approved";
-                }else if($row3['vetting'] == "20"){
-                    echo "Reject Without Email Send";
-                }
-                '</td>';
-                echo '<td style="width: 130px; text-align: center;">'?><a href="resume?email=<?php echo $row3["email"];?>"><button type="submit">Update Status</button></a></td><?php
-                echo '</tr>';
-                echo '</table>';
-            }
-        ?>
-                </span>
-        <?php
-        }*/
-        ?>
+
         <p id="hori-line"><hr></p>
 
         <span class="payment-breakdown">
             <table id="default-text">
                 <tr>
                     <th id="subtotal">Subtotal</th>
-                    <th id="db-subtotal">RM SUBTOTAL</th>
+                    <th id="db-subtotal">RM <?php echo $row ["subtotal"]?></th>
                 </tr>
                 <tr>
                     <td id="discount">- Discount</td>
-                    <td id="db-discount">RM DISCOUNT</td>
+                    <td id="db-discount">RM <?php echo $row ["discount"]?></td>
                 </tr>
                 <tr>
-                    <td id="voucher">- Voucher</td>
-                    <td id="db-voucher">RM VOUCHER</td>
+                    <td id="voucher">- Voucher
+                                        <?php //echo $row ["voucher"];
+                                            if(!$row ["voucher_code"]){
+                                                
+
+                                            } else{
+                                                echo "<br>";
+                                                echo "Voucher Code: ";
+                                            }
+                                        ?>
+                    </td>
+                    <td id="db-voucher"><?php //echo $row ["voucher"];
+                                            if(!$row ["voucher_code"]){
+                                                echo "RM 0";
+
+                                            } else{
+                                                echo "RM ".$row ["voucher"];
+                                                echo "<br>";
+                                                echo $row ["voucher_code"];
+                                            }
+                                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <p id="hori-line"><hr></p>
                 </tr>
                 <tr>
                     <td id="tax">+Service Tax(6%)</td>
-                    <td id="db-tax">RM SERVICE TAX</td>
+                    <td id="db-tax">RM <?php echo $tax ?></td>
                 </tr>
                 <tr>
                     <th id="total">Total</th>
-                    <th id="db-total">RM TOTAL</th>
+                    <th id="db-total">RM <?php echo $row ["total"]?></th>
                 </tr>
                 <tr>
-                    <th id="payment-type">Payment method: PAYMENT METHOD</th>
+                    <th id="payment-type">Payment method: <?php 
+                                                            if(($row ["payment_method"]) == '0'){
+                                                                echo "Cash On Demand(COD)";
+
+                                                            }else if(($row ["payment_method"]) == '1'){
+                                                                echo "Credit/Debit Card";
+
+                                                            }else if(($row ["payment_method"]) == '2'){
+                                                                echo "Online Banking";
+
+                                                            }else{
+                                                                echo "No Payment Found In System";
+                                                            }
+                    
+                                                        ?>
+                    </th>
                 </tr>
             </table>
 
         </span>
     </div>
 
+    <br><br><br>
 
     </div>
 

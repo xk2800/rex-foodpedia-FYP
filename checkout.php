@@ -89,17 +89,6 @@ function others(val){
             }
         }
 
-/*function payment_drop() {
-    if (document.getElementById('radioCard').checked =true) {
-        document.getElementById('card').style.display = 'block';
-    }
-    else if(document.getElementById('radioCard').checked =false) {
-        document.getElementById('card').style.display = 'none';
-    }
-
-}*/
-
-
 </script>
 
 
