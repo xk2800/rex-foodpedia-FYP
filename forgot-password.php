@@ -14,7 +14,7 @@ include ('../db-con.php');
         exit();
     }
 
-    $connects = mysqli_connect("3.0.146.123", "removal", "QoibjMyPOE4O23zE", "TCD-resume");
+    $connects = mysqli_connect("", "", "", "");
 
 
     if (isset($_POST["password"])) {
@@ -25,7 +25,7 @@ include ('../db-con.php');
         $email = $row["email"];
 
         //salty
-        $salty = "t5)%@PH--6Eh%ZRC7HEgk+K,*<,nB73YeDJC`ZL!Ru%vQ#U]c<Fp::5bs:4<37N>+t73(:MpynRv3Ps8bm";
+        $salty = "";
 
         //salty pwd
         $saltypwd = $salty.$pwdd;
