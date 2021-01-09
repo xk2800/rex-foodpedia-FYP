@@ -1,0 +1,58 @@
+body{
+    background-color: #FFF;
+}
+
+.paper{
+    background-color: #FFF;
+
+}
+
+#logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+}
+
+#send-type{
+    text-transform: uppercase;
+}
+
+hr{
+    border-color: black;
+}
+
+
+#items-table{
+    border-spacing: 50px 50px;
+    padding-left: 20px;
+
+}
+
+
+#items-display{
+    border-spacing: 100px 0;
+}
+
+#items{
+    padding: 5px 0;
+}
+
+.payment-breakdown{
+    padding-right: 100px;
+
+}
+
+#default-text{
+    border-collapse: separate;
+    border-spacing: 50px 0;
+    width: auto;
+    margin-right: 0px;
+    margin-left: auto;
+    table-layout: fixed;
+
+}
+
+
+
+
