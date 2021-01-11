@@ -61,7 +61,7 @@
         <body style="background-color: #E4F6E6">
                 
             <?php
-                include("../nav.html");
+                include("navbar.html");
             ?>
 
             <div class="container">
