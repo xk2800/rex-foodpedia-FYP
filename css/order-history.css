@@ -1,0 +1,17 @@
+#orders{
+    margin: 64px 58.8px 0;
+    padding: 1px 16px 50px;
+}
+
+.profile{
+    padding: 16px 0 0;
+}
+
+#title{
+    padding: 0 16px;
+    margin: 24px 0 16px;
+}
+
+#order-list-item{
+    padding: 16px;
+}
