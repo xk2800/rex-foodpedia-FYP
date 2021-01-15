@@ -343,6 +343,11 @@ function others(val){
 <!-- col-lg-8 col-md-10 col-sm-10-->
             <div class="order-list col-lg-4 col-md-10 col-sm-10" id="order-list">
 
+
+                    <?php
+                                        $checking = mysqli_query($connect, "SELECT * from transaction WHERE email = 'xavierkhew00@gmail.com'");
+                                        $payit = mysqli_fetch_assoc($checking);
+                    ?>
                     <span id="rest">Your order from REX Foodipedia</span>
                     <br>
                     <span id="order"><p>food</p></span>
@@ -351,29 +356,78 @@ function others(val){
                         <table id="default-text">
                             <tr>
                                 <th id="subtotal">Subtotal</th>
-                                <th id="db-subtotal">RM SUBTOTAL</th>
+                    <?php
+                        $subtotal = $payit ["subtotal"];
+                    ?>
+                                <th id="db-subtotal" class="db-rows">RM <?php echo number_format((float)$subtotal, 2, '.', '') ?></th>
                             </tr>
                             <tr>
                                 <td id="discount">- Discount</td>
-                                <td id="db-discount">RM DISCOUNT</td>
+                                <td id="db-discount" class="db-rows">RM <?php echo $payit ["discount"]?></td>
                             </tr>
                             <tr>
-                                <td id="voucher">- Voucher</td>
-                                <td id="db-voucher">RM VOUCHER</td>
+                                <td id="voucher">- Voucher <br>
+                    <?php
+                                                    if( $payit ["voucher_code"]){
+                                                        echo "Voucher code: ".$payit ["voucher_code"];
+                                                    } else{
+                                                        echo "No Voucher Code Found";
+                                                    }
+                    ?>
+                                </td>
+                                
+                                <td id="db-voucher" class="db-rows">RM 
+                    <?php
+                                                    if( $payit ["voucher_code"]){
+                                                        echo number_format((float)$payit ["voucher"], 2, '.', '');
+                                                    } else{
+                                                        echo "0";
+                                                    }
+                    ?>
+                            </td>
+                            <td>
                             </tr>
                             <tr>
                                 <p id="hori-line"><hr></p>
                             </tr>
                             <tr>
+                    <?php
+                                        $tax = $subtotal * 5/100;
+
+                    ?>
                                 <td id="tax">+Service Tax(6%)</td>
-                                <td id="db-tax">RM SERVICE TAX</td>
+                                <td id="db-tax" class="db-rows">RM <?php echo number_format((float)$tax, 2, '.', '') ?></td>
                             </tr>
                             <tr>
+                    <?php
+                                        $total_taxed = $tax + $subtotal;
+                                        $total_to_pay = $total_taxed;
+                    ?>
                                 <th id="total">Total</th>
-                                <th id="db-total">RM TOTAL</th>
+                                <th id="db-total" class="db-rows">RM <?php echo number_format((float)$total_to_pay, 2, '.', '') ?></th>
                             </tr>
                             <tr>
-                                <th id="payment-type">Payment method: PAYMENT METHOD</th>
+                                <th id="payment-type">Payment method: 
+                    <?php
+                                        //0 = COD       //1 = card      //2 = online banking
+                                        $payment_method = $payit ["payment_method"];
+
+                                        if($payment_method == "0"){
+                                            echo "Cash On Delivery";
+
+                                        } else if ($payment_method == "1"){
+                                            echo "Online Card Payment";
+
+                                        } else if($payment_method == "2"){
+                                            echo "Online Banking";
+
+                                        } else{
+                                            echo "No Payment Record Detected";
+                                        }
+
+                    ?>
+                                </th>
+
                             </tr>
                         </table>
 
