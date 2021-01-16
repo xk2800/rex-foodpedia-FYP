@@ -32,7 +32,7 @@
                   font-style: italic;
                   font-weight: bold;
                   text-transform: uppercase;
-                  padding: 50px 0px 0px 17em;
+                  padding-top: 50px;
                   letter-spacing: 1px;
               }
 
@@ -51,7 +51,10 @@
                 include("navbar.html");
             ?>
 
-            <p id="navbar-view-by-report"><span style="color:red">* </span>Please select a mode : </p>
+            <div class="container">
+                <p id="navbar-view-by-report"><span style="color:red;">* </span>Please select a mode : </p>
+            </div>
+
             <div class="container text-center">  
                 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: 50px;">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-whole-sales-report" aria-controls="navbar-whole-sales-report" aria-expanded="false" aria-label="Toggle navigation">
