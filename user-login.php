@@ -1,10 +1,10 @@
  <?php
 require 'db_connection.php';
-
+/*
 if(isset($_SESSION['login_id'])){
-    header('Location: home.php');
+    header('Location: user-login');
     exit;
-}
+}*/
 
 require 'google/vendor/autoload.php';
 
@@ -16,7 +16,7 @@ $client->setClientId('981967059646-u56d1fku9i52fb53rb9o7t6deav37ddq.apps.googleu
 // Enter your Client Secrect
 $client->setClientSecret('_TTBH-saxhTlvSHZVt-COrHw');
 // Enter the Redirect URL
-$client->setRedirectUri('http://localhost/hddocs/rex-Foodipedia-FYP/user-login.php');
+$client->setRedirectUri('http://localhost/hddocs/rex-foodpedia-FYP/user-login');
 
 // Adding those scopes which we want to get (email & profile Information)
 $client->addScope("email");
@@ -46,7 +46,7 @@ if(isset($_GET['code'])){
         if(mysqli_num_rows($get_user) > 0){
 
             $_SESSION['login_id'] = $id; 
-            header('Location: home.php');
+            header('Location: menu.php');
             exit;
 
         }
@@ -57,7 +57,7 @@ if(isset($_GET['code'])){
 
             if($insert){
                 $_SESSION['login_id'] = $id; 
-                header('Location: home.php');
+                header('Location: menu.php');
                 exit;
             }
             else{
@@ -68,7 +68,7 @@ if(isset($_GET['code'])){
 
     }
     else{
-        header('Location: login.php');
+        header('Location: user-login.php');
         exit;
     }
 }
