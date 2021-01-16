@@ -25,9 +25,9 @@
                 #card-title-rating, #card-desc-rating {
                     color: #6d6e6e;
                     font-weight: 600;
-                    margin-left: 20px;
+                    margin: 20px 0px 15px 20px;
                 }
-
+*
                 #card-desc-rating {
                     color: #bfbdbd !important;
                 }
@@ -57,11 +57,12 @@
             ?>
 
             <div class="container">
-                <div class="card mx-auto" style="width:55%; margin-top:2.4em;">
-                    <div class="card-body" id="card-whole-rating">
+                <div class="card mx-auto" style="width:55%; margin-top:1em;">
+                    <div class="card-header">
                         <h4 class="card-title" id="card-title-rating">Send us some feedback!</h4>
                         <p class="card-text" id="card-desc-rating">Found a bug? Have a suggestion? Fill out the form below and<br/>we will take a look!</p>
-                        <hr style="margin-top: 25px;"/>
+                    </div>
+                    <div class="card-body" id="card-whole-rating">    
                         <form>
                             <div class="md-form">
                                 <textarea id="card-textarea-rating" class="md-textarea form-control" rows="3" placeholder="Enter your feedback here!"></textarea>
