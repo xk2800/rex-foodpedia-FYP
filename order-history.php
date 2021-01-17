@@ -43,7 +43,7 @@
 
                 <p id="order-status" class="container">
                 <?php
-                                        $order_history = mysqli_query($connect, "SELECT * from order_rec WHERE email='xavierkhew00@gmail.com' AND order_status='0' GROUP BY trans_id"); //where email='$email'
+                                        $order_history = mysqli_query($connect, "SELECT * from order_rec WHERE email='xavierkhew00@gmail.com' AND order_status='1' GROUP BY trans_id"); //where email='$email'
 
                                         if($order_history){
                                             while($history_output = mysqli_fetch_assoc($order_history)){
@@ -82,7 +82,7 @@
                                                     echo "<div class='white-space'> </div>";
                                                     
                                                     //nested to print all food items till end of table
-                                                    $chicken_fried_rice = mysqli_query($connect, "SELECT * from order_rec WHERE email='xavierkhew00@gmail.com' AND trans_id = '$trans_id' AND order_status='0'");
+                                                    $chicken_fried_rice = mysqli_query($connect, "SELECT * from order_rec WHERE email='xavierkhew00@gmail.com' AND trans_id = '$trans_id' AND order_status='1'");
                                                     while($qqq = mysqli_fetch_assoc($chicken_fried_rice)){
                                                         $dish_qty = $qqq ["dish_qty"];
                                                         $dish_name = $qqq ["dish_name"];
@@ -124,7 +124,7 @@
                                         }
                     ?>
                 </p>
-
+<!-- //////////////////////////////////////////////////////////////// -->
             <p id="title">Past Orders</p>
 
                 <div id="order-list-item" class="container">
