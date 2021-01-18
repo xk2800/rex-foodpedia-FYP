@@ -27,14 +27,13 @@
 
     <link rel="stylesheet" href="css/order-history.css">
 
-
 </head>
 <body>
 
 <?php
         include("nav.html");
 ?>
-    <br><br>
+    <div class="whitespace"><br><br></div>
     <section id="orders">
         <div class="container" id="top"><!--div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"-->
             
@@ -48,9 +47,9 @@
                                         if($order_history){
                                             while($history_output = mysqli_fetch_assoc($order_history)){
                     ?>
-                                                <div class="parent shadow col-lg-5 col-md-10 col-sm-10">
+                                                <!--div class="parent shadow col-lg-5 col-md-10 col-sm-10"-->
 
-                                                    <form method="post">
+                                                    <form method="post" class="parent shadow col-lg-5 col-md-10 col-sm-10">
                     <?php
                                                         $trans_id = $history_output ["trans_id"];
                     ?>
@@ -60,7 +59,7 @@
                                                         while($receipt_output = mysqli_fetch_assoc($receipt_id_check)){
                     ?>
                                                             <div class="price">RM<?php echo $receipt_output ["subtotal"];?></div>
-                    <?php                               
+                    <?php
                                                         }
 
                                                         $delivery_type = $history_output ["delivery_type"];
@@ -72,8 +71,23 @@
                                                             echo "<div class='delivery-type'>Pick up by <span class='who-deliver'>customer</span></div>";
 
                                                         }
-                    ?>                              
+                    ?>
                             <!--<?php // TODO: button to check order status, and review after x time ?>-->
+                    <?php
+                                                        //call for time build in php function
+                                                        $time_now = time();
+                                                        //current time
+                                                        $output_current_time = date('H:i:s', $time_now);
+
+                                                        //time after 5 mins
+                                                        $added_time = 300 + $time_now;
+                                                        $output_added_time = date('H:i:s', $added_time);
+                                                        echo $output_added_time;
+                                                        
+                                                        if($time_now>=$added_time){
+                                                            
+                                                        }
+                    ?>
                                                         <div class="re-order"><button type="submit" name="submitbtn" class="">Submit</button></div>
                     <?php
                             //TODO: 0 check status    //1 review
@@ -121,7 +135,7 @@
                     ?>
                                                     </span>
                                                 </form>
-                                            </div>
+                                            <!-- </div> -->
                                             <br>
                     <?php
                                             }
@@ -142,9 +156,9 @@
                                         if($order_history){
                                             while($history_output = mysqli_fetch_assoc($order_history)){
                     ?>
-                                                <div class="parent shadow col-lg-5 col-md-10 col-sm-10">
+                                                <!-- <div class="parent shadow col-lg-5 col-md-10 col-sm-10"> -->
 
-                                                    <form method="post">
+                                                    <form method="post" class="parent shadow col-lg-5 col-md-10 col-sm-10">
                     <?php
                                                         $trans_id = $history_output ["trans_id"];
                     ?>
@@ -210,7 +224,7 @@
                     ?>
                                                             </span>
                                                     </form>
-                                                </div>
+                                                <!-- </div> -->
                                             <br>
                     <?php
                                             }
@@ -220,6 +234,7 @@
                                         }
                     ?>
                 </div>
+            <div class="whitespace"><br><br></div>
         </div>
     </section>
 
