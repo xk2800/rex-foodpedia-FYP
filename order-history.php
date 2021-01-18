@@ -73,10 +73,10 @@
 
                                                         }
                     ?>                              
-                            <!-- button to check order status, and review after x time -->
+                            <!--<?php // TODO: button to check order status, and review after x time ?>-->
                                                         <div class="re-order"><button type="submit" name="submitbtn" class="">Submit</button></div>
                     <?php
-                            //0 check status    //1 review
+                            //TODO: 0 check status    //1 review
                                                         
                                                         
                                                         $date_db = $history_output ["date"];
