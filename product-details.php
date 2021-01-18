@@ -19,14 +19,100 @@
     <!--JS with popper START-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <!--JS with popper END-->
-    
-    <!--EXTERNAL CSS START-->
-    <link rel="stylesheet" href="product_details.css">
-    <!--EXTERNAL CSS END-->
+
+    <!--CSS START-->
+    <style>
+        .container{
+            margin-top: 100px;
+        }
+
+        textarea{
+            width:100%;
+            margin-top: -15px;
+            margin-bottom: 0px;
+            height:50px;
+        }
+
+        .price{
+            font-weight:bold;
+            font-size: large;
+        }
+
+        .halal{
+            color: #00cc00;
+        }
+
+        .description{
+            margin-top: 15px;
+        }
+
+        .cart{
+            background: #FE980F;
+            color: #FFFFFF;
+            font-size: 15px;
+            margin-left: 20px;
+        }
+
+        .product-name{
+            font-size: xx-large;
+        }
+
+        .description{
+            font-size: large;
+            font-weight: bold;
+        }
+
+        #home .container{
+            margin-top: 10px;
+        }
+
+        /* Item Grid Starts */
+        #home .col {
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px 20px 20px 20px;
+        }
+
+        #home .container img {
+            border-radius: 10px;
+            max-width: 100%;
+            height: auto;   
+        }
+
+        /* Item Grid Ends */
+
+        #home .container p{
+            font-size: x-large;
+            color: black;
+            font-weight: bold;
+            
+        }
+
+        #home .container hr{
+            border: 1px solid black; 
+            border-radius: 12px;
+        }
+
+        #home h4{
+            font-weight: bold;
+            font-size: x-large;
+        }
+
+        #home .row{
+            margin-bottom: 15%;
+        }
+        </style>
+    <!--CSS END-->
 
 </head>
 
     <body style="background-color: #e7ded2; ">
+
+<!-- PHP-->
+    <?php
+        include("nav.html");
+    ?>
+<!--PHP-->
     
         <!--<form action="...">-->
         <div class="container">
