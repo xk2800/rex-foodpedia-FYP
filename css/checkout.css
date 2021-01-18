@@ -200,7 +200,9 @@ body{
   margin-bottom: 1000px;
 }
 
-
+#default-text{
+  padding: -100px;
+}
 
 @media screen and (max-width: 990px) {
 
