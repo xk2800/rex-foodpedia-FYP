@@ -18,6 +18,21 @@
             <!--FONTS.CSS-->
             <link rel="stylesheet" href="css/fonts.css">
 
+            <style>
+                
+                #p-status {
+                    font-size: 2.5em;
+                    padding: 30px 0px 15px 0px;
+                    font-weight: 300;
+                }
+
+                #button-status {
+                   float: right;
+                   margin-top: 13px;
+                }
+
+            </style>
+
         </head>
         
         <body style="background-color: #4C5C68;">
@@ -28,15 +43,14 @@
 
             <div class="container">
                 
-                <div class="row">
-                    <h4>Account Statuses</h4>  
-                    <button type="button" class="btn btn-primary btn-sm">+ Account Statuses</button>
-                </div> 
+                <p id="p-status">Account Statuses
+                    <button type="button" class="btn btn-primary" id="button-status">+ Account Statuses</button>
+                </p>
                 
-                <hr style="background-color:white"/>
+                <hr style="background-color:#898f8b"/>
             
                 <!--ref : https://getbootstrap.com/docs/4.0/components/pagination/-->
-                <nav aria-label="Page navigation example">
+                <nav aria-label="Account Statuses Navigator" style="margin: 30px 0px 30px 0px;">
                     <ul class="pagination">
                         <li class="page-item">
                         <a class="page-link" href="#" aria-label="Previous">
@@ -56,20 +70,20 @@
                     </ul>
                 </nav>
             
-                <table class="table table-bordered table-hover" style="background-color:white;">
+                <table class="table table-bordered table-hover table-dark" >
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Account Status</th>
-                        <th scope="col">Account Category</th>
-                        <th scope="col">Action</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Account Status</th>
+                            <th scope="col">Account Category</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                         <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
+                        <td>test</td>
+                        <td>test_test</td>
                         <td><a href="#">Edit</a>&emsp;<a href="#">Delete</a></td>
                         </tr>
                     </tbody>
