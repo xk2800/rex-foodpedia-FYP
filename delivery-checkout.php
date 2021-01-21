@@ -9,7 +9,7 @@
 <html>
 
 <head>
-    <title>Checkout | REX Foodipedia</title>
+    <title>Delivery Checkout | REX Foodipedia</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -155,10 +155,10 @@
                                 <p>
 
                     <?php
-                                            $result = mysqli_query($connect, "SELECT * from address WHERE label='Home'");
+                                            $result = mysqli_query($connect, "SELECT * from address WHERE label='Home' AND email='xavierkhew00@gmail.com'");
                                             $row = mysqli_fetch_assoc($result);
 
-                                            $results = mysqli_query($connect, "SELECT * from address WHERE label='Office'");
+                                            $results = mysqli_query($connect, "SELECT * from address WHERE label='Office' AND email='xavierkhew@gmail.com'");
                                             $rows = mysqli_fetch_assoc($results);
 
                     ?>
@@ -168,63 +168,87 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
 
                                     <div class="radio-toolbar">
-                                        <span class="onlinebanking_payment">
-                                            <input type="radio" id="homeaddress" name="address-selection"
-                                                value="<?php echo $row ["user_address"]?>">
-                                            <label for="homeaddress" class="col-lg-10 col-md-12">
-                                                <a href="register" id="editbtn">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                                                    </svg>
-                                                </a>
+                    <?php               if($row){
+                    ?>
+                                            <span class="onlinebanking_payment">
+                                                <input type="radio" id="homeaddress" name="address-selection"
+                                                    value="<?php echo $row ["user_address"]?>">
+                                                <label for="homeaddress" class="col-lg-10 col-md-12">
+                                                    <a href="register" id="editbtn">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                                        </svg>
+                                                    </a>
 
-                                                <a href="register" id="removebtn">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                                                        <path fill-rule="evenodd"
-                                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                                                    </svg>
-                                                </a>
-                                                <br>
-                                                <span id="address"><?php echo $row ["user_address"]?></span>
-                                                <br>
-                                                <span id="add-info">Note to rider: <?php echo $row ["add_info"]?></span>
-                                            </label>
-                                        </span>
+                                                    <a href="register" id="removebtn">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                            <path fill-rule="evenodd"
+                                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                        </svg>
+                                                    </a>
+                                                    <br>
+                                                    <span id="address"><?php echo $row ["user_address"]?></span>
+                                                    <br>
+                                                    <span id="add-info">Note to rider: <?php echo $row ["add_info"]?></span>
+                                                </label>
+                                            </span>
+                    <?php               }else{
+                    ?>
+                                            <p><span id="error">No Home Address Found</span></p>
+                    <?php
+                                        }
+                    ?>
 
+                        <?php           if($rows){
+                        ?>
+                                            <span class="onlinebanking_payment">
+                                                <input type="radio" id="workaddress" name="address-selection"
+                                                    value="<?php echo $rows ["user_address"]?>">
+                                                <label for="workaddress" class="col-lg-10 col-md-12">
+                                                    <a href="register" id="editbtn">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                                        </svg>
+                                                    </a>
 
-                                        <span class="onlinebanking_payment">
-                                            <input type="radio" id="workaddress" name="address-selection"
-                                                value="<?php echo $rows ["user_address"]?>">
-                                            <label for="workaddress" class="col-lg-10 col-md-12">
-                                                <a href="register" id="editbtn">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                                                    </svg>
-                                                </a>
-
-                                                <a href="register" id="removebtn">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                                                        <path fill-rule="evenodd"
-                                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                                                    </svg>
-                                                </a>
-                                                <br>
-                                                <span id="address"><?php echo $rows ["user_address"]?></span>
-                                                <br>
-                                                <span id="add-info">Note to rider:
-                                                    <?php echo $rows ["add_info"]?></span>
-                                            </label>
-                                        </span>
+                                                    <a href="register" id="removebtn">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                            <path fill-rule="evenodd"
+                                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                        </svg>
+                                                    </a>
+                                                    <br>
+                            <?php
+                                                        if($rows){
+                            ?>
+                                                            <span id="address"><?php echo $rows ["user_address"]?></span>
+                                                            <br>
+                                                            <span id="add-info">Note to rider:
+                                                                <?php echo $rows ["add_info"]?></span>
+                            <?php
+                                                        }else{
+                            ?>
+                                                            <span id="error">No Address Found</span>
+                            <?php
+                                                        }
+                            ?>
+                                                </label>
+                                            </span>
+                            <?php           } else{
+                            ?>
+                                                <p><span id="error">No Office Address Found</span></p>
+                            <?php           }
+                            ?>
                                     </div>
                                 </div>
                                 </p>
@@ -318,8 +342,8 @@
                                     <input type="text" name="other" id="others" style='display:none;' />
 
                                     <!-- <form method="post" id="others"> -->
-                                        <input type="radio" name="other" id="other" style='display:none;' value="">
-                                        <input type="text" name="other" id="other" style='display:none;' />
+                                        <!-- <input type="radio" name="other" id="other" style='display:none;' value="">
+                                        <input type="text" name="other" id="other" style='display:none;' /> -->
                                     <!-- </form> -->
 
                                 </div>
@@ -338,33 +362,34 @@
                                     <div id="card" style="display:none">
                     <?php
                                         while($card_out = mysqli_fetch_assoc($card_info)){
+                                            
                     ?>
-                                        <input type='radio' id='card_option' name="card-num"
-                                            value='<?php echo $card_out ["card_num"]?>'>
+                                            <input type='radio' id='card_option' name="card-num"
+                                                value='<?php echo $card_out ["card_num"]?>'>
+                        <?php
+                                                    if($card_out["card_type"] == "MasterCard"){
+                                                        echo '&emsp;<i class="fa fa-cc-mastercard" aria-hidden="true"></i>';
+
+                                                    } else if($card_out["card_type"] == "Visa"){
+                                                        echo '&emsp;<i class="fa fa-cc-visa" aria-hidden="true"></i>';
+
+                                                    } else if($card_out["card_type"] == "Amex"){
+                                                        echo '&emsp;<i class="fa fa-cc-amex" aria-hidden="true"></i>';
+
+                                                    } else{
+                                                        echo '&emsp;Card selected invalid type';
+                                                    }
+
+
+                                                    $number =  $card_out ["card_num"]; //https://stackoverflow.com/questions/45588890/displaying-last-4-digit-credit-card/45588941
+                                                    $masked =  str_pad(substr($number, -4), strlen($number), '*', STR_PAD_LEFT);
+                                                    //echo $masked;
+                        ?>
+                                            <?php echo $masked;?>&emsp;
+                                            <?php echo $card_out ["name_on_card"]?>,
+                                            <?php echo $card_out ["exp_date"]?>
+                                            <br><br>
                     <?php
-                                                if($card_out["card_type"] == "MasterCard"){
-                                                    echo '&emsp;<i class="fa fa-cc-mastercard" aria-hidden="true"></i>';
-
-                                                } else if($card_out["card_type"] == "Visa"){
-                                                    echo '&emsp;<i class="fa fa-cc-visa" aria-hidden="true"></i>';
-
-                                                } else if($card_out["card_type"] == "Amex"){
-                                                    echo '&emsp;<i class="fa fa-cc-amex" aria-hidden="true"></i>';
-
-                                                } else{
-                                                    echo '&emsp;Card selected invalid type';
-                                                }
-
-
-                                                $number =  $card_out ["card_num"]; //https://stackoverflow.com/questions/45588890/displaying-last-4-digit-credit-card/45588941
-                                                $masked =  str_pad(substr($number, -4), strlen($number), '*', STR_PAD_LEFT);
-                                                //echo $masked;
-                    ?>
-                                        <?php echo $masked;?>&emsp;
-                                        <?php echo $card_out ["name_on_card"]?>,
-                                        <?php echo $card_out ["exp_date"]?>
-                                        <br><br>
-                                        <?php
                                         }
                     ?>
                                         <!-- What can we do to accommodate you?  <input type='text' id='acc' name='acc'> -->
