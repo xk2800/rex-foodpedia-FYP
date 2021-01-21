@@ -46,6 +46,12 @@ body{
 
 
 /*PERSONAL DETAILS*/
+
+input[type=text], input[type=text]:focus{
+  width: 500px;
+  border: 0px solid #FFF;
+}
+
   .radio-toolbar {
     text-align: center;
     display: block;

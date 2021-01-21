@@ -3,6 +3,7 @@
 
     include "db-connect.php";
     session_start();
+    ob_start();
 
 ?>
 <html>
@@ -78,6 +79,9 @@
                 document.getElementById('card').style.display = 'block';
                 document.getElementById('cash').style.display = 'none';
                 document.getElementById('online_banking').style.display = 'none';
+
+                document.getElementById("pay_method").innerHTML = 'Online Card Payment';
+
             } else if ((document.getElementById('radioCard').unchecked == false) || (document.getElementById('radioCOD')
                     .checked == true) || (document.getElementById('radioOB').unchecked == false)) {
 
@@ -85,6 +89,9 @@
                 document.getElementById('cash').style.display = 'block';
                 document.getElementById('card').style.display = 'none';
                 document.getElementById('online_banking').style.display = 'none';
+
+                document.getElementById("pay_method").innerHTML = 'Cash On Delivery';
+
             } else if ((document.getElementById('radioCard').unchecked == false) || (document.getElementById('radioCOD')
                     .unchecked == false) || (document.getElementById('radioOB').checked == true)) {
 
@@ -92,8 +99,17 @@
                 document.getElementById('card').style.display = 'none';
                 document.getElementById('cash').style.display = 'none';
                 document.getElementById('online_banking').style.display = 'block';
+
+                document.getElementById("pay_method").innerHTML = 'Online Banking';
+
+            } else{
+                document.getElementById("pay_method").innerHTML = 'No Payment Method Selected';
             }
         }
+
+        $('#email_value').focus(function() {
+            $(this).blur();
+        });
     </script>
 
 
@@ -104,9 +120,10 @@
 <?php
         include("nav.html");
 
-        $email = $_SESSION["email"];
+        //$email = $_SESSION["email"];
 ?>
 
+    <br><br>
     <div class="container">
 
         <div class="row">
@@ -121,7 +138,7 @@
                         </span>
                         <span id="payment-title">Delivery Details</span></p><br>
                         <div class="container">
-                            <form method="post">
+                            <form method="POST">
                                 <p>
                                     <span id="title">Contactless Delivery</span><br>
                                     To keep you safe, the rider will place your order at your door
@@ -152,7 +169,7 @@
 
                                     <div class="radio-toolbar">
                                         <span class="onlinebanking_payment">
-                                            <input type="radio" id="homeaddress" name="payment-type"
+                                            <input type="radio" id="homeaddress" name="address-selection"
                                                 value="<?php echo $row ["user_address"]?>">
                                             <label for="homeaddress" class="col-lg-10 col-md-12">
                                                 <a href="register" id="editbtn">
@@ -181,7 +198,7 @@
 
 
                                         <span class="onlinebanking_payment">
-                                            <input type="radio" id="workaddress" name="payment-type"
+                                            <input type="radio" id="workaddress" name="address-selection"
                                                 value="<?php echo $rows ["user_address"]?>">
                                             <label for="workaddress" class="col-lg-10 col-md-12">
                                                 <a href="register" id="editbtn">
@@ -240,7 +257,8 @@
                                 <?php echo $u_i_o ["name"]?></span><br>
                             <span
                                 id="email">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-                                <?php echo $u_i_o ["email"]?></span><br>
+                                <input type="text" name="user_email" id="email_value" value="<?php echo $u_i_o ["email"]?>" readonly>
+                                </span><br>
                             <span id="phone_number">Contact Number: <?php echo $u_i_o ["phone_number"]?></span>
                         </div>
                         </p>
@@ -265,7 +283,7 @@
 
                                 <div class="radio-toolbar">
                                     <span class="COD_payment">
-                                        <input type="radio" id="radioCOD" name="payment" value="other"
+                                        <input type="radio" id="radioCOD" name="payment" value="Cash On Delivery"
                                             onclick="javascript:payment_drop();">
                                         <label for="radioCOD" class="col-lg-12 col-md-10 col-sm-10">
                                             <i class="fa fa-money alignicon" aria-hidden="true"></i>
@@ -275,7 +293,7 @@
                                     </span>
 
                                     <span class="card_payment">
-                                        <input type="radio" id="radioCard" name="payment" value="others"
+                                        <input type="radio" id="radioCard" name="payment" value="Credit / Debit Card"
                                             onclick="javascript:payment_drop();">
                                         <label for="radioCard" class="col-lg-12 col-md-10 col-sm-10">
                                             <div class="alignicon">
@@ -288,7 +306,7 @@
                                     </span>
 
                                     <span class="onlinebanking_payment">
-                                        <input type="radio" id="radioOB" name="payment" value="checkOB"
+                                        <input type="radio" id="radioOB" name="payment" value="Online Banking"
                                             onclick="javascript:payment_drop();">
                                         <label for="radioOB" class="col-lg-12 col-md-10 col-sm-10">
                                             <i class="fa fa-university alignicon" aria-hidden="true"></i>
@@ -299,10 +317,10 @@
                                     <input type="text" name="other" id="other" style='display:none;' />
                                     <input type="text" name="other" id="others" style='display:none;' />
 
-                                    <form method="post" id="others">
+                                    <!-- <form method="post" id="others"> -->
                                         <input type="radio" name="other" id="other" style='display:none;' value="">
                                         <input type="text" name="other" id="other" style='display:none;' />
-                                    </form>
+                                    <!-- </form> -->
 
                                 </div>
                     <?php
@@ -368,8 +386,10 @@
                             <span id="t&c">By making this purchase, you agree to our Terms and conditions</span><br><br>
 
                             <!--p><button type="submit" name="makepaymentbtn" id="pay">MAKE PAYMENT & PLACE ORDER</button></p-->
-                            <p><button type="button" class="btn btn-secondary btn-lg btn-block" id="pay">MAKE PAYMENT &
-                                    PLACE ORDER</button></p>
+                            <p><button type="submit" class="btn btn-secondary btn-lg btn-block" name="make_paymentbtn" id="pay">MAKE PAYMENT & PLACE ORDER</button></p>
+                            
+                            <!-- <button type="submit" name="submitbtn" class="btn btn-secondary btn-lg btn-block">Submit</button> -->
+                            <!-- <button type="submit" name="testingbtn" class="btn btn-secondary btn-lg btn-block">Submit</button> -->
 
                             <span id="t&c">
                                 I agree and I demand that you execute the ordered service before the end of the
@@ -461,8 +481,8 @@
                             <th id="payment-type">Payment method:
                     <?php
                                         //0 = COD       //1 = card      //2 = online banking
-                                        $payment_method = $payit ["payment_method"];
-
+                                    //old implementation
+                                        /*$payment_method = $payit ["payment_method"];
                                         if($payment_method == "0"){
                                             echo "Cash On Delivery";
 
@@ -474,9 +494,12 @@
 
                                         } else{
                                             echo "No Payment Record Detected";
-                                        }
+                                        }*/
 
+                                //new implementation
                     ?>
+                                <span id="pay_method"></span>
+
                             </th>
                         </tr>
                     </table>
@@ -489,7 +512,44 @@
     </div>
     <br><br>
 
+    <!--div class="personal-details">
 
+<?php
+                    /*$user_info = mysqli_query($connect, "SELECT * from user_acc"); //where email='$email'
+                    $u_i_o = mysqli_fetch_assoc($user_info);*/
+?>
+<br>
+
+<form method="post">
+
+<select name="contect" id="contect">
+                                        <option value="Contactless" default>Contactless</option>
+                                        <option value="Non-Contactless">Non-Contactless</option>
+                                    </select>
+<div class="container">
+    <span id="step">
+        <p>Step 2
+    </span>
+    <span id="payment-title">Personal Details</span>
+    <br>
+    <a href="" id="addinfo">+ Edit Personal Info</a>
+    <br>
+    <div class="container">
+        <span
+            id="name">Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+            <?php //echo $u_i_o ["name"]?></span><br>
+        <span
+            id="email">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+            <input type="text" name="testing" id="email_value" value="<?php //echo $u_i_o ["email"]?>" readonly>
+            </span><br>
+        <span id="phone_number">Contact Number: <?php //echo $u_i_o ["phone_number"]?></span>
+    </div>
+    </p>
+</div>
+<br>                            <button type="submit" name="testingbtn" class="btn btn-secondary btn-lg btn-block">Submit</button>
+
+</div><br><br><br><br>
+</form-->
 
     <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
@@ -504,6 +564,23 @@
     <!--THIS IS BOOTSTRAP JAVASCRIPT PART END-->
 
 </body>
-
 </html>
+
+<?php
+
+    if(isset($_POST["make_paymentbtn"])){
+        
+
+        $contact    = $_POST["contect"];
+        $address    = $_POST["address-selection"];
+        $pay        = ($_POST["payment"] == "Credit / Debit Card") ? $_POST['card-num']:$_POST['payment'];
+        $email      = $_POST["user_email"];
+
+
+        echo $contact."<br>".$address."<br>".$pay."<br>".$email;
+        //header('location: test.php');
+    }
+
+
+?>
 

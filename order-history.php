@@ -40,14 +40,15 @@
         <div class="profile">
             <p id="title">Active Orders</p>
 
-                <p id="order-status" class="container">
+            <div id="order-list-item" class="container">
+                    
                     <?php
                                         $order_history = mysqli_query($connect, "SELECT * from order_rec WHERE email='xavierkhew00@gmail.com' AND order_status='1' GROUP BY trans_id"); //where email='$email'
 
                                         if($order_history){
                                             while($history_output = mysqli_fetch_assoc($order_history)){
                     ?>
-                                                <!--div class="parent shadow col-lg-5 col-md-10 col-sm-10"-->
+                                                <!-- <div class="parent shadow col-lg-5 col-md-10 col-sm-10"> -->
 
                                                     <form method="post" class="parent shadow col-lg-5 col-md-10 col-sm-10">
                     <?php
@@ -59,8 +60,7 @@
                                                         while($receipt_output = mysqli_fetch_assoc($receipt_id_check)){
                     ?>
                                                             <div class="price">RM<?php echo $receipt_output ["subtotal"];?></div>
-                    <?php
-                                                        }
+                    <?php                               }
 
                                                         $delivery_type = $history_output ["delivery_type"];
                                                         //0 = self pick-up      //1 = delivery
@@ -72,27 +72,43 @@
 
                                                         }
                     ?>
-                            <!--<?php // TODO: button to check order status, and review after x time ?>-->
+                                            <!--<?php // TODO: button to check order status, and review after x time ?>-->
                     <?php
                                                         //call for time build in php function
                                                         $time_now = time();
                                                         //current time
-                                                        $output_current_time = date('H:i:s', $time_now);
+                                                        $output_current_time = date('Y/m/d H:i:s', $time_now);
 
                                                         //time after 5 mins
                                                         $added_time = 300 + $time_now;
                                                         $output_added_time = date('H:i:s', $added_time);
-                                                        echo $output_added_time;
+
+                                                        echo $output_current_time;
+
+                                                        $time_checking =  $mysqli->query("SELECT * from transaction WHERE email='xavierkhew00@gmail.com' AND receipt_id"); //where email='$email'
                                                         
-                                                        if($time_now>=$added_time){
+                                                        //$transi = $time_checking["receipt_id"];
+
+                                                        //$time_checkingg = mysqli_query($connect, "SELECT * from transaction WHERE email='xavierkhew00@gmail.com' AND receipt_id"); //where email='$email'
+
+
+                                                        while($time_check = mysqli_fetch_assoc($time_checking)){
+
+                                                            $change_time = $time_check["change_time"];
                                                             
+                                                            //working
+                                                            if($change_time > $output_current_time){
+                                                                echo '<div class="re-order"><button type="submit" name="submitbtn" class="">Check Order Status</button></div>';
+                                                            }else{
+                    ?>                                          <div class="re-order"><a href="order-review?orderid=<?php echo $trans_id; ?>" class="btn btn-light btn-md rounded-pill">Review Order</a></div>
+                                                                
+                    <?php
+                                                            }
                                                         }
                     ?>
-                                                        <div class="re-order"><button type="submit" name="submitbtn" class="">Submit</button></div>
                     <?php
-                            //TODO: 0 check status    //1 review
-                                                        
-                                                        
+
+                                    //TODO: 0 check status    //1 review
                                                         $date_db = $history_output ["date"];
                                                         $output_date = date('M d, Y', strtotime(str_replace('-','/', $date_db)));   //remove/replace symbols from string in db
                                                         
@@ -100,7 +116,7 @@
                     ?>
                                                         <div class="date"><?php echo $output_date;?></div>
                     <?php
-                                                        echo "<div class='white-space'> </div>";
+                                                        echo "<div class='white-space'>hjghg </div>";
                                                         
                                                         //nested to print all food items till end of table
                                                         $chicken_fried_rice = mysqli_query($connect, "SELECT * from order_rec WHERE email='xavierkhew00@gmail.com' AND trans_id = '$trans_id' AND order_status='1'");
@@ -133,9 +149,9 @@
 
                                                         }
                     ?>
-                                                    </span>
-                                                </form>
-                                            <!-- </div> -->
+                                                            </span>
+                                                    </form>
+                                                <!-- </div> -->
                                             <br>
                     <?php
                                             }
@@ -144,7 +160,7 @@
                                             echo "You have no active orders.";
                                         }
                     ?>
-                </p>
+                </div>
 <!-- //////////////////////////////////////////////////////////////// -->
             <p id="title">Past Orders</p>
 
@@ -180,7 +196,8 @@
 
                                                         }
                     ?>
-                                                        <div class="re-order"><button type="submit" name="submitbtn" class="">Submit</button></div>
+                        <!-- can add feature if got time later -->
+                                                        <!-- <div class="re-order"><a href="order-review?orderid=<?php echo $trans_id; ?>" class="btn btn-light btn-md rounded-pill">Review Order</a></div> -->
                     <?php
                                                         $date_db = $history_output ["date"];
                                                         $output_date = date('M d, Y', strtotime(str_replace('-','/', $date_db)));   //remove/replace symbols from string in db
@@ -189,7 +206,7 @@
                     ?>
                                                         <div class="date"><?php echo $output_date;?></div>
                     <?php
-                                                        echo "<div class='white-space'> </div>";
+                                                        echo "<div class='white-space'>hjghg </div>";
                                                         
                                                         //nested to print all food items till end of table
                                                         $chicken_fried_rice = mysqli_query($connect, "SELECT * from order_rec WHERE email='xavierkhew00@gmail.com' AND trans_id = '$trans_id' AND order_status='0'");
