@@ -119,7 +119,7 @@
 
 <?php
         include("nav.html");
-
+        $email = "xavierkhew00@gmail.com";
         //$email = $_SESSION["email"];
 ?>
 
@@ -155,10 +155,10 @@
                                 <p>
 
                     <?php
-                                            $result = mysqli_query($connect, "SELECT * from address WHERE label='Home' AND email='xavierkhew00@gmail.com'");
+                                            $result = mysqli_query($connect, "SELECT * from address WHERE label='Home' AND email='$email'");
                                             $row = mysqli_fetch_assoc($result);
 
-                                            $results = mysqli_query($connect, "SELECT * from address WHERE label='Office' AND email='xavierkhew@gmail.com'");
+                                            $results = mysqli_query($connect, "SELECT * from address WHERE label='Office' AND email='$email'");
                                             $rows = mysqli_fetch_assoc($results);
 
                     ?>
@@ -348,7 +348,7 @@
 
                                 </div>
                     <?php
-                                        $card_info = mysqli_query($connect, "SELECT * from card_info WHERE email='xavierkhew00@gmail.com'"); //where email='$email'
+                                        $card_info = mysqli_query($connect, "SELECT * from card_info WHERE email='$email'"); //where email='$email'
                                         
 
                     ?>
@@ -435,7 +435,7 @@
 
 
                     <?php
-                                        $checking = mysqli_query($connect, "SELECT * from transaction WHERE email = 'xavierkhew00@gmail.com'");
+                                        $checking = mysqli_query($connect, "SELECT * from transaction WHERE email = '$email'");
                                         $payit = mysqli_fetch_assoc($checking);
                     ?>
                 <span id="rest">Your order from REX Foodipedia</span>
@@ -593,8 +593,11 @@
 
 <?php
 
+echo $email;
+
     if(isset($_POST["make_paymentbtn"])){
         
+        $send_type  = "Delivery";
 
         $contact    = $_POST["contect"];
         $address    = $_POST["address-selection"];
@@ -603,6 +606,29 @@
 
 
         echo $contact."<br>".$address."<br>".$pay."<br>".$email;
+
+        //$query = "UPDATE resume SET phone_number='$p_number' , last_edit_by='user' , vetting='1' , file='$file' , job_type='$job', last_edit_time='$time', db_time='$db_info' WHERE email='$email'";
+        
+        if($pay == "Cash On Delivery"){
+            $pay_out = '0';
+
+        } else if ($pay == "Credit / Debit Car"){
+            $pay_out = '1';
+        
+        } else if ($pay == "Online Banking"){
+            $pay_out = '2';
+        
+        }else{
+            $pay_out = '0';
+        }
+
+        $query = "UPDATE transaction SET contactornot='$contact', address='$address', payment_method='$pay_out', send_type='$send_type' WHERE email='$email'";
+        
+        if(mysqli_query($connect, $query)){
+            echo "<br>success insert into db";
+        }else{
+            echo "failed";
+        }
         //header('location: test.php');
     }
 
