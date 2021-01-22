@@ -593,7 +593,15 @@
 
 <?php
 
-echo $email;
+    //time set
+    date_default_timezone_set("Asia/Kuala_Lumpur");
+    $time = time();
+    $actual_time = date('Y-m-d H:i:s', $time);
+
+    echo $actual_time;
+
+
+echo "<br>".$email;
 
     if(isset($_POST["make_paymentbtn"])){
         
@@ -603,6 +611,7 @@ echo $email;
         $address    = $_POST["address-selection"];
         $pay        = ($_POST["payment"] == "Credit / Debit Card") ? $_POST['card-num']:$_POST['payment'];
         $email      = $_POST["user_email"];
+        $input_time = $actual_time;
 
 
         echo $contact."<br>".$address."<br>".$pay."<br>".$email;
@@ -622,10 +631,14 @@ echo $email;
             $pay_out = '0';
         }
 
-        $query = "UPDATE transaction SET contactornot='$contact', address='$address', payment_method='$pay_out', send_type='$send_type' WHERE email='$email'";
+        $query = "UPDATE transaction SET contactornot='$contact', address='$address', payment_method='$pay_out', send_type='$send_type', payment_time='$input_time' WHERE email='$email'";
         
         if(mysqli_query($connect, $query)){
             echo "<br>success insert into db";
+            //echo '<script>("Your account is verified")</script>'; //not needed if unwanted
+            //session_start();
+            $_SESSION['email'] = $email;
+            header('location:resume');
         }else{
             echo "failed";
         }
