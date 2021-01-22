@@ -6,6 +6,8 @@
     //ob_start();
     $_SESSION["cardnum"];
 
+    
+
 ?>
 <html>
 
@@ -80,9 +82,9 @@
         <div id="bottom-command" class="box">
             <div class="parent">
                 <div class="div1">Merchant Name</div>
-                <div class="div2">: <span id="name-space"><input type="text"></span></div>
+                <div class="div2">: <span id="name-space"><input type="text" value="REX Foodipedia"></span></div>
                 <div class="div3"><br>Amount</div>
-                <div class="div4"><br>: <span id="name-space"><input type="text"></span></div>
+                <div class="div4"><br>: <span id="name-space"><input type="text" value=""></span></div>
                 <div class="div5"><br>Date</div>
                 <div class="div6"><br>: <span id="name-space"><input type="text"></span></div>
                 <div class="div7"><br>Bank Card Number</div>
