@@ -488,7 +488,10 @@
                         <tr>
                     <?php
                     //fix this algo, need to take total price 
-                                        $tax = $subtotal * 6/100;
+                                        //$tax = $subtotal * 6/100;
+                                        $pretax = $subtotal /((6/100)+1);
+                                        $tax = $subtotal - $pretax;
+                                        //$tax = ($subtotal * (100/6));
 
                     ?>
                             <td id="tax">+Service Tax(6%)</td>
@@ -496,8 +499,8 @@
                         </tr>
                         <tr>
                     <?php
-                                        $total_taxed = $tax + $subtotal;
-                                        $total_to_pay = $total_taxed;
+                                        //$total_taxed = $tax + $subtotal;
+                                        $total_to_pay = $subtotal;
                     ?>
                             <th id="total">Total</th>
                             <th id="db-total" class="db-rows">RM
