@@ -47,8 +47,9 @@ class Google_Service_Monitoring_Resource_ProjectsTimeSeries extends Google_Servi
    * Lists time series that match a filter. This method does not require a
    * Workspace. (timeSeries.listProjectsTimeSeries)
    *
-   * @param string $name Required. The project on which to execute the request.
-   * The format is: projects/[PROJECT_ID_OR_NUMBER]
+   * @param string $name Required. The project, organization or folder on which to
+   * execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
+   * organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
    * @param array $optParams Optional parameters.
    *
    * @opt_param string aggregation.alignmentPeriod The alignment_period specifies

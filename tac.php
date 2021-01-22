@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <?php
 
-    include "db-connect.php";
     session_start();
-    ob_start();
+    include "db-connect.php";
+    //ob_start();
+    $_SESSION["cardnum"];
 
 ?>
 <html>
 
 <head>
-    <title>Delivery Checkout | REX Foodipedia</title>
+    <title>MOCK TAC | REX Foodipedia</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,7 +37,7 @@
     <!--FONTS.CSS-->
     <link rel="stylesheet" href="css/fonts.css">
 
-    <link rel="stylesheet" href="css/checkout.css">
+    <link rel="stylesheet" href="css/tac.css">
 
 
 </head>
@@ -45,13 +46,51 @@
 
 <?php
         include("nav.html");
-        $email = "xavierkhew00@gmail.com";
-        //$email = $_SESSION["email"];
+
+        $cardnum = $_SESSION["cardnum"];
+        //$cardnum = $_SESSION['cardnum'];
+        //$email = "xavierkhew00@gmail.com";
+        $email = $_SESSION["email"];
+
+        //$test = $_POST['cardnum'];
+        //$test = $_REQUEST['cardnum'];
+        
+        
+        
+        //take from acc table = $row
+        $result = mysqli_query($connect, "SELECT * from user_acc WHERE email = '$email'");
+        $row = mysqli_fetch_assoc($result);
+
+        /*$card_result = mysqli_query($connect, "SELECT * from user_acc WHERE email = '$email'");
+        $card_output = mysqli_fetch_assoc($card_result);*/
 ?>
 
     <br><br>
     <div class="container">
+        <div class="row">
+            <img src="img/fake_bank.png" alt="Bank Image">
+            <img src="img/mastercard_45px.png" alt="MasterCard Logo">
+        </div>
 
+        <div id="top-command" class="box">
+            <p>Complete this purchase</p>
+            <p>Enter the <span id="bold-text">One-Time Passcode</span> send to your registered mobile <span id="bold-text"><?php echo $row["phone_number"]; ?></span></p>
+        </div>
+
+        <div id="bottom-command" class="box">
+            <div class="parent">
+                <div class="div1">Merchant Name</div>
+                <div class="div2">: <span id="name-space"><input type="text"></span></div>
+                <div class="div3"><br>Amount</div>
+                <div class="div4"><br>: <span id="name-space"><input type="text"></span></div>
+                <div class="div5"><br>Date</div>
+                <div class="div6"><br>: <span id="name-space"><input type="text"></span></div>
+                <div class="div7"><br>Bank Card Number</div>
+                <div class="div8"><br>: <span id="name-space"><input type="text" value="<?php echo $cardnum ?>"></span></div>
+                <div class="div9"><br>TAC Code</div>
+                <div class="div10"><br>: <span id="name-space"><input type="text"></span></div>
+            </div>
+        </div>
         
     </div>
     <br><br>
@@ -79,7 +118,8 @@
     $time = time();
     $actual_time = date('Y-m-d H:i:s', $time);
 
-    echo $actual_time;
+    echo $actual_time."<br>";
+    echo $cardnum;
 
 
 echo "<br>".$email;

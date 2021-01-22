@@ -213,6 +213,16 @@ class Google_Service_AIPlatformNotebooks extends Google_Service
                   'type' => 'integer',
                 ),
               ),
+            ),'getInstanceHealth' => array(
+              'path' => 'v1/{+name}:getInstanceHealth',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'name' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
             ),'isUpgradeable' => array(
               'path' => 'v1/{+notebookInstance}:isUpgradeable',
               'httpMethod' => 'GET',

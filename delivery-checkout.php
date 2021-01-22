@@ -364,7 +364,7 @@
                                         while($card_out = mysqli_fetch_assoc($card_info)){
                                             
                     ?>
-                                            <input type='radio' id='card_option' name="card-num"
+                                            <input type='radio' id='card_option' name="cardnum"
                                                 value='<?php echo $card_out ["card_num"]?>'>
                         <?php
                                                     if($card_out["card_type"] == "MasterCard"){
@@ -609,7 +609,7 @@ echo "<br>".$email;
 
         $contact    = $_POST["contect"];
         $address    = $_POST["address-selection"];
-        $pay        = ($_POST["payment"] == "Credit / Debit Card") ? $_POST['card-num']:$_POST['payment'];
+        $pay        = ($_POST["payment"] == "Credit / Debit Card") ? $_POST['cardnum']:$_POST['payment'];
         $email      = $_POST["user_email"];
         $input_time = $actual_time;
 
@@ -637,8 +637,17 @@ echo "<br>".$email;
             echo "<br>success insert into db";
             //echo '<script>("Your account is verified")</script>'; //not needed if unwanted
             //session_start();
-            $_SESSION['email'] = $email;
-            header('location:resume');
+
+            //Using POST
+            //$test = $_POST['cardnum'];
+
+            //Using GET, POST or COOKIE.
+            //$var_value = $_REQUEST['varname'];
+            $cardnum                = $pay;
+            $_SESSION['cardnum']    = $cardnum;
+            $_SESSION['email']      = $email;
+            
+            header('location:tac');
         }else{
             echo "failed";
         }
