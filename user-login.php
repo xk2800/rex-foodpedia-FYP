@@ -72,7 +72,7 @@ if(isset($_GET['code'])){
         exit;
     }
 }
- 
+
     // Google Login Url = $client->createAuthUrl(); 
 ?>
 
