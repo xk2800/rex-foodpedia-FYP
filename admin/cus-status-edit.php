@@ -16,6 +16,20 @@
     
                 <!--FONTS.CSS-->
                 <link rel="stylesheet" href="css/fonts.css">
+
+                <style>
+                     
+                     #button-status-edit, #button-status-edit-2, #form-status-edit{
+                        margin-top: 25px;
+                     }
+
+                     #title-status-edit {
+                         font-size: 1.5em;
+                         font-weight: 300;
+                     }
+                    
+                </style>
+        
         </head>
         
         <body style="background-color: #4C5C68;">
@@ -25,16 +39,16 @@
             ?>
 
             <div class="container">
-                <div class="card">
-                    <div class="card-header">
+                <div class="card mx-auto" style="width: 22rem; margin-top: 12em;">
+                    <div class="card-header" id="title-status-edit">
                         Account Status
                     </div>
                     <div class="card-body">
                         <form>
-                            <div class="form-group">
+                            <div class="form-group" id="form-status-edit">
                                 <div class="row">
                                    <div class="col-sm">
-                                        <label for="exampleFormControlSelect1">Account Status<span>&nbsp;*</span></label>
+                                        <label for="exampleFormControlSelect1">Account Status<span style="color: red;">&nbsp;*</span></label>
                                    </div> 
                                    <div class="col-sm">
                                         <select class="form-control" id="exampleFormControlSelect1">
@@ -48,7 +62,7 @@
                             <div class="form-group">
                                 <div class="row">
                                    <div class="col-sm">
-                                        <label for="exampleFormControlSelect1">Account Category<span>&nbsp;*</span></label>
+                                        <label for="exampleFormControlSelect1">Account Category<span style="color: red;">&nbsp;*</span></label>
                                    </div> 
                                    <div class="col-sm">
                                         <select class="form-control" id="exampleFormControlSelect1">
@@ -63,7 +77,7 @@
                             </div>
                         </form>
                     
-                        <a href="#" class="btn btn-primary">Save Account Status</a>&emsp;<a href="#" class="btn btn-secondary">Cancel</a>
+                        <a href="#" class="btn btn-primary" id="button-status-edit">Save Account Status</a>&emsp;<a href="#" class="btn btn-secondary" id="button-status-edit-2">Cancel</a>
                     </div>`
                 </div>
             </div>    
