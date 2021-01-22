@@ -37,10 +37,10 @@
     <section id="orders">
         <div class="container" id="top"><!--div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"><div class="container"-->
             
-        <div class="profile">
+        <div class="profile d-flex flex-column align-items-center">
             <p id="title">Active Orders</p>
 
-            <div id="order-list-item" class="container">
+            <div id="order-list-item" class="container d-flex flex-column">
                     
                     <?php
                                         $order_history = mysqli_query($connect, "SELECT * from order_rec WHERE email='xavierkhew00@gmail.com' AND order_status='1' GROUP BY trans_id"); //where email='$email'
@@ -164,7 +164,7 @@
 <!-- //////////////////////////////////////////////////////////////// -->
             <p id="title">Past Orders</p>
 
-                <div id="order-list-item" class="container">
+                <div id="order-list-item" class="container d-flex flex-column">
                     
                     <?php
                                         $order_history = mysqli_query($connect, "SELECT * from order_rec WHERE email='xavierkhew00@gmail.com' AND order_status='0' GROUP BY trans_id"); //where email='$email'

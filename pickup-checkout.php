@@ -468,7 +468,7 @@
                         </tr>
                         <tr>
                     <?php
-                                        $tax = $subtotal * 5/100;
+                                        $tax = $subtotal * 6/100;
 
                     ?>
                             <td id="tax">+Service Tax(6%)</td>

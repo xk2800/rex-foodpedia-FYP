@@ -6,7 +6,6 @@
     //ob_start();
     $_SESSION["cardnum"];
 
-    
 
 ?>
 <html>
@@ -41,7 +40,6 @@
 
     <link rel="stylesheet" href="css/tac.css">
 
-
 </head>
 
 <body>
@@ -49,7 +47,8 @@
 <?php
         include("nav.html");
 
-        $cardnum = $_SESSION["cardnum"];
+        $cardnum        = $_SESSION["cardnum"];
+        $pay_transfer   = $_SESSION['pay_total'];
         //$cardnum = $_SESSION['cardnum'];
         //$email = "xavierkhew00@gmail.com";
         $email = $_SESSION["email"];
@@ -57,7 +56,11 @@
         //$test = $_POST['cardnum'];
         //$test = $_REQUEST['cardnum'];
         
-        
+        $time = time();
+        $time_output = date('d M Y', str_replace('-','/', $time));
+
+        $number =  $cardnum; //https://stackoverflow.com/questions/45588890/displaying-last-4-digit-credit-card/45588941
+        $masked =  str_pad(substr($number, -4), strlen($number), '*', STR_PAD_LEFT);
         
         //take from acc table = $row
         $result = mysqli_query($connect, "SELECT * from user_acc WHERE email = '$email'");
@@ -68,29 +71,38 @@
 ?>
 
     <br><br>
-    <div class="container">
+    <div class="container d-flex flex-column align-items-center">
+        <span id="bold-text" class="mock"><p>MOCK TAC PAGE</p></span>
         <div class="row">
             <img src="img/fake_bank.png" alt="Bank Image">
             <img src="img/mastercard_45px.png" alt="MasterCard Logo">
         </div>
 
         <div id="top-command" class="box">
-            <p>Complete this purchase</p>
-            <p>Enter the <span id="bold-text">One-Time Passcode</span> send to your registered mobile <span id="bold-text"><?php echo $row["phone_number"]; ?></span></p>
+            <span id="bold-text"><p>Complete this purchase</p></span>
+            <p>Enter the <span id="bold-text">One-Time Passcode</span> that <span id="bold-text">was not</span> to your registered mobile <span id="bold-text"><?php echo "+6".$row["phone_number"]; ?></span></p>
         </div>
 
         <div id="bottom-command" class="box">
             <div class="parent">
-                <div class="div1">Merchant Name</div>
-                <div class="div2">: <span id="name-space"><input type="text" value="REX Foodipedia"></span></div>
-                <div class="div3"><br>Amount</div>
-                <div class="div4"><br>: <span id="name-space"><input type="text" value=""></span></div>
-                <div class="div5"><br>Date</div>
-                <div class="div6"><br>: <span id="name-space"><input type="text"></span></div>
-                <div class="div7"><br>Bank Card Number</div>
-                <div class="div8"><br>: <span id="name-space"><input type="text" value="<?php echo $cardnum ?>"></span></div>
-                <div class="div9"><br>TAC Code</div>
-                <div class="div10"><br>: <span id="name-space"><input type="text"></span></div>
+                <div class="div1" id="labels">Merchant Name</div>
+                <div class="div2">: <span id="name-space"><input type="text" id="inputs" value="REX Foodipedia"></span></div>
+                <div class="div3" id="labels"><br>Amount</div>
+                <div class="div4"><br>: <span id="name-space"><input type="text" id="inputs" value="<?php echo "RM".number_format((float)$pay_transfer, 2, '.', ''); ?>"></span></div>
+                <div class="div5" id="labels"><br>Date</div>
+                <div class="div6"><br>: <span id="name-space"><input type="text" id="inputs" value="<?php echo $time_output; ?>"></span></div>
+                <div class="div7" id="labels"><br>Bank Card Number</div>
+                <div class="div8"><br>: <span id="name-space"><input type="text" id="inputs" value="<?php echo $masked ?>"></span></div>
+                <div class="div9" id="labels"><br>TAC Code</div>
+                <div class="div10"><br>: <span id="name-space"><input type="text" id="inputs" placeholder="Enter 123456" name="tac_code"></span></div>
+                <div class="div11"></div>
+                <div class="div12"> Enter <code>123456</code> above</div>
+            </div>
+            <div class="row align-items-center" id="payment-buttons">
+                <br><br><br><br>
+                <p><button type="submit" class="primarybtn" name="submit_tacbtn" id="pay">Submit</button></p>
+                <p><button type="submit" class="outlinebtn" name="resend_tacbtn" id="pay">Resend TAC</button></p>
+                <p><button type="submit" class="outlinebtn" name="cancel_tacbtn" id="pay">Cancel</button></p>
             </div>
         </div>
         
@@ -121,6 +133,7 @@
     $actual_time = date('Y-m-d H:i:s', $time);
 
     echo $actual_time."<br>";
+    echo $pay_transfer."<br>";
     echo $cardnum;
 
 

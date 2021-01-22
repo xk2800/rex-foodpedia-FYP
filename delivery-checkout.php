@@ -405,11 +405,11 @@
                                 </div>
                             </div>
 
-                            <!-- PAYMENT BUTTON -->
                             <br>
                             <span id="voucher">Do you have a voucher?</span><br>
                             <span id="t&c">By making this purchase, you agree to our Terms and conditions</span><br><br>
-
+                            
+                            <!-- PAYMENT BUTTON -->
                             <!--p><button type="submit" name="makepaymentbtn" id="pay">MAKE PAYMENT & PLACE ORDER</button></p-->
                             <p><button type="submit" class="btn btn-secondary btn-lg btn-block" name="make_paymentbtn" id="pay">MAKE PAYMENT & PLACE ORDER</button></p>
                             
@@ -487,7 +487,8 @@
                         </tr>
                         <tr>
                     <?php
-                                        $tax = $subtotal * 5/100;
+                    //fix this algo, need to take total price 
+                                        $tax = $subtotal * 6/100;
 
                     ?>
                             <td id="tax">+Service Tax(6%)</td>
@@ -611,6 +612,7 @@ echo "<br>".$email;
         $address    = $_POST["address-selection"];
         $pay        = ($_POST["payment"] == "Credit / Debit Card") ? $_POST['cardnum']:$_POST['payment'];
         $email      = $_POST["user_email"];
+        $pay_total  = $total_to_pay;
         $input_time = $actual_time;
 
 
@@ -644,7 +646,9 @@ echo "<br>".$email;
             //Using GET, POST or COOKIE.
             //$var_value = $_REQUEST['varname'];
             $cardnum                = $pay;
+            $pay_transfer           = $pay_total;
             $_SESSION['cardnum']    = $cardnum;
+            $_SESSION['pay_total']         = $pay_transfer;
             $_SESSION['email']      = $email;
             
             header('location:tac');
