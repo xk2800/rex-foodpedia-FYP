@@ -27,7 +27,7 @@
                     font-weight: 600;
                     margin: 20px 0px 15px 20px;
                 }
-*
+                
                 #card-desc-rating {
                     color: #bfbdbd !important;
                 }

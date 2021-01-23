@@ -81,10 +81,10 @@
                     </thead>
                     <tbody>
                         <tr>
-                        <th scope="row">1</th>
-                        <td>test</td>
-                        <td>test_test</td>
-                        <td><a href="#">Edit</a>&emsp;<a href="#">Delete</a></td>
+                            <th scope="row">1</th>
+                            <td>test</td>
+                            <td>test_test</td>
+                            <td ><a href="#">Edit</a>&emsp;<a href="#">Delete</a></td>
                         </tr>
                     </tbody>
                 </table>
