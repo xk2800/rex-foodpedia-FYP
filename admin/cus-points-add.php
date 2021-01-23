@@ -1,16 +1,7 @@
 <!DOCTYPE html>
-<?php
-/**
- * TODO: CSS FIX ***
- * TODO: FOOTER FIX ***
- * 
- *  * THIS IS USING BETTER COMMENTS *
- */
-
-?>
 <html>
     <head>
-        <title>Welcome | REX Foodipedia</title>
+        <title>Loyalty Point - Add | REX Foodipedia</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     
