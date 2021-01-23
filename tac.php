@@ -3,7 +3,7 @@
 
     session_start();
     include "db-connect.php";
-    //ob_start();
+    ob_start();
     $_SESSION["cardnum"];
 
 
@@ -40,6 +40,37 @@
 
     <link rel="stylesheet" href="css/tac.css">
 
+    <script>
+
+
+        function validation() {
+            var x, text;
+
+            x = document.getElementById("tac_code").value;
+            check = document.forms["tacform"]["taccode"].value;
+
+
+            if (check == "" || check == null) {
+                document.getElementById('pay').style.display = 'none';
+                return false;
+            }
+
+            if (isNaN(x) || x != 123456) {
+                text = "Key in '123456'.";
+                document.getElementById('pay').style.display = 'none';
+                //document.getElementById("pay").disabled = true;
+                
+                
+            }else {
+                text = "GoodJob!";
+                //document.getElementById("pay").disabled = false;
+                document.getElementById('pay').style.display = 'block';
+            }
+            document.getElementById("error_msg").innerHTML = text;
+        }
+
+    </script>
+
 </head>
 
 <body>
@@ -68,6 +99,8 @@
 
         /*$card_result = mysqli_query($connect, "SELECT * from user_acc WHERE email = '$email'");
         $card_output = mysqli_fetch_assoc($card_result);*/
+
+        
 ?>
 
     <br><br>
@@ -83,29 +116,30 @@
             <p>Enter the <span id="bold-text">One-Time Passcode</span> that <span id="bold-text">was not</span> to your registered mobile <span id="bold-text"><?php echo "+6".$row["phone_number"]; ?></span></p>
         </div>
 
-        <div id="bottom-command" class="box">
-            <div class="parent">
-                <div class="div1" id="labels">Merchant Name</div>
-                <div class="div2">: <span id="name-space"><input type="text" id="inputs" value="REX Foodipedia"></span></div>
-                <div class="div3" id="labels"><br>Amount</div>
-                <div class="div4"><br>: <span id="name-space"><input type="text" id="inputs" value="<?php echo "RM".number_format((float)$pay_transfer, 2, '.', ''); ?>"></span></div>
-                <div class="div5" id="labels"><br>Date</div>
-                <div class="div6"><br>: <span id="name-space"><input type="text" id="inputs" value="<?php echo $time_output; ?>"></span></div>
-                <div class="div7" id="labels"><br>Bank Card Number</div>
-                <div class="div8"><br>: <span id="name-space"><input type="text" id="inputs" value="<?php echo $masked ?>"></span></div>
-                <div class="div9" id="labels"><br>TAC Code</div>
-                <div class="div10"><br>: <span id="name-space"><input type="text" id="inputs" placeholder="Enter 123456" name="tac_code"></span></div>
-                <div class="div11"></div>
-                <div class="div12"> Enter <code>123456</code> above</div>
+        <form  method="POST" name="tacform" onsubmit="return validation()">
+            <div id="bottom-command" class="box">
+                <div class="parent">
+                    <div class="div1" id="labels">Merchant Name</div>
+                    <div class="div2">: <span id="name-space"><input type="text" id="inputs" value="REX Foodipedia"></span></div>
+                    <div class="div3" id="labels"><br>Amount</div>
+                    <div class="div4"><br>: <span id="name-space"><input type="text" id="inputs" value="<?php echo "RM".number_format((float)$pay_transfer, 2, '.', ''); ?>"></span></div>
+                    <div class="div5" id="labels"><br>Date</div>
+                    <div class="div6"><br>: <span id="name-space"><input type="text" id="inputs" value="<?php echo $time_output; ?>"></span></div>
+                    <div class="div7" id="labels"><br>Bank Card Number</div>
+                    <div class="div8"><br>: <span id="name-space"><input type="text" id="inputs" value="<?php echo $masked ?>"></span></div>
+                    <div class="div9" id="labels"><br>TAC Code</div>
+                    <div class="div10"><br>: <span id="name-space"><input type="text" id="tac_code" class="tac_code" placeholder="Enter 123456" name="taccode" onkeyup="validation()"></span></div>
+                    <div class="div11"></div>
+                    <div class="div12"> Enter <code>123456</code> above <p id="error_msg"></p></div>
+                </div>
+                <div class="row align-items-center" id="payment-buttons">
+                    <br><br><br><br>
+                    <p><button type="submit" class="primarybtn" name="submit_tacbtn" id="pay">Submit</button></p>
+                    <p><button type="submit" class="outlinebtn" name="resend_tacbtn" id="resend">Resend TAC</button></p>
+                    <p><button type="submit" class="outlinebtn" name="cancel_tacbtn" id="cancel">Cancel</button></p>
+                </div>
             </div>
-            <div class="row align-items-center" id="payment-buttons">
-                <br><br><br><br>
-                <p><button type="submit" class="primarybtn" name="submit_tacbtn" id="pay">Submit</button></p>
-                <p><button type="submit" class="outlinebtn" name="resend_tacbtn" id="pay">Resend TAC</button></p>
-                <p><button type="submit" class="outlinebtn" name="cancel_tacbtn" id="pay">Cancel</button></p>
-            </div>
-        </div>
-        
+        </form>
     </div>
     <br><br>
 
@@ -139,46 +173,18 @@
 
 echo "<br>".$email;
 
-    if(isset($_POST["make_paymentbtn"])){
+    if(isset($_POST["submit_tacbtn"])){
         
-        $send_type  = "Delivery";
+        $tac    = $_POST["taccode"];
+        $check  = '123456';
 
-        $contact    = $_POST["contect"];
-        $address    = $_POST["address-selection"];
-        $pay        = ($_POST["payment"] == "Credit / Debit Card") ? $_POST['card-num']:$_POST['payment'];
-        $email      = $_POST["user_email"];
-        $input_time = $actual_time;
-
-
-        echo $contact."<br>".$address."<br>".$pay."<br>".$email;
-
-        //$query = "UPDATE resume SET phone_number='$p_number' , last_edit_by='user' , vetting='1' , file='$file' , job_type='$job', last_edit_time='$time', db_time='$db_info' WHERE email='$email'";
-        
-        if($pay == "Cash On Delivery"){
-            $pay_out = '0';
-
-        } else if ($pay == "Credit / Debit Car"){
-            $pay_out = '1';
-        
-        } else if ($pay == "Online Banking"){
-            $pay_out = '2';
-        
+        if($tac == $check){
+            header('location: receipt');
         }else{
-            $pay_out = '0';
+            echo "Error";
         }
 
-        $query = "UPDATE transaction SET contactornot='$contact', address='$address', payment_method='$pay_out', send_type='$send_type', payment_time='$input_time' WHERE email='$email'";
-        
-        if(mysqli_query($connect, $query)){
-            echo "<br>success insert into db";
-            //echo '<script>("Your account is verified")</script>'; //not needed if unwanted
-            //session_start();
-            $_SESSION['email'] = $email;
-            header('location:resume');
-        }else{
-            echo "failed";
-        }
-        //header('location: test.php');
+        //echo "WORKING";
     }
 
 

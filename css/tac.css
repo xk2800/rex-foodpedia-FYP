@@ -24,7 +24,7 @@ body {
     .div11 { grid-area: 6 / 1 / 7 / 2; }
     .div12 { grid-area: 6 / 2 / 7 / 3; }
 
-#payment-buttons, #pay{
+#payment-buttons, #pay, #resend, #cancel{
     margin: 0 10px;
 }
 
@@ -44,7 +44,7 @@ body {
     font-size: 35px;
 }
 
-#inputs{
+#inputs, #tac_code{
     width: 150px;
 }
 
