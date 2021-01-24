@@ -35,6 +35,8 @@
         $result = mysqli_query($connect, "SELECT * from transaction WHERE email = 'xavierkhew00@gmail.com'");
         $row = mysqli_fetch_assoc($result);
 
+        $del_pass_address   = $_SESSION['del_address'];
+        echo $del_pass_address;
 
         $company_info = "REX Foodipedia";
 
@@ -56,7 +58,7 @@
         <p id="date"><b>Date:</b> <?php echo $row ["date"]?></p>
         <p id="hori-line"><hr></p>
         <p id="company-info"><b>From:</b> <?php echo $company_info ?></p>
-        <p id="cust-address"><b>Delivery Address:</b> <?php echo $row ["address"]?></p>
+        <p id="cust-address"><b>Delivery Address:</b> <?php echo $del_pass_address ?></p>
 
         <span class="items">
 

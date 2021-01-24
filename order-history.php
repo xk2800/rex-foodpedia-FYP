@@ -49,7 +49,6 @@
                                             while($history_output = mysqli_fetch_assoc($order_history)){
                     ?>
                                                 <!-- <div class="parent shadow col-lg-5 col-md-10 col-sm-10"> -->
-
                                                     <form method="post" class="parent shadow col-lg-5 col-md-10 col-sm-10">
                     <?php
                                                         $trans_id = $history_output ["trans_id"];
@@ -83,7 +82,7 @@
                                                         $added_time = 300 + $time_now;
                                                         $output_added_time = date('H:i:s', $added_time);
 
-                                                        echo $output_current_time;
+                                                        //echo $output_current_time;
 
                                                         $time_checking =  $mysqli->query("SELECT * from transaction WHERE email='xavierkhew00@gmail.com' AND receipt_id"); //where email='$email'
                                                         
@@ -118,17 +117,13 @@
                     <?php
                                                         echo "<div class='white-space'>hjghg </div>";
                                                         
+                                                        ?><span class="items"><?php
                                                         //nested to print all food items till end of table
                                                         $chicken_fried_rice = mysqli_query($connect, "SELECT * from order_rec WHERE email='xavierkhew00@gmail.com' AND trans_id = '$trans_id' AND order_status='1'");
                                                         while($qqq = mysqli_fetch_assoc($chicken_fried_rice)){
                                                             $dish_qty = $qqq ["dish_qty"];
                                                             $dish_name = $qqq ["dish_name"];
                                                             
-                                                            
-                    ?>                                  
-                                                                
-                                                            <span class="items">
-                    <?php
                                                                 //echo $dish_qty;
 
                                                                 // Declare an array and initialize it 
@@ -150,11 +145,12 @@
                                                         }
                     ?>
                                                             </span>
-                                                    </form>
+                                                </form>
                                                 <!-- </div> -->
                                             <br>
                     <?php
                                             }
+
                                             
                                         } else{
                                             echo "You have no active orders.";
@@ -207,7 +203,8 @@
                                                         <div class="date"><?php echo $output_date;?></div>
                     <?php
                                                         echo "<div class='white-space'>hjghg </div>";
-                                                        
+
+                                                        ?><span class="items"><?php
                                                         //nested to print all food items till end of table
                                                         $chicken_fried_rice = mysqli_query($connect, "SELECT * from order_rec WHERE email='xavierkhew00@gmail.com' AND trans_id = '$trans_id' AND order_status='0'");
                                                         while($qqq = mysqli_fetch_assoc($chicken_fried_rice)){
@@ -215,10 +212,6 @@
                                                             $dish_name = $qqq ["dish_name"];
                                                             
                                                             
-                    ?>                                  
-                                                                
-                                                            <span class="items">
-                    <?php
                                                                 //echo $dish_qty;
 
                                                                 // Declare an array and initialize it 
@@ -235,7 +228,9 @@
                                                                 // comma in the array 
                                                                 $List2 = implode(', ', $Array2); 
                                                                 // Display the comma separated list 
-                                                                echo ($List2); 
+                                                                echo ($List2);
+
+                                                                //echo $dish_qty;
 
                                                         }
                     ?>
