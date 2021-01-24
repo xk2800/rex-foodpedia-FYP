@@ -119,7 +119,7 @@
 
 <?php
         include("nav.html");
-
+        $email = "xavierkhew00@gmail.com";
         //$email = $_SESSION["email"];
 ?>
 
@@ -129,7 +129,7 @@
         <div class="row">
 
             <div class="col-lg-8 col-md-9 col-sm-10">
-                <div class="delivery-details">
+            <div class="delivery-details">
                     <div class="container">
 
                         <br>
@@ -324,13 +324,13 @@
                                     <input type="text" name="other" id="others" style='display:none;' />
 
                                     <!-- <form method="post" id="others"> -->
-                                        <input type="radio" name="other" id="other" style='display:none;' value="">
-                                        <input type="text" name="other" id="other" style='display:none;' />
+                                        <!-- <input type="radio" name="other" id="other" style='display:none;' value="">
+                                        <input type="text" name="other" id="other" style='display:none;' /> -->
                                     <!-- </form> -->
 
                                 </div>
                     <?php
-                                        $card_info = mysqli_query($connect, "SELECT * from card_info WHERE email='xavierkhew00@gmail.com'"); //where email='$email'
+                                        $card_info = mysqli_query($connect, "SELECT * from card_info WHERE email='$email'"); //where email='$email'
                                         
 
                     ?>
@@ -344,33 +344,34 @@
                                     <div id="card" style="display:none">
                     <?php
                                         while($card_out = mysqli_fetch_assoc($card_info)){
+                                            
                     ?>
-                                        <input type='radio' id='card_option' name="card-num"
-                                            value='<?php echo $card_out ["card_num"]?>'>
+                                            <input type='radio' id='card_option' name="cardnum"
+                                                value='<?php echo $card_out ["card_num"]?>'>
+                        <?php
+                                                    if($card_out["card_type"] == "MasterCard"){
+                                                        echo '&emsp;<i class="fa fa-cc-mastercard" aria-hidden="true"></i>';
+
+                                                    } else if($card_out["card_type"] == "Visa"){
+                                                        echo '&emsp;<i class="fa fa-cc-visa" aria-hidden="true"></i>';
+
+                                                    } else if($card_out["card_type"] == "Amex"){
+                                                        echo '&emsp;<i class="fa fa-cc-amex" aria-hidden="true"></i>';
+
+                                                    } else{
+                                                        echo '&emsp;Card selected invalid type';
+                                                    }
+
+
+                                                    $number =  $card_out ["card_num"]; //https://stackoverflow.com/questions/45588890/displaying-last-4-digit-credit-card/45588941
+                                                    $masked =  str_pad(substr($number, -4), strlen($number), '*', STR_PAD_LEFT);
+                                                    //echo $masked;
+                        ?>
+                                            <?php echo $masked;?>&emsp;
+                                            <?php echo $card_out ["name_on_card"]?>,
+                                            <?php echo $card_out ["exp_date"]?>
+                                            <br><br>
                     <?php
-                                                if($card_out["card_type"] == "MasterCard"){
-                                                    echo '&emsp;<i class="fa fa-cc-mastercard" aria-hidden="true"></i>';
-
-                                                } else if($card_out["card_type"] == "Visa"){
-                                                    echo '&emsp;<i class="fa fa-cc-visa" aria-hidden="true"></i>';
-
-                                                } else if($card_out["card_type"] == "Amex"){
-                                                    echo '&emsp;<i class="fa fa-cc-amex" aria-hidden="true"></i>';
-
-                                                } else{
-                                                    echo '&emsp;Card selected invalid type';
-                                                }
-
-
-                                                $number =  $card_out ["card_num"]; //https://stackoverflow.com/questions/45588890/displaying-last-4-digit-credit-card/45588941
-                                                $masked =  str_pad(substr($number, -4), strlen($number), '*', STR_PAD_LEFT);
-                                                //echo $masked;
-                    ?>
-                                        <?php echo $masked;?>&emsp;
-                                        <?php echo $card_out ["name_on_card"]?>,
-                                        <?php echo $card_out ["exp_date"]?>
-                                        <br><br>
-                                        <?php
                                         }
                     ?>
                                         <!-- What can we do to accommodate you?  <input type='text' id='acc' name='acc'> -->
@@ -386,11 +387,11 @@
                                 </div>
                             </div>
 
-                            <!-- PAYMENT BUTTON -->
                             <br>
                             <span id="voucher">Do you have a voucher?</span><br>
                             <span id="t&c">By making this purchase, you agree to our Terms and conditions</span><br><br>
-
+                            
+                            <!-- PAYMENT BUTTON -->
                             <!--p><button type="submit" name="makepaymentbtn" id="pay">MAKE PAYMENT & PLACE ORDER</button></p-->
                             <p><button type="submit" class="btn btn-secondary btn-lg btn-block" name="make_paymentbtn" id="pay">MAKE PAYMENT & PLACE ORDER</button></p>
                             
@@ -416,7 +417,7 @@
 
 
                     <?php
-                                        $checking = mysqli_query($connect, "SELECT * from transaction WHERE email = 'xavierkhew00@gmail.com'");
+                                        $checking = mysqli_query($connect, "SELECT * from transaction WHERE email = '$email'");
                                         $payit = mysqli_fetch_assoc($checking);
                     ?>
                 <span id="rest">Your order from REX Foodipedia</span>
@@ -468,7 +469,11 @@
                         </tr>
                         <tr>
                     <?php
-                                        $tax = $subtotal * 6/100;
+                    //fix this algo, need to take total price 
+                                        //$tax = $subtotal * 6/100;
+                                        $pretax = $subtotal /((6/100)+1);
+                                        $tax = $subtotal - $pretax;
+                                        //$tax = ($subtotal * (100/6));
 
                     ?>
                             <td id="tax">+Service Tax(6%)</td>
@@ -476,8 +481,8 @@
                         </tr>
                         <tr>
                     <?php
-                                        $total_taxed = $tax + $subtotal;
-                                        $total_to_pay = $total_taxed;
+                                        //$total_taxed = $tax + $subtotal;
+                                        $total_to_pay = $subtotal;
                     ?>
                             <th id="total">Total</th>
                             <th id="db-total" class="db-rows">RM
@@ -574,16 +579,67 @@
 
 <?php
 
+    //time set
+    date_default_timezone_set("Asia/Kuala_Lumpur");
+    $time = time();
+    $actual_time = date('Y-m-d H:i:s', $time);
+
+    echo $actual_time;
+
+
+echo "<br>".$email;
+
     if(isset($_POST["make_paymentbtn"])){
         
+        $send_type  = "Delivery";
 
         $contact    = $_POST["contect"];
         $address    = $_POST["address-selection"];
-        $pay        = ($_POST["payment"] == "Credit / Debit Card") ? $_POST['card-num']:$_POST['payment'];
+        $pay        = ($_POST["payment"] == "Credit / Debit Card") ? $_POST['cardnum']:$_POST['payment'];
         $email      = $_POST["user_email"];
+        $pay_total  = $total_to_pay;
+        $input_time = $actual_time;
 
 
         echo $contact."<br>".$address."<br>".$pay."<br>".$email;
+
+        //$query = "UPDATE resume SET phone_number='$p_number' , last_edit_by='user' , vetting='1' , file='$file' , job_type='$job', last_edit_time='$time', db_time='$db_info' WHERE email='$email'";
+        
+        if($pay == "Cash On Delivery"){
+            $pay_out = '0';
+
+        } else if ($pay == "Credit / Debit Car"){
+            $pay_out = '1';
+        
+        } else if ($pay == "Online Banking"){
+            $pay_out = '2';
+        
+        }else{
+            $pay_out = '0';
+        }
+
+        $query = "UPDATE transaction SET contactornot='$contact', address='$address', payment_method='$pay_out', send_type='$send_type', payment_time='$input_time' WHERE email='$email'";
+        
+        if(mysqli_query($connect, $query)){
+            echo "<br>success insert into db";
+            //echo '<script>("Your account is verified")</script>'; //not needed if unwanted
+            //session_start();
+
+            //Using POST
+            //$test = $_POST['cardnum'];
+
+            //Using GET, POST or COOKIE.
+            //$var_value = $_REQUEST['varname'];
+            $cardnum                = $pay;
+            $pay_transfer           = $pay_total;
+            $_SESSION['cardnum']    = $cardnum;
+            $_SESSION['pay_total']         = $pay_transfer;
+            $_SESSION['email']      = $email;
+            
+            header('location:tac');
+        }else{
+            echo "failed";
+        }
         //header('location: test.php');
     }
 

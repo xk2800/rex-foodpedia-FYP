@@ -648,11 +648,13 @@ echo "<br>".$email;
 
             //Using GET, POST or COOKIE.
             //$var_value = $_REQUEST['varname'];
-            $cardnum                = $pay;
-            $pay_transfer           = $pay_total;
-            $_SESSION['cardnum']    = $cardnum;
-            $_SESSION['pay_total']         = $pay_transfer;
-            $_SESSION['email']      = $email;
+            $cardnum                    = $pay;
+            $pay_transfer               = $pay_total;
+            $del_address                = $address;
+            $_SESSION['cardnum']        = $cardnum;
+            $_SESSION['pay_total']      = $pay_transfer;
+            $_SESSION['del_address']    = $del_address;
+            $_SESSION['email']          = $email;
             
             header('location:tac');
         }else{

@@ -78,11 +78,13 @@
 <?php
         include("nav.html");
 
-        $cardnum        = $_SESSION["cardnum"];
-        $pay_transfer   = $_SESSION['pay_total'];
+        $cardnum            = $_SESSION["cardnum"];
+        $pay_transfer       = $_SESSION['pay_total'];
+        $del_pass_address   = $_SESSION['del_address'];
         //$cardnum = $_SESSION['cardnum'];
         //$email = "xavierkhew00@gmail.com";
         $email = $_SESSION["email"];
+        
 
         //$test = $_POST['cardnum'];
         //$test = $_REQUEST['cardnum'];
@@ -168,8 +170,8 @@
 
     echo $actual_time."<br>";
     echo $pay_transfer."<br>";
-    echo $cardnum;
-
+    echo $cardnum."<br>";
+    echo $del_pass_address;
 
 echo "<br>".$email;
 
@@ -179,6 +181,7 @@ echo "<br>".$email;
         $check  = '123456';
 
         if($tac == $check){
+            //echo $del_pass_address."<br>";
             header('location: receipt');
         }else{
             echo "Error";
