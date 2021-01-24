@@ -67,41 +67,41 @@
 
             <!-- if-else statement will go here, state=true -> statement block will be executed || state=false -> alert box display the error -->
                 <div class="card">
-                    <h5 class="card-header" id="title-cus-add">Add Points</h5>
+                    <div class="card-header">
+                        <h5 id="title-cus-add">Add Points</h5>
+                    </div>
+                    
                     <div class="card-body">
-                    
-                    <form>
-                        <div class="form-group row">
-                            <label for="point-cus-add" class="col-sm-2 col-form-label"><span style="color:red">*&nbsp;</span>Points<br/>
-                                <span id="small-cus-add">Set the number of points</span>
-                            </label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="point-cus-add" required>
+                        <form>
+                            <div class="form-group row">
+                                <label for="point-cus-add" class="col-sm-2 col-form-label"><span style="color:red">*&nbsp;</span>Points<br/>
+                                    <span id="small-cus-add">Set the number of points</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="point-cus-add" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="point-cus-add" class="col-sm-2 col-form-label"><span style="color:red">*&nbsp;</span>Validity<br/>
-                                <span id="small-cus-add">Set the validity of points (days)</span>
-                            </label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="point-cus-add" required>
+                            <div class="form-group row">
+                                <label for="point-cus-add" class="col-sm-2 col-form-label"><span style="color:red">*&nbsp;</span>Validity<br/>
+                                    <span id="small-cus-add">Set the validity of points (days)</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="point-cus-add" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="point-cus-add" class="col-sm-2 col-form-label"><span style="color:red">*&nbsp;</span>Status<br/>
-                                <span id="small-cus-add">Choose status for points</span>
-                            </label>
-                            <div class="col-sm-10">
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Available</option>
-                                    <option>Unavailable</option>
-                                </select>
+                            <div class="form-group row">
+                                <label for="point-cus-add" class="col-sm-2 col-form-label"><span style="color:red">*&nbsp;</span>Status<br/>
+                                    <span id="small-cus-add">Choose status for points</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="exampleFormControlSelect1">
+                                        <option>Available</option>
+                                        <option>Unavailable</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <a href="#" class="btn btn-primary" style="margin: 0.5em 0em 2em 11.5em;">Save</a>
-                    </form
-                    
-                        
+                            <a href="#" class="btn btn-primary" style="margin: 0.5em 0em 2em 11.5em;">Save</a>
+                        </form>   
                     </div>    
                 </div>
             <!-- end of if-else statement -->
