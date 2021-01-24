@@ -89,7 +89,7 @@
                                     <input type="number" class="form-control" id="point-cus-add" required>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" style="margin-top:1.85em;">
                                 <label for="point-cus-add" class="col-sm-2 col-form-label"><span style="color:red">*&nbsp;</span>Status<br/>
                                     <span id="small-cus-add">Choose status for points</span>
                                 </label>
@@ -100,7 +100,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <a href="#" class="btn btn-primary" style="margin: 0.5em 0em 2em 11.5em;">Save</a>
+                            <a href="#" class="btn btn-primary" style="margin: 0.5em 0em 2em 11.5em;">Save</a> <a href="#" class="btn btn-secondary" style="float: right; margin-top: 0.5em;">Back</a>
                         </form>   
                     </div>    
                 </div>
