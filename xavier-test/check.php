@@ -3,7 +3,11 @@
 $time = time();
 $actual_time = date('H:i:s', $time);
 
+$subtime = 300 + $time;
+$try = date('H:i:s', $subtime);
+
 echo 'The current time is '.$actual_time;
+echo 'The current time is '.$try;
 echo'<br>--------------------------------<br>';
 
 

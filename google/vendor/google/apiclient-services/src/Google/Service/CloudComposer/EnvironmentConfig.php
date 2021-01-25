@@ -19,6 +19,8 @@ class Google_Service_CloudComposer_EnvironmentConfig extends Google_Model
 {
   public $airflowUri;
   public $dagGcsPrefix;
+  protected $databaseConfigType = 'Google_Service_CloudComposer_DatabaseConfig';
+  protected $databaseConfigDataType = '';
   public $gkeCluster;
   protected $nodeConfigType = 'Google_Service_CloudComposer_NodeConfig';
   protected $nodeConfigDataType = '';
@@ -27,6 +29,10 @@ class Google_Service_CloudComposer_EnvironmentConfig extends Google_Model
   protected $privateEnvironmentConfigDataType = '';
   protected $softwareConfigType = 'Google_Service_CloudComposer_SoftwareConfig';
   protected $softwareConfigDataType = '';
+  protected $webServerConfigType = 'Google_Service_CloudComposer_WebServerConfig';
+  protected $webServerConfigDataType = '';
+  protected $webServerNetworkAccessControlType = 'Google_Service_CloudComposer_WebServerNetworkAccessControl';
+  protected $webServerNetworkAccessControlDataType = '';
 
   public function setAirflowUri($airflowUri)
   {
@@ -43,6 +49,20 @@ class Google_Service_CloudComposer_EnvironmentConfig extends Google_Model
   public function getDagGcsPrefix()
   {
     return $this->dagGcsPrefix;
+  }
+  /**
+   * @param Google_Service_CloudComposer_DatabaseConfig
+   */
+  public function setDatabaseConfig(Google_Service_CloudComposer_DatabaseConfig $databaseConfig)
+  {
+    $this->databaseConfig = $databaseConfig;
+  }
+  /**
+   * @return Google_Service_CloudComposer_DatabaseConfig
+   */
+  public function getDatabaseConfig()
+  {
+    return $this->databaseConfig;
   }
   public function setGkeCluster($gkeCluster)
   {
@@ -101,5 +121,33 @@ class Google_Service_CloudComposer_EnvironmentConfig extends Google_Model
   public function getSoftwareConfig()
   {
     return $this->softwareConfig;
+  }
+  /**
+   * @param Google_Service_CloudComposer_WebServerConfig
+   */
+  public function setWebServerConfig(Google_Service_CloudComposer_WebServerConfig $webServerConfig)
+  {
+    $this->webServerConfig = $webServerConfig;
+  }
+  /**
+   * @return Google_Service_CloudComposer_WebServerConfig
+   */
+  public function getWebServerConfig()
+  {
+    return $this->webServerConfig;
+  }
+  /**
+   * @param Google_Service_CloudComposer_WebServerNetworkAccessControl
+   */
+  public function setWebServerNetworkAccessControl(Google_Service_CloudComposer_WebServerNetworkAccessControl $webServerNetworkAccessControl)
+  {
+    $this->webServerNetworkAccessControl = $webServerNetworkAccessControl;
+  }
+  /**
+   * @return Google_Service_CloudComposer_WebServerNetworkAccessControl
+   */
+  public function getWebServerNetworkAccessControl()
+  {
+    return $this->webServerNetworkAccessControl;
   }
 }

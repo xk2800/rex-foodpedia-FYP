@@ -1,0 +1,8 @@
+**order process**
+login->add item into cart->checkout->tac->receipt
+
+**db order process**
+user_acc->cart table->[move] content->order_rec table->
+[move] needed info for transaction table->transaction table
+
+[move] = delete from old table, insert into new table

@@ -203,13 +203,13 @@
                                     <div class="form-group pl-5 pb-3 w-100">
                                         <i class="fa fa-map-marker" aria-hidden="true"></i>
                                         &nbsp;
-                                        <label for="card-address1-profile">Address 1</label>
+                                        <label for="card-address1-profile">Office</label>
                                         <input type="text" class="form-control" id="card-address1-profile">
                                     </div>
                                     <div class="form-group pl-5 pb-3 w-100">
                                         <i class="fa fa-map-marker" aria-hidden="true"></i>
                                         &nbsp;
-                                        <label for="card-address2-profile">Address 2</label>
+                                        <label for="card-address2-profile">Home</label>
                                         <input type="text" class="form-control" id="card-address2-profile">
                                     </div>
                             </div>

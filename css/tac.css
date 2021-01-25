@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 0.5fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+    
+    .div1 { grid-area: 1 / 1 / 2 / 2; }
+    .div2 { grid-area: 1 / 2 / 2 / 3; }
+    .div3 { grid-area: 2 / 1 / 3 / 2; }
+    .div4 { grid-area: 2 / 2 / 3 / 3; }
+    .div5 { grid-area: 3 / 1 / 4 / 2; }
+    .div6 { grid-area: 3 / 2 / 4 / 3; }
+    .div7 { grid-area: 4 / 1 / 5 / 2; }
+    .div8 { grid-area: 4 / 2 / 5 / 3; }
+    .div9 { grid-area: 5 / 1 / 6 / 2; }
+    .div10 { grid-area: 5 / 2 / 6 / 3; }
+    .div11 { grid-area: 6 / 1 / 7 / 2; }
+    .div12 { grid-area: 6 / 2 / 7 / 3; }
+
+#payment-buttons, #pay, #resend, #cancel{
+    margin: 0 10px;
+}
+
+.container{
+    /*display: block; */
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#bold-text{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.mock{
+    font-size: 35px;
+}
+
+#inputs, #tac_code{
+    width: 150px;
+}
+
+.primarybtn{
+    background-color: #a3d2ca;
+    border: 2px solid #a3d2ca;
+    padding: 10px 30px;
+}
+.primarybtn:hover{
+    background-color: #056676;
+    padding: 10px 30px;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+}
+
+.outlinebtn{
+    background-color: #FFF;
+    border: 2px solid #a3d2ca;
+    color: black;
+    font-weight: bold;
+    padding: 10px 30px;
+}
+.outlinebtn:hover{
+    background-color: #056676;
+    border: 2px solid #056676;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+}
+
