@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | REX Foodipedia</title>
+    <title>Contact Us | REX Foodipedia</title>
 
 <!--FONTS.CSS STARTS-->
     <link rel="preload" href="css/fonts.css" as="style">
@@ -43,6 +43,13 @@
             font-weight:bold;
         }
 
+        #desc{
+            margin-left:28%;
+        }
+
+        .col input{
+            display: block;
+        }
 
     </style>
 <!--          CSS   END              -->
@@ -56,39 +63,39 @@
 <!--PHP-->
    
         <div class="about-us" style="background-image: url(img/food1.jpg);">
-                <h1 class="about-text">ABOUT US</h1>
+                <h1 class="about-text">CONTACT US</h1>
         </div>
    
 
    <div class="row">
-        <div class="about-us" style="float: left; width: 50%; background-image: url(img/aboutus/whoarewe.jpg); background-position-y: 15%;">
-                <h1 class="about-text">WHO ARE WE</h1>
-        </div>
-        <div style="text-align: center; float: right; width: 50%; margin-top: 5%;">
-            <p><b>REXfoodipedia is created by 3 university students as one of their university project</b></p>
+
+        <div class="col" style="float: left; width: 50%;">
+                <br><br><br>
+                <h1 class="text-center">Ask any question to us!</h1>
+                <br><br>
+                <h4 id="desc">Multimedia University, <br>Persiaran Multimedia, <br>63100 Cyberjaya, Selangor, <br>Malaysia</p></h4>
+                
+                <h5 id="desc"><br><br>Email :<a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=connect@mmu.edu.my"><u>connect@mmu.edu.my</u></a></h5>
+                <h5 id="desc">Tel :<a href="tel:1-300-800-668"><u>1-300-800-668</u></a></h5>
+            </div>
+
+        <div class="col" style="text-align: center; float: right; width: 50%; margin-top: 5%;">
+            
+            <form>
+                
+                <input name="name" type="text" placeholder="Your name" style="width: 60%;height: 30px; float:left;"/>
+                <br><br>
+                <input name="email" type="email" placeholder="Your email" style="width:60%;height:30px;float:left;">
+                <br><br>
+                <textarea name="comment" placeholder="Comment" style="width:60%;height:150px;float:left;resize: none;"></textarea>
+                <br><br><br><br><br><br><br>
+                <input type="submit">
+            </form>
+        
         </div>
         
-   </div>
-    
-   <div class="row">
-        <div style="text-align: center; float:left; width: 50%; margin-top:5% ;">
-            <p><b>Our main objectives is to build a website for the home-cook and give them a place to sell or promote their home-cook food, also to help in building a friendly community</b></p>
-        </div>
-
-        <div class="about-us" style="float: right; width: 50%; background-image: url(img/aboutus/whatwedo.png); background-position-y:40% ;">
-            <h1 class="about-text">OBJECTIVES</h1>
-        </div>
    </div>
    
-   <div class="row">
-        <div class="about-us" style="float: left; width: 50%; background-image: url(img/aboutus/howwedo.png); background-position-y: 35%;">
-                <h1 class="about-text">HOW WE DO</h1>
-        </div>
-        
-        <div style="text-align: center; float: right; width: 50%; margin-top: 5%;">
-            <p><b>We make a website that are user-friendly for the customer and the seller</b></p>
-        </div>    
-    </div>
 
 </body>
 </html>
