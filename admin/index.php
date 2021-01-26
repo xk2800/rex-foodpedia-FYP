@@ -2,6 +2,7 @@
 //FULLY WORKING
 
     include "../db-connect.php";
+    ob_start();
     
 ?>
 <!DOCTYPE html>
@@ -60,15 +61,18 @@
         <div class="gap"></div>
 
             <div class="box">
-                <form name="login-admin" method="post">
+                
                     <span id="error"></span>
-                    <select name="uni-name" id="uni-name" onchange='others(this.value);' required></p>
-                                                                <option style='display:none;'>Select Staff/Admin</option>
-                                                                <option value="staff">Staff</option>
-                                                                <option value="admin">Admin</option>
-                                                                </select>
-                                                                <br><br>
                     
+                <form name="login-admin" method="post">
+
+                    <select name="staff-admin" id="uni-name" onchange='others(this.value);' required></p>
+                                                                    <option style='display:none;'>Select Staff/Admin</option>
+                                                                    <option value="staff">Staff</option>
+                                                                    <option value="admin">Admin</option>
+                                                                    </select>
+                                                                    <br><br>
+
                     <div class="stafff" id="stafff" style='display:none;'>
                         <p class="user">Username &nbsp;: &emsp;<input type="text" name="staffuname" class="in" id="uname" onChange="sanitizeInputs()"/></p>
                         <p class="pass">Password &nbsp; : &emsp;<input type="password" name="staffpwd" class="in" id="pwd" onChange="sanitizeInputs()"/></p>
@@ -77,6 +81,7 @@
                         <button type="submit" name="loginbtn">Login</button>
                         <button type="submit" name="cancelbtn">Cancel</button>
                     </div>
+                    <!-- </form> -->
 
                     <div class="stafff" id="adminn" style='display:none;'>
                         <p class="user">Admin Username &nbsp;: &emsp;<input type="text" name="adminuname" class="in" id="uname" onChange="sanitizeInputs()"/></p>
@@ -139,11 +144,20 @@ $fullUrl ="http:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         
     }
 
+    if(strpos($fullUrl, "index?incorrect+credentials") == true){
+        echo '<script>document.getElementById("error").innerHTML = "Your passwords do not match. Please try again."<br><br>"</script>';
+        
+    }
+
+
 /**
  * !!! VALIDATE !!!
  * */
 
 if(isset($_POST["loginbtn"])){
+
+    //pull info from dropdown
+    $dropdown       = $_POST['staff-admin'];
 
     //admin
     $admin_uname    = $_POST['adminuname'];
@@ -154,50 +168,54 @@ if(isset($_POST["loginbtn"])){
     $staff_pwd      = $_POST['staffpwd'];
 
     //hashing
-    //$pwdd   = md5($admin_pwd);
-    $pwdd   = md5($staff_pwd);
+    $pwdd_admin   = md5($admin_pwd);
+    $pwdd_staff   = md5($staff_pwd);
 
     //salt variable
     $salt = "!2y$10*GJIZkOgbCNwTH5ji^JZ0mGev36Cj&2EKuRdLp#HP.crF.VQy751493147";
 
     //salt added password variable
-    $saltedpwd = $salt.$pwdd;
+    $saltedpwd_admin = $salt.$pwdd_admin;
+    $saltedpwd_staff = $salt.$pwdd_staff;
 
     /**
      * !!! SQL VALIDATE !!!
      * */
     
+    if($dropdown == 'staff'){
+        $staff_result = mysqli_query($connect, "SELECT * from staff_acc WHERE username = '$staff_uname' AND pwd = '$saltedpwd_staff' AND staff_isDelete = 0");
 
-    $staff_result = mysqli_query($connect, "SELECT * from staff_acc WHERE username = '$staff_uname' AND pwd = '$saltedpwd'AND staff_isDelete = 0");
+        if(empty($staff_uname) || empty($staff_pwd)){
+            header("location: index?input=empty");
+            die();
+        } else{
 
-    if(empty($staff_uname) || empty($staff_pwd)){
-        header("location: index?input=empty");
-        die();
-    } else{
-
-        if(mysqli_num_rows($staff_result)>0){
-            header("location: dashboard.php");
-            //echo "test";
-        }else{
-            header("location: index?incorrect+credentials");
+            if(mysqli_num_rows($staff_result)>0){
+                header("location: dashboard");
+                //echo "test";
+            }else{
+                header("location: index?incorrect+credentials");
+            }
         }
-    }
+    }else if($dropdown == 'admin'){
+        
+        $admin_result = mysqli_query($connect, "SELECT * from admin_acc WHERE username = '$admin_uname' AND pwd = '$saltedpwd_admin' AND admin_isDelete = 0");
 
-    $admin_result = mysqli_query($connect, "SELECT * from admin_acc WHERE username = '$admin_uname' AND pwd = '$saltedpwd'AND admin_isDelete = 0");
+        if(empty($admin_uname) || empty($admin_pwd)){
+            header("location: index?input=empty");
+            die();
+        } else{
 
-    if(empty($admin_uname) || empty($admin_pwd)){
-        header("location: index?input=empty");
-        die();
-    } else{
-
-        if(mysqli_num_rows($admin_result)>0){
-            header("location: dashboard.php");
-            //echo "test";
-        }else{
-            header("location: index?incorrect+credentials");
+            if(mysqli_num_rows($admin_result)>0){
+                header("location: dashboard");
+                //echo "test";
+            }else{
+                header("location: index?incorrect+credentials");
+            }
         }
-    }
-
+    }/*else{
+        echo "Choice error";
+    }*/
     
 }
 
