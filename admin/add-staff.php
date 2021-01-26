@@ -1,7 +1,7 @@
 <!DOCTYPE html>
     <html>
         <head>
-            <title>Add Products | REX Foodipedia</title>
+            <title>Add Staff | REX Foodipedia</title>
 
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,18 +20,17 @@
 
             <style>
                 
-                #card-whole-add-product {
+                #card-whole-add-staff {
                    margin: 120px 0px 60px 0px;
                    border-style: none;
                    position: relative;
-                   box-shadow: 7px 7px 6px #888888;
                 }
 
                 #card-title {
                     text-align: center;
                     letter-spacing: 2px;
                     text-transform: uppercase;
-                    background-color: #D1FBD6;
+                    background-color: white;
                     font-weight: bold;
                 }
 
@@ -41,7 +40,7 @@
                     padding-top:20px;
                 }
 
-                #card-input-add-product input[type="text"], #card-input-edit-menu input[type="number"] {
+                #card-input-add-product input[type="text"], #card-input-edit-menu input[type="number"],input[type="email"],input[type="number"]{
                     border: 0px black solid;
                     border-bottom-width: 1px;
                     border-bottom-color: #d4d9d5;
@@ -69,60 +68,74 @@
             </style>    
         </head>
 
-        <body style="background-color: #E4F6E6">
+        <body style="background-color: #4C5C68;">
                 
             <?php
                 include("navbar.html");
             ?>
 
             <div class="container">
-                <div class="card" id="card-whole-add-product">
-                    <h6 class="card-header" id="card-title">Add Products</h6>
+                <div class="card" id="card-whole-add-staff">
+                    <h6 class="card-header" id="card-title">Add Staff</h6>
                   
                     <div class="card-body"> 
                         <div id="card-input-add-product">
                             <form>
 
                                 <div class="form-group">       
-                                    <label for="dish">Dish</label>
-                                    <input type="text" class="form-control" id="dish" style="width:80%">
+                                    <label for="card-dish-edit-menu">Staff IC</label>
+                                    <br>
+                                    <input type="text" name="ic1" maxlength="6" size="6" style="width: 10%;" required>-
+                                    <input type="text" name="ic2" maxlength="2" size="2" style="width: 4%;" required>-
+                                    <input type="text" name="ic3" maxlength="4" size="4" style="width: 6%;" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="image">Image</label>
+                                    <label for="name">Staff Name</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="image">
-                                        <label class="custom-file-label" for="image">Choose file</label>
+                                        <input type="text" name="Name" id="name" style="width: 80%;" required>
                                     </div>
                                 </div>
-                                
-                                <!--https://www.w3schools.com/bootstrap4/bootstrap_forms_custom.asp-->
-                                <script>
-                                    // Add the following code if you want the name of the file appear on select
-                                    $(".custom-file-input").on("change", function() {
-                                        var fileName = $(this).val().split("\\").pop();
-                                        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-                                    });
-                                </script>
 
                                 <div class="form-group">
-                                    <label for="desc">Description</label>
-                                    <textarea class="form-control" id="desc" rows="3"></textarea>
+                                    <label for="phone">Staff Phone Number</label>
+                                    <div class="custom-file">
+                                        <input type="text" name="phone-num" style="width: 20%;" maxlength="10" id="phone" required>
+                                    </div>
                                 </div>
 
-                                <div class="form-group">       
-                                    <label for="quantity">Stock Quantity</label>
-                                    <input type="number" class="form-control" id="quantity">
+                                <div class="form-group">
+                                    <label for="emails">Staff Email Address</label>
+                                    <div class="custom-file">
+                                        <input type="email" name="emails" id="emails" style="width: 80%;" required>
+                                    </div>
                                 </div>
 
-                                <div class="form-group">       
-                                    <label for="unit-price">Unit Price</label>
-                                    <input type="number" class="form-control" id="unit-price">
+                                <div class="form-group">
+                                    <label for="merc-address">Merchant Address</label>
+                                    <div class="custom-file">
+                                        <input type="text" name="merc-address" id="merc-address" style="width: 100%;" required>
+                                    </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="rest-name">Restaurant Name</label>
+                                    <div class="custom-file">
+                                        <input type="text" name="rest-name" id="rest-name" style="width: 80%;" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="outlets">Number of Outlets</label>
+                                    <div class="custom-file">
+                                        <input type="number" name="outlets" id="outlets" style="width: 7%;" required>
+                                    </div>
+                                </div>
+
                             </form>
                         </div>
                         
-                        <a href="#" class="btn btn-primary btn-block" id="card-button-add-product">Add</a>
+                        <a href="#" class="btn btn-primary btn-block" id="card-button-edit-menu">Add Staff</a>
                     </div>
                 </div> 
             </div>
