@@ -1,11 +1,9 @@
 <!DOCTYPE html>
   
-<?php 
-
-/**
-  *TODO: change the <a> to <button> for the form*
-  */
-
+<?php
+    include("db-connect.php");
+    include("db_connection.php");
+    //session_start();
 ?>
 
     <html lang="en">
@@ -40,11 +38,11 @@
                 
                 #card-whole-register {
                     margin: auto;
-                    margin-top: 140px;
+                    margin-top: 70px;
                     margin-bottom: 50px;
                     padding: 0px 10px 0px 20px;
                     /*border-radius: 20px;*/
-                    height: 57rem;
+                    height: 34rem;
                     /*background-color: #F8F7F5;*/
                 }
 
@@ -86,13 +84,13 @@
                     <div class="card-body">
                     <h5 class="card-title"><center>Register</center></h5>
 
-                    <form>
+                    <form name="register-form" method="POST">
                         <div id="card-input-register"> 
                             <div class="form-group">
                                 <i class="fa fa-envelope-open" aria-hidden="true"></i>
                                 &ensp;
                                 <label for="card-email-register">Email Address : </label>
-                                <input type="email" class="form-control" id="card-email-register" placeholder="example@gmail.com">
+                                <input type="email" class="form-control" id="card-email-register" placeholder="example@gmail.com" name="email" required>
                             </div>
                         
                             <div class="form-row">
@@ -100,13 +98,13 @@
                                     <i class="fa fa-key" aria-hidden="true"></i>
                                     &ensp;
                                     <label for="card-pass-register">Password : </label>
-                                    <input type="password" class="form-control" id="card-pass-register" placeholder="Enter a password">
+                                    <input type="password" class="form-control" id="card-pass-register" placeholder="Enter a password" name="pass" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <i class="fa fa-key" aria-hidden="true"></i>
                                     &ensp;
                                     <label for="card-con-pass-register">Confirm Password : </label>
-                                    <input type="password" class="form-control" id="card-con-pass-register" placeholder="Re-enter the password">
+                                    <input type="password" class="form-control" id="card-con-pass-register" placeholder="Re-enter the password" name="cfrmpass" required>
                                 </div>
                             </div>
 
@@ -114,49 +112,11 @@
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 &ensp;
                                 <label for="card-contact-register">Contact Number : </label>
-                                <input type="tel" class="form-control" id="card-contact-register" placeholder="+60123456789">
+                                <input type="tel" class="form-control" id="card-contact-register" placeholder="+60123456789" name="contact">
                             </div>
-
-                            <div class="form-group">
-                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                &ensp;
-                                <label for="card-address-register">Address : </label>
-                                <input type="text" class="form-control" id="card-address-register" placeholder="1234 Main St">
-                            </div>
-
-                            <div class="form-group">
-                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                &ensp;
-                                <label for="card-address-2-register">Address 2 : </label>
-                                <input type="text" class="form-control" id="card-address-2-register" placeholder="Apartment, studio, or floor">
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <i class="fa fa-building" aria-hidden="true"></i>
-                                    <label for="card-city-register">City : </label>
-                                    <input type="text" class="form-control" id="card-city-register">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <i class="fa fa-flag" aria-hidden="true"></i>
-                                    &ensp;
-                                    <label for="card-state-register">State : </label>
-                                    <select id="card-state-register" class="form-control">
-                                        <option selected>Choose...</option>
-                                            <option>Johor</option> <option>Kedah</option> <option>Kelantan</option> <option>Malacca</option> <option>Negeri Sembilan</option>
-                                            <option>Pahang</option> <option>Penang</option> <option>Perak</option> <option>Perlis</option> <option>Sabah</option>
-                                            <option>Sarawak</option> <option>Selangor</option> <option>Terengganu</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="card-zip-register">Zip : </label>
-                                        <input type="text" class="form-control" id="card-zip-register">
-                                </div>
-                            </div>
-                        </div>
 
                         <div id="card-register-button">
-                            <a href="https://www.youtube.com/?gl=US" class="btn btn-primary btn-block">Sign Up</a>
+                            <button type="submit" class="btn btn-primary btn-block" name="signupbtn">Sign Up</button>
                         </div>
                     </form>
             </div>    
@@ -167,4 +127,38 @@
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         </body>
+
+        <?php 
+            
+            if(isset($_POST["signupbtn"])) {
+                
+                $var_email = $_POST["email"];
+                $var_password = $_POST["pass"];
+                $var_cfrmpassword = $_POST["cfrmpass"];
+                $var_contact = $_POST["contact"];
+                $var_address1 = $_POST["address1"];
+                $var_address2 = $_POST["address2"];
+                $var_city = $_POST["city"];
+                $var_state = $_POST["state"];
+                $var_zip = $_POST["zip"];
+
+                $salt_pass = md5($var_password);
+                $salt="!2y$10*GJIZkOgbCNwTH5ji^JZ0mGev36Cj&2EKuRdLp#HP.crF.VQy751493147";
+                $salted_pass = $salt_pass . $salt;
+
+                if($var_password != $var_cfrmpassword) {
+                     echo " <script> 
+                                alert('Password you have entered is not matched with Confirm Password, Please try again !'); 
+                            </script> "; 
+                } else {
+                    
+                    $query_user_register = mysqli_query($connect,"INSERT INTO user_acc(email, password, phone_number) VALUES ('$var_email', '$salted_pass', '$var_contact')");
+                   
+                        echo " <script> 
+                                    alert('Register successfully');
+                                    location.href = 'user-login.php';
+                                </script> ";
+                }
+            }
+        ?>
 </html>
