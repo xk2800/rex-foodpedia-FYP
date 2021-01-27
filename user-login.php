@@ -53,7 +53,7 @@ if(isset($_GET['code'])){
         }
         else{
 
-            // if user not exists we will insert the user
+            /// if user not exists we will insert the user
             $insert = mysqli_query($db_connection, "INSERT INTO `user_acc`(`google_id`,`name`,`email`,`profile_image`, `verified`) VALUES('$id','$full_name','$email','$profile_pic', '$verified')");
 
             if($insert){
@@ -81,15 +81,6 @@ if(isset($_GET['code'])){
 
 <?php// endif; ?>
 <!DOCTYPE html>
-
-<?php 
-
-/**
-  *TODO: change the <a> to <button> for the form*
-  */
-
-?>
-
     <html lang="en">
         <head>
         
@@ -280,29 +271,26 @@ if(isset($_GET['code'])){
                     <h5 class="card-title">Login</h5>
                     
                     <div id="card-input-login">
-                        <form>
+                        <form name="login-form" method="POST">
                             <div class="form-group">
-                                <input type="email" class="form-control" id="card-email-login" aria-describedby="emailHelp" placeholder="Enter email" style="margin-bottom: 40px;">
+                                <input type="email" class="form-control" id="card-email-login" aria-describedby="emailHelp" placeholder="Enter email" style="margin-bottom: 40px;" name="email_login">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" id="card-pass-login" placeholder="Password" style="margin-bottom: 30px;">
+                                <input type="password" class="form-control" id="card-pass-login" placeholder="Password" style="margin-bottom: 30px;" name="password_login">
+                            </div>
+                            <div id="card-misc">
+                                <a href="#" style="float: left; padding-left: 20px;">Forgot password ?</a>
+                            </div>
+                            <div id="card-login-button">
+                                <button type="submit" name="loginbtn" class="btn btn-dark btn-block">Login</button>
                             </div>
                         </form>
                     </div>
-
-                    <div id="card-misc">
-                        <a href="#" style="float: left; padding-left: 20px;">Forgot password ?</a>
-                    </div>
-
-                    <div id="card-login-button">
-                        <button type="submit" name="loginbtn" class="btn btn-dark btn-block">Login</button>
-                    </div>
-
                     <div id="card-misc2">
                         <a href="https://www.youtube.com/?gl=US" style="text-align: center; padding-bottom:60px;">No account yet ? Create one</a>
                     </div>
-
                 </div>
+
                 <br/>
                 <!--hr/-->
                 <!--label style="padding: 0px 0px 20px 0px;"><i><b>OR</b></i></label-->
@@ -328,6 +316,44 @@ if(isset($_GET['code'])){
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     
     </body>
+
+    <?php 
+        
+        if(isset($_POST["loginbtn"])) {
+
+            $var_email_login = $_POST["email_login"];
+            $var_password_login = $_POST["password_login"];
+
+            if(!empty($var_email_login) && !empty($var_password_login)) {
+                
+                include("db-connect.php");
+                
+                $query_user_login = mysqli_query($connect, "SELECT email, password FROM user_acc WHERE email = '$var_email_login'");
+                
+                $numrows = mysqli_num_rows($query_user_login);
+
+                if($numrows != 0) {
+                    while($row = mysqli_fetch_assoc($query_user_login)) {
+                        $db_email_login = $row['email'];
+                        $db_password_login = $row['password'];
+                    }
+
+                    if($var_email_login == $db_email_login && $var_password_login == $db_password_login) {
+                        echo "<script>
+                                location.href = 'index.php';
+                              </script>";
+                        echo "success";      
+                    } else {  
+                        echo "Invalid username or password!";  
+                    }  
+                   
+                }
+            }    
+
+        } else {
+            echo "All fields are required!";
+        } 
+    ?>
 </html>
 
 

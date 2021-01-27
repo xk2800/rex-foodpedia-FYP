@@ -142,9 +142,7 @@
                 $var_state = $_POST["state"];
                 $var_zip = $_POST["zip"];
 
-                $salt_pass = md5($var_password);
-                $salt="!2y$10*GJIZkOgbCNwTH5ji^JZ0mGev36Cj&2EKuRdLp#HP.crF.VQy751493147";
-                $salted_pass = $salt_pass . $salt;
+                $salted_pass = password_hash($var_password, PASSWORD_BCRYPT);
 
                 if($var_password != $var_cfrmpassword) {
                      echo " <script> 
