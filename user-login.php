@@ -273,10 +273,10 @@ if(isset($_GET['code'])){
                     <div id="card-input-login">
                         <form name="login-form" method="POST">
                             <div class="form-group">
-                                <input type="email" class="form-control" id="card-email-login" aria-describedby="emailHelp" placeholder="Enter email" style="margin-bottom: 40px;" name="email_login">
+                                <input type="email" class="form-control" id="card-email-login" aria-describedby="emailHelp" placeholder="Enter email" style="margin-bottom: 40px;" name="email_login" required>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" id="card-pass-login" placeholder="Password" style="margin-bottom: 30px;" name="password_login">
+                                <input type="password" class="form-control" id="card-pass-login" placeholder="Password" style="margin-bottom: 30px;" name="password_login" required>
                             </div>
                             <div id="card-misc">
                                 <a href="#" style="float: left; padding-left: 20px;">Forgot password ?</a>
@@ -287,7 +287,7 @@ if(isset($_GET['code'])){
                         </form>
                     </div>
                     <div id="card-misc2">
-                        <a href="https://www.youtube.com/?gl=US" style="text-align: center; padding-bottom:60px;">No account yet ? Create one</a>
+                        <a href="user-register.php" style="text-align: center; padding-bottom:60px;">No account yet ? Create one</a>
                     </div>
                 </div>
 
@@ -346,11 +346,9 @@ if(isset($_GET['code'])){
                     } else {  
                         echo "Incorrect credientials, please try again";
                     }   
-                }
+                } 
             }    
 
-        } else {
-            echo "All fields are required!";
         } 
     ?>
 </html>
