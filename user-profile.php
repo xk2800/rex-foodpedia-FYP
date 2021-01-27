@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 
-<?php 
-
-/**
-  *TODO: change the <a> to <button> for the form*
-  */
-
+<?php
+    include("db-connect.php");
+    include("db_connection.php");
+    //start_session();
 ?>
     <html lang="en">
         <head>
@@ -54,7 +52,13 @@
                     background-color: transparent;
                 }
 
-                #card-profile-button a {
+                #card-profile-card {
+                    margin-top: 10px;
+                    letter-spacing: 2px;
+                    font-style: italic; 
+                }
+
+                #card-profile-button button {
                     border-radius: 0px;
                     float:right;
                     margin-top: 40px;
@@ -80,47 +84,56 @@
                         Account Details
                     </div>
                     <div class="card-body" >
-                        <form>
+                        <form name="user-details-profile-form" method="POST">
                             <div id="card-input-profile"> 
-                            
+
+                                    <?php 
+                                        $email = $_SESSION["email"];
+                                        
+                                        $user_email = mysqli_query($connect, "SELECT * from user_acc WHERE email = '$email'"); 
+                                        $row = mysqli_fetch_assoc($user_email);
+                                    ?>
+
                                     <div class="form-group pl-5 pb-3">
                                         <i class="fa fa-envelope-open" aria-hidden="true"></i>
                                         &ensp;
                                         <label for="card-email-register">Email Address</label>
-                                        <input type="email" class="form-control" id="card-email-profile">
+                                        <input type="email" class="form-control" id="card-email-profile" name="email_profile" readonly value="<?php echo $row["email"]?>">
                                     </div>
-                                
-                        
-                                <div class="form-row">
-                                    <div class="form-group col-md-5 pl-5 pb-3">
+                            
+                                    <div class="form-group col-md-6 pl-5 pb-3">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         &ensp;
-                                        <label for="card-firstname-profile">First Name</label>
-                                        <input type="text" class="form-control" id="card-firstname-profile">
+                                        <label for="card-firstname-profile">Username</label>
+                                        <input type="text" class="form-control" id="card-firstname-profile" name="firstname_profile" value="<?php echo $row["name"]?>">
                                     </div>
-                                    <div class="form-group col-md-5">
-                                        <i class="fa fa-user" aria-hidden="true"></i>
-                                        &ensp;
-                                        <label for="card-lastname-profile">Last Name</label>
-                                        <input type="text" class="form-control" id="card-lastname-profile">
-                                    </div>
-                                </div>
 
-                                <div class="form-group col-md-5 ml-4 pb-3">
+                                <div class="form-group col-md-6 ml-4 pb-3">
                                     <i class="fa fa-phone" aria-hidden="true"></i>
                                     &ensp;
                                     <label for="card-contact-register">Contact Number  </label>
-                                    <input type="tel" class="form-control" id="card-contact-register">
+                                    <input type="tel" class="form-control" id="card-contact-register" name="contact_profile" value="<?php echo $row["phone_number"]?>">
                                 </div>
                             </div>
 
                             <div id="card-profile-button">
                                 <div class="text-center">
-                                    <center><a href="https://www.youtube.com/?gl=US" class="btn btn-dark btn-block w-25 p-1">Save Details</a></center>
+                                    <button type="submit" class="btn btn-secondary btn-block w-25 p-1" name="button_acc_details_profile">Save</button>
                                 </div>
                             </div>
                         </form>
                     </div>
+
+                    <?php 
+                        if(isset($_POST['button_acc_details_profile'])) {
+                            
+                            $var_firstname_profile = $_POST['firstname_profile'];
+                            $query_name_profile = mysqli_query($connect,"UPDATE user_acc SET name = '$var_firstname_profile' WHERE email = '$email'");
+
+                            $var_contact_profile = $_POST['contact_profile'];
+                            $query_name_profile = mysqli_query($connect,"UPDATE user_acc SET phone_number = '$var_contact_profile' WHERE email = '$email'");
+                        }
+                    ?>
                 </div>
 
                 <div class="card p-3 mb-5 rounded mx-auto" id="card-whole-profile">
@@ -128,36 +141,16 @@
                         Manage Payment Method
                     </div>
                     <div class="card-body">
-                        <form>
-                            <div id="card-input-profile">  
-                                <div class="form-group pl-5 pb-3">
-                                    <i class="fa fa-university" aria-hidden="true"></i>
-                                    &ensp;
-                                    <label for="card-payment-type-profile">Payment Method </label>
-                                    <div class="form-row">
-                                        <div class="radio">
-                                            <label><input type="radio" name="optradio" checked>&ensp;Visa</label>
-                                        </div>
-                                        <div class="radio pl-5">
-                                            <label><input type="radio" name="optradio">&ensp;MasterCard</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group pl-5 pb-3 w-75">
-                                    <i class="fa fa-credit-card" aria-hidden="true"></i>
-                                    &nbsp;
-                                    <label for="card-payment-profile">Card Number</label>
-                                    <input type="tel" class="form-control" id="card-payment-profile">
-                                </div>
-                            </div>
+                        <div style="margin: 8em 0px 30px 0px;">
+                            &emsp;
+                            <center>
+                                <button type="submit" class="btn btn-secondary btn-block w-50 p-1 rounded-pill">
+                                    <i class="fas fa-credit-card fa-2x" style="margin-top: 20px;"></i>
+                                    <p id="card-profile-card">Click Me</p>
+                                </button>
+                            </center>
                             
-                            <div id="card-profile-button">
-                                <div class="text-center">
-                                    <center><a href="https://www.youtube.com/?gl=US" class="btn btn-dark btn-block w-25 p-1">Save Payment<br/>Method Details</a></center>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
 
@@ -186,7 +179,7 @@
                             
                             <div id="card-profile-button">
                                 <div class="text-center">
-                                    <center><a href="https://www.youtube.com/?gl=US" class="btn btn-dark btn-block w-25 p-1">Change Password</a></center>
+                                    <button type="submit" class="btn btn-secondary btn-block w-25 p-1">Save</button>
                                 </div>
                             </div>
                         </form>
@@ -216,7 +209,7 @@
                             
                             <div id="card-profile-button">
                                 <div class="text-center">
-                                    <center><a href="https://www.youtube.com/?gl=US" class="btn btn-dark btn-block w-25 p-1">Change Address</a></center>
+                                    <button type="submit" class="btn btn-secondary btn-block w-25 p-1">Save</button>
                                 </div>
                             </div>
                         </form>

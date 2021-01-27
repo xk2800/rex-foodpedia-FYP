@@ -38,4 +38,47 @@
                             </div>
                         </div>
 
-                        -->
+-->
+
+
+<!--
+
+                <div class="card p-3 mb-5 rounded mx-auto" id="card-whole-profile">
+                    <div class="card-header" id="card-input-title">
+                        Manage Payment Method
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div id="card-input-profile">  
+                                <div class="form-group pl-5 pb-3">
+                                    <i class="fa fa-university" aria-hidden="true"></i>
+                                    &ensp;
+                                    <label for="card-payment-type-profile">Payment Method </label>
+                                    <div class="form-row">
+                                        <div class="radio">
+                                            <label><input type="radio" name="optradio" checked>&ensp;Visa</label>
+                                        </div>
+                                        <div class="radio pl-5">
+                                            <label><input type="radio" name="optradio">&ensp;MasterCard</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group pl-5 pb-3 w-75">
+                                    <i class="fa fa-credit-card" aria-hidden="true"></i>
+                                    &nbsp;
+                                    <label for="card-payment-profile">Card Number</label>
+                                    <input type="tel" class="form-control" id="card-payment-profile">
+                                </div>
+                            </div>
+                            
+                            <div id="card-profile-button">
+                                <div class="text-center">
+                                    <center><a href="https://www.youtube.com/?gl=US" class="btn btn-dark btn-block w-25 p-1">Save Payment<br/>Method Details</a></center>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+-->

@@ -318,7 +318,7 @@ if(isset($_GET['code'])){
     </body>
 
     <?php 
-        
+
         if(isset($_POST["loginbtn"])) {
 
             $var_email_login = trim($_POST["email_login"]);
@@ -339,10 +339,14 @@ if(isset($_GET['code'])){
                     }
 
                     if($var_email_login == $db_email_login && password_verify($var_password_login, $db_password_login)) {
+                        //start_session();
+                        $_SESSION["email"] = $var_email_login;
+                        
                         echo "<script>
                                 alert('Login Successfully');       
-                                location.href = 'index.php';
-                              </script>";    
+                                location.href = 'user-profile.php';
+                              </script>";
+                                
                     } else {  
                         echo "Incorrect credientials, please try again";
                     }   
