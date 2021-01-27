@@ -321,8 +321,8 @@ if(isset($_GET['code'])){
         
         if(isset($_POST["loginbtn"])) {
 
-            $var_email_login = $_POST["email_login"];
-            $var_password_login = $_POST["password_login"];
+            $var_email_login = trim($_POST["email_login"]);
+            $var_password_login = trim($_POST["password_login"]);
 
             if(!empty($var_email_login) && !empty($var_password_login)) {
                 
@@ -338,15 +338,14 @@ if(isset($_GET['code'])){
                         $db_password_login = $row['password'];
                     }
 
-                    if($var_email_login == $db_email_login && $var_password_login == $db_password_login) {
+                    if($var_email_login == $db_email_login && password_verify($var_password_login, $db_password_login)) {
                         echo "<script>
+                                alert('Login Successfully');       
                                 location.href = 'index.php';
-                              </script>";
-                        echo "success";      
+                              </script>";    
                     } else {  
-                        echo "Invalid username or password!";  
-                    }  
-                   
+                        echo "Incorrect credientials, please try again";
+                    }   
                 }
             }    
 
