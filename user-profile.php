@@ -78,6 +78,13 @@
                 include("nav.html");
             ?>
 
+            <?php 
+                $email = $_SESSION["email"];
+                                        
+                $user_email = mysqli_query($connect, "SELECT * from user_acc WHERE email = '$email'"); 
+                $row = mysqli_fetch_assoc($user_email);
+            ?>
+
             <div class="container">
                 <div class="card p-3 mb-5 rounded mx-auto" id="card-whole-profile">
                     <div class="card-header" id="card-input-title">
@@ -86,13 +93,6 @@
                     <div class="card-body" >
                         <form name="user-details-profile-form" method="POST">
                             <div id="card-input-profile"> 
-
-                                    <?php 
-                                        $email = $_SESSION["email"];
-                                        
-                                        $user_email = mysqli_query($connect, "SELECT * from user_acc WHERE email = '$email'"); 
-                                        $row = mysqli_fetch_assoc($user_email);
-                                    ?>
 
                                     <div class="form-group pl-5 pb-3">
                                         <i class="fa fa-envelope-open" aria-hidden="true"></i>
@@ -144,7 +144,7 @@
                         <div style="margin: 8em 0px 30px 0px;">
                             &emsp;
                             <center>
-                                <button type="submit" class="btn btn-secondary btn-block w-50 p-1 rounded-pill">
+                                <button type="submit" class="btn btn-secondary btn-block w-50 p-1 rounded-pill" onclick="window.location='payment-gateway.php'";>
                                     <i class="fas fa-credit-card fa-2x" style="margin-top: 20px;"></i>
                                     <p id="card-profile-card">Click Me</p>
                                 </button>
@@ -159,31 +159,81 @@
                         Manage Password
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form name="user_password_profile_form" method="POST">
                             <div id="card-input-profile"> 
-                                <div class="form-row">
-                                    <div class="form-group col-md-5 pl-5 pb-3 w-75">
+                                    <div class="form-group col-md-5 pl-1 pb-3 w-75">
                                         <i class="fa fa-key" aria-hidden="true"></i>
                                         &nbsp;
                                         <label for="card-password-profile">Current Password</label>
-                                        <input type="password" class="form-control" id="card-password-profile">
+                                        <input type="password" class="form-control" id="card-password-profile" name="password_profile">
                                     </div>
-                                    <div class="form-group col-md-5 w-75">
-                                        <i class="fa fa-key" aria-hidden="true"></i>
-                                        &nbsp;
-                                        <label for="card-conpassword-profile">New Password</label>
-                                        <input type="password" class="form-control" id="card-conpassword-profile">
-                                    </div>
-                                </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-5 w-75">
+                                            <i class="fa fa-key" aria-hidden="true"></i>
+                                            &nbsp;
+                                            <label for="card-conpassword-profile">New Password</label>
+                                            <input type="password" class="form-control" id="card-conpassword-profile" name="password_new_profile">
+                                        </div>
+                                        <div class="form-group col-md-5 w-75" >
+                                            <i class="fa fa-key" aria-hidden="true"></i>
+                                            &nbsp;
+                                            <label for="card-conpassword-profile">Confirm Password</label>
+                                            <input type="password" class="form-control" id="card-conpassword-profile" name="password_confirm_new_profile">
+                                        </div>
+                                    </div> 
                             </div>
                             
                             <div id="card-profile-button">
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-secondary btn-block w-25 p-1">Save</button>
+                                    <button type="submit" class="btn btn-secondary btn-block w-25 p-1" name="button_password_profile">Save</button>
                                 </div>
                             </div>
                         </form>
                     </div>
+
+                    <?php 
+                        if(isset($_POST['button_password_profile'])) {
+                            
+                            $var_password_profile = $_POST['password_profile'];
+                            $var_new_password_profile = $_POST['password_new_profile'];
+                            $var_confirm_new_password_profile = $_POST['password_confirm_new_profile'];
+
+                            if(!empty($var_password_profile)&&!empty($var_new_password_profile)&&!empty($var_confirm_new_password_profile)) {
+                                
+                                if($var_new_password_profile == $var_confirm_new_password_profile) {
+                                    
+                                    $user_password = mysqli_query($connect, "SELECT password from user_acc WHERE email = '$email'"); 
+                                    $numrows = mysqli_num_rows($user_email);
+
+                                    if($numrows != 0) {
+                                        while($row = mysqli_fetch_assoc($user_password)) {
+                                            $db_password_profile = $row['password'];
+                                        }
+
+                                        $salted_pass = password_hash($var_confirm_new_password_profile, PASSWORD_BCRYPT);
+
+                                        if(password_verify($var_confirm_new_password_profile, $db_password_profile)) {
+                                            
+                                            $query_confirm_new_password_profile = mysqli_query($connect, "UPDATE user_acc SET password = '$salted_pass' WHERE email = '$email'");
+
+                                            echo "<script>
+                                                    alert('Password has updated successfully');       
+                                                 </script>";
+                                        } else {
+                                            echo "<script>
+                                                    alert('Password entered is not found!');       
+                                                 </script>";
+                                        }
+                                    }
+                                } else {
+                                    echo " <script> 
+                                            alert('New Password you have entered is not matched with Confirm Password, Please try again !'); 
+                                          </script> "; 
+                                }
+                            }
+
+                        }  
+                    ?>
                 </div>
                 
                 <div class="card p-3 mb-5 rounded mx-auto" id="card-whole-profile">
