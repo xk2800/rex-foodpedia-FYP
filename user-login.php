@@ -323,13 +323,14 @@ if(isset($_GET['code'])){
 
             $var_email_login = trim($_POST["email_login"]);
             $var_password_login = trim($_POST["password_login"]);
+            
+            $salted_var_password_login = md5($var_password_login);
 
             if(!empty($var_email_login) && !empty($var_password_login)) {
                 
                 include("db-connect.php");
                 
                 $query_user_login = mysqli_query($connect, "SELECT email, password FROM user_acc WHERE email = '$var_email_login'");
-                
                 $numrows = mysqli_num_rows($query_user_login);
 
                 if($numrows != 0) {
@@ -338,7 +339,7 @@ if(isset($_GET['code'])){
                         $db_password_login = $row['password'];
                     }
 
-                    if($var_email_login == $db_email_login && password_verify($var_password_login, $db_password_login)) {
+                    if($var_email_login == $db_email_login &&  $salted_var_password_login == $db_password_login) {
                         //start_session();
                         $_SESSION["email"] = $var_email_login;
                         

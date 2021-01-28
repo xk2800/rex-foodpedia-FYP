@@ -132,6 +132,10 @@
 
                             $var_contact_profile = $_POST['contact_profile'];
                             $query_name_profile = mysqli_query($connect,"UPDATE user_acc SET phone_number = '$var_contact_profile' WHERE email = '$email'");
+
+                            echo "<script>
+                                    alert('Details are updated successfully!');
+                                  </script>";
                         }
                     ?>
                 </div>
@@ -194,44 +198,44 @@
                     <?php 
                         if(isset($_POST['button_password_profile'])) {
                             
-                            $var_password_profile = $_POST['password_profile'];
-                            $var_new_password_profile = $_POST['password_new_profile'];
-                            $var_confirm_new_password_profile = $_POST['password_confirm_new_profile'];
+                            $var_password_profile = trim($_POST["password_profile"]);
+                            $var_new_password_profile = trim($_POST["password_new_profile"]);
+                            $var_confirm_new_password_profile = trim($_POST["password_confirm_new_profile"]);
 
-                            if(!empty($var_password_profile)&&!empty($var_new_password_profile)&&!empty($var_confirm_new_password_profile)) {
+                            $salted_old_pass = md5($var_password_profile);
+                            $salted_new_pass = md5($var_confirm_new_password_profile);
+
+                            if(!empty($var_password_profile) && !empty($var_new_password_profile) && !empty($var_confirm_new_password_profile)) {
                                 
                                 if($var_new_password_profile == $var_confirm_new_password_profile) {
-                                    
-                                    $user_password = mysqli_query($connect, "SELECT password from user_acc WHERE email = '$email'"); 
-                                    $numrows = mysqli_num_rows($user_email);
+
+                                    $query_user_password = mysqli_query($connect, "SELECT password FROM user_acc WHERE password = '$salted_old_pass' && email = '$email'"); 
+                                    $numrows = mysqli_num_rows($query_user_password);
 
                                     if($numrows != 0) {
-                                        while($row = mysqli_fetch_assoc($user_password)) {
+                                        while($row = mysqli_fetch_assoc($query_user_password)) {
                                             $db_password_profile = $row['password'];
                                         }
 
-                                        $salted_pass = password_hash($var_confirm_new_password_profile, PASSWORD_BCRYPT);
-
-                                        if(password_verify($var_confirm_new_password_profile, $db_password_profile)) {
-                                            
-                                            $query_confirm_new_password_profile = mysqli_query($connect, "UPDATE user_acc SET password = '$salted_pass' WHERE email = '$email'");
-
+                                        if($salted_old_pass == $db_password_profile) {
+                                            $query_confirm_new_password_profile = mysqli_query($connect, "UPDATE user_acc SET password = '$salted_new_pass' WHERE email = '$email'");
                                             echo "<script>
-                                                    alert('Password has updated successfully');       
-                                                 </script>";
-                                        } else {
-                                            echo "<script>
-                                                    alert('Password entered is not found!');       
-                                                 </script>";
+                                                    alert('Password changed successfuly');
+                                                  </script>";
                                         }
+                                 
+                                    } else {
+                                        echo "<script>
+                                                alert('Row in database is empty);
+                                             </script>";
                                     }
+
                                 } else {
-                                    echo " <script> 
-                                            alert('New Password you have entered is not matched with Confirm Password, Please try again !'); 
-                                          </script> "; 
+                                    echo "<script>
+                                            alert('Password entered is not matched with Confirm password, Please try again !');
+                                         </script>";
                                 }
                             }
-
                         }  
                     ?>
                 </div>
