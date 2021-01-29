@@ -651,9 +651,13 @@ echo "<br>".$email;
             $cardnum                    = $pay;
             $pay_transfer               = $pay_total;
             $del_address                = $address;
+            $delivery_type              = 'delivery';
+
             $_SESSION['cardnum']        = $cardnum;
             $_SESSION['pay_total']      = $pay_transfer;
             $_SESSION['del_address']    = $del_address;
+            $_SESSION['delivery_type']  = $delivery_type;
+
             $_SESSION['email']          = $email;
             
             header('location:tac');

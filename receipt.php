@@ -32,6 +32,10 @@
 
     <?php
 
+        //session carry
+        $delivery_type = $_SESSION['delivery_type'];
+        echo $delivery_type;
+
         $time = time();
         $actual_time = date('Y-m-d H:i:s', $time);
 
@@ -83,14 +87,23 @@
         <p id="date"><b>Date:</b> <?php echo $row ["date"]?></p>
         <p id="hori-line"><hr></p>
         <p id="company-info"><b>From:</b> <?php echo $company_info ?></p>
-        <p id="cust-address"><b>Delivery Address:</b> <?php echo $del_pass_address ?></p>
+        <p id="cust-address">
+    <?php 
+            if($delivery_type == 'pick_up'){
+                echo "<b>Self Pick Up</b>";
+            }else if($delivery_type == 'delivery'){
+                echo "<b>Delivery Address:</b>".$del_pass_address;
+            }else{
+
+            }
+    ?>
+            </p>
 
         <span class="items">
 
             <?php
 //** */                <!-- production changes to be made here -->
-
-                    $items_sql = mysqli_query($connect, "SELECT * from order_rec WHERE email = 'xavierkhew00@gmail.com' AND trans_id='$number'");
+                    $items_sql = mysqli_query($connect, "SELECT * from order_rec WHERE email = 'xavierkhew00@gmail.com' AND trans_id='$numbers'");
                     //$items = mysqli_fetch_assoc($result1);
 
                     //$price_result = mysqli_fetch_assoc($price_sql);
@@ -125,9 +138,9 @@
                             ?>
                             <th id="price">RM <?php echo $price ?></th>
                         </tr>
-                <?php
+            <?php
                     }
-                ?>
+            ?>
                 </tbody>
             </table>
             
@@ -139,11 +152,20 @@
                 <table id="default-text">
                     <tr>
                         <th id="subtotal">Subtotal</th>
-                        <th id="db-subtotal">RM <?php echo $row ["subtotal"]?></th>
+                        <th id="db-subtotal">RM 
+            <?php 
+                                    $subtotal = $row ["subtotal"];
+                                    echo number_format((float)$subtotal, 2, '.', '');
+            ?>
+                        </th>
                     </tr>
                     <tr>
                         <td id="discount">- Discount</td>
-                        <td id="db-discount">RM <?php echo $row ["discount"]?></td>
+                        <td id="db-discount">RM 
+            <?php
+                                    $discount = $row ["discount"];
+                                    echo number_format((float)$discount, 2, '.', '');
+            ?></td>
                     </tr>
                     <tr>
                         <td id="voucher">- Voucher
@@ -171,14 +193,22 @@
                     </tr>
                     <tr>
                         <td id="tax">+Service Tax (6%)</td>
-                        <td id="db-tax">RM <?php echo $tax ?></td>
+            <?php
+                                        $pretax = $subtotal /((6/100)+1);
+                                        $tax = $subtotal - $pretax;
+            ?>
+                        <td id="db-tax">RM <?php echo number_format((float)$tax, 2, '.', '') ?></td>
                     </tr>
                     <tr>
                         <th id="total">Total</th>
-                        <th id="db-total">RM <?php echo $row ["total"]?></th>
+            <?php
+                                        $total_to_pay = $subtotal;
+            ?>
+                        <th id="db-total">RM <?php echo $total_to_pay ?></th>
                     </tr>
                     <tr>
                         <th id="payment-type">Payment method: <?php 
+
                                                                 if(($row ["payment_method"]) == '0'){
                                                                     echo "Cash On Demand(COD)";
 

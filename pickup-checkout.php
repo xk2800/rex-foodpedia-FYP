@@ -591,7 +591,7 @@ echo "<br>".$email;
 
     if(isset($_POST["make_paymentbtn"])){
         
-        $send_type  = "Delivery";
+        $send_type  = "SELF PICK UP";
 
         $contact    = $_POST["contect"];
         $address    = $_POST["address-selection"];
@@ -632,10 +632,20 @@ echo "<br>".$email;
             //$var_value = $_REQUEST['varname'];
             $cardnum                = $pay;
             $pay_transfer           = $pay_total;
-            $_SESSION['cardnum']    = $cardnum;
-            $_SESSION['pay_total']         = $pay_transfer;
+            $delivery_type          = 'pick_up';
+            $payment_type           = $pay_out;
+
+            $_SESSION['cardnum']        = $cardnum;
+            $_SESSION['pay_total']      = $pay_transfer;
+            $_SESSION['delivery_type']  = $delivery_type;
+            $_SESSION['payment_types']  = $payment_type;
+
             $_SESSION['email']      = $email;
             
+/* 
+    TODO: add logic to move from cart to transaction n order_rec table 
+*/
+
             header('location:tac');
         }else{
             echo "failed";
