@@ -32,8 +32,32 @@
 
     <?php
 
-        $result = mysqli_query($connect, "SELECT * from transaction WHERE email = 'xavierkhew00@gmail.com'");
+        $time = time();
+        $actual_time = date('Y-m-d H:i:s', $time);
+
+        $email = "xavierkhew00@gmail.com";
+
+        $result = mysqli_query($connect, "SELECT * from transaction WHERE email = '$email'");
         $row = mysqli_fetch_assoc($result);
+
+        $check_receipt_id = mysqli_query($connect, "SELECT * from transaction ORDER BY receipt_id DESC");
+        $call_receipt_id = mysqli_fetch_assoc($check_receipt_id);
+        
+        $receipt_id_check = $call_receipt_id ["receipt_id"];
+        $number = $receipt_id_check+1;
+        $number = sprintf('%07d',$number);
+        $numbers="0000001";
+        //echo "<br>";
+        //print $number;
+
+        //$add_transaction_id = mysqli_query($connect, "INSERT INTO transaction(receipt_id) VALUES ('$number') WHERE email='$email'");
+        $add_transaction_id = mysqli_query($connect, "UPDATE transaction SET receipt_id='$number' WHERE email='$email' AND date='$actual_time'");
+
+        /*if($add_transaction_id){
+            echo "SET";
+        }*/
+        //$output = $row ["receipt_id"];
+        //echo $output;
 
         $del_pass_address   = $_SESSION['del_address'];
         echo $del_pass_address;
@@ -54,7 +78,8 @@
         <p id="hori-line"><hr></p>
         <p id="receipt title"><b>RECEIPT</b></p>
         <p id="send-type"><b><?php echo $row ["send_type"]?></b></p>
-        <p id="receipt_id"><b>Receipt Number:</b> <?php echo $row ["receipt_id"]?></p>
+<!-- **production changes to be made here -->
+        <p id="receipt_id"><b>Receipt Number:</b> <?php echo $numbers;?></p>
         <p id="date"><b>Date:</b> <?php echo $row ["date"]?></p>
         <p id="hori-line"><hr></p>
         <p id="company-info"><b>From:</b> <?php echo $company_info ?></p>
@@ -63,7 +88,9 @@
         <span class="items">
 
             <?php
-                    $items_sql = mysqli_query($connect, "SELECT * from order_rec WHERE email = 'xavierkhew00@gmail.com'");
+//** */                <!-- production changes to be made here -->
+
+                    $items_sql = mysqli_query($connect, "SELECT * from order_rec WHERE email = 'xavierkhew00@gmail.com' AND trans_id='$number'");
                     //$items = mysqli_fetch_assoc($result1);
 
                     //$price_result = mysqli_fetch_assoc($price_sql);
