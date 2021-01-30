@@ -12,11 +12,11 @@ if(mysqli_connect_errno()){
     echo "Connection Failed".mysqli_connect_error();
     exit;
 }
-
+/*
 if(isset($_SESSION['login_id'])){
     header('Location: home.php');
     exit;
-}
+}*/
 
 require 'google/vendor/autoload.php';
 
