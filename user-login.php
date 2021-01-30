@@ -1,6 +1,7 @@
  <?php
+ ob_start();
 require 'db_connection.php';
-ob_start();
+
 /*
 if(isset($_SESSION['login_id'])){
     header('Location: user-login');
@@ -17,7 +18,7 @@ $client->setClientId('981967059646-u56d1fku9i52fb53rb9o7t6deav37ddq.apps.googleu
 // Enter your Client Secrect
 $client->setClientSecret('_TTBH-saxhTlvSHZVt-COrHw');
 // Enter the Redirect URL
-$client->setRedirectUri('http://localhost/hddocs/rex-foodpedia-FYP/user-login');
+$client->setRedirectUri('https://rex-foodipedia-fyp.herokuapp.com/user-login');
 
 // Adding those scopes which we want to get (email & profile Information)
 $client->addScope("email");
@@ -48,7 +49,7 @@ if(isset($_GET['code'])){
         if(mysqli_num_rows($get_user) > 0){
 
             $_SESSION['login_id'] = $id; 
-            header('Location: menu.php');
+            header('Location: menu');
             exit;
 
         }
@@ -59,7 +60,7 @@ if(isset($_GET['code'])){
 
             if($insert){
                 $_SESSION['login_id'] = $id; 
-                header('Location: menu.php');
+                header('Location: menu');
                 exit;
             }
             else{
@@ -70,7 +71,7 @@ if(isset($_GET['code'])){
 
     }
     else{
-        header('Location: user-login.php');
+        header('Location: user-login');
         exit;
     }
 }
@@ -79,8 +80,6 @@ if(isset($_GET['code'])){
 ?>
 
     
-
-<?php// endif; ?>
 <!DOCTYPE html>
     <html lang="en">
         <head>
