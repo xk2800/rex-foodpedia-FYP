@@ -5,7 +5,7 @@ if(isset($_SESSION['login_id'])){
     header('Location: user-login');
     exit;
 }*/
-/*
+
 require 'google/vendor/autoload.php';
 
 // Creating new google client instance
@@ -79,7 +79,7 @@ if(isset($_GET['code'])){
 
     
 
-<?php// endif; */?>
+<?php// endif; ?>
 <!DOCTYPE html>
     <html lang="en">
         <head>
