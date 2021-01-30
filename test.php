@@ -1,6 +1,16 @@
 <?php
  ob_start();
-require 'db_connection.php';
+ 
+
+ session_start();
+ session_regenerate_id(true);
+ // change the information according to your database
+ $db_connection = mysqli_connect("3.0.146.123","rooting","kHBq2gIsXxoPxTSc","test");
+ // CHECK DATABASE CONNECTION
+ if(mysqli_connect_errno()){
+     echo "Connection Failed".mysqli_connect_error();
+     exit;
+ }
 
 /*
 if(isset($_SESSION['login_id'])){
