@@ -58,7 +58,7 @@ if(isset($_GET['code'])):
         if(mysqli_num_rows($get_user) > 0){
 
             $_SESSION['login_id'] = $id; 
-            header('Location: index.php');
+            header('Location: menu.php');
             exit;
 
         }
@@ -69,7 +69,7 @@ if(isset($_GET['code'])):
 
             if($insert){
                 $_SESSION['login_id'] = $id; 
-                header('Location: index.php');
+                header('Location: menu.php');
                 exit;
             }
             else{
