@@ -103,6 +103,13 @@
         $card_output = mysqli_fetch_assoc($card_result);*/
 
         
+
+        //session carry
+        $delivery_type = $_SESSION['delivery_type'];
+        echo $delivery_type;
+
+        $payment_type = $_SESSION['payment_types'];
+        echo $payment_type;
 ?>
 
     <br><br>
