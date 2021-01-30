@@ -1,11 +1,11 @@
 <?php
 ob_start();
 require 'db_connection.php';
-
+/*
 if(isset($_SESSION['login_id'])){
     header('Location: home.php');
     exit;
-}
+}*/
 
 require 'vendor/autoload.php';
 
