@@ -1,4 +1,5 @@
  <?php
+ ob_start();
 require 'db_connection.php';
 ob_start();
 /*
@@ -79,8 +80,6 @@ if(isset($_GET['code'])){
 ?>
 
     
-
-<?php// endif; ?>
 <!DOCTYPE html>
     <html lang="en">
         <head>
