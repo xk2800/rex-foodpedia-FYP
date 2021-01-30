@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require 'db_connection.php';
 
 if(isset($_SESSION['login_id'])){
