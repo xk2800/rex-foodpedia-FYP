@@ -280,7 +280,7 @@ if(isset($_GET['code'])){
                                 <input type="password" class="form-control" id="card-pass-login" placeholder="Password" style="margin-bottom: 30px;" name="password_login" required>
                             </div>
                             <div id="card-misc">
-                                <a href="#" style="float: left; padding-left: 20px;">Forgot password ?</a>
+                                <a href="forgot-password.php" style="float: left; padding-left: 20px;">Forgot password ?</a>
                             </div>
                             <div id="card-login-button">
                                 <button type="submit" name="loginbtn" class="btn btn-dark btn-block">Login</button>

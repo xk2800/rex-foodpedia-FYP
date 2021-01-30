@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-    <html>
+
+<?php
+    include("db-connect.php");
+    include("db_connection.php");
+?>
+    <html lang="en">
         <head>
             <title>Feedback | REX Foodipedia</title>
             <meta charset="UTF-8">
@@ -53,7 +58,14 @@
         <body style="background-color: #e8ded2;">
             
             <?php
-                include("nav.html");
+                include("nav.html"); 
+            ?>
+
+            <?php 
+                $email = $_SESSION["email"];
+
+                $rating_check_query = mysqli_query($connect, "SELECT * FROM user_rating WHERE email = '$email' ");
+                $row = mysqli_fetch_assoc($rating_check_query);
             ?>
 
             <div class="container">
@@ -62,20 +74,60 @@
                         <h4 class="card-title" id="card-title-rating">Send us some feedback!</h4>
                         <p class="card-text" id="card-desc-rating">Found a bug? Have a suggestion? Fill out the form below and<br/>we will take a look!</p>
                     </div>
+                    
+                    
                     <div class="card-body" id="card-whole-rating">    
-                        <form>
+                        <form name="user_rating_form" method="POST" onsubmit="return alert('Your feedback had been sent to us, thank you!');">
                             <div class="md-form">
-                                <textarea id="card-textarea-rating" class="md-textarea form-control" rows="3" placeholder="Enter your feedback here!"></textarea>
+                                <textarea id="card-textarea-rating" class="md-textarea form-control" rows="3" placeholder="Enter your feedback here!" name="text_rating" value="<?php echo $row["comment"];?>"></textarea>
                             </div>
                             
                             <div class="form-check">
-                                <label class="radio-inline" id="card-radio-desc-rating"><input id="card-radio-rating" type="radio" name="optradio" value="bug" checked>Bug</label>
-                                <label class="radio-inline" id="card-radio-desc-rating"><input id="card-radio-rating" type="radio" name="optradio" value="comment">Comment</label>
-                                <label class="radio-inline" id="card-radio-desc-rating"><input id="card-radio-rating" type="radio" name="optradio" value="others">Others</label>
+                                <label class="radio-inline" id="card-radio-desc-rating"><input id="card-radio-rating" type="radio" name="rating_radio" value=1 >Bug</label>
+                                <label class="radio-inline" id="card-radio-desc-rating"><input id="card-radio-rating" type="radio" name="rating_radio" value=2>Comment</label>
+                                <label class="radio-inline" id="card-radio-desc-rating"><input id="card-radio-rating" type="radio" name="rating_radio" value=3>Others</label>
                             </div>
-                            <a href="#" class="btn btn-primary" style="margin:10px 20px 0px 20px; float:right;">Send Feedback</a>
+
+                            <button type="submit" class="btn btn-primary" style="margin:10px 20px 0px 20px; float:right;" name="feedback_button">Send Feedback</a>
                         </form>
+                    </div>
                 </div>
+                
+                <?php 
+                //to verify if the session is passed
+                    //if($email) {
+                        //echo 'passed';
+                    //} else {
+                        //echo 'failed';
+                    //}
+                ?>
+
+                <?php 
+                   if(isset($_POST['feedback_button'])) {
+                       $var_text_rating = $_POST['text_rating'];
+                       $var_rating_radio = $_POST['rating_radio'];
+
+                       if(isset($_POST['rating_radio'])) {
+                            
+                            if($var_rating_radio == 1) {
+                                $value_rating_button = "Bug";
+                            } else if($var_rating_radio == 2) {
+                                $value_rating_button = "Comment";
+                            } else if($var_rating_radio == 3) {
+                                $value_rating_button = "Others";
+                            }
+                       }
+
+                        $rating_query = mysqli_query($connect, "INSERT INTO user_rating (email, comment, radio_button) VALUES ('$email', '$var_text_rating', '$value_rating_button')");
+                   }  
+                ?>
+
+                <script>
+                    function alertMsg() {
+                        alert("Your feedback had been sent to us, thank you!");
+                    }
+                </script>
+
             </div>
         
             <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
