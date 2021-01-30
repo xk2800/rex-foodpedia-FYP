@@ -14,9 +14,9 @@ require 'google/vendor/autoload.php';
 $client = new Google_Client();
 
 // Enter your Client ID
-$client->setClientId('255375636706-1aeoh6ugbffmje3kp6gcagdek73saa8r.apps.googleusercontent.com');
+$client->setClientId('742809127078-hqo1nv9dnofnpslrpantsj82lg06bbc9.apps.googleusercontent.com');
 // Enter your Client Secrect
-$client->setClientSecret('dW7Fwjn_XfcYcxM86aq6qaHu');
+$client->setClientSecret('BFRvg1hEBJtDO4hBc5Ugl1v_');
 // Enter the Redirect URL
 $client->setRedirectUri('https://rex-foodipedia-fyp.herokuapp.com/test.php');
 
