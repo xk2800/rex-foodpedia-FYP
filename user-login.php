@@ -25,7 +25,7 @@ $client->addScope("email");
 $client->addScope("profile");
 
 
-if(isset($_GET['code'])){
+if(isset($_GET['code'])):
 
     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
 
@@ -74,7 +74,7 @@ if(isset($_GET['code'])){
         header('Location: user-login');
         exit;
     }
-}
+else:
 
     // Google Login Url = $client->createAuthUrl(); 
 ?>
@@ -359,3 +359,4 @@ if(isset($_GET['code'])){
 </html>
 
 
+<?php endif; ?>
