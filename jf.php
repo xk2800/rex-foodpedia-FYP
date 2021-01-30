@@ -18,7 +18,7 @@ if(isset($_SESSION['login_id'])){
     exit;
 }
 
-require 'vendor/autoload.php';
+require 'google/vendor/autoload.php';
 
 // Creating new google client instance
 $client = new Google_Client();
