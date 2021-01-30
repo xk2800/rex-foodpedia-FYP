@@ -121,13 +121,7 @@
                         $rating_query = mysqli_query($connect, "INSERT INTO user_rating (email, comment, radio_button) VALUES ('$email', '$var_text_rating', '$value_rating_button')");
                    }  
                 ?>
-
-                <script>
-                    function alertMsg() {
-                        alert("Your feedback had been sent to us, thank you!");
-                    }
-                </script>
-
+                
             </div>
         
             <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
