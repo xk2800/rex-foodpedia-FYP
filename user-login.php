@@ -49,7 +49,7 @@ if(isset($_GET['code'])){
         if(mysqli_num_rows($get_user) > 0){
 
             $_SESSION['login_id'] = $id; 
-            header('Location: menu.');
+            header('Location: menu');
             exit;
 
         }
