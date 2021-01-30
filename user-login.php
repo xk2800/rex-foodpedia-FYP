@@ -28,7 +28,7 @@ $client->setClientId('981967059646-u56d1fku9i52fb53rb9o7t6deav37ddq.apps.googleu
 // Enter your Client Secrect
 $client->setClientSecret('_TTBH-saxhTlvSHZVt-COrHw');
 // Enter the Redirect URL
-$client->setRedirectUri('https://test-google-api-xk.herokuapp.com/add.php');
+$client->setRedirectUri('https://rex-foodipedia-fyp.herokuapp.com/user-login.php');
 
 // Adding those scopes which we want to get (email & profile Information)
 $client->addScope("email");
@@ -58,7 +58,7 @@ if(isset($_GET['code'])):
         if(mysqli_num_rows($get_user) > 0){
 
             $_SESSION['login_id'] = $id; 
-            header('Location: db_connection.php');
+            header('Location: index.php');
             exit;
 
         }
@@ -69,7 +69,7 @@ if(isset($_GET['code'])):
 
             if($insert){
                 $_SESSION['login_id'] = $id; 
-                header('Location: db_connection.php');
+                header('Location: index.php');
                 exit;
             }
             else{
