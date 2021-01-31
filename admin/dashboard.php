@@ -14,10 +14,9 @@
 </head>
 <body>
     <?php
-$admin_username = $_SESSION['admin_username'];
+$admin_username = $_SESSION['adminuname'];
 echo $admin_username;
 
-echo "<br>hello";
 
     ?>
 </body>
