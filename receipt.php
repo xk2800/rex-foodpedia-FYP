@@ -32,9 +32,7 @@
 
     <?php
 
-        //session carry
-        //$delivery_type = $_SESSION['delivery_type'];
-        //echo $delivery_type;
+        
 
         $time = time();
         $actual_time = date('Y-m-d H:i:s', $time);
@@ -55,7 +53,7 @@
         //print $number;
 
         //$add_transaction_id = mysqli_query($connect, "INSERT INTO transaction(receipt_id) VALUES ('$number') WHERE email='$email'");
-        $add_transaction_id = mysqli_query($connect, "UPDATE transaction SET receipt_id='$number' WHERE email='$email' AND date='$actual_time'");
+        $add_transaction_id = mysqli_query($connect, "UPDATE transaction SET receipt_id='$numbers' WHERE email='$email' AND date='$actual_time'");
 
         /*if($add_transaction_id){
             echo "SET";
@@ -69,9 +67,17 @@
         $company_info = "REX Foodipedia";
 
         //echo $row["subtotal"];
-        $tax = 0.06 * $row["subtotal"];
+        /*font$tax = 0.06 * $row["subtotal"];
         $grand_total = $tax + $row["subtotal"];
-        echo "RM ".$grand_total;
+        echo "RM ".$grand_total;*/
+
+        //session carry
+        //$delivery_type = $_SESSION['delivery_type'];
+        //echo $delivery_type;
+
+
+        $delivery_type      = $row["send_type"];
+        $del_pass_address   = $row["address"];
     ?>
 
     <div class="container">
@@ -81,17 +87,17 @@
         <img src="img/logo/logo.png" alt="REX Foodipedia Logo" id="logo">
         <p id="hori-line"><hr></p>
         <p id="receipt title"><b>RECEIPT</b></p>
-        <p id="send-type"><b><?php echo $row ["send_type"]?></b></p>
+        <p id="send-type"><b><?php echo $delivery_type ?></b></p>
 <!-- **production changes to be made here -->
         <p id="receipt_id"><b>Receipt Number:</b> <?php echo $numbers;?></p>
         <p id="date"><b>Date:</b> <?php echo $row ["date"]?></p>
         <p id="hori-line"><hr></p>
         <p id="company-info"><b>From:</b> <?php echo $company_info ?></p>
-        <p id="cust-address"><b><?php  echo $row["send_type"]; ?></b>
+        <p id="cust-address"><b><?php  ; ?></b>
     <?php
-            if($delivery_type == 'pick_up'){
+            if($delivery_type == 'Self Pick Up'){
                 echo "<b>Self Pick Up</b>";
-            }else if($delivery_type == 'delivery'){
+            }else if($delivery_type == 'Delivery'){
                 echo "<b>Delivery Address:</b>".$del_pass_address;
             }else{
 

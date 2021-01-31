@@ -591,7 +591,7 @@ echo "<br>".$email;
 
     if(isset($_POST["make_paymentbtn"])){
         
-        $send_type  = "SELF PICK UP";
+        $send_type  = "Self Pick Up";
 
         $contact    = $_POST["contect"];
         $address    = $_POST["address-selection"];
@@ -630,17 +630,17 @@ echo "<br>".$email;
 
             //Using GET, POST or COOKIE.
             //$var_value = $_REQUEST['varname'];
-            $cardnum                = $pay;
-            $pay_transfer           = $pay_total;
-            $delivery_type          = 'pick_up';
-            $payment_type           = $pay_out;
+            $cardnum                    = $pay;
+            $pay_transfer               = $pay_total;
+            $delivery_type              = 'pick_up';
+            $payment_type               = $pay_out;
 
             $_SESSION['cardnum']        = $cardnum;
             $_SESSION['pay_total']      = $pay_transfer;
             $_SESSION['delivery_type']  = $delivery_type;
             $_SESSION['payment_types']  = $payment_type;
 
-            $_SESSION['email']      = $email;
+            $_SESSION['email']          = $email;
             
 /* 
     TODO: add logic to move from cart to transaction n order_rec table 

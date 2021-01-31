@@ -652,11 +652,13 @@ echo "<br>".$email;
             $pay_transfer               = $pay_total;
             $del_address                = $address;
             $delivery_type              = 'delivery';
+            $payment_type               = $pay_out;
 
             $_SESSION['cardnum']        = $cardnum;
             $_SESSION['pay_total']      = $pay_transfer;
             $_SESSION['del_address']    = $del_address;
             $_SESSION['delivery_type']  = $delivery_type;
+            $_SESSION['payment_types']  = $payment_type;
 
             $_SESSION['email']          = $email;
             
