@@ -191,7 +191,10 @@ if(isset($_POST["loginbtn"])){
         } else{
 
             if(mysqli_num_rows($staff_result)>0){
-                header("location: dashboard");
+                session_start();
+                $staff_username         = $staff_uname;
+                $_SESSION['staffuname'] = $staff_username;
+                header("location: ../staff/dashboard.php");
                 //echo "test";
             }else{
                 header("location: index?incorrect+credentials");
@@ -207,6 +210,9 @@ if(isset($_POST["loginbtn"])){
         } else{
 
             if(mysqli_num_rows($admin_result)>0){
+                session_start();
+                $admin_username = $admin_uname;
+                $_SESSION['adminuname'] = $admin_username;
                 header("location: dashboard");
                 //echo "test";
             }else{

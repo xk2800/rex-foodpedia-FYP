@@ -32,18 +32,52 @@
 
     <?php
 
-        $result = mysqli_query($connect, "SELECT * from transaction WHERE email = 'xavierkhew00@gmail.com'");
+        
+
+        $time = time();
+        $actual_time = date('Y-m-d H:i:s', $time);
+
+        $email = "xavierkhew00@gmail.com";
+
+        $result = mysqli_query($connect, "SELECT * from transaction WHERE email = '$email'");
         $row = mysqli_fetch_assoc($result);
 
-        $del_pass_address   = $_SESSION['del_address'];
-        echo $del_pass_address;
+        $check_receipt_id = mysqli_query($connect, "SELECT * from transaction ORDER BY receipt_id DESC");
+        $call_receipt_id = mysqli_fetch_assoc($check_receipt_id);
+        
+        $receipt_id_check = $call_receipt_id ["receipt_id"];
+        $number = $receipt_id_check+1;
+        $number = sprintf('%07d',$number);
+        $numbers="0000001";
+        //echo "<br>";
+        //print $number;
+
+        //$add_transaction_id = mysqli_query($connect, "INSERT INTO transaction(receipt_id) VALUES ('$number') WHERE email='$email'");
+        $add_transaction_id = mysqli_query($connect, "UPDATE transaction SET receipt_id='$numbers' WHERE email='$email' AND date='$actual_time'");
+
+        /*if($add_transaction_id){
+            echo "SET";
+        }*/
+        //$output = $row ["receipt_id"];
+        //echo $output;
+
+        //$del_pass_address   = $_SESSION['del_address'];
+        //echo $del_pass_address;
 
         $company_info = "REX Foodipedia";
 
         //echo $row["subtotal"];
-        $tax = 0.06 * $row["subtotal"];
+        /*font$tax = 0.06 * $row["subtotal"];
         $grand_total = $tax + $row["subtotal"];
-        echo "RM ".$grand_total;
+        echo "RM ".$grand_total;*/
+
+        //session carry
+        //$delivery_type = $_SESSION['delivery_type'];
+        //echo $delivery_type;
+
+
+        $delivery_type      = $row["send_type"];
+        $del_pass_address   = $row["address"];
     ?>
 
     <div class="container">
@@ -53,17 +87,29 @@
         <img src="img/logo/logo.png" alt="REX Foodipedia Logo" id="logo">
         <p id="hori-line"><hr></p>
         <p id="receipt title"><b>RECEIPT</b></p>
-        <p id="send-type"><b><?php echo $row ["send_type"]?></b></p>
-        <p id="receipt_id"><b>Receipt Number:</b> <?php echo $row ["receipt_id"]?></p>
+        <p id="send-type"><b><?php echo $delivery_type ?></b></p>
+<!-- **production changes to be made here -->
+        <p id="receipt_id"><b>Receipt Number:</b> <?php echo $numbers;?></p>
         <p id="date"><b>Date:</b> <?php echo $row ["date"]?></p>
         <p id="hori-line"><hr></p>
         <p id="company-info"><b>From:</b> <?php echo $company_info ?></p>
-        <p id="cust-address"><b>Delivery Address:</b> <?php echo $del_pass_address ?></p>
+        <p id="cust-address"><b><?php  ; ?></b>
+    <?php
+            if($delivery_type == 'Self Pick Up'){
+                echo "<b>Self Pick Up</b>";
+            }else if($delivery_type == 'Delivery'){
+                echo "<b>Delivery Address:</b>".$del_pass_address;
+            }else{
+
+            }
+    ?>
+            </p>
 
         <span class="items">
 
             <?php
-                    $items_sql = mysqli_query($connect, "SELECT * from order_rec WHERE email = 'xavierkhew00@gmail.com'");
+//** */                <!-- production changes to be made here -->
+                    $items_sql = mysqli_query($connect, "SELECT * from order_rec WHERE email = 'xavierkhew00@gmail.com' AND trans_id='$numbers'");
                     //$items = mysqli_fetch_assoc($result1);
 
                     //$price_result = mysqli_fetch_assoc($price_sql);
@@ -98,9 +144,9 @@
                             ?>
                             <th id="price">RM <?php echo $price ?></th>
                         </tr>
-                <?php
+            <?php
                     }
-                ?>
+            ?>
                 </tbody>
             </table>
             
@@ -112,11 +158,20 @@
                 <table id="default-text">
                     <tr>
                         <th id="subtotal">Subtotal</th>
-                        <th id="db-subtotal">RM <?php echo $row ["subtotal"]?></th>
+                        <th id="db-subtotal">RM 
+            <?php 
+                                    $subtotal = $row ["subtotal"];
+                                    echo number_format((float)$subtotal, 2, '.', '');
+            ?>
+                        </th>
                     </tr>
                     <tr>
                         <td id="discount">- Discount</td>
-                        <td id="db-discount">RM <?php echo $row ["discount"]?></td>
+                        <td id="db-discount">RM 
+            <?php
+                                    $discount = $row ["discount"];
+                                    echo number_format((float)$discount, 2, '.', '');
+            ?></td>
                     </tr>
                     <tr>
                         <td id="voucher">- Voucher
@@ -144,14 +199,22 @@
                     </tr>
                     <tr>
                         <td id="tax">+Service Tax (6%)</td>
-                        <td id="db-tax">RM <?php echo $tax ?></td>
+            <?php
+                                        $pretax = $subtotal /((6/100)+1);
+                                        $tax = $subtotal - $pretax;
+            ?>
+                        <td id="db-tax">RM <?php echo number_format((float)$tax, 2, '.', '') ?></td>
                     </tr>
                     <tr>
                         <th id="total">Total</th>
-                        <th id="db-total">RM <?php echo $row ["total"]?></th>
+            <?php
+                                        $total_to_pay = $subtotal;
+            ?>
+                        <th id="db-total">RM <?php echo $total_to_pay ?></th>
                     </tr>
                     <tr>
                         <th id="payment-type">Payment method: <?php 
+
                                                                 if(($row ["payment_method"]) == '0'){
                                                                     echo "Cash On Demand(COD)";
 

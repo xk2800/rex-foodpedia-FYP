@@ -1,8 +1,9 @@
- <?php
+<?php
 require 'db_connection.php';
+
 /*
 if(isset($_SESSION['login_id'])){
-    header('Location: user-login');
+    header('Location: home.php');
     exit;
 }*/
 
@@ -16,14 +17,14 @@ $client->setClientId('981967059646-u56d1fku9i52fb53rb9o7t6deav37ddq.apps.googleu
 // Enter your Client Secrect
 $client->setClientSecret('_TTBH-saxhTlvSHZVt-COrHw');
 // Enter the Redirect URL
-$client->setRedirectUri('http://localhost/hddocs/rex-foodpedia-FYP/user-login');
+$client->setRedirectUri('https://rex-foodipedia-fyp.herokuapp.com/user-login.php');
 
 // Adding those scopes which we want to get (email & profile Information)
 $client->addScope("email");
 $client->addScope("profile");
 
 
-if(isset($_GET['code'])){
+if(isset($_GET['code'])):
 
     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
 
@@ -40,7 +41,6 @@ if(isset($_GET['code'])){
         $full_name = mysqli_real_escape_string($db_connection, trim($google_account_info->name));
         $email = mysqli_real_escape_string($db_connection, $google_account_info->email);
         $profile_pic = mysqli_real_escape_string($db_connection, $google_account_info->picture);
-        $verified = "1";
 
         // checking user already exists or not
         $get_user = mysqli_query($db_connection, "SELECT `google_id` FROM `user_acc` WHERE `google_id`='$id'");
@@ -53,8 +53,8 @@ if(isset($_GET['code'])){
         }
         else{
 
-            /// if user not exists we will insert the user
-            $insert = mysqli_query($db_connection, "INSERT INTO `user_acc`(`google_id`,`name`,`email`,`profile_image`, `verified`) VALUES('$id','$full_name','$email','$profile_pic', '$verified')");
+            // if user not exists we will insert the user
+            $insert = mysqli_query($db_connection, "INSERT INTO `user_acc`(`google_id`,`name`,`email`,`profile_image`) VALUES('$id','$full_name','$email','$profile_pic')");
 
             if($insert){
                 $_SESSION['login_id'] = $id; 
@@ -69,17 +69,15 @@ if(isset($_GET['code'])){
 
     }
     else{
-        header('Location: user-login.php');
+        header('Location: login.php');
         exit;
     }
-}
-
+    
+else: 
     // Google Login Url = $client->createAuthUrl(); 
 ?>
 
     
-
-<?php// endif; ?>
 <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -273,13 +271,13 @@ if(isset($_GET['code'])){
                     <div id="card-input-login">
                         <form name="login-form" method="POST">
                             <div class="form-group">
-                                <input type="email" class="form-control" id="card-email-login" aria-describedby="emailHelp" placeholder="Enter email" style="margin-bottom: 40px;" name="email_login">
+                                <input type="email" class="form-control" id="card-email-login" aria-describedby="emailHelp" placeholder="Enter email" style="margin-bottom: 40px;" name="email_login" required>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" id="card-pass-login" placeholder="Password" style="margin-bottom: 30px;" name="password_login">
+                                <input type="password" class="form-control" id="card-pass-login" placeholder="Password" style="margin-bottom: 30px;" name="password_login" required>
                             </div>
                             <div id="card-misc">
-                                <a href="#" style="float: left; padding-left: 20px;">Forgot password ?</a>
+                                <a href="forgot-password.php" style="float: left; padding-left: 20px;">Forgot password ?</a>
                             </div>
                             <div id="card-login-button">
                                 <button type="submit" name="loginbtn" class="btn btn-dark btn-block">Login</button>
@@ -287,7 +285,7 @@ if(isset($_GET['code'])){
                         </form>
                     </div>
                     <div id="card-misc2">
-                        <a href="https://www.youtube.com/?gl=US" style="text-align: center; padding-bottom:60px;">No account yet ? Create one</a>
+                        <a href="user-register.php" style="text-align: center; padding-bottom:60px;">No account yet ? Create one</a>
                     </div>
                 </div>
 
@@ -318,18 +316,19 @@ if(isset($_GET['code'])){
     </body>
 
     <?php 
-        
+
         if(isset($_POST["loginbtn"])) {
 
             $var_email_login = trim($_POST["email_login"]);
             $var_password_login = trim($_POST["password_login"]);
+            
+            $salted_var_password_login = md5($var_password_login);
 
             if(!empty($var_email_login) && !empty($var_password_login)) {
                 
                 include("db-connect.php");
                 
                 $query_user_login = mysqli_query($connect, "SELECT email, password FROM user_acc WHERE email = '$var_email_login'");
-                
                 $numrows = mysqli_num_rows($query_user_login);
 
                 if($numrows != 0) {
@@ -338,21 +337,24 @@ if(isset($_GET['code'])){
                         $db_password_login = $row['password'];
                     }
 
-                    if($var_email_login == $db_email_login && password_verify($var_password_login, $db_password_login)) {
+                    if($var_email_login == $db_email_login &&  $salted_var_password_login == $db_password_login) {
+                        //start_session();
+                        $_SESSION["email"] = $var_email_login;
+                        
                         echo "<script>
                                 alert('Login Successfully');       
-                                location.href = 'index.php';
-                              </script>";    
+                                location.href = 'user-profile.php';
+                              </script>";
+                                
                     } else {  
                         echo "Incorrect credientials, please try again";
                     }   
-                }
+                } 
             }    
 
-        } else {
-            echo "All fields are required!";
         } 
     ?>
 </html>
 
 
+<?php endif; ?>

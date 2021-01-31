@@ -2,6 +2,7 @@
 
 <dl>
   <dt>Homepage</dt><dd><a href="http://www.github.com/google/google-auth-library-php">http://www.github.com/google/google-auth-library-php</a></dd>
+  <dt>Reference Docs</dt><dd><a href="https://googleapis.github.io/google-auth-library-php/master/">https://googleapis.github.io/google-auth-library-php/master/</a></dd>
   <dt>Authors</dt>
     <dd><a href="mailto:temiola@google.com">Tim Emiola</a></dd>
     <dd><a href="mailto:stanleycheung@google.com">Stanley Cheung</a></dd>
@@ -47,8 +48,8 @@ you're building an application that uses Google Compute Engine.
 #### Download your Service Account Credentials JSON file
 
 To use `Application Default Credentials`, You first need to download a set of
-JSON credentials for your project. Go to **APIs & Auth** > **Credentials** in
-the [Google Developers Console](developer console) and select
+JSON credentials for your project. Go to **APIs & Services** > **Credentials** in
+the [Google Developers Console][developer console] and select
 **Service account** from the **Add credentials** dropdown.
 
 > This file is your *only copy* of these credentials. It should never be
@@ -68,7 +69,7 @@ putenv('GOOGLE_APPLICATION_CREDENTIALS=/path/to/my/credentials.json');
 
 Before making your API call, you must be sure the API you're calling has been
 enabled. Go to **APIs & Auth** > **APIs** in the
-[Google Developers Console](developer console) and enable the APIs you'd like to
+[Google Developers Console][developer console] and enable the APIs you'd like to
 call. For the example below, you must enable the `Drive API`.
 
 #### Call the APIs
@@ -95,7 +96,7 @@ $stack->push($middleware);
 // create the HTTP client
 $client = new Client([
   'handler' => $stack,
-  'base_url' => 'https://www.googleapis.com',
+  'base_uri' => 'https://www.googleapis.com',
   'auth' => 'google_auth'  // authorize all requests
 ]);
 
@@ -106,18 +107,99 @@ $response = $client->get('drive/v2/files');
 print_r((string) $response->getBody());
 ```
 
-## What about auth in google-apis-php-client?
+##### Guzzle 5 Compatibility
 
-The goal is for auth done by
-[google-apis-php-client][google-apis-php-client] to be be performed
-by this library.
+If you are using [Guzzle 5][Guzzle 5], replace the `create middleware` and
+`create the HTTP Client` steps with the following:
 
-Eventually, google-apis-php-client should have a dependency on this library.
-At the moment, there is no ETA for this, a key prequisite being for google-apis-php-client
-itself take a dependency on [Guzzle][Guzzle] so that it can use the Guzzle
-subscribers that this package provides. That's currently [being discussed](http://github.com/google/google-api-php-client#473).
-This package's availability should make that transition simpler as there is one
-less thing that need to be handled.
+```php
+// create the HTTP client
+$client = new Client([
+  'base_url' => 'https://www.googleapis.com',
+  'auth' => 'google_auth'  // authorize all requests
+]);
+
+// create subscriber
+$subscriber = ApplicationDefaultCredentials::getSubscriber($scopes);
+$client->getEmitter()->attach($subscriber);
+```
+
+#### Call using an ID Token
+If your application is running behind Cloud Run, or using Cloud Identity-Aware
+Proxy (IAP), you will need to fetch an ID token to access your application. For
+this, use the static method `getIdTokenMiddleware` on
+`ApplicationDefaultCredentials`.
+
+```php
+use Google\Auth\ApplicationDefaultCredentials;
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+
+// specify the path to your application credentials
+putenv('GOOGLE_APPLICATION_CREDENTIALS=/path/to/my/credentials.json');
+
+// Provide the ID token audience. This can be a Client ID associated with an IAP application,
+// Or the URL associated with a CloudRun App
+//    $targetAudience = 'IAP_CLIENT_ID.apps.googleusercontent.com';
+//    $targetAudience = 'https://service-1234-uc.a.run.app';
+$targetAudience = 'YOUR_ID_TOKEN_AUDIENCE';
+
+// create middleware
+$middleware = ApplicationDefaultCredentials::getIdTokenMiddleware($targetAudience);
+$stack = HandlerStack::create();
+$stack->push($middleware);
+
+// create the HTTP client
+$client = new Client([
+  'handler' => $stack,
+  'auth' => 'google_auth',
+  // Cloud Run, IAP, or custom resource URL
+  'base_uri' => 'https://YOUR_PROTECTED_RESOURCE',
+]);
+
+// make the request
+$response = $client->get('/');
+
+// show the result!
+print_r((string) $response->getBody());
+```
+
+For invoking Cloud Run services, your service account will need the
+[`Cloud Run Invoker`](https://cloud.google.com/run/docs/authenticating/service-to-service)
+IAM permission.
+
+For invoking Cloud Identity-Aware Proxy, you will need to pass the Client ID
+used when you set up your protected resource as the target audience. See how to
+[secure your IAP app with signed headers](https://cloud.google.com/iap/docs/signed-headers-howto).
+
+#### Verifying JWTs
+
+If you are [using Google ID tokens to authenticate users][google-id-tokens], use
+the `Google\Auth\AccessToken` class to verify the ID token:
+
+```php
+use Google\Auth\AccessToken;
+
+$auth = new AccessToken();
+$auth->verify($idToken);
+```
+
+If your app is running behind [Google Identity-Aware Proxy][iap-id-tokens]
+(IAP), you can verify the ID token coming from the IAP server by pointing to the
+appropriate certificate URL for IAP. This is because IAP signs the ID
+tokens with a different key than the Google Identity service:
+
+```php
+use Google\Auth\AccessToken;
+
+$auth = new AccessToken();
+$auth->verify($idToken, [
+  'certsLocation' => AccessToken::IAP_CERT_URL
+]);
+```
+
+[google-id-tokens]: https://developers.google.com/identity/sign-in/web/backend-auth
+[iap-id-tokens]: https://cloud.google.com/iap/docs/signed-headers-howto
 
 ## License
 
@@ -138,7 +220,8 @@ about the client or APIs on [StackOverflow](http://stackoverflow.com).
 
 [google-apis-php-client]: https://github.com/google/google-api-php-client
 [application default credentials]: https://developers.google.com/accounts/docs/application-default-credentials
-[contributing]: https://github.com/google/google-auth-library-php/tree/master/CONTRIBUTING.md
+[contributing]: https://github.com/google/google-auth-library-php/tree/master/.github/CONTRIBUTING.md
 [copying]: https://github.com/google/google-auth-library-php/tree/master/COPYING
 [Guzzle]: https://github.com/guzzle/guzzle
+[Guzzle 5]: http://docs.guzzlephp.org/en/5.3
 [developer console]: https://console.developers.google.com

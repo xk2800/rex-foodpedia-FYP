@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+<?php
+    include "../db-connect.php"; 
+?>
     <html>
         <head>
             <title>Edit Food Menu Details | REX Foodipedia</title>
@@ -63,6 +67,11 @@
             <?php
                 include("navbar.html");
             ?>
+
+            <?php
+                //session is carried from staff/index.php
+                $staff_username = $_SESSION['staff_username'];
+            ?>    
 
             <div class="container">
                 <div class="card" id="card-whole-edit-menu">

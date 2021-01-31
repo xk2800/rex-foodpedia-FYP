@@ -136,13 +136,9 @@
                 $var_password = $_POST["pass"];
                 $var_cfrmpassword = $_POST["cfrmpass"];
                 $var_contact = $_POST["contact"];
-                $var_address1 = $_POST["address1"];
-                $var_address2 = $_POST["address2"];
-                $var_city = $_POST["city"];
-                $var_state = $_POST["state"];
-                $var_zip = $_POST["zip"];
 
-                $salted_pass = password_hash($var_password, PASSWORD_BCRYPT);
+                //$salted_pass = password_hash($var_password, PASSWORD_BCRYPT);
+                $salted_pass = md5($var_password);
 
                 if($var_password != $var_cfrmpassword) {
                      echo " <script> 
