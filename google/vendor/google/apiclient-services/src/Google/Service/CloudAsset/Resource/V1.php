@@ -249,19 +249,22 @@ class Google_Service_CloudAsset_Resource_V1 extends Google_Service_Resource
    * doc](https://cloud.google.com/iam/docs/policies#structure). Examples: *
    * `policy:amy@gmail.com` to find IAM policy bindings that specify user
    * "amy@gmail.com". * `policy:roles/compute.admin` to find IAM policy bindings
-   * that specify the Compute Admin role. *
+   * that specify the Compute Admin role. * `policy:comp*` to find IAM policy
+   * bindings that contain "comp" as a prefix of any word in the binding. *
    * `policy.role.permissions:storage.buckets.update` to find IAM policy bindings
    * that specify a role containing "storage.buckets.update" permission. Note that
    * if callers don't have `iam.roles.get` access to a role's included
    * permissions, policy bindings that specify this role will be dropped from the
-   * search results. * `resource:organizations/123456` to find IAM policy bindings
-   * that are set on "organizations/123456". *
+   * search results. * `policy.role.permissions:upd*` to find IAM policy bindings
+   * that specify a role containing "upd" as a prefix of any word in the role
+   * permission. Note that if callers don't have `iam.roles.get` access to a
+   * role's included permissions, policy bindings that specify this role will be
+   * dropped from the search results. * `resource:organizations/123456` to find
+   * IAM policy bindings that are set on "organizations/123456". *
    * `resource=//cloudresourcemanager.googleapis.com/projects/myproject` to find
    * IAM policy bindings that are set on the project named "myproject". *
    * `Important` to find IAM policy bindings that contain "Important" as a word in
-   * any of the searchable fields (except for the included permissions). * `*por*`
-   * to find IAM policy bindings that contain "por" as a substring in any of the
-   * searchable fields (except for the included permissions). *
+   * any of the searchable fields (except for the included permissions). *
    * `resource:(instance1 OR instance2) policy:amy` to find IAM policy bindings
    * that are set on resources "instance1" or "instance2" and also specify user
    * "amy".
@@ -325,17 +328,15 @@ class Google_Service_CloudAsset_Resource_V1 extends Google_Service_Resource
    * Examples: * `name:Important` to find Cloud resources whose name contains
    * "Important" as a word. * `name=Important` to find the Cloud resource whose
    * name is exactly "Important". * `displayName:Impor*` to find Cloud resources
-   * whose display name contains "Impor" as a prefix. * `description:*por*` to
-   * find Cloud resources whose description contains "por" as a substring. *
-   * `location:us-west*` to find Cloud resources whose location is prefixed with
-   * "us-west". * `labels:prod` to find Cloud resources whose labels contain
-   * "prod" as a key or value. * `labels.env:prod` to find Cloud resources that
-   * have a label "env" and its value is "prod". * `labels.env:*` to find Cloud
-   * resources that have a label "env". * `Important` to find Cloud resources that
-   * contain "Important" as a word in any of the searchable fields. * `Impor*` to
-   * find Cloud resources that contain "Impor" as a prefix in any of the
-   * searchable fields. * `*por*` to find Cloud resources that contain "por" as a
-   * substring in any of the searchable fields. * `Important location:(us-west1 OR
+   * whose display name contains "Impor" as a prefix of any word in the field. *
+   * `location:us-west*` to find Cloud resources whose location contains both "us"
+   * and "west" as prefixes. * `labels:prod` to find Cloud resources whose labels
+   * contain "prod" as a key or value. * `labels.env:prod` to find Cloud resources
+   * that have a label "env" and its value is "prod". * `labels.env:*` to find
+   * Cloud resources that have a label "env". * `Important` to find Cloud
+   * resources that contain "Important" as a word in any of the searchable fields.
+   * * `Impor*` to find Cloud resources that contain "Impor" as a prefix of any
+   * word in any of the searchable fields. * `Important location:(us-west1 OR
    * global)` to find Cloud resources that contain "Important" as a word in any of
    * the searchable fields and are also located in the "us-west1" region or the
    * "global" location.

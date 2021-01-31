@@ -1,10 +1,9 @@
- <?php
- ob_start();
+<?php
 require 'db_connection.php';
 
 /*
 if(isset($_SESSION['login_id'])){
-    header('Location: user-login');
+    header('Location: home.php');
     exit;
 }*/
 
@@ -18,14 +17,14 @@ $client->setClientId('981967059646-u56d1fku9i52fb53rb9o7t6deav37ddq.apps.googleu
 // Enter your Client Secrect
 $client->setClientSecret('_TTBH-saxhTlvSHZVt-COrHw');
 // Enter the Redirect URL
-$client->setRedirectUri('https://rex-foodipedia-fyp.herokuapp.com/user-login');
+$client->setRedirectUri('https://rex-foodipedia-fyp.herokuapp.com/user-login.php');
 
 // Adding those scopes which we want to get (email & profile Information)
 $client->addScope("email");
 $client->addScope("profile");
 
 
-if(isset($_GET['code'])){
+if(isset($_GET['code'])):
 
     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
 
@@ -42,25 +41,24 @@ if(isset($_GET['code'])){
         $full_name = mysqli_real_escape_string($db_connection, trim($google_account_info->name));
         $email = mysqli_real_escape_string($db_connection, $google_account_info->email);
         $profile_pic = mysqli_real_escape_string($db_connection, $google_account_info->picture);
-        $verified = "1";
 
         // checking user already exists or not
         $get_user = mysqli_query($db_connection, "SELECT `google_id` FROM `user_acc` WHERE `google_id`='$id'");
         if(mysqli_num_rows($get_user) > 0){
 
             $_SESSION['login_id'] = $id; 
-            header('Location: menu');
+            header('Location: menu.php');
             exit;
 
         }
         else{
-            
-            /// if user not exists we will insert the user
-            $insert = mysqli_query($db_connection, "INSERT INTO `user_acc`(`google_id`,`name`,`email`,`profile_image`, `verified`) VALUES('$id','$full_name','$email','$profile_pic', '$verified')");
+
+            // if user not exists we will insert the user
+            $insert = mysqli_query($db_connection, "INSERT INTO `user_acc`(`google_id`,`name`,`email`,`profile_image`) VALUES('$id','$full_name','$email','$profile_pic')");
 
             if($insert){
                 $_SESSION['login_id'] = $id; 
-                header('Location: menu');
+                header('Location: menu.php');
                 exit;
             }
             else{
@@ -71,11 +69,11 @@ if(isset($_GET['code'])){
 
     }
     else{
-        header('Location: user-login');
+        header('Location: login.php');
         exit;
     }
-}
-
+    
+else: 
     // Google Login Url = $client->createAuthUrl(); 
 ?>
 
@@ -359,3 +357,4 @@ if(isset($_GET['code'])){
 </html>
 
 
+<?php endif; ?>
