@@ -86,6 +86,11 @@
                             <form name="form_menu_detail" method="POST">
 
                                 <div class="form-group">       
+                                    <label for="card-dish-edit-menu">#ID</label>
+                                    <input type="text" class="form-control" id="card-dish-edit-menu" name="dish_menu_detail" readonly value="<?php echo $row["dish_id"] ?>">
+                                </div>
+                                
+                                <div class="form-group">       
                                     <label for="card-dish-edit-menu">Dish</label>
                                     <input type="text" class="form-control" id="card-dish-edit-menu" name="dish_menu_detail" required value="<?php echo $row["dish_name"] ?>">
                                 </div>

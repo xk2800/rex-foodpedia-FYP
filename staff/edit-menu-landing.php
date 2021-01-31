@@ -84,17 +84,7 @@
                                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
                             <td>1000</td>
                             <td>5.60</td>
-                            <td><a class="btn btn-primary" href="#" role="button">Update</a></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">02</th>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>@test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td><a class="btn btn-primary" href="#" role="button">Update</a></td>
+                            <td><a class="btn btn-primary" href="edit-menu-detail.php" role="button">Update</a></td>
                         </tr>
                     </tbody>
                 </table>
