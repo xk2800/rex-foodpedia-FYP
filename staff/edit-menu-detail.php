@@ -69,6 +69,7 @@
             ?>
 
             <?php
+                //session is carried from staff/index.php
                 $staff_username = $_SESSION['staff_username'];
             ?>    
 
