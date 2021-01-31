@@ -33,8 +33,8 @@
     <?php
 
         //session carry
-        $delivery_type = $_SESSION['delivery_type'];
-        echo $delivery_type;
+        //$delivery_type = $_SESSION['delivery_type'];
+        //echo $delivery_type;
 
         $time = time();
         $actual_time = date('Y-m-d H:i:s', $time);
@@ -63,8 +63,8 @@
         //$output = $row ["receipt_id"];
         //echo $output;
 
-        $del_pass_address   = $_SESSION['del_address'];
-        echo $del_pass_address;
+        //$del_pass_address   = $_SESSION['del_address'];
+        //echo $del_pass_address;
 
         $company_info = "REX Foodipedia";
 
@@ -87,8 +87,8 @@
         <p id="date"><b>Date:</b> <?php echo $row ["date"]?></p>
         <p id="hori-line"><hr></p>
         <p id="company-info"><b>From:</b> <?php echo $company_info ?></p>
-        <p id="cust-address">
-    <?php 
+        <p id="cust-address"><b><?php  echo $row["send_type"]; ?></b>
+    <?php
             if($delivery_type == 'pick_up'){
                 echo "<b>Self Pick Up</b>";
             }else if($delivery_type == 'delivery'){
