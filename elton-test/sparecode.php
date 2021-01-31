@@ -1,3 +1,28 @@
+            <!-- testing *session got issue-->
+            <?php
+                //session is carried from staff/index.php
+                //$staff_username = $_SESSION['staffuname'];
+
+                //echo $staff_username;
+
+                //$query_select_menu_detail = mysqli_query($connect, "SELECT * FROM menu WHERE username = '$staff_username' ");
+                //$row = mysqli_fetch_assoc($query_select_menu_detail);
+
+                //$show_data = $row["username"];
+
+                //echo $show_data;
+            ?>    
+
+            <!-- testing *session got issue -->
+            <?php 
+                //if($staff_username) {
+                   // echo "true";
+                //} else {
+                    //echo "false";
+                //}     
+            ?>
+
+ 
  <!--
 
                             <div class="form-group">

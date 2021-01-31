@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <?php
-    include "../db-connect.php"; 
+    include "../db-connect.php";
+    session_start();
 ?>
     <html>
         <head>
@@ -69,8 +70,11 @@
             ?>
 
             <?php
-                //session is carried from staff/index.php
-                $staff_username = $_SESSION['staff_username'];
+                
+                $staff_username = $_SESSION['staffuname'];
+
+                $query_select_menu_detail = mysqli_query($connect, "SELECT * FROM menu WHERE username = '$staff_username' ");
+                $row = mysqli_fetch_assoc($query_select_menu_detail);
             ?>    
 
             <div class="container">
@@ -79,21 +83,18 @@
                   
                     <div class="card-body"> 
                         <div id="card-input-edit-menu">
-                            <form>
-                                <div class="form-group">       
-                                    <label for="card-id-edit-menu">#ID</label>
-                                    <input type="text" class="form-control" id="card-id-edit-menu">
-                                </div>
+                            <form name="form_menu_detail" method="POST">
 
                                 <div class="form-group">       
                                     <label for="card-dish-edit-menu">Dish</label>
-                                    <input type="text" class="form-control" id="card-dish-edit-menu">
+                                    <input type="text" class="form-control" id="card-dish-edit-menu" name="dish_menu_detail" required value="<?php echo $row["dish_name"] ?>">
                                 </div>
 
+                                <!--coming soon -->
                                 <div class="form-group">
                                     <label for="card-dish-edit-menu">Image</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="card-dish-edit-menu">
+                                        <input type="file" class="custom-file-input" id="card-dish-edit-menu" name="image_menu_detail">
                                         <label class="custom-file-label" for="card-dish-edit-menu">Choose file</label>
                                     </div>
                                 </div>
@@ -109,25 +110,48 @@
 
                                 <div class="form-group">
                                     <label for="card-desc-edit-menu">Description</label>
-                                    <textarea class="form-control" id="card-desc-edit-menu" rows="3"></textarea>
+                                    <textarea class="form-control" id="card-desc-edit-menu" rows="3" name="desc_menu_detail" required value="<?php echo $row["description"] ?>"></textarea>
                                 </div>
 
                                 <div class="form-group">       
                                     <label for="card-stock-edit-menu">Stock Quantity</label>
-                                    <input type="number" class="form-control" id="card-stock-edit-menu">
+                                    <input type="number" class="form-control" id="card-stock-edit-menu" name="qty_menu_detail" required value="<?php echo $row["stock_qty"] ?>">
                                 </div>
 
                                 <div class="form-group">       
                                     <label for="card-price-edit-menu">Unit Price</label>
-                                    <input type="number" class="form-control" id="card-price-edit-menu">
+                                    <input type="number" class="form-control" id="card-price-edit-menu" name="price_menu_detail" required value="<?php echo $row["price"] ?>">
                                 </div>
+
+                                <button type="submit" class="btn btn-primary btn-block" id="card-button-edit-menu" name="submit_menu_detail">Update</a>
                             </form>
                         </div>
-                        
-                        <a href="#" class="btn btn-primary btn-block" id="card-button-edit-menu">Update</a>
                     </div>
-                </div> 
+                </div>
+
             </div>
+
+            <?php 
+
+                if(isset($_POST['submit_menu_detail'])) {
+                    
+                    $var_dish_menu_detail = $_POST['dish_menu_detail'];
+                    //$var_image_menu_detail = $_POST['image_menu_detail'];
+                    $var_desc_menu_detail = $_POST['desc_menu_detail'];
+                    $var_qty_menu_detail = $_POST['qty_menu_detail'];
+                    $var_price_menu_detail = $_POST['price_menu_detail'];
+
+                    if(!empty($var_dish_menu_detail) && !empty($var_desc_menu_detail) && !empty($var_qty_menu_detail) && !empty($var_price_menu_detail)) {
+                        
+                        $query_menu_detail = mysqli_query($connect, "UPDATE menu SET dish_name = '$var_dish_menu_detail', price = '$var_price_menu_detail', 
+                                                                                     description = '$var_desc_menu_detail', stock_qty = '$var_qty_menu_detail' WHERE username = '$staff_username'"); 
+
+                    } else {
+                        echo "Please fill in all the inputs!";
+                    }
+                }
+
+            ?>
                 
             <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   

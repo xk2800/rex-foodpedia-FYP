@@ -3,7 +3,7 @@
 <?php
     include("db-connect.php");
     include("db_connection.php");
-    //start_session();
+    //session_start();
 ?>
     <html lang="en">
         <head>
@@ -337,9 +337,7 @@
                             echo "<script>
                                     alert('Details are updated successfully!');
                                   </script>";
-                        }
-
-                       
+                        }              
                 ?>
 
             </div>
