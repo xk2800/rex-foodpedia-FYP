@@ -22,6 +22,9 @@
                 //}     
             ?>
 
+<!--$query_menu_detail = mysqli_query($connect, "INSERT INTO menu (username, dish_name, price, description, stock_qty) VALUES ('$staff_username','$var_dish_menu_detail','$var_price_menu_detail', 
+                                                                                       '$var_desc_menu_detail','$var_qty_menu_detail') ");-->
+
  
  <!--
 

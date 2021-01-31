@@ -143,8 +143,12 @@
 
                     if(!empty($var_dish_menu_detail) && !empty($var_desc_menu_detail) && !empty($var_qty_menu_detail) && !empty($var_price_menu_detail)) {
                         
+                        //$session_dish_id = $_SESSION['dish_id'];
+                        $session_dish_id = "F001";
+                        
+                        //harcode a temp dish_id session
                         $query_menu_detail = mysqli_query($connect, "UPDATE menu SET dish_name = '$var_dish_menu_detail', price = '$var_price_menu_detail', 
-                                                                                     description = '$var_desc_menu_detail', stock_qty = '$var_qty_menu_detail' WHERE username = '$staff_username'"); 
+                                                                                     description = '$var_desc_menu_detail', stock_qty = '$var_qty_menu_detail' WHERE username = '$staff_username' AND dish_id = '$session_dish_id' "); 
 
                     } else {
                         echo "Please fill in all the inputs!";
