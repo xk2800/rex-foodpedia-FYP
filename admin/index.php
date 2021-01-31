@@ -192,8 +192,9 @@ if(isset($_POST["loginbtn"])){
 
             if(mysqli_num_rows($staff_result)>0){
                 session_start();
-                $_SESSION['staff_username'] = $staff_username;
-                header("location: ./staff/dashboard.php");
+                $staff_username         = $staff_uname;
+                $_SESSION['staffuname'] = $staff_username;
+                header("location: ../staff/dashboard.php");
                 //echo "test";
             }else{
                 header("location: index?incorrect+credentials");
