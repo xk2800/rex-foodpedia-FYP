@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+
+<?php
+    include "../db-connect.php";
+    session_start();
+?>
     <html>
         <head> 
             <title>Edit Menu | REX Foodipedia</title>
@@ -33,7 +38,7 @@
                     background-color:white;
                     /*border-radius: 20px;*/
                     box-shadow:7px 7px 6px #888888;
-                    margin-top: 10em;
+                    margin-top: 6.3em;
                 }
 
                 #form-header-edit {
@@ -42,6 +47,10 @@
                     letter-spacing: 2px;
                     font-family: Lato;
                     font-size:1em;
+                }
+
+                td {
+                    text-align: center;
                 }
                 
             </style>
@@ -70,25 +79,56 @@
                             <th scope="col">Unit Price </th>
                             <th scopre="col">Action</th>
                         </tr>
-                       
                     </thead>
 
+                    <?php 
+                        //need to add session after this
+                        $staff_username = $_SESSION['staffuname'];
+
+                        $query_select_menu_landing = mysqli_query($connect, "SELECT * FROM menu WHERE username = '$staff_username' ");
+                        $numrow = mysqli_num_rows($query_select_menu_landing);
+    
+                    ?>
+
                     <tbody style="font-size: 0.8em">
-                        <tr>
-                            <th scope="row">01</th>
-                            <td>Lorem ipsum dolor</td>
-                            <td rowspan=""><img src="../img/dummy.jpg" alt="Girl in a jacket" style="width:20em; height:10em"></td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-                            <td>1000</td>
-                            <td>5.60</td>
-                            <td><a class="btn btn-primary" href="edit-menu-detail.php" role="button">Update</a></td>
-                        </tr>
+                        
+                    <?php 
+                        
+                        while($row = mysqli_fetch_assoc($query_select_menu_landing)) {
+                                
+                            $db_dish_name = $row['dish_name'];
+                            $db_dish_id = $row['dish_id'];
+                            $db_dish_price = $row['price'];
+                            $db_dish_desc = $row['description'];
+                            $db_dish_qty = $row['stock_qty'];
+                    ?>
+                           <?php  
+                            
+                            if($numrow > 0) {
+                           ?>     
+                                <tr>
+                                    <th scope="row"><?php echo $db_dish_id; ?></th>
+                                    <td><?php echo $db_dish_name; ?></td>
+                                    <td rowspan=""><img src="../img/dummy.jpg" alt="Girl in a jacket" style="width:20em; height:10em"></td>
+                                    <td><?php echo $db_dish_desc; ?></td>
+                                    <td><?php echo $db_dish_qty; ?></td>
+                                    <td><?php echo $db_dish_price; ?></td>
+                                    <td><a class="btn btn-primary" href="edit-menu-detail.php" role="button">Update</a></td>
+                                </tr>   
+                           <?php
+
+                            } else {
+                                echo "No data found inside database";
+                            }
+                           ?>
+                    <?php
+
+                            $row++ ;
+                        }
+                    ?>
+
                     </tbody>
                 </table>
-
             </div>
 
             <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
