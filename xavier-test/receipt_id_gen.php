@@ -30,7 +30,7 @@
 
         $number = $output+1;
         $number = sprintf('%07d',$number);
-        echo "<br>";
+        echo "<br>F";
         print $number;
 
 ?>

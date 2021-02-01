@@ -90,7 +90,13 @@
         <p id="send-type"><b><?php echo $delivery_type ?></b></p>
 <!-- **production changes to be made here -->
         <p id="receipt_id"><b>Receipt Number:</b> <?php echo $numbers;?></p>
-        <p id="date"><b>Date:</b> <?php echo $row ["date"]?></p>
+        <p id="date"><b>Date:</b> 
+    <?php 
+                                        $date_db = $row ["date"];
+                                        $output_date = date('M d, Y', strtotime(str_replace('-','/', $date_db))); 
+                                        echo $output_date;
+    ?>
+        </p>
         <p id="hori-line"><hr></p>
         <p id="company-info"><b>From:</b> <?php echo $company_info ?></p>
         <p id="cust-address"><b><?php  ; ?></b>

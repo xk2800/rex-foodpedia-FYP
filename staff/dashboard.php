@@ -13,7 +13,12 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
+
+<?php
+        include("navbar.html");
+?>
+
+<?php
 $staff_username = $_SESSION['staffuname'];
 echo $staff_username;
 
