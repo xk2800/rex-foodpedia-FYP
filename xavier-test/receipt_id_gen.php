@@ -33,6 +33,24 @@
         echo "<br>F";
         print $number;
 
+        echo "<br>";
+
+        echo "<br>";echo "<br>";
+        $email = "xavierkhew00@gmail.com";
+        $getorder   = mysqli_query($connect, "SELECT * from cart WHERE email = '$email'");
+        $test_logic = 0;
+        while($test_out = mysqli_fetch_assoc($getorder)){
+
+            
+            $trying = $test_out['dish_price'];
+            echo "<br>";
+            $test_logic += $trying;
+
+            
+        }
+        echo $test_logic;
+
+
 ?>
 </body>
 </html>
