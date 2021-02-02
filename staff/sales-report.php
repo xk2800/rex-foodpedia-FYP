@@ -48,13 +48,72 @@
         <body style="background-color: #E4F6E6">
 
             <?php
-                include("navbar.html");
+                //include("navbar.html");
             ?>
 
             <div class="container">
                 <p id="navbar-view-by-report"><span style="color:red;">* </span>Please select a mode : </p>
             </div>
 
+            <?php 
+                include("../db-connect.php");
+
+                //$staff_username = $_SESSION['staffuname'];
+            ?>    
+
+            <!-- credit to : https://stackoverflow.com/questions/5293189/select-records-from-today-this-week-this-month-php-mysql -->
+
+            <!-- analyze by day -->
+            <?php
+                $query_select_unit_sold_day = mysqli_query($connect, "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date) = MONTH(NOW()) AND DAY(date) = DAY(NOW())");
+                
+                while($row_unit_day = mysqli_fetch_assoc($query_select_unit_sold_day)) {
+                    $db_dish_qty_day = $row_unit_day['total_dish'];
+                    echo $db_dish_qty_day;
+                }   
+            ?>
+
+            <?php
+
+               /* $time = time();
+                echo $time;
+                $actual_time = date('Y-m-d', $time);
+                echo "<br>".$actual_time;
+                /*7 days = 1 week, 7 days = 604800 seconds*/
+                /*$aweek = 604800;
+                $past_week = $time - $aweek;
+                $past_week_out = date('Y-m-d', $past_week);
+                echo "<br>".$past_week_out;
+
+                $testing1 = mysqli_query($connect, "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE date='$past_week_out'");
+                while($testing1_output = mysqli_fetch_assoc($testing1)) {
+                    $output_running = $testing1_output['total_sales'];
+                    echo $output_running;
+                }*/
+
+            ?>
+            
+            <?php
+                $query_select_subtotal_day = mysqli_query($connect, "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date) = MONTH(NOW()) AND DAY(date) = DAY(NOW()) ");
+                
+                while($row_subtotal_day = mysqli_fetch_assoc($query_select_subtotal_day)) {
+                    $db_subtotal_day = $row_subtotal_day['total_sales'];
+                    echo $db_subtotal_day;
+                }
+                
+            ?>
+
+            <!-- analyze by month -->
+            <?php
+                $query_select_unit_sold_week = mysqli_query($connect, "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE WEEKOFYEAR(date) = WEEKOFYEAR(NOW())");
+               
+                while($row_unit_week = mysqli_fetch_assoc($query_select_unit_sold_week)) {
+                    $db_dish_qty_week = $row_unit_week['total_dish'];
+                    echo $db_dish_qty_week;
+                }   
+            ?>
+
+            
             <div class="container text-center">  
                 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: 50px;">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-whole-sales-report" aria-controls="navbar-whole-sales-report" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,24 +167,16 @@
                                 <thead>
                                     <tr>
                                         <th scope="row" style="float: left;">Unit Sold</th>
-                                        <td scope="row" id="unit-sold" style="float: right; font-weight: bold;"></td>
-                                    </tr>
-                                    <tr> 
-                                        <th scope="row" style="float: left;">
-                                            <i class="fa fa-money" aria-hidden="true"></i> &ensp;
-                                            Unit Price
-                                        </th>    
-                                        <td scope="row" id="unit-price" style="float: right;"></td>
-                                        
+                                        <td scope="row" id="unit-sold" style="float: right; font-weight: bold;" name="unit_sales"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row" style="float: left;">
                                             <i class="fa fa-money" aria-hidden="true"></i> &ensp;
                                             Total Income
                                         </th>    
-                                        <td scope="row" style="float: right;" id="total-income"></td>
+                                        <td scope="row" style="float: right;" id="total-income" name="total_sales"></td>
                                     </tr>
-
+                                    
                                     <script>
                                             // php will then later insert into this script
                                             
@@ -137,9 +188,8 @@
                                                 var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
                                                 document.getElementById("date-sales-daily-report").innerHTML = months[date_a.getMonth()] + " " + date_a.getDate();
 
-                                                document.getElementById("unit-sold").innerHTML = "sold_test1";
-                                                document.getElementById("unit-price").innerHTML = "price_test1";
-                                                document.getElementById("total-income").innerHTML = "income_test1";
+                                                /*document.getElementById("unit-sold").innerHTML = "helo";
+                                                document.getElementById("total-income").innerHTML = "income_test1";*/
                                             }
 
                                             function weekly() {
@@ -151,7 +201,6 @@
                                                 document.getElementById("date-sales-week-report").innerHTML = months[date_b.getMonth()] + " " + date_b.getDate() + " - " + months[date_b.getMonth()] + " " + parseInt(date_b.getDate() + 7) ;
                                                 
                                                 document.getElementById("unit-sold").innerHTML = "sold_test2";
-                                                document.getElementById("unit-price").innerHTML = "price_test2";
                                                 document.getElementById("total-income").innerHTML = "income_test2";
                                             }
 
@@ -163,7 +212,6 @@
                                                 var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
                                                 document.getElementById("date-sales-month-report").innerHTML = months[date_c.getMonth()] + " " 
                                                 document.getElementById("unit-sold").innerHTML = "sold_test3";
-                                                document.getElementById("unit-price").innerHTML = "price_test3";
                                                 document.getElementById("total-income").innerHTML = "income_test3";
                                             }
                                     </script>
@@ -173,6 +221,7 @@
                     </div>
                 </div>
             </div>
+
             <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
