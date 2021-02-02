@@ -99,7 +99,7 @@
         </p>
         <p id="hori-line"><hr></p>
         <p id="company-info"><b>From:</b> <?php echo $company_info ?></p>
-        <p id="cust-address"><b><?php  ; ?></b>
+        <p id="cust-address">
     <?php
             if($delivery_type == 'Self Pick Up'){
                 echo "<b>Self Pick Up</b>";
