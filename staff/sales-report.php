@@ -74,36 +74,16 @@
             ?>
 
             <?php
-
-               /* $time = time();
-                echo $time;
-                $actual_time = date('Y-m-d', $time);
-                echo "<br>".$actual_time;
-                /*7 days = 1 week, 7 days = 604800 seconds*/
-                /*$aweek = 604800;
-                $past_week = $time - $aweek;
-                $past_week_out = date('Y-m-d', $past_week);
-                echo "<br>".$past_week_out;
-
-                $testing1 = mysqli_query($connect, "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE date='$past_week_out'");
-                while($testing1_output = mysqli_fetch_assoc($testing1)) {
-                    $output_running = $testing1_output['total_sales'];
-                    echo $output_running;
-                }*/
-
-            ?>
-            
-            <?php
-                $query_select_subtotal_day = mysqli_query($connect, "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date) = MONTH(NOW()) AND DAY(date) = DAY(NOW()) ");
+                //$query_select_subtotal_day = mysqli_query($connect, "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date) = MONTH(NOW()) AND DAY(date) = DAY(NOW())");
                 
-                while($row_subtotal_day = mysqli_fetch_assoc($query_select_subtotal_day)) {
-                    $db_subtotal_day = $row_subtotal_day['total_sales'];
-                    echo $db_subtotal_day;
-                }
+                //while($row_subtotal_day = mysqli_fetch_assoc($query_select_subtotal_day)) {
+                    //$db_subtotal_day = $row_subtotal_day['total_sales'];
+                    //echo $db_subtotal_day;
+                //}
                 
             ?>
 
-            <!-- analyze by month -->
+            <!-- analyze by week -->
             <?php
                 $query_select_unit_sold_week = mysqli_query($connect, "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE WEEKOFYEAR(date) = WEEKOFYEAR(NOW())");
                
@@ -111,6 +91,16 @@
                     $db_dish_qty_week = $row_unit_week['total_dish'];
                     echo $db_dish_qty_week;
                 }   
+            ?>
+
+            <?php
+                $query_select_subtotal_day = mysqli_query($connect, "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE WEEKOFYEAR(date) = WEEKOFYEAR(NOW())");
+                
+                while($row_subtotal_day = mysqli_fetch_assoc($query_select_subtotal_day)) {
+                    $db_subtotal_day = $row_subtotal_day['total_sales'];
+                    echo $db_subtotal_day;
+                }
+                
             ?>
 
             
