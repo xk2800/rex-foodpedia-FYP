@@ -70,15 +70,15 @@
 
             $delete_test = mysqli_query($connects, "DELETE FROM cart_test WHERE email='$email'");
     
-            if($insert_test && $delete_test){
-                echo "insert done";
-            }else{
-                echo "insert fail";
-            }
+            
             
         }
         
-    
+        if($insert_test && $delete_test){
+            echo "insert done";
+        }else{
+            echo "insert fail";
+        }
         echo "<br>";
         echo "<br>";
 
@@ -89,7 +89,32 @@
             echo "Fail";
         }
 
+        $time = time();
+        echo $time;
+        $actual_time = date('Y-m-d H:i:s', $time);
+        echo "<br>".$actual_time;
+        /*7 days = 1 week, 7 days = 604800 seconds*/
+        $aweek = 604800;
+        $past_week = $time - $aweek;
+        $past_week_out = date('Y-m-d', $past_week);
+        echo "<br>".$past_week_out;
 
+        //echo 
+        $first = date('Y-m-01');
+        echo "<br>";echo "<br>";echo "<br>";
+        //$subtotal = ;
+        $testing1 = mysqli_query($connect, "SELECT sum(subtotal) AS total, date FROM transaction WHERE date < DATE('$actual_time') + '$first' GROUP BY date");
+        $totes  = 0;
+        while($testing1_output = mysqli_fetch_array($testing1)) {
+            //$output_running = $testing1_output['total_sales'];
+            $outing = $testing1_output['total'];
+            //echo $outing;
+            echo "<br>";
+            
+            $totes  += $outing; 
+            
+
+        } echo $totes;
 ?>
 </body>
 </html>
