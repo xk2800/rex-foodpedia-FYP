@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php 
+     include("../db-connect.php");
+?>
     <html>
         <head>
             <title>Account Statuses | REX Foodipedia</title>
@@ -44,7 +47,7 @@
             <div class="container">
                 
                 <p id="p-status">Account Statuses
-                    <button type="button" class="btn btn-primary" id="button-status">+ Account Statuses</button>
+                    <a href="cus-status-edit.php" class="btn btn-primary" id="button-status">+ Account Statuses</a>
                 </p>
                 
                 <hr style="background-color:#898f8b"/>
@@ -69,23 +72,65 @@
                         </li>
                     </ul>
                 </nav>
-            
+                
+                <?php 
+                    
+                    $query_cus_status = mysqli_query($connect, "SELECT email, status, category FROM user_acc");
+                    $numrow = mysqli_num_rows($query_cus_status);
+
+                ?>
+
                 <table class="table table-bordered table-hover table-dark" >
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">User Email</th>
                             <th scope="col">Account Status</th>
                             <th scope="col">Account Category</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>test</td>
-                            <td>test_test</td>
-                            <td ><a href="#">Edit</a>&emsp;<a href="#">Delete</a></td>
-                        </tr>
+                        <?php 
+                            if($numrow > 0) {
+                        
+                                while($row = mysqli_fetch_assoc($query_cus_status)) {
+                                    
+                                    $db_email_cus_status = $row['email'];
+                                    $db_status_cus_status = $row['status'];
+                                    $db_category_cus_status = $row['category'];
+
+                                   if($db_status_cus_status == 0) {
+                                        $db_status_cus_status_string = "Inactive";
+
+                                   } else if($db_status_cus_status == 1) {           
+                                       $db_status_cus_status_string = "Active";
+                                                
+                                   } else {
+                                       $db_status_cus_status_string = "NULL";
+                                   }
+
+                                    switch($db_category_cus_status) {
+                                        case 1: $db_category_cus_status_string = "Bronze";
+                                                break;
+                                        case 2: $db_category_cus_status_string = "Silver";
+                                                break;
+                                        case 3: $db_category_cus_status_string = "Gold";
+                                                break;
+                                        default: $db_category_cus_status_string = "None";
+                                                 break;                         
+                                    }
+                        ?>
+                                    <tr>
+                                        <th scope="row"><?php echo $db_email_cus_status; ?></th>
+                                        <td><?php echo $db_status_cus_status_string; ?></td>
+                                        <td><?php echo $db_category_cus_status_string; ?></td>
+                                        <td ><a href="cus-status-edit.php">Edit</a>&emsp;<a href="#">Delete</a></td>
+                                    </tr>
+                        <?php
+                                }
+                            }    
+                        ?>
+                        
                     </tbody>
                 </table>
             </div>

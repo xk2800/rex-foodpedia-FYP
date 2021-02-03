@@ -47,11 +47,23 @@
                         <form>
                             <div class="form-group" id="form-status-edit">
                                 <div class="row">
+                                    <div class="col-sm">
+                                        <label for="exampleFormControlSelect1">User Email</label>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" aria-describedby="emailHelp" readonly name="email_cus_edit">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <div class="row">
                                    <div class="col-sm">
                                         <label for="exampleFormControlSelect1">Account Status<span style="color: red;">&nbsp;*</span></label>
                                    </div> 
                                    <div class="col-sm">
-                                        <select class="form-control" id="exampleFormControlSelect1">
+                                        <select class="form-control" id="exampleFormControlSelect1" name="acc_cus_edit">
                                             <option>ACTIVE</option>
                                             <option>INACTIVE</option>
                                         </select>
@@ -65,7 +77,7 @@
                                         <label for="exampleFormControlSelect1">Account Category<span style="color: red;">&nbsp;*</span></label>
                                    </div> 
                                    <div class="col-sm">
-                                        <select class="form-control" id="exampleFormControlSelect1">
+                                        <select class="form-control" id="exampleFormControlSelect1" name="category_cus_edit"> 
                                             <option>Gold</option>
                                             <option>Silver</option>
                                             <option>Bronze</option>
@@ -73,7 +85,6 @@
                                         </select>
                                    </div>
                                 </div>
-                                
                             </div>
                         </form>
                     
