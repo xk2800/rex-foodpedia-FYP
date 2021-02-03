@@ -98,13 +98,13 @@
         window.onscroll = function() {myFunction()};
         
         var navbar = document.getElementById("navbar");
-        var sticky = navbar.offsetTop;
+        var sticky = 0;
         
         function myFunction() {
           if (window.pageYOffset >= sticky) {
-            navbar.classList.add("sticky")
+            navbar.classList.remove("sticky")
           } else {
-            navbar.classList.remove("sticky");
+            navbar.classList.add("sticky");
           }
         }
         </script>
