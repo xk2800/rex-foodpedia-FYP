@@ -19,7 +19,11 @@
 
                 <style>
                      
-                     #button-status-edit, #button-status-edit-2, #form-status-edit{
+                     #button-status-edit {
+                        margin-top: 65px; 
+                     }
+                     
+                     #button-status-edit-2, #form-status-edit{
                         margin-top: 25px;
                      }
 
@@ -34,6 +38,8 @@
         
         <body style="background-color: #4C5C68;">
             
+            <!-- credit : https://www.11zon.com/zon/php/how-to-edit-data-in-php-using-form.php -->
+
             <?php
                 include("navbar.html");
             ?>
@@ -49,12 +55,12 @@
             ?>
 
             <div class="container">
-                <div class="card mx-auto" style="width: 22rem; margin-top: 12em;">
+                <div class="card mx-auto" style="width: 22rem; margin-top: 7.5em;">
                     <div class="card-header" id="title-status-edit">
                         Account Status
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form name="form_cus_edit" method="POST" onsubmit="return alert('Your changes has been made');">
                             <div class="form-group" id="form-status-edit">
                                 <div class="row">
                                     <div class="col-sm">
@@ -74,8 +80,8 @@
                                    </div> 
                                    <div class="col-sm">
                                         <select class="form-control" id="exampleFormControlSelect1" name="acc_cus_edit">
-                                            <option>ACTIVE</option>
-                                            <option>INACTIVE</option>
+                                            <option value="1">ACTIVE</option>
+                                            <option value="0">INACTIVE</option>
                                         </select>
                                    </div>
                                 </div>
@@ -87,20 +93,38 @@
                                         <label for="exampleFormControlSelect1">Account Category<span style="color: red;">&nbsp;*</span></label>
                                    </div> 
                                    <div class="col-sm">
-                                        <select class="form-control" id="exampleFormControlSelect1" name="category_cus_edit"> 
-                                            <option>Gold</option>
-                                            <option>Silver</option>
-                                            <option>Bronze</option>
-                                            <option>None</option>
+                                        <select class="form-control" id="exampleFormControlSelect1" name="category_cus_edit">
+                                            <option value="3">Gold</option>
+                                            <option value="2">Silver</option>
+                                            <option value="1">Bronze</option>
+                                            <option value="0">None</option>
                                         </select>
                                    </div>
                                 </div>
                             </div>
-                        </form>
-                    
-                        <a href="#" class="btn btn-primary" id="button-status-edit">Save Account Status</a>&emsp;<a href="#" class="btn btn-secondary" id="button-status-edit-2">Cancel</a>
+
+                            <center><button type="submit" class="btn btn-primary btn-block w-75 " id="button-status-edit" name="btn_cus_edit">Save Account Status</button>
+                            <a href="cus-status.php" class="btn btn-secondary btn-block w-75 " id="button-status-edit-2">Cancel</a></center>
+
+                        </form>  
                     </div>`
                 </div>
+
+                <?php 
+                    if(isset($_POST['btn_cus_edit'])) {
+
+                        $var_acc_cus_edit = $_POST['acc_cus_edit'];
+                        $var_category_cus_edit = $_POST['category_cus_edit'];
+
+                        $query_update_cus_status_edit = mysqli_query($connect, "UPDATE user_acc SET status = '$var_acc_cus_edit', category = '$var_category_cus_edit' WHERE email = '$email' ");
+
+                        if($query_update_cus_status_edit) {
+                            echo "<script>
+                                    location.href = 'cus-status.php';
+                                  </script>";
+                        }
+                    }
+                ?>
             </div>    
             
             <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
