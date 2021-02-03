@@ -63,57 +63,62 @@
 
             <!-- credit to : https://stackoverflow.com/questions/5293189/select-records-from-today-this-week-this-month-php-mysql -->
 
-            <!-- analyze by day -->
-            <?php
-                $query_select_unit_sold_day = mysqli_query($connect, "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date) = MONTH(NOW()) AND DAY(date) = DAY(NOW())");
+            <!-- analyze queries -->
+            <?php 
+                 $var_query_select_unit_sold_day = "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date) = MONTH(NOW()) AND DAY(date) = DAY(NOW())";
+                 $var_query_select_subtotal_day = "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date) = MONTH(NOW()) AND DAY(date) = DAY(NOW())";
+                 $var_query_select_unit_sold_week = "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE WEEKOFYEAR(date) = WEEKOFYEAR(NOW())";
+                 $var_query_select_subtotal_week = "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE WEEKOFYEAR(date) = WEEKOFYEAR(NOW())";
+                 $var_query_select_unit_sold_month = "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date)=MONTH(NOW())";
+                 $var_query_select_subtotal_month = "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date)=MONTH(NOW())";
+            ?>
+            
+            <?php   
+                // analyze by day
+                $query_select_unit_sold_day = mysqli_query($connect, $var_query_select_unit_sold_day);
                 
                 while($row_unit_day = mysqli_fetch_assoc($query_select_unit_sold_day)) {
                     $db_dish_qty_day = $row_unit_day['total_dish'];
                     echo $db_dish_qty_day;
                 }
                 
-                 $query_select_subtotal_day = mysqli_query($connect, "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date) = MONTH(NOW()) AND DAY(date) = DAY(NOW())");
+                 $query_select_subtotal_day = mysqli_query($connect, $var_query_select_subtotal_day);
                 
                  while($row_subtotal_day = mysqli_fetch_assoc($query_select_subtotal_day)) {
                     $db_subtotal_day = $row_subtotal_day['total_sales'];
                     echo $db_subtotal_day;
-                }
-            ?>
+                 }
 
-            <!-- analyze by week -->
-            <?php
-                $query_select_unit_sold_week = mysqli_query($connect, "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE WEEKOFYEAR(date) = WEEKOFYEAR(NOW())");
+                // analyze by week
+                $query_select_unit_sold_week = mysqli_query($connect, $var_query_select_unit_sold_week);
                
                 while($row_unit_week = mysqli_fetch_assoc($query_select_unit_sold_week)) {
                     $db_dish_qty_week = $row_unit_week['total_dish'];
                     echo $db_dish_qty_week;
                 }   
 
-                $query_select_subtotal_week = mysqli_query($connect, "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE WEEKOFYEAR(date) = WEEKOFYEAR(NOW())");
+                $query_select_subtotal_week = mysqli_query($connect, $var_query_select_subtotal_week);
                 
                 while($row_subtotal_week = mysqli_fetch_assoc($query_select_subtotal_week)) {
                     $db_subtotal_week = $row_subtotal_week['total_sales'];
                     echo $db_subtotal_week;
                 }
-            ?>
 
-             <!-- analyze by month -->
-             <?php
-                $query_select_unit_sold_month = mysqli_query($connect, "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date)=MONTH(NOW())");
+                // analyze by month
+                $query_select_unit_sold_month = mysqli_query($connect, $var_query_select_unit_sold_month);
                
                 while($row_unit_month = mysqli_fetch_assoc($query_select_unit_sold_month)) {
                     $db_dish_qty_month = $row_unit_month['total_dish'];
                     echo $db_dish_qty_month;
                 }   
 
-                $query_select_subtotal_month = mysqli_query($connect, "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date)=MONTH(NOW())");
+                $query_select_subtotal_month = mysqli_query($connect, $var_query_select_subtotal_month);
                 
                 while($row_subtotal_month = mysqli_fetch_assoc($query_select_subtotal_month)) {
                     $db_subtotal_month = $row_subtotal_month['total_sales'];
                     echo $db_subtotal_month;
                 }
             ?>
-
 
             <div class="container text-center">  
                 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: 50px;">
