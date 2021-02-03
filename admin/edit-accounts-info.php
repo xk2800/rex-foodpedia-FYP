@@ -6,16 +6,65 @@
  * 
  *  * THIS IS USING BETTER COMMENTS *
  */
-
+    session_start();
     include "../db-connect.php";
     ob_start();
-    session_start();
+
+
+    if(isset($_REQUEST["admin_username"]) && ($_REQUEST["account"])){
+        $admin_username = $_REQUEST["admin_username"];
+        $account_type   = $_REQUEST["account"];
+
+        $admin_username_find = mysqli_query($connect, "SELECT * from admin_acc WHERE username = '$admin_username'");
+        $admin_username_output = mysqli_fetch_assoc($admin_username_find);
+        //echo $row ["name"];
+        
+        echo $admin_username_output['email'];
+
+        //return true;
+        
+    }else if(isset($_REQUEST["staff_username"]) && ($_REQUEST["account"])){
+        $staff_username = $_REQUEST["staff_username"];
+        $account_type   = $_REQUEST["account"];
+
+        $staff_username_find = mysqli_query($connect, "SELECT * from staff_acc WHERE username = '$staff_username'");
+        $staff_username_output = mysqli_fetch_assoc($staff_username_find);
+        //echo $row ["name"];
+
+        echo $staff_username_output['staff_id'];
+
+        //return true;
+    }
+
+    echo "<br>";
+    echo $account_type;
+
+
+    
     
 
 ?>
 <html>
 <head>
-        <title>Edit | REX Foodipedia</title>
+        <title>Edit <?php
+            //echo $admin_username;
+            if(isset($_REQUEST["admin_username"]) && ($_REQUEST["account"])){
+                $admin_username = $_REQUEST["admin_username"];
+                $account_type   = $_REQUEST["account"];
+        
+                echo $admin_username;
+        
+                //return true;
+                
+            }else if(isset($_REQUEST["staff_username"]) && ($_REQUEST["account"])){
+                $staff_username = $_REQUEST["staff_username"];
+                $account_type   = $_REQUEST["account"];
+        
+                echo $staff_username;
+            }
+        
+        ?> | REX Foodipedia
+        </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -35,51 +84,13 @@
 <body>
 
     <?php
-            include("navbar.html");
+            //include("navbar.html");
+            //$admin_username = '123';
 
-            $admin_username = '123';
     ?>
         <div class="container">
-    <?php
-                        $getadmininfo  = mysqli_query($connect, "SELECT * FROM admin_acc WHERE username!='$admin_username'");
-                        
 
-        ?>
 
-                    <p>Admin ID: <br><select name="adminid" id="id">
-                        <option style='display:none;'>Select Admin ID</option>
-        <?php
-                        while($getid_output = mysqli_fetch_array($getadmininfo)){
-                            $staff_id = $getid_output["username"];
-                            //echo $staff_id;
-                            echo "<option value='". $getid_output['username'] ."'>" .$getid_output['username'] ."</option>";
-                        }
-        ?>
-                        </select>
-                    </p>
-        <?php
-                            $getadmininfo1  = mysqli_query($connect, "SELECT * FROM admin_acc WHERE username='$staff_id'");
-                        //while($getadmininfo_output = mysqli_fetch_assoc($getadmininfo)){
-                            $getadmininfo_output = mysqli_fetch_assoc($getadmininfo1);
-                            $admin_name     = $getadmininfo_output["fname"];
-                            $admin_username = $getadmininfo_output["username"];
-                            $admin_email    = $getadmininfo_output["email"];
-                            $admin_activity = $getadmininfo_output["admin_isDelete"];
-
-        ?>
-                    <p>Admin Name               <br><input type="text" name="adminname" id="name" placeholder="<?php echo $admin_name ?>" value="<?php echo $admin_name ?>"></p>
-                    <p>Admin Username           <br><input type="text" name="adminusername" id="username"></p>
-                    <p>Admin Email              <br><input type="email" name="adminemail" id="email"></p>
-                    <p>Current Account Status   <br><input type="text" name="adminstatus" id="status" readonly></p>
-                    <p>Account Active?          <br><input type="radio" name="adminaccount" id="account"> Active
-                                                    <input type="radio" name="adminaccount" id="account"> Inactive
-                    </p>
-        <?php
-                        //}
-        ?>
-
-                    <button type="submit" name="adminsubmit">Update Information</button>
-                    <button type="submit" name="admincancel">Cancel</button>
         </div>
 
         <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->

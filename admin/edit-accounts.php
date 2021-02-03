@@ -124,7 +124,7 @@
                             echo "No data to show";
                         }
                         echo '</td>';
-                        echo '<td>'?><a href="edit-accounts-info?username=<?php echo $admin_output["username"];?>?account=admin"><button type="submit">Edit</button></a></td><?php
+                        echo '<td>'?><a href="edit-accounts-info?admin_username=<?php echo $admin_output["username"];?>&account=admin"><button type="submit">Edit</button></a></td><?php
                         echo '</tr>';
                         echo '</table>';
                     }
@@ -173,7 +173,7 @@
                             echo "No data to show";
                         }
                         echo '</td>';
-                        echo '<td>'?><a href="edit-accounts-info?username=<?php echo $staff_output['username'];?>?account=admin"><button type="submit" name="action_admin">Edit</button></a><?php '</td>';
+                        echo '<td>'?><a href="edit-accounts-info?staff_username=<?php echo $staff_output['username'];?>&account=staff"><button type="submit" name="action_admin">Edit</button></a><?php '</td>';
                         echo '</tr>';
                         echo '</table>';
                     }
