@@ -72,12 +72,12 @@
                     echo $db_dish_qty_day;
                 }
                 
-                 //$query_select_subtotal_day = mysqli_query($connect, "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date) = MONTH(NOW()) AND DAY(date) = DAY(NOW())");
+                 $query_select_subtotal_day = mysqli_query($connect, "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date) = MONTH(NOW()) AND DAY(date) = DAY(NOW())");
                 
-                //while($row_subtotal_day = mysqli_fetch_assoc($query_select_subtotal_day)) {
-                    //$db_subtotal_day = $row_subtotal_day['total_sales'];
-                    //echo $db_subtotal_day;
-                //}
+                 while($row_subtotal_day = mysqli_fetch_assoc($query_select_subtotal_day)) {
+                    $db_subtotal_day = $row_subtotal_day['total_sales'];
+                    echo $db_subtotal_day;
+                }
             ?>
 
             <!-- analyze by week -->
