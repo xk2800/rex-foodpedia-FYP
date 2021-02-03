@@ -79,14 +79,14 @@
                 
                 while($row_unit_day = mysqli_fetch_assoc($query_select_unit_sold_day)) {
                     $db_dish_qty_day = $row_unit_day['total_dish'];
-                    echo $db_dish_qty_day;
+                    //echo $db_dish_qty_day;
                 }
                 
                  $query_select_subtotal_day = mysqli_query($connect, $var_query_select_subtotal_day);
                 
                  while($row_subtotal_day = mysqli_fetch_assoc($query_select_subtotal_day)) {
                     $db_subtotal_day = $row_subtotal_day['total_sales'];
-                    echo $db_subtotal_day;
+                    //echo $db_subtotal_day;
                  }
 
                 // analyze by week
@@ -94,14 +94,14 @@
                
                 while($row_unit_week = mysqli_fetch_assoc($query_select_unit_sold_week)) {
                     $db_dish_qty_week = $row_unit_week['total_dish'];
-                    echo $db_dish_qty_week;
+                    //echo $db_dish_qty_week;
                 }   
 
                 $query_select_subtotal_week = mysqli_query($connect, $var_query_select_subtotal_week);
                 
                 while($row_subtotal_week = mysqli_fetch_assoc($query_select_subtotal_week)) {
                     $db_subtotal_week = $row_subtotal_week['total_sales'];
-                    echo $db_subtotal_week;
+                    //echo $db_subtotal_week;
                 }
 
                 // analyze by month
@@ -109,14 +109,14 @@
                
                 while($row_unit_month = mysqli_fetch_assoc($query_select_unit_sold_month)) {
                     $db_dish_qty_month = $row_unit_month['total_dish'];
-                    echo $db_dish_qty_month;
+                    //echo $db_dish_qty_month;
                 }   
 
                 $query_select_subtotal_month = mysqli_query($connect, $var_query_select_subtotal_month);
                 
                 while($row_subtotal_month = mysqli_fetch_assoc($query_select_subtotal_month)) {
                     $db_subtotal_month = $row_subtotal_month['total_sales'];
-                    echo $db_subtotal_month;
+                    //echo $db_subtotal_month;
                 }
             ?>
 
@@ -128,13 +128,13 @@
 
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item ">
-                            <a class="nav-link" id="pills-daily-tab" data-toggle="pill" href="#pills-daily" role="tab" aria-controls="pills-daily" aria-selected="true" onclick="daily()">Daily</a>
+                            <a class="nav-link active" id="pills-daily-tab" data-toggle="pill" href="#pills-daily" role="tab" aria-controls="pills-daily" aria-selected="true" name="daily_tab">Daily</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="pills-weekly-tab" data-toggle="pill" href="#pills-weekly" role="tab" aria-controls="pills-weekly" aria-selected="false" onclick="weekly()">Weekly</a>
+                            <a class="nav-link" id="pills-weekly-tab" data-toggle="pill" href="#pills-weekly" role="tab" aria-controls="pills-weekly" aria-selected="false" name="weekly_tab">Weekly</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="pills-monthly-tab" data-toggle="pill" href="#pills-monthly" role="tab" aria-controls="pills-monthly" aria-selected="false" onclick="monthly()">Monthly</a>
+                            <a class="nav-link" id="pills-monthly-tab" data-toggle="pill" href="#pills-monthly" role="tab" aria-controls="pills-monthly" aria-selected="false" name="monthly_tab">Monthly</a>
                         </li>
                     </ul>
                 </nav>
@@ -142,87 +142,116 @@
                 <div class="card rounded mt-5" style="width: 69.5rem;">
                     <div class="card-body">
                         <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-daily" role="tabpanel" aria-labelledby="pills-daily-tab">
-                                <h3 class="card-title" id="money-sales-report">RM0.00</h3>
-                                <h5 class="card-subtitle mb-2 text-muted" id="daily-rev" style="padding-bottom:10px;"></h5>
-                                <h6 class="card-subtitle mb-2 text-muted" id="date-sales-daily-report" ></h6>
+                            <div class="tab-pane fade show active " id="pills-daily" role="tabpanel" aria-labelledby="pills-daily-tab">
+                                <h3 class="card-title" id="money-sales-report">RM<?php echo number_format((float)$db_subtotal_day, 2, '.', ''); ?></h3>
+                                <h5 class="card-subtitle mb-2 text-muted" id="daily-rev" style="padding-bottom:10px;">Total Revenue - Daily</h5>
+                                <h6 class="card-subtitle mb-2 text-muted" id="date-sales-daily-report" >
+                                    <script>
+                                         var date_a = new Date();
+                                         var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+                                         document.getElementById("date-sales-daily-report").innerHTML = months[date_a.getMonth()] + " " + date_a.getDate();
+                                    </script>  
+                                </h6>
                                 <br/>
                                 <hr/>
                                 <br/>
+
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th scope="row" style="float: left;">Unit Sold</th>
+                                            <td scope="row" id="unit-sold-day" style="float: right; font-weight: bold;"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="float: left;">
+                                                <i class="fa fa-money" aria-hidden="true"></i> &ensp;
+                                                Total Income (RM)
+                                            </th>    
+                                            <td scope="row" style="float: right;" id="total-income-day"></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+
+                                <script>
+                                     document.getElementById("unit-sold-day").innerHTML = "<?php echo $db_dish_qty_day; ?>";
+                                     document.getElementById("total-income-day").innerHTML = "<?php echo number_format((float)$db_subtotal_day, 2, '.', ''); ?>";
+                                </script>
                             </div>
+
 
                             <div class="tab-pane fade" id="pills-weekly" role="tabpanel" aria-labelledby="pills-weekly-tab">
-                                <h3 class="card-title" id="money-sales-report">RM0.00</h3>
-                                <h5 class="card-subtitle mb-2 text-muted" id="weekly-rev" style="padding-bottom:10px;"></h5>
-                                <h6 class="card-subtitle mb-2 text-muted" id="date-sales-week-report" ></h6>
-                                <br/>
-                                <hr/>
-                                <br/>
-                            </div>
-
-                            <div class="tab-pane fade" id="pills-monthly" role="tabpanel" aria-labelledby="pills-monthly-tab">
-                                <h3 class="card-title" id="money-sales-report">RM0.00</h3>
-                                <h5 class="card-subtitle mb-2 text-muted" id="monthly-rev" style="padding-bottom:10px;"></h5>
-                                <h6 class="card-subtitle mb-2 text-muted" id="date-sales-month-report" ></h6>
-                                <br/>
-                                <hr/>
-                                <br/>
-                            </div>
-
-                            <table class="table table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th scope="row" style="float: left;">Unit Sold</th>
-                                        <td scope="row" id="unit-sold" style="float: right; font-weight: bold;" name="unit_sales"></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" style="float: left;">
-                                            <i class="fa fa-money" aria-hidden="true"></i> &ensp;
-                                            Total Income
-                                        </th>    
-                                        <td scope="row" style="float: right;" id="total-income" name="total_sales"></td>
-                                    </tr>
-                                    
+                                <h3 class="card-title" id="money-sales-report">RM<?php echo number_format((float)$db_subtotal_week, 2, '.', ''); ?></h3>
+                                <h5 class="card-subtitle mb-2 text-muted" id="weekly-rev" style="padding-bottom:10px;">Total Revenue - Weekly </h5>
+                                <h6 class="card-subtitle mb-2 text-muted" id="date-sales-week-report" >
                                     <script>
-                                            // php will then later insert into this script
-                                            
-                                            function daily() {
-                                                
-                                                document.getElementById("daily-rev").innerHTML = "Total Revenue - Daily";
-
-                                                var date_a = new Date();
-                                                var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-                                                document.getElementById("date-sales-daily-report").innerHTML = months[date_a.getMonth()] + " " + date_a.getDate();
-
-                                                /*document.getElementById("unit-sold").innerHTML = "helo";
-                                                document.getElementById("total-income").innerHTML = "income_test1";*/
-                                            }
-
-                                            function weekly() {
-                                                
-                                                document.getElementById("weekly-rev").innerHTML = "Total Revenue - Weekly";
-                                                
-                                                var date_b = new Date();
-                                                var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-                                                document.getElementById("date-sales-week-report").innerHTML = months[date_b.getMonth()] + " " + date_b.getDate() + " - " + months[date_b.getMonth()] + " " + parseInt(date_b.getDate() + 7) ;
-                                                
-                                                document.getElementById("unit-sold").innerHTML = "sold_test2";
-                                                document.getElementById("total-income").innerHTML = "income_test2";
-                                            }
-
-                                            function monthly() {
-
-                                                document.getElementById("monthly-rev").innerHTML = "Total Revenue - Montly";
-                                                
-                                                var date_c = new Date();
-                                                var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-                                                document.getElementById("date-sales-month-report").innerHTML = months[date_c.getMonth()] + " " 
-                                                document.getElementById("unit-sold").innerHTML = "sold_test3";
-                                                document.getElementById("total-income").innerHTML = "income_test3";
-                                            }
+                                        var date_b = new Date();
+                                        var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+                                        document.getElementById("date-sales-week-report").innerHTML = months[date_b.getMonth()] + " " + date_b.getDate() + " - " + months[date_b.getMonth()] + " " + parseInt(date_b.getDate() + 7) ;
                                     </script>
-                                </thead>
-                            </table>               
+                                </h6>
+                                <br/>
+                                <hr/>
+                                <br/>
+                                
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th scope="row" style="float: left;">Unit Sold</th>
+                                            <td scope="row" id="unit-sold-week" style="float: right; font-weight: bold;"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="float: left;">
+                                                <i class="fa fa-money" aria-hidden="true"></i> &ensp;
+                                                Total Income (RM)
+                                            </th>    
+                                            <td scope="row" style="float: right;" id="total-income-week"></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+
+                                <script>
+                                     document.getElementById("unit-sold-week").innerHTML = "<?php echo $db_dish_qty_week; ?>";
+                                     document.getElementById("total-income-week").innerHTML = "<?php echo number_format((float)$db_subtotal_week, 2, '.', ''); ?>";
+                                </script>
+                            </div>
+
+
+                            <div class="tab-pane fade show" id="pills-monthly" role="tabpanel" aria-labelledby="pills-monthly-tab">
+                                <h3 class="card-title" id="money-sales-report">RM<?php echo number_format((float)$db_subtotal_month, 2, '.', ''); ?></h3>
+                                <h5 class="card-subtitle mb-2 text-muted" id="monthly-rev" style="padding-bottom:10px;">Total Revenue - Monthly</h5>
+                                <h6 class="card-subtitle mb-2 text-muted" id="date-sales-monthly-report" >
+                                    <script>
+                                         var date_c = new Date();
+                                         var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+                                         document.getElementById("date-sales-monthly-report").innerHTML = months[date_c.getMonth()] + " " 
+                                    </script>  
+                                </h6>
+                                <br/>
+                                <hr/>
+                                <br/>
+
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th scope="row" style="float: left;">Unit Sold</th>
+                                            <td scope="row" id="unit-sold-month" style="float: right; font-weight: bold;"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="float: left;">
+                                                <i class="fa fa-money" aria-hidden="true"></i> &ensp;
+                                                Total Income (RM)
+                                            </th>    
+                                            <td scope="row" style="float: right;" id="total-income-month"></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+
+                                <script>
+                                     document.getElementById("unit-sold-month").innerHTML = "<?php echo $db_dish_qty_month; ?>";
+                                     document.getElementById("total-income-month").innerHTML = "<?php echo number_format((float)$db_subtotal_month, 2, '.', ''); ?>";
+                                </script>
+                            </div>
+
                         </div>
                     </div>
                 </div>
