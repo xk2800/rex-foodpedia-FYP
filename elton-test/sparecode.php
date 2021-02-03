@@ -25,6 +25,13 @@
 <!--$query_menu_detail = mysqli_query($connect, "INSERT INTO menu (username, dish_name, price, description, stock_qty) VALUES ('$staff_username','$var_dish_menu_detail','$var_price_menu_detail', 
                                                                                        '$var_desc_menu_detail','$var_qty_menu_detail') ");-->
 
+                            <th scope="row"><?php $db_dish_id ?></th>
+                            <td><?php $db_dish_name ?></td>
+                            <td rowspan=""><img src="../img/dummy.jpg" alt="Girl in a jacket" style="width:20em; height:10em"></td>
+                            <td><?php $db_dish_desc ?></td>
+                            <td><?php $db_dish_qty ?></td>
+                            <td><?php $db_dish_price ?></td>
+
  
  <!--
 

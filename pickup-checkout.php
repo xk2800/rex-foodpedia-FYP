@@ -153,86 +153,13 @@
                                 </p>
 
                                 <p>
-
-                    <?php
-                                            // $result = mysqli_query($connect, "SELECT * from address WHERE label='Home'");
-                                            // $row = mysqli_fetch_assoc($result);
-
-                                            // $results = mysqli_query($connect, "SELECT * from address WHERE label='Office'");
-                                            // $rows = mysqli_fetch_assoc($results);
-
-                    ?>
                                     <span id="title">Pick Up Address:</span>
-                                        <p>
-                                            Multimedia University, 
-                                            Persiaran Multimedia, <br>
-                                            63100 Cyberjaya, <br>
-                                            Selangor, Malaysia
-                                        </p>
-
-                                    <!-- <a href="" id="addinfo">+ Add Address</a> -->
-                                <!-- <div class="col-lg-12 col-md-12 col-sm-12">
-
-                                    <div class="radio-toolbar">
-                                        <span class="onlinebanking_payment">
-                                            <input type="radio" id="homeaddress" name="address-selection"
-                                                value="<?php //echo $row ["user_address"]?>">
-                                            <label for="homeaddress" class="col-lg-10 col-md-12">
-                                                <a href="register" id="editbtn">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                                                    </svg>
-                                                </a>
-
-                                                <a href="register" id="removebtn">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                                                        <path fill-rule="evenodd"
-                                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                                                    </svg>
-                                                </a>
-                                                <br>
-                                                <span id="address"><?php //echo $row ["user_address"]?></span>
-                                                <br>
-                                                <span id="add-info">Note to rider: <?php //echo $row ["add_info"]?></span>
-                                            </label>
-                                        </span>
-
-
-                                        <span class="onlinebanking_payment">
-                                            <input type="radio" id="workaddress" name="address-selection"
-                                                value="<?php //echo $rows ["user_address"]?>">
-                                            <label for="workaddress" class="col-lg-10 col-md-12">
-                                                <a href="register" id="editbtn">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                                                    </svg>
-                                                </a>
-
-                                                <a href="register" id="removebtn">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                                                        <path fill-rule="evenodd"
-                                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                                                    </svg>
-                                                </a>
-                                                <br>
-                                                <span id="address"><?php echo $rows ["user_address"]?></span>
-                                                <br>
-                                                <span id="add-info">Note to rider:
-                                                    <?php echo $rows ["add_info"]?></span>
-                                            </label>
-                                        </span>
-                                    </div>
-                                </div> -->
+                                    <p>
+                                        Multimedia University, 
+                                        Persiaran Multimedia, <br>
+                                        63100 Cyberjaya, <br>
+                                        Selangor, Malaysia
+                                    </p>
                                 </p>
                         </div>
                         <br>
@@ -412,13 +339,25 @@
                 </div>
             </div>
 
+<!-- white payment total summary section -->
             <!-- col-lg-8 col-md-10 col-sm-10-->
             <div class="order-list col-lg-4 col-md-10 col-sm-10" id="order-list">
 
 
                     <?php
-                                        $checking = mysqli_query($connect, "SELECT * from transaction WHERE email = '$email'");
-                                        $payit = mysqli_fetch_assoc($checking);
+                                        $countlogic   = mysqli_query($connect, "SELECT * from cart WHERE email = '$email'");
+                                        $total_price = 0;
+                                        while($countlogic_out = mysqli_fetch_assoc($countlogic)){
+
+                                            
+                                            $dish_price = $countlogic_out['dish_price'];
+                                            $total_price += $dish_price;
+                                            //echo $total_price;
+                                            
+                                        }
+
+                                        $checking   = mysqli_query($connect, "SELECT * from transaction WHERE email = '$email'");
+                                        $payit      = mysqli_fetch_assoc($checking);
                     ?>
                 <span id="rest">Your order from REX Foodipedia</span>
                 <br>
@@ -431,27 +370,40 @@
                         <tr>
                             <th id="subtotal">Subtotal</th>
                     <?php
-                        $subtotal = $payit ["subtotal"];
+                        //$subtotal = $payit ["subtotal"];
                     ?>
                             <th id="db-subtotal" class="db-rows">RM
-                                <?php echo number_format((float)$subtotal, 2, '.', '') ?></th>
+                                <?php echo number_format((float)$total_price, 2, '.', '') ?></th>
                         </tr>
                         <tr>
                             <td id="discount">- Discount</td>
-                            <td id="db-discount" class="db-rows">RM <?php echo $payit ["discount"]?></td>
+                            <td id="db-discount" class="db-rows">RM 
+                    <?php 
+
+                                                if($payit ["discount"]){
+                                                    $discount = $payit ["discount"];
+                                                    echo number_format((float)$discount, 2, '.', '');
+
+                                                }else{
+                                                    $nill = 0;
+                                                    echo number_format((float)$nill, 2, '.', '');
+                                                }
+                            
+                    ?>
+                            </td>
                         </tr>
-                        <tr>
+                        <!--tr>
                             <td id="voucher">- Voucher <br>
                     <?php
-                                                    if( $payit ["voucher_code"]){
+                                                    /*if( $payit ["voucher_code"]){
                                                         echo "Voucher code: ".$payit ["voucher_code"];
                                                     } else{
                                                         echo "No Voucher Code Found";
-                                                    }
+                                                    }*/
                     ?>
-                            </td>
+                            </td-->
 
-                            <td id="db-voucher" class="db-rows">RM
+                            <!--td id="db-voucher" class="db-rows">RM
                     <?php
                                                     if( $payit ["voucher_code"]){
                                                         echo number_format((float)$payit ["voucher"], 2, '.', '');
@@ -459,7 +411,7 @@
                                                         echo "0";
                                                     }
                     ?>
-                            </td>
+                            </td-->
                             <td>
                         </tr>
                         <tr>
@@ -471,8 +423,14 @@
                     <?php
                     //fix this algo, need to take total price 
                                         //$tax = $subtotal * 6/100;
-                                        $pretax = $subtotal /((6/100)+1);
-                                        $tax = $subtotal - $pretax;
+                                        
+                                        //discount tax amount
+                                        $pretax_discount    = $discount /((6/100)+1);
+                                        $tax_discount       = $discount - $pretax_discount;
+
+                                        //tax amount of subtotal
+                                        $pretax             = $total_price /((6/100)+1);
+                                        $tax                = $total_price - $pretax - $tax_discount;
                                         //$tax = ($subtotal * (100/6));
 
                     ?>
@@ -482,7 +440,7 @@
                         <tr>
                     <?php
                                         //$total_taxed = $tax + $subtotal;
-                                        $total_to_pay = $subtotal;
+                                        $total_to_pay = $total_price - $discount;
                     ?>
                             <th id="total">Total</th>
                             <th id="db-total" class="db-rows">RM
@@ -490,27 +448,7 @@
                         </tr>
                         <tr>
                             <th id="payment-type">Payment method:
-                    <?php
-                                        //0 = COD       //1 = card      //2 = online banking
-                                    //old implementation
-                                        /*$payment_method = $payit ["payment_method"];
-                                        if($payment_method == "0"){
-                                            echo "Cash On Delivery";
-
-                                        } else if ($payment_method == "1"){
-                                            echo "Online Card Payment";
-
-                                        } else if($payment_method == "2"){
-                                            echo "Online Banking";
-
-                                        } else{
-                                            echo "No Payment Record Detected";
-                                        }*/
-
-                                //new implementation
-                    ?>
                                 <span id="pay_method"></span>
-
                             </th>
                         </tr>
                     </table>
@@ -523,44 +461,6 @@
     </div>
     <br><br>
 
-    <!--div class="personal-details">
-
-<?php
-                    /*$user_info = mysqli_query($connect, "SELECT * from user_acc"); //where email='$email'
-                    $u_i_o = mysqli_fetch_assoc($user_info);*/
-?>
-<br>
-
-<form method="post">
-
-<select name="contect" id="contect">
-                                        <option value="Contactless" default>Contactless</option>
-                                        <option value="Non-Contactless">Non-Contactless</option>
-                                    </select>
-<div class="container">
-    <span id="step">
-        <p>Step 2
-    </span>
-    <span id="payment-title">Personal Details</span>
-    <br>
-    <a href="" id="addinfo">+ Edit Personal Info</a>
-    <br>
-    <div class="container">
-        <span
-            id="name">Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-            <?php //echo $u_i_o ["name"]?></span><br>
-        <span
-            id="email">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-            <input type="text" name="testing" id="email_value" value="<?php //echo $u_i_o ["email"]?>" readonly>
-            </span><br>
-        <span id="phone_number">Contact Number: <?php //echo $u_i_o ["phone_number"]?></span>
-    </div>
-    </p>
-</div>
-<br>                            <button type="submit" name="testingbtn" class="btn btn-secondary btn-lg btn-block">Submit</button>
-
-</div><br><br><br><br>
-</form-->
 
     <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
@@ -645,6 +545,35 @@ echo "<br>".$email;
 /* 
     TODO: add logic to move from cart to transaction n order_rec table 
 */
+        $run_test = mysqli_query($connect, "SELECT * FROM cart WHERE email='$email'");
+
+        while($run_test_out = mysqli_fetch_assoc($run_test)){
+
+            $email      = $run_test_out['email'];
+            $dish_name  = $run_test_out['dish_name'];
+            $dish_price = $run_test_out['dish_price'];
+            $dish_id    = $run_test_out['dish_id'];
+            $dish_qty   = $run_test_out['dish_qty'];
+            $send_type  = '1';
+            $order_stats= '1';
+
+
+            $insert_test = $mysqli->query("INSERT INTO order_rec(email, dish_name, dish_price, dish_id, dish_qty)
+            VALUES ('$email', '$dish_name', '$dish_price', '$dish_id', '$dish_qty')");
+
+            $delete_test = mysqli_query($connects, "DELETE FROM cart_test WHERE email='$email'");
+    
+            
+            
+        }
+        
+        if($insert_test && $delete_test){
+            echo "insert done";
+        }else{
+            echo "insert fail";
+        }
+
+            //$select = "INSERT INTO transaction "
 
             header('location:tac');
         }else{
