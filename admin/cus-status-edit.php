@@ -38,6 +38,16 @@
                 include("navbar.html");
             ?>
 
+            <?php 
+                
+                include("../db-connect.php");
+                
+                $email = $_GET['email'];
+
+                $query_cus_status_edit = mysqli_query($connect, "SELECT * FROM user_acc WHERE email = '$email' ");
+                $row = mysqli_fetch_assoc($query_cus_status_edit);
+            ?>
+
             <div class="container">
                 <div class="card mx-auto" style="width: 22rem; margin-top: 12em;">
                     <div class="card-header" id="title-status-edit">
@@ -52,7 +62,7 @@
                                     </div>
                                     <div class="col-sm">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" aria-describedby="emailHelp" readonly name="email_cus_edit">
+                                            <input type="text" class="form-control" aria-describedby="emailHelp" readonly name="email_cus_edit" value="<?php echo $row['email']; ?>">
                                         </div>
                                     </div>
                                 </div>

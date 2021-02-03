@@ -25,7 +25,7 @@
                 
                 #p-status {
                     font-size: 2.5em;
-                    padding: 30px 0px 15px 0px;
+                    padding: 80px 0px 15px 0px;
                     font-weight: 300;
                 }
 
@@ -77,7 +77,6 @@
                     
                     $query_cus_status = mysqli_query($connect, "SELECT email, status, category FROM user_acc");
                     $numrow = mysqli_num_rows($query_cus_status);
-
                 ?>
 
                 <table class="table table-bordered table-hover table-dark" >
@@ -124,7 +123,11 @@
                                         <th scope="row"><?php echo $db_email_cus_status; ?></th>
                                         <td><?php echo $db_status_cus_status_string; ?></td>
                                         <td><?php echo $db_category_cus_status_string; ?></td>
-                                        <td ><a href="cus-status-edit.php">Edit</a>&emsp;<a href="#">Delete</a></td>
+                                        <td>
+                                            <a href="cus-status-edit.php?email=<?php echo $row['email']; ?>">Edit</a>
+                                            &emsp;
+                                            <a href="#">Delete</a>
+                                        </td>
                                     </tr>
                         <?php
                                 }
