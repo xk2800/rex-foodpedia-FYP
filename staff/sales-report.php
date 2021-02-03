@@ -67,8 +67,15 @@
             <?php 
                  $var_query_select_unit_sold_day = "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date) = MONTH(NOW()) AND DAY(date) = DAY(NOW())";
                  $var_query_select_subtotal_day = "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date) = MONTH(NOW()) AND DAY(date) = DAY(NOW())";
-                 $var_query_select_unit_sold_week = "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE WEEKOFYEAR(date) = WEEKOFYEAR(NOW())";
-                 $var_query_select_subtotal_week = "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE WEEKOFYEAR(date) = WEEKOFYEAR(NOW())";
+                 
+                 
+
+                 $var_query_select_unit_sold_week = "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE date BETWEEN DATE_ADD(now(), INTERVAL -1 DAY) AND DATE_ADD(now(), INTERVAL 6 DAY)";
+                 $var_query_select_subtotal_week = "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE date BETWEEN DATE_ADD(now(), INTERVAL -1 DAY) AND DATE_ADD(now(), INTERVAL 6 DAY)";
+                 //$var_query_select_subtotal_week = //"SELECT SUM(subtotal) AS total_sales FROM transaction WHERE WEEKOFYEAR(date) = WEEKOFYEAR(NOW())";
+                 
+
+                 
                  $var_query_select_unit_sold_month = "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date)=MONTH(NOW())";
                  $var_query_select_subtotal_month = "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date)=MONTH(NOW())";
             ?>
