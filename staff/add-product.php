@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+
+<?php
+    include "../db-connect.php"; 
+    session_start();
+?>
     <html>
         <head>
             <title>Add Products | REX Foodipedia</title>
@@ -75,19 +80,33 @@
                 include("navbar.html");
             ?>
 
+            <?php
+                
+                $staff_username = $_SESSION['staffuname'];
+
+                $query_select_menu_detail = mysqli_query($connect, "SELECT * FROM menu WHERE username = '$staff_username' ");
+                $row = mysqli_fetch_assoc($query_select_menu_detail);
+            ?>    
+
             <div class="container">
                 <div class="card" id="card-whole-add-product">
                     <h6 class="card-header" id="card-title">Add Products</h6>
                   
                     <div class="card-body"> 
                         <div id="card-input-add-product">
-                            <form>
+                            <form name="form-add-product" method="POST">
+
+                                <div class="form-group">       
+                                    <label for="ID">#ID</label>
+                                    <input type="text" class="form-control" id="ID" style="width:80%" name="dish-id">
+                                </div>
 
                                 <div class="form-group">       
                                     <label for="dish">Dish</label>
-                                    <input type="text" class="form-control" id="dish" style="width:80%">
+                                    <input type="text" class="form-control" id="dish" style="width:80%" name="dish-name">
                                 </div>
 
+<!--COMING SOON-->
                                 <div class="form-group">
                                     <label for="image">Image</label>
                                     <div class="custom-file">
@@ -107,25 +126,63 @@
 
                                 <div class="form-group">
                                     <label for="desc">Description</label>
-                                    <textarea class="form-control" id="desc" rows="3"></textarea>
+                                    <textarea class="form-control" id="desc" name="description" rows="3"></textarea>
                                 </div>
 
                                 <div class="form-group">       
                                     <label for="quantity">Stock Quantity</label>
-                                    <input type="number" class="form-control" id="quantity">
+                                    <input type="number" class="form-control" id="quantity" name="qty" >
                                 </div>
 
                                 <div class="form-group">       
                                     <label for="unit-price">Unit Price</label>
-                                    <input type="number" class="form-control" id="unit-price">
+                                    <input type="text" class="form-control" id="unit-price" name="price">
                                 </div>
+
+                                <button type="submit" class="btn btn-primary btn-block" id="card-button-add-menu" name="submit-add-product">Add</button>
                             </form>
                         </div>
-                        
-                        <a href="#" class="btn btn-primary btn-block" id="card-button-add-product">Add</a>
                     </div>
                 </div> 
             </div>
+
+            <?php 
+
+                if(isset($_POST['submit-add-product'])) {
+                    
+                    //$var_dish_menu_detail = $_POST['dish_menu_detail'];
+                    //$var_image_menu_detail = $_POST['image_menu_detail'];
+                    
+                    $var_name_menu_detail = $_POST["dish-name"];
+                    $var_id_menu_detail = $_POST["dish-id"];
+                    $var_desc_menu_detail = $_POST["description"];
+                    $var_qty_menu_detail = $_POST['qty'];
+                    $var_price_menu_detail = $_POST['price'];
+
+                    if(!empty($var_name_menu_detail) && !empty($var_id_menu_detail) && !empty($var_desc_menu_detail) && !empty($var_qty_menu_detail) && !empty($var_price_menu_detail)) {
+                        
+                        //!empty($var_dish_menu_detail)
+                        
+                        //$session_dish_id = $_SESSION['dish_id'];
+                        
+                        //$session_dish_id = "F001";
+                        
+                        //harcode a temp dish_id session
+
+                        $query_menu_detail = mysqli_query($connect, "INSERT INTO menu(dish_name, dish_id, price, description, stock_qty) 
+                        VALUES ('$var_name_menu_detail','$var_id_menu_detail','$var_price_menu_detail','$var_desc_menu_detail','$var_qty_menu_detail')");
+
+                        echo "<script>
+                                    alert('Product Added');
+                                    location.href = 'user-login.php';
+                                </script>";
+
+                    } else {
+                        echo "Please fill in all the inputs!";
+                    }
+                }
+
+            ?>
                 
             <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
