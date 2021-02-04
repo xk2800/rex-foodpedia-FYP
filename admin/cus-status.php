@@ -126,7 +126,7 @@
                                         <td>
                                             <a href="cus-status-edit.php?email=<?php echo $row['email']; ?>">Edit</a>
                                             &emsp;
-                                            <a href="#">Delete</a>
+                                            <a onclick="return confirm('Delete this record?')" href="cus-status-delete.php?email=<?php echo $row['email']; ?>">Delete</a>
                                         </td>
                                     </tr>
                         <?php
