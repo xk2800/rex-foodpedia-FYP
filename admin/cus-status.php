@@ -25,7 +25,7 @@
                 
                 #p-status {
                     font-size: 2.5em;
-                    padding: 80px 0px 15px 0px;
+                    padding: 35px 0px 15px 0px;
                     font-weight: 300;
                 }
 
@@ -47,8 +47,8 @@
             <div class="container">
                 
                 <p id="p-status">Account Statuses
-                    <a href="cus-status-edit.php" class="btn btn-primary" id="button-status">+ Account Statuses</a>
-                </p>
+                    <!-- <a href="cus-status-edit.php" class="btn btn-primary" id="button-status">+ Account Statuses</a> -->
+                </p> 
                 
                 <hr style="background-color:#898f8b"/>
             
