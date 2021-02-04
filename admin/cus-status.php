@@ -60,32 +60,67 @@
                 
                 <hr style="background-color:#898f8b"/>
             
-                <!--ref : https://getbootstrap.com/docs/4.0/components/pagination/-->
-                <nav aria-label="Account Statuses Navigator" style="margin: 30px 0px 30px 0px;">
-                    <ul class="pagination">
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                        </li>
-                    </ul>
-                </nav>
-                
+                <!--ref : https://getbootstrap.com/docs/4.0/components/pagination/ , https://www.allphptricks.com/create-simple-pagination-using-php-and-mysqli/ -->
+
                 <?php 
-                    
-                    $query_cus_status = mysqli_query($connect, "SELECT email, status, category FROM user_acc");
+
+                    // Get the Current Page Number
+                    if (isset($_GET['page_no']) && $_GET['page_no'] != "") {
+                        $page_no = $_GET['page_no'];
+
+                    } else {
+                        $page_no = 1;
+                    }
+
+                    // SET Total Records Per Page Value
+                    $total_records_per_page = 5;
+
+                    // Calculate OFFSET Value and SET other Variables
+                    $offset = ($page_no-1) * $total_records_per_page;
+                    $previous_page = $page_no - 1;
+                    $next_page = $page_no + 1;
+                    $adjacents = "2";
+
+                    // Get the Total Number of Pages for Pagination
+                    $result_count = mysqli_query($connect,"SELECT COUNT(*) As total_records FROM user_acc");
+                    $total_records = mysqli_fetch_array($result_count);
+
+                    $total_records = $total_records['total_records'];
+                    $total_no_of_pages = ceil($total_records / $total_records_per_page);
+                    $second_last = $total_no_of_pages - 1; // total pages minus 1
+
+                ?>
+
+                <?php 
+                    // SQL Query for Fetching Limited Records using LIMIT Clause and OFFSET
+                    $query_cus_status = mysqli_query($connect, "SELECT email, status, category FROM user_acc LIMIT $offset, $total_records_per_page");
                     $numrow = mysqli_num_rows($query_cus_status);
                 ?>
+
+                
+
+                <ul class="pagination" style="margin: 40px 0px 40px 0px;">
+                    <?php 
+                        if($page_no > 1) {
+                            echo "<li style='padding-right: 30px;'><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=1'>First Page</a> &emsp; </li>";
+                        } 
+                    ?>
+                    <li style="padding-right: 30px;" <?php if($page_no <= 1) { echo "class='disabled'"; } ?> >
+                        <a style="margin-right: 30px;" class="btn btn-secondary btn-block " <?php if($page_no > 1) {
+                                    echo "href='?page_no=$previous_page'";
+                                 } ?>>Previous 
+                        </a>
+                    </li>
+                    <li style="padding-right: 30px;" <?php if($page_no >= $total_no_of_pages) { echo "class='disabled'"; } ?> >
+                        <a style="margin-right: 30px;" class="btn btn-secondary btn-block " <?php if($page_no < $total_no_of_pages) {
+                                    echo "href='?page_no=$next_page'";
+                                 } ?>>Next 
+                        </a>
+                    </li>
+                    <?php if($page_no < $total_no_of_pages) { echo "<li><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=$total_no_of_pages'>Last</a> </li>"; } ?>
+                    
+                    
+                </ul>
 
                 <table class="table table-borderless table-hover table-dark" >
                     <thead>
@@ -137,13 +172,15 @@
                                             <a onclick="return confirm('Delete this record?')" href="cus-status-delete.php?email=<?php echo $row['email']; ?>">Delete</a>
                                         </td>
                                     </tr>
+
                         <?php
                                 }
                             }    
-                        ?>
-                        
+                        ?>   
                     </tbody>
                 </table>
+                
+                <p style='float: right; margin-top: 8px; font-style: italic; border-top: 1px #CCC;'>Page <?php echo $page_no." of ".$total_no_of_pages; ?></p>
             </div>
 
             <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
