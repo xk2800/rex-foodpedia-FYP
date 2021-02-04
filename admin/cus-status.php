@@ -23,6 +23,14 @@
 
             <style>
                 
+                #tr-status th {
+                    font-size: 1.1em;
+                    letter-spacing: 1.1px;
+                    text-align: center;
+                    font-weight: 400;
+                    /*text-transform: uppercase;*/
+                }
+                
                 #p-status {
                     font-size: 2.5em;
                     padding: 35px 0px 15px 0px;
@@ -79,9 +87,9 @@
                     $numrow = mysqli_num_rows($query_cus_status);
                 ?>
 
-                <table class="table table-bordered table-hover table-dark" >
+                <table class="table table-borderless table-hover table-dark" >
                     <thead>
-                        <tr>
+                        <tr id="tr-status">
                             <th scope="col">User Email</th>
                             <th scope="col">Account Status</th>
                             <th scope="col">Account Category</th>
@@ -119,8 +127,8 @@
                                                  break;                         
                                     }
                         ?>
-                                    <tr>
-                                        <th scope="row"><?php echo $db_email_cus_status; ?></th>
+                                    <tr style="text-align: center;">
+                                        <th scope="row" style="font-style: italic;"><?php echo $db_email_cus_status; ?></th>
                                         <td><?php echo $db_status_cus_status_string; ?></td>
                                         <td><?php echo $db_category_cus_status_string; ?></td>
                                         <td>
