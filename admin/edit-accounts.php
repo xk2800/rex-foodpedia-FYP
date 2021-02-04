@@ -146,10 +146,10 @@
                 }else{
     ?>
                     <table>
-                        <th>Admin ID</th>
-                        <th>Admin Name</th>
-                        <th>Admin Username</th>
-                        <th>Admin Email</th>
+                        <th>Staff ID</th>
+                        <th>Staff Name</th>
+                        <th>Staff Username</th>
+                        <th>Staff Email</th>
                         <th>Account Activity</th>
                         <th>Action</th>
                     </table>
