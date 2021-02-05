@@ -1,0 +1,5 @@
+html upload template = staff/example.php
+
+php upload logic = staff/upload.php
+
+output links from table = xavier-test/cloudyinsert.php
