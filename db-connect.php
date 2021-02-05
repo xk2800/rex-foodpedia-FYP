@@ -1,5 +1,9 @@
 <?php
 //session_start();
+
+session_start();
+session_regenerate_id(true);
+
 //set default time zone
 date_default_timezone_set("Asia/Kuala_Lumpur");
 

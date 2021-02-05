@@ -1,0 +1,67 @@
+{
+    "packages": [
+        {
+            "name": "cloudinary/cloudinary_php",
+            "version": "1.20.0",
+            "version_normalized": "1.20.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cloudinary/cloudinary_php.git",
+                "reference": "2a8e6ed5bc6cf024022c6fcc03b69e1ce92ccaab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/2a8e6ed5bc6cf024022c6fcc03b69e1ce92ccaab",
+                "reference": "2a8e6ed5bc6cf024022c6fcc03b69e1ce92ccaab",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "ext-zip": "*",
+                "phpunit/phpunit": "4.8.*"
+            },
+            "time": "2021-01-13T18:40:23+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ],
+                "files": [
+                    "src/Helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cloudinary",
+                    "homepage": "https://github.com/cloudinary/cloudinary_php/graphs/contributors"
+                }
+            ],
+            "description": "Cloudinary PHP SDK",
+            "homepage": "https://github.com/cloudinary/cloudinary_php",
+            "keywords": [
+                "cdn",
+                "cloud",
+                "cloudinary",
+                "image management",
+                "sdk"
+            ],
+            "support": {
+                "email": "info@cloudinary.com",
+                "issues": "https://github.com/cloudinary/cloudinary_php/issues",
+                "source": "https://github.com/cloudinary/cloudinary_php/tree/1.20.0"
+            },
+            "install-path": "../cloudinary/cloudinary_php"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}
