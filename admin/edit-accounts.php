@@ -134,27 +134,29 @@
                     </table>
     <?php
                     while($admin_output = mysqli_fetch_assoc($getadmininfo)){
-
-                        echo '<table>';
-                        echo '<tr>';
-                        echo '<td>'.$admin_output['staff_id'].'</td>';
-                        echo '<td>'.$admin_output['fname'].'</td>';
-                        echo '<td>'.$admin_output['username'].'</td>';
-                        echo '<td>'.$admin_output['email'].'</td>';
-                        echo '<td>';
-
-                        $admin_status = $admin_output['admin_isDelete']; 
-                        if($admin_status == "0"){
-                            echo "Active";
-                        }else if($admin_status == "1"){
-                            echo "Deactivated";
-                        }else{
-                            echo "No data to show";
-                        }
-                        echo '</td>';
-                        echo '<td>'?><a href="edit-accounts-info?staff_id=<?php echo $admin_output["staff_id"];?>&account=admin"><button type="submit">Edit</button></a></td><?php
-                        echo '</tr>';
-                        echo '</table>';
+    ?>
+                        <table>
+                            <tr>
+                                <td><?php if($admin_output['staff_id']): echo $admin_output['staff_id']; else: echo 'No Data'; endif;?></td>
+                                <td><?php if($admin_output['fname']): echo $admin_output['fname']; else: echo 'No Data'; endif;?></td>
+                                <td><?php if($admin_output['username']): echo $admin_output['username']; else: echo 'No Data'; endif;?></td>
+                                <td><?php if($admin_output['email']): echo $admin_output['email']; else: echo 'No Data'; endif;?></td>
+                                <td>    
+    <?php
+                                    $admin_status = $admin_output['admin_isDelete']; 
+                                    if($admin_status == "0"){
+                                        echo "Active";
+                                    }else if($admin_status == "1"){
+                                        echo "Deactivated";
+                                    }else{
+                                        echo "No data to show";
+                                    }
+    ?>
+                                </td>
+                                <td><a href="edit-accounts-info?staff_id=<?php echo $admin_output["staff_id"];?>&account=admin"><button type="submit">Edit</button></a></td>
+                            </tr>
+                        </table>
+    <?php
                     }
     ?>
     <?php
@@ -183,15 +185,15 @@
                     </table>
     <?php
                     while($staff_output = mysqli_fetch_assoc($getstaffinfo)){
-
-                        echo '<table>';
-                        echo '<tr>';
-                        echo '<td>'.$staff_output['staff_id'].'</td>';
-                        echo '<td>'.$staff_output['fname'].'</td>';
-                        echo '<td>'.$staff_output['username'].'</td>';
-                        echo '<td>'.$staff_output['email'].'</td>';
-                        echo '<td>';
-
+    ?>
+                        <table>
+                        <tr>
+                        <td><?php if($staff_output['staff_id']): echo $staff_output['staff_id']; else: echo 'No Data'; endif; ?></td>
+                        <td><?php if($staff_output['fname']): echo $staff_output['fname']; else: echo 'No Data'; endif; ?></td>
+                        <td><?php if($staff_output['username']): echo $staff_output['username']; else: echo 'No Data'; endif; ?></td>
+                        <td><?php if($staff_output['email']): echo $staff_output['email']; else: echo 'No Data'; endif; ?></td>
+                        <td>
+    <?php
                         $staff_status = $staff_output['staff_isDelete']; 
                         if($staff_status == "0"){
                             echo "Active";
@@ -200,28 +202,18 @@
                         }else{
                             echo "No data to show";
                         }
-                        echo '</td>';
-                        echo '<td>'?><a href="edit-accounts-info?staff_id=<?php echo $staff_output['staff_id'];?>&account=staff"><button type="submit" name="action_admin">Edit</button></a><?php '</td>';
-                        echo '</tr>';
-                        echo '</table>';
-                    }
     ?>
+                        </td>
+                        <td><a href="edit-accounts-info?staff_id=<?php echo $staff_output['staff_id'];?>&account=staff"><button type="submit" name="action_admin">Edit</button></a></td>
+                        </tr>
+                        </table>
     <?php
+                    }
                 }
     ?>
-                    
 
             </div>
-
-
-
-
-
-
-
     </div>
-
-
 
 
 <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
