@@ -9,7 +9,7 @@
  * XAVIER
  */
 
-    session_start();
+    //session_start();
     include "../db-connect.php";
     ob_start();
 
@@ -68,15 +68,43 @@
 ?>
 
 <?php
-    $staff_username = $_SESSION['staffuname'];
-    echo $staff_username;
+    $admin_username = $_SESSION['adminuname'];
+    echo $admin_username;
     //onclick="javascript:option_drop();"
 
     $admin_username = '123';
+
+    $fullUrl ="https:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+
+    if(strpos($fullUrl, "admin=updated") == true){
+        //echo '<script>document.getElementById("error").innerHTML = "<br><br>"</script>';
+        echo '<div class="container">
+                <div class="alert alert-success" role="alert">
+                    Admin information has successfully been updated!
+                </div>
+            </div>';
+
+        
+    }
+
+    if(strpos($fullUrl, "staff=updated") == true){
+        //echo '<script>document.getElementById("error").innerHTML = "<br><br>"</script>';
+        echo '<div class="container">
+                <div class="alert alert-success" role="alert">
+                    Staff information has successfully been updated!
+                </div>
+            </div>';
+
+        
+    }
+
     
 ?>
 
     <div class="container">
+
+            <div class="updated_info"></div>
 
             <div class="option">
             <select name="staff-admin" id="uni-name" onchange='option_drop(this.value);' required></p>
@@ -124,7 +152,7 @@
                             echo "No data to show";
                         }
                         echo '</td>';
-                        echo '<td>'?><a href="edit-accounts-info?admin_username=<?php echo $admin_output["username"];?>&account=admin"><button type="submit">Edit</button></a></td><?php
+                        echo '<td>'?><a href="edit-accounts-info?staff_id=<?php echo $admin_output["staff_id"];?>&account=admin"><button type="submit">Edit</button></a></td><?php
                         echo '</tr>';
                         echo '</table>';
                     }
@@ -173,7 +201,7 @@
                             echo "No data to show";
                         }
                         echo '</td>';
-                        echo '<td>'?><a href="edit-accounts-info?staff_username=<?php echo $staff_output['username'];?>&account=staff"><button type="submit" name="action_admin">Edit</button></a><?php '</td>';
+                        echo '<td>'?><a href="edit-accounts-info?staff_id=<?php echo $staff_output['staff_id'];?>&account=staff"><button type="submit" name="action_admin">Edit</button></a><?php '</td>';
                         echo '</tr>';
                         echo '</table>';
                     }
