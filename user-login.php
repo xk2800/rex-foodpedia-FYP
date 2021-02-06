@@ -1,5 +1,5 @@
 <?php
-require 'db-connect.php';
+require 'db_connection.php';
 
 /*
 if(isset($_SESSION['login_id'])){
