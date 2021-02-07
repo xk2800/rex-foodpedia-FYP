@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include("../db_connect.php");
+    include("../db-connect.php");
 
     /**
      * using if else statement for homepage

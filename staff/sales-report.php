@@ -56,7 +56,7 @@
             </div>
 
             <?php 
-                include("../db_connect.php");
+                include("../db-connect.php");
 
                 //$staff_username = $_SESSION['staffuname'];
             ?>    
