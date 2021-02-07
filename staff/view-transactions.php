@@ -61,8 +61,8 @@
     
     include "navbar.html";
 ?>
-        <br><br><br><br>
-        <iframe width="100%" height="100%" src="transaction-page.php" frameborder="0" class="page"></iframe>
+
+    <iframe width="100%" height="100%" src="transaction-page.php" frameborder="0" class="page"></iframe>
 
 
 </html>

@@ -33,6 +33,17 @@
 <!--FONTS.CSS-->
 <link rel="stylesheet" href="css/fonts.css">
 
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
 <style>
     *{
         font-size: 16px;
@@ -51,8 +62,9 @@
             $result = mysqli_query($connect, $query);
 ?>
         
-        <br /><br />
+        <br /><br /><br><br>
     <div class="container" style="width:700px;">
+    <input id="myInput" type="text" placeholder="Search..">
         <br />
         <div class="table-responsive">
             <br />
@@ -60,13 +72,14 @@
                 <table class="table table-bordered">
                     <tr>
                         <th width="70%">Employee Name</th>
-                        <th width="15%">View</th>
+                        <th width="15%">Receipt ID</th>
                         <th width="15%">View</th>
                     </tr>
                     <?php  
                                while($row = mysqli_fetch_array($result))  
                                {  
                                ?>
+                    <tbody id="myTable">
                     <tr>
                         <td><?php echo $row["email"]; ?></td>
                         <td><?php echo $row["receipt_id"]; ?></td>
@@ -76,6 +89,7 @@
                     <?php  
                                }  
                                ?>
+                    </tbody>
                 </table>
             </div>
         </div>
