@@ -22,15 +22,49 @@
                 //}     
             ?>
 
+
+  <!-- will need to adjust it to be at the center of the screen after backend is setup -->
+  <!-- <div class="row mb-4 mt-5">
+        <div class="form-group col-md-9">
+            <input id="exampleFormControlInput5" type="email" placeholder="Kindly insert the user email that would like to add points" class="form-control form-control-underlined">
+        </div>
+        <div class="form-group col-md-3">
+            <button type="submit" class="btn btn-primary rounded-pill btn-block shadow-sm">Search</button>
+        </div>
+    </div> -->
+
+    
+    <!--  ref : https://getbootstrap.com/docs/4.0/components/pagination/
+    <nav aria-label="Loyalty Points Navigator" style="margin: 30px 0px 30px 0px;">
+                    <ul class="pagination">
+                        <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                        </li>
+                    </ul>
+                </nav>
+            -->
+
 <!--$query_menu_detail = mysqli_query($connect, "INSERT INTO menu (username, dish_name, price, description, stock_qty) VALUES ('$staff_username','$var_dish_menu_detail','$var_price_menu_detail', 
                                                                                        '$var_desc_menu_detail','$var_qty_menu_detail') ");-->
 
-                            <th scope="row"><?php $db_dish_id ?></th>
+                           <!-- <th scope="row"><?php $db_dish_id ?></th>
                             <td><?php $db_dish_name ?></td>
                             <td rowspan=""><img src="../img/dummy.jpg" alt="Girl in a jacket" style="width:20em; height:10em"></td>
                             <td><?php $db_dish_desc ?></td>
                             <td><?php $db_dish_qty ?></td>
-                            <td><?php $db_dish_price ?></td>
+                            <td><?php $db_dish_price ?></td> -->
 
  
  <!--

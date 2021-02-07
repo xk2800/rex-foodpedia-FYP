@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php 
+    include("../db-connect.php");
+?>
     <html>
         <head>
             <title>Loyalty Point - Landing | REX Foodipedia</title>
@@ -47,38 +50,76 @@
                 </p>
                 
                 <hr style="background-color:#898f8b"/>
-            
-                <!-- will need to adjust it to be at the center of the screen after backend is setup -->
-                <div class="row mb-4 mt-5">
-                    <div class="form-group col-md-9">
-                        <input id="exampleFormControlInput5" type="email" placeholder="Kindly insert the user email that would like to add points" class="form-control form-control-underlined">
-                    </div>
-                    <div class="form-group col-md-3">
-                        <button type="submit" class="btn btn-primary rounded-pill btn-block shadow-sm">Search</button>
-                    </div>
-                </div>
+
+                 <!--ref : https://getbootstrap.com/docs/4.0/components/pagination/ , https://www.allphptricks.com/create-simple-pagination-using-php-and-mysqli/ -->
+
+                 <?php 
+
+                    // Get the Current Page Number
+                    if (isset($_GET['page_no']) && $_GET['page_no'] != "") {
+                        $page_no = $_GET['page_no'];
+
+                    } else {
+                        $page_no = 1;
+                    }
+
+                    // SET Total Records Per Page Value
+                    $total_records_per_page = 5;
+
+                    // Calculate OFFSET Value and SET other Variables
+                    $offset = ($page_no-1) * $total_records_per_page;
+                    $previous_page = $page_no - 1;
+                    $next_page = $page_no + 1;
+                    $adjacents = "2";
+
+                    // Get the Total Number of Pages for Pagination
+                    $result_count = mysqli_query($connect,"SELECT COUNT(*) As total_records FROM user_acc");
+                    $total_records = mysqli_fetch_array($result_count);
+
+                    $total_records = $total_records['total_records'];
+                    $total_no_of_pages = ceil($total_records / $total_records_per_page);
+                    $second_last = $total_no_of_pages - 1; // total pages minus 1
+
+                ?>
+
+                <?php 
+                    // SQL Query for Fetching Limited Records using LIMIT Clause and OFFSET
+                    $query_cus_status = mysqli_query($connect, "SELECT email, status, category FROM user_acc LIMIT $offset, $total_records_per_page");
+                    $numrow = mysqli_num_rows($query_cus_status);
+                ?>
                 
-                <!--ref : https://getbootstrap.com/docs/4.0/components/pagination/-->
-                <nav aria-label="Loyalty Points Navigator" style="margin: 30px 0px 30px 0px;">
-                    <ul class="pagination">
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
+                <!-- pagination + font awesome icon -->
+                <ul class="pagination" style="margin: 40px 0px 40px 0px;">
+                    <?php 
+                        if($page_no > 1) {
+                            echo "<li style='padding-right: 30px;'><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=1'>
+                                                                    <i class='fa fa-fast-backward' aria-hidden='true'></i>
+                                                                   </a> &emsp; 
+                                  </li>";
+                        } 
+                    ?>
+                    <li style="padding-right: 30px;" <?php if($page_no <= 1) { echo "class='disabled'"; } ?> >
+                        <a style="margin-right: 30px;" class="btn btn-secondary btn-block " <?php if($page_no > 1) {
+                                    echo "href='?page_no=$previous_page'";
+                                } ?>><i class="fa fa-backward" aria-hidden="true"></i>
                         </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
+                    </li>
+                    <li style="padding-right: 30px;" <?php if($page_no >= $total_no_of_pages) { echo "class='disabled'"; } ?> >
+                        <a style="margin-right: 30px;" class="btn btn-secondary btn-block " <?php if($page_no < $total_no_of_pages) {
+                                    echo "href='?page_no=$next_page'";
+                                } ?>><i class="fa fa-forward" aria-hidden="true"></i>
                         </a>
-                        </li>
-                    </ul>
-                </nav>
-            
+                    </li>
+                    <?php if($page_no < $total_no_of_pages) { 
+                                echo "<li><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=$total_no_of_pages'>
+                                            <i class='fa fa-step-forward' aria-hidden='true'></i>
+                                          </a> 
+                                      </li>"; 
+                          } 
+                    ?>
+                </ul>
+                
+               
                 <table class="table table-bordered table-hover table-dark" >
                     <thead>
                         <tr>
