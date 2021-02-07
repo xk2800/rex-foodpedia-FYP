@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 
+<?php 
+    include("../db-connect.php");
+
+    //$staff_username = $_SESSION['staffuname'];
+?>    
+
     <html>
         <head>
             <title>Sales Report | REX Foodipedia</title>
@@ -55,12 +61,7 @@
                 <p id="navbar-view-by-report"><span style="color:red;">* </span>Please select a mode : </p>
             </div>
 
-            <?php 
-                include("../db-connect.php");
-
-                //$staff_username = $_SESSION['staffuname'];
-            ?>    
-
+          
             <!-- credit to : https://stackoverflow.com/questions/5293189/select-records-from-today-this-week-this-month-php-mysql
                            : https://www.w3schools.com/sql/func_mysql_date_add.asp -->
 

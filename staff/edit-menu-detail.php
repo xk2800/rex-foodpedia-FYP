@@ -2,7 +2,7 @@
 
 <?php
     include "../db-connect.php";
-    session_start();
+    //session_start();
 ?>
     <html>
         <head>
