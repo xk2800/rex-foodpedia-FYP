@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 
 <?php
+<<<<<<< HEAD
     include("db-connect.php");
     //include("db_connection.php");
+=======
+    include("db_connect.php");
+    include("db_connection.php");
+>>>>>>> 0a26bc121fe262fb8dafe9810830a8d1a6e97c7d
 ?>
     <html lang="en">
         <head>

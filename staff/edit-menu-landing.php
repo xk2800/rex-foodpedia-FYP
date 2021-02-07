@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 
 <?php
+<<<<<<< HEAD
     include "../db-connect.php";
     //session_start();
+=======
+    include "../db_connect.php";
+    session_start();
+>>>>>>> 0a26bc121fe262fb8dafe9810830a8d1a6e97c7d
 ?>
     <html>
         <head> 

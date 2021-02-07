@@ -9,9 +9,12 @@
  * XAVIER
  */
 
+    include "../db_connect.php";
+    ob_start();
+
 ?>
 <html>
-    <head><title>Welcome | REX Foodipedia</title>
+    <head><title>View Transactions | REX Foodipedia</title>
 
     <meta name="viewpoint" content="width=device-width, initial-scale=1">
     <meta name="viewpoint" content="width=device-width">
@@ -33,10 +36,42 @@
 </head>
 <body>
 
+<?php
+    include "navbar.html";
+?>
+
+    <div class="container">
+
+    <?php
+            $info_call      = mysqli_query($connect, "SELECT * FROM transaction");
+
+        if(mysqli_num_rows($info_call)==0){
+            echo "No Data Available";
+        }else{
+    ?>
+            <table>
+                <th>Customers Email</th>
+                <th>(Non-)Contactless</th>
+                <th>Send Type</th>
+                <th>Receipt ID</th>
+                <th>Date of Order</th>
+                <th>Address(If Applicable)</th>
+                <th>Order Subtotal</th>
+                <th>Order Discount</th>
+                <th>Order Total</th>
+                <th>Payment Method</th>
+                <th>Payment Date</th>
+                <th>Delivery/Pickup Time</th>
+            </table>
+    <?php
+        }
+    ?>
 
 
 
-</div>
+    </div>
+
+
 <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

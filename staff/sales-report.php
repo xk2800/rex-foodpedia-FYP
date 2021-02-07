@@ -56,9 +56,13 @@
             </div>
 
             <?php 
+<<<<<<< HEAD
                 require '../db-connect.php';
                 
                 //include("../db-connect.php");
+=======
+                include("../db_connect.php");
+>>>>>>> 0a26bc121fe262fb8dafe9810830a8d1a6e97c7d
 
                 //$staff_username = $_SESSION['staffuname'];
             ?>    
