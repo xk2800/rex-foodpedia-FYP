@@ -1,5 +1,5 @@
 <?php
-require 'db_connection.php';
+require 'db-connect.php';
 
 if(!isset($_SESSION['login_id'])){
     header('Location: login.php');
