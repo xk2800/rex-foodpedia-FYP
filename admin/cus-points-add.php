@@ -72,7 +72,7 @@
                                     <span id="small-cus-add">User email</span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="point-cus-add" readonly value="<?php echo $row['email']; ?>">
+                                    <input type="email" class="form-control" id="point-cus-add" readonly value="<?php echo $row['email']; ?>">
                                 </div>
                             </div>
                             
@@ -99,7 +99,7 @@
                                 <div class="col-sm-10">
                                     <select class="form-control" id="exampleFormControlSelect1" name="cus_points_add_status">
                                         <option value="1" >Available</option>
-                                        <option value="2">Unavailable</option>
+                                        <option value="0">Unavailable</option>
                                     </select>
                                 </div>
                             </div>
