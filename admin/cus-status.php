@@ -97,8 +97,6 @@
                     $numrow = mysqli_num_rows($query_cus_status);
                 ?>
 
-                
-
                 <ul class="pagination" style="margin: 40px 0px 40px 0px;">
                     <?php 
                         if($page_no > 1) {
