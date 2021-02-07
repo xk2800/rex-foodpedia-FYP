@@ -120,10 +120,9 @@
                 </ul>
                 
                
-                <table class="table table-bordered table-hover table-dark" >
+                <table class="table table-bordereless table-hover table-dark" >
                     <thead>
-                        <tr>
-                            <th scope="col">#</th>
+                        <tr style="text-align: center;">
                             <th scope="col">Customer Email</th>
                             <th scope="col">Available Point</th>
                             <th scope="col">Point Validity</th>
@@ -132,8 +131,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
+                        <tr style="text-align: center;">
                             <td>test</td>
                             <td>test_test</td>
                             <td>test_test_test</td>

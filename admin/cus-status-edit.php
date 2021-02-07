@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php 
+      include("../db-connect.php");   
+      $email = $_GET['email'];
+?>
     <html>
         <head><title>Edit Account Status | REX Foodipedia</title>
 
@@ -45,11 +49,6 @@
             ?>
 
             <?php 
-                
-                include("../db-connect.php");
-                
-                $email = $_GET['email'];
-
                 $query_cus_status_edit = mysqli_query($connect, "SELECT * FROM user_acc WHERE email = '$email' ");
                 $row = mysqli_fetch_assoc($query_cus_status_edit);
             ?>

@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php 
+     include("../db-connect.php");        
+     $email = $_GET['email'];
+?>
 <html>
     <head>
         <title>Loyalty Point - Add | REX Foodipedia</title>
@@ -30,7 +34,7 @@
             }
             
             #small-cus-add  {
-                margin-left: 10px;
+                /*margin-left: 2px;*/
                 font-weight: lighter;
                 font-size: 0.7em;
                 font-style: italic;
@@ -49,58 +53,77 @@
         <?php
             include("navbar.html");
         ?>
+        
+        <?php  
+            $query_cus_point_edit = mysqli_query($connect, "SELECT * FROM user_acc WHERE email = '$email' ");
+            $row = mysqli_fetch_assoc($query_cus_point_edit);
+        ?>
 
         <div class="container">
-            
-            <!-- if-else statement will go here, state=true -> statement block will be executed || state=false -> alert box display the error -->
                 <div class="card" style="margin-top: 6.3em;">
                     <div class="card-header">
-                        <h5 id="title-cus-add">Add Points</h5>
+                        <h5 id="title-cus-add">Edit Points</h5>
                     </div>
                     
                     <div class="card-body">
-                        <form>
+                        <form name="cus_point_add_form" method="POST">
                             <div class="form-group row">
-                                <label for="point-cus-add" class="col-sm-2 col-form-label"><span style="color:red">*&nbsp;</span>Email<br/>
+                                <label for="point-cus-add" class="col-sm-2 col-form-label">Email<br/>
                                     <span id="small-cus-add">User email</span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="point-cus-add" required>
+                                    <input type="number" class="form-control" id="point-cus-add" readonly value="<?php echo $row['email']; ?>">
                                 </div>
                             </div>
                             
                             <div class="form-group row">
-                                <label for="point-cus-add" class="col-sm-2 col-form-label"><span style="color:red">*&nbsp;</span>Points<br/>
+                                <label for="point-cus-add" class="col-sm-2 col-form-label">Points<br/>
                                     <span id="small-cus-add">Set the number of points</span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="point-cus-add" required>
+                                    <input type="number" class="form-control" id="point-cus-add" name="cus_points_add_points" value="<?php echo $row['lpoints']; ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="point-cus-add" class="col-sm-2 col-form-label"><span style="color:red">*&nbsp;</span>Validity<br/>
+                                <label for="point-cus-add" class="col-sm-2 col-form-label">Validity<br/>
                                     <span id="small-cus-add">Set the validity of points (days)</span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="point-cus-add" required>
+                                    <input type="number" class="form-control" id="point-cus-add" name="cus_points_add_validity" value="<?php echo $row['lpoints_valid']; ?>">
                                 </div>
                             </div>
                             <div class="form-group row" style="margin-top:1.85em;">
-                                <label for="point-cus-add" class="col-sm-2 col-form-label"><span style="color:red">*&nbsp;</span>Status<br/>
+                                <label for="point-cus-add" class="col-sm-2 col-form-label">Status<br/>
                                     <span id="small-cus-add">Choose status for points</span>
                                 </label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                        <option>Available</option>
-                                        <option>Unavailable</option>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="cus_points_add_status">
+                                        <option value="1" >Available</option>
+                                        <option value="2">Unavailable</option>
                                     </select>
                                 </div>
                             </div>
-                            <a href="#" class="btn btn-primary" style="margin: 0.5em 0em 2em 11.5em;">Save</a> <a href="#" class="btn btn-secondary" style="float: right; margin-top: 0.5em;">Back</a>
+                            <button type="submit" class="btn btn-primary" style="margin: 0.5em 0em 2em 11.5em;" name="btn_add_points">Save</button> <a href="cus-points-landing" class="btn btn-secondary" style="float: right; margin-top: 0.5em;">Back</a>
                         </form>   
                     </div>    
                 </div>
-            <!-- end of if-else statement -->
+
+                <?php 
+                    if(isset($_POST['btn_add_points'])) {
+
+                        $var_cus_points_add_points = $_POST['cus_points_add_points'];
+                        $var_cus_points_add_validity = $_POST['cus_points_add_validity'];
+                        $var_cus_points_add_status = $_POST['cus_points_add_status'];
+
+                        $query_update_cus_points_add = mysqli_query($connect, "UPDATE user_acc SET lpoints = '$var_cus_points_add_points', lpoints_valid = '$var_cus_points_add_validity', lpoints_status = '$var_cus_points_add_status' WHERE email = '$email' ");
+
+                        if($query_update_cus_points_add) {
+                            echo "<script>
+                                    location.href = 'cus-points-landing.php';
+                                  </script>";
+                        }
+                    }
+                ?>
         </div>
 
         <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
