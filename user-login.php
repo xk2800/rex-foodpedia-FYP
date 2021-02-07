@@ -1,7 +1,7 @@
 <?php
 
 //in line 329, file user-login.php, thats the issue, db-connect is called suddenly
-require 'db-connect.php';
+require 'db_connection.php';
 
 /*
 if(isset($_SESSION['login_id'])){
