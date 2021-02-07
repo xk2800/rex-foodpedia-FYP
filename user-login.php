@@ -328,7 +328,7 @@ else:
 
             if(!empty($var_email_login) && !empty($var_password_login)) {
                 
-                //include("db-connect.php");
+                //include("db_connect.php");
                 
                 $query_user_login = mysqli_query($connect, "SELECT email, password FROM user_acc WHERE email = '$var_email_login'");
                 $numrows = mysqli_num_rows($query_user_login);

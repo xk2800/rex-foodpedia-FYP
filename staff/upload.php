@@ -14,7 +14,7 @@ $mysqli = NEW MySQLi ("localhost", $use, $pwd, $table);
 //actual db connection
 @mysqli_connect("localhost", $use, $pwd, $table) || die('<p>Error: 500. <br> DB not connected</p>');
 
-//include "./db-connect.php";
+//include "./db_connect.php";
 
 $fileName = $_FILES['file']['name'];
 $fileTmpName = $_FILES['file']['tmp_name'];

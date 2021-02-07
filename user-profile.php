@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php
-    include("db-connect.php");
+    include("db_connect.php");
     include("db_connection.php");
     //session_start();
 ?>
