@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 
 <?php
+<<<<<<< HEAD
     include("db-connect.php");
+=======
+<<<<<<< HEAD
+    include("db-connect.php");
+    //include("db_connection.php");
+=======
+    include("db_connect.php");
+>>>>>>> 7751b463b4b9bf676fcaf1a0e6858efa69580f7f
     include("db_connection.php");
+>>>>>>> 0a26bc121fe262fb8dafe9810830a8d1a6e97c7d
     //session_start();
 ?>
     <html lang="en">

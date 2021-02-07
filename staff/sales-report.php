@@ -56,7 +56,17 @@
             </div>
 
             <?php 
+<<<<<<< HEAD
                 include("../db-connect.php");
+=======
+<<<<<<< HEAD
+                require '../db-connect.php';
+                
+                //include("../db-connect.php");
+=======
+                include("../db_connect.php");
+>>>>>>> 0a26bc121fe262fb8dafe9810830a8d1a6e97c7d
+>>>>>>> 7751b463b4b9bf676fcaf1a0e6858efa69580f7f
 
                 //$staff_username = $_SESSION['staffuname'];
             ?>    
@@ -69,8 +79,8 @@
                  $var_query_select_unit_sold_day = "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date) = MONTH(NOW()) AND DAY(date) = DAY(NOW())";
                  $var_query_select_subtotal_day = "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date) = MONTH(NOW()) AND DAY(date) = DAY(NOW())";
                  
-                 $var_query_select_unit_sold_week = "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE date BETWEEN DATE_ADD(now(), INTERVAL -1 DAY) AND DATE_ADD(now(), INTERVAL 7 DAY)";
-                 $var_query_select_subtotal_week = "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE date BETWEEN DATE_ADD(now(), INTERVAL -1 DAY) AND DATE_ADD(now(), INTERVAL 7 DAY)";
+                 $var_query_select_unit_sold_week = "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE date BETWEEN DATE_ADD(now(), INTERVAL -7 DAY) AND DATE_ADD(now(), INTERVAL 0 DAY)";
+                 $var_query_select_subtotal_week = "SELECT SUM(subtotal) AS total_sales FROM transaction WHERE date BETWEEN DATE_ADD(now(), INTERVAL -7 DAY) AND DATE_ADD(now(), INTERVAL 0 DAY)";
                  //$var_query_select_subtotal_week = //"SELECT SUM(subtotal) AS total_sales FROM transaction WHERE WEEKOFYEAR(date) = WEEKOFYEAR(NOW())";
                  
                  $var_query_select_unit_sold_month = "SELECT SUM(dish_qty) AS total_dish FROM order_rec WHERE YEAR(date) = YEAR(NOW()) AND MONTH(date)=MONTH(NOW())";
@@ -183,8 +193,9 @@
                                 <h6 class="card-subtitle mb-2 text-muted" id="date-sales-week-report" >
                                     <script>
                                         var date_b = new Date();
+                                        var date_before = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
                                         var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-                                        document.getElementById("date-sales-week-report").innerHTML = months[date_b.getMonth()] + " " + date_b.getDate() + " - " + months[date_b.getMonth()] + " " + parseInt(date_b.getDate() + 7) ;
+                                        document.getElementById("date-sales-week-report").innerHTML = months[date_b.getMonth() - 1] + " " + date_before.getDate() + " - " + months[date_b.getMonth()] + " " + date_b.getDate() ;
                                     </script>
                                 </h6>
                                 <br/>
