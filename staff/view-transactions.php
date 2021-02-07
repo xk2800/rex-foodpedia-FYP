@@ -64,6 +64,16 @@
                 <th>Delivery/Pickup Time</th>
             </table>
     <?php
+            while($output_check = mysqli_fetch_assoc($check_transaction)){
+    ?>
+            <table>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+    ?>
+    <?php
+            }
         }
     ?>
 
