@@ -44,11 +44,20 @@
             <div class="container">
                 
                 <p id="p-status">Loyalty Points Balance
-                    <button type="button" class="btn btn-primary" id="button-status">+ Add Points</button>
                 </p>
                 
                 <hr style="background-color:#898f8b"/>
             
+                <!-- will need to adjust it to be at the center of the screen after backend is setup -->
+                <div class="row mb-4 mt-5">
+                    <div class="form-group col-md-9">
+                        <input id="exampleFormControlInput5" type="email" placeholder="Kindly insert the user email that would like to add points" class="form-control form-control-underlined">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <button type="submit" class="btn btn-primary rounded-pill btn-block shadow-sm">Search</button>
+                    </div>
+                </div>
+                
                 <!--ref : https://getbootstrap.com/docs/4.0/components/pagination/-->
                 <nav aria-label="Loyalty Points Navigator" style="margin: 30px 0px 30px 0px;">
                     <ul class="pagination">

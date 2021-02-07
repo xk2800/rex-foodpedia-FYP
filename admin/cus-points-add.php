@@ -51,28 +51,24 @@
         ?>
 
         <div class="container">
-            <form>
-                
-                <!-- will need to adjust it to be at the center of the screen after backend is setup -->
-                <div class="row mb-4 mt-5">
-                    <div class="form-group col-md-9">
-                        <input id="exampleFormControlInput5" type="email" placeholder="Kindly insert the user email that would like to add points" class="form-control form-control-underlined">
-                    </div>
-                    <div class="form-group col-md-3">
-                        <button type="submit" class="btn btn-primary rounded-pill btn-block shadow-sm">Search</button>
-                    </div>
-                </div>
-                <!-- end statement -->
-            </form>
-
+            
             <!-- if-else statement will go here, state=true -> statement block will be executed || state=false -> alert box display the error -->
-                <div class="card">
+                <div class="card" style="margin-top: 6.3em;">
                     <div class="card-header">
                         <h5 id="title-cus-add">Add Points</h5>
                     </div>
                     
                     <div class="card-body">
                         <form>
+                            <div class="form-group row">
+                                <label for="point-cus-add" class="col-sm-2 col-form-label"><span style="color:red">*&nbsp;</span>Email<br/>
+                                    <span id="small-cus-add">User email</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="point-cus-add" required>
+                                </div>
+                            </div>
+                            
                             <div class="form-group row">
                                 <label for="point-cus-add" class="col-sm-2 col-form-label"><span style="color:red">*&nbsp;</span>Points<br/>
                                     <span id="small-cus-add">Set the number of points</span>

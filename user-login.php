@@ -271,7 +271,7 @@ else:
                     <h5 class="card-title">Login</h5>
                     
                     <div id="card-input-login">
-                        <form name="login-form" method="POST">
+                        <form name="login-form" method="POST" onsubmit="return alert('Login successfully');">
                             <div class="form-group">
                                 <input type="email" class="form-control" id="card-email-login" aria-describedby="emailHelp" placeholder="Enter email" style="margin-bottom: 40px;" name="email_login" required>
                             </div>
@@ -344,7 +344,6 @@ else:
                         $_SESSION["email"] = $var_email_login;
                         
                         echo "<script>
-                                alert('Login Successfully');       
                                 location.href = 'user-profile.php';
                               </script>";
                                 

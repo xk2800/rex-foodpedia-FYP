@@ -83,7 +83,7 @@
                   
                     <div class="card-body"> 
                         <div id="card-input-edit-menu">
-                            <form name="form_menu_detail" method="POST">
+                            <form name="form_menu_detail" method="POST" onsubmit='return alert('Details are updated successfuly');'>
 
                                 <div class="form-group">       
                                     <label for="card-dish-edit-menu">#ID</label>

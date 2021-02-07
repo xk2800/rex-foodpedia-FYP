@@ -84,7 +84,7 @@
                     <div class="card-body">
                     <h5 class="card-title"><center>Register</center></h5>
 
-                    <form name="register-form" method="POST">
+                    <form name="register-form" method="POST" onsubmit="return alert('Register successfully');">
                         <div id="card-input-register"> 
                             <div class="form-group">
                                 <i class="fa fa-envelope-open" aria-hidden="true"></i>
@@ -149,7 +149,6 @@
                     $query_user_register = mysqli_query($connect,"INSERT INTO user_acc(email, password, phone_number) VALUES ('$var_email', '$salted_pass', '$var_contact')");
                    
                         echo " <script> 
-                                    alert('Register successfully');
                                     location.href = 'user-login.php';
                                 </script> ";
                 }

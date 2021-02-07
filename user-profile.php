@@ -94,7 +94,7 @@
                         Account Details
                     </div>
                     <div class="card-body" >
-                        <form name="user-details-profile-form" method="POST">
+                        <form name="user-details-profile-form" method="POST" onsubmit="return alert('Data is updated successfully');">
                             <div id="card-input-profile">
 
                                     <div class="form-group pl-5 pb-3">
@@ -135,10 +135,6 @@
 
                             $var_contact_profile = $_POST['contact_profile'];
                             $query_name_profile = mysqli_query($connect,"UPDATE user_acc SET phone_number = '$var_contact_profile' WHERE email = '$email'");
-
-                            echo "<script>
-                                    alert('Details are updated successfully!');
-                                  </script>";
                         }
                     ?>
                 </div>
@@ -166,7 +162,7 @@
                         Manage Password
                     </div>
                     <div class="card-body">
-                        <form name="user_password_profile_form" method="POST">
+                        <form name="user_password_profile_form" method="POST" onsubmit="return alert('Password changed successfuly');">
                             <div id="card-input-profile">
                                     <div class="form-group col-md-5 pl-1 pb-3 w-75">
                                         <i class="fa fa-key" aria-hidden="true"></i>
@@ -222,9 +218,6 @@
 
                                         if($salted_old_pass == $db_password_profile) {
                                             $query_confirm_new_password_profile = mysqli_query($connect, "UPDATE user_acc SET password = '$salted_new_pass' WHERE email = '$email'");
-                                            echo "<script>
-                                                    alert('Password changed successfuly');
-                                                  </script>";
                                         }
 
                                     } else {
@@ -248,7 +241,7 @@
                         Manage Shipment Address
                     </div>
                     <div class="card-body">
-                        <form name="user_address_profile_form" method="POST">
+                        <form name="user_address_profile_form" method="POST" onsubmit="return alert('Details are updated successfuly');">
                             <div id="card-input-profile">
                                 <div class="form-group pl-5 pb-3 w-100">
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -317,10 +310,6 @@
                             } else {
                                 $query_office_profile_1 = mysqli_query($connect,"UPDATE address SET user_address = '$var_office_profile' WHERE email = '$email' AND label = '$office'");
                             }
-
-                            echo "<script>
-                                    alert('Details are updated successfully!');
-                                  </script>";
                         }
 
                         if(isset($_POST['button_address_home_profile'])) {
@@ -333,10 +322,6 @@
                             } else {
                                 $query_home_profile_1 = mysqli_query($connect,"UPDATE address SET user_address = '$var_home_profile' WHERE email = '$email' AND label = '$home'");
                             }
-
-                            echo "<script>
-                                    alert('Details are updated successfully!');
-                                  </script>";
                         }              
                 ?>
 
