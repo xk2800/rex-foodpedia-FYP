@@ -165,7 +165,7 @@
                                         <td><?php echo $db_lpoints_valid_cus_points_landing; ?></td>
                                         <td><?php echo  $db_status_cus_status_string; ?></td>
                                         <td ><a href="cus-points-add.php?email=<?php echo $row['email']; ?>">Edit</a>&emsp;
-                                            <a href="cus-status-edit.php">Delete</a>
+                                        <a onclick="return confirm('Delete this record?')" href="cus-points-delete.php?email=<?php echo $row['email']; ?>">Delete</a>
                                         </td>
                                     </tr>
                         <?php

@@ -16,7 +16,7 @@
             $query_cus_status_delete = mysqli_query($connects, "DELETE FROM user_acc WHERE email = '$email' ") or die("Query insertion failed");
             
             echo " <script>
-                     location.href = 'cus-status.php';
+                     location.href = 'cus-points-landing.php';
                    </script> ";
         } 
     } 
