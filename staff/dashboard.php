@@ -1,6 +1,6 @@
 <?php
  
- include "../db_connect.php";
+ include "../db-connect.php";
  session_start();
  ob_start();
 ?>

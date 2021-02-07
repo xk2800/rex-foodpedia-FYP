@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php
-    include "../db_connect.php"; 
+    include "../db-connect.php"; 
     session_start();
 ?>
     <html>

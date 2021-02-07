@@ -1,7 +1,7 @@
 <?php
 
 //in line 329, file user-login.php, thats the issue, db-connect is called suddenly
-require 'db_connect.php';
+require 'db_connection.php';
 
 /*
 if(isset($_SESSION['login_id'])){
@@ -328,7 +328,7 @@ else:
 
             if(!empty($var_email_login) && !empty($var_password_login)) {
                 
-                //include("db_connect.php");
+                //include("db-connect.php");
                 
                 $query_user_login = mysqli_query($connect, "SELECT email, password FROM user_acc WHERE email = '$var_email_login'");
                 $numrows = mysqli_num_rows($query_user_login);
