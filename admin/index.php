@@ -1,7 +1,7 @@
 <?php
 //FULLY WORKING
 
-    include "../db-connect.php";
+    include "../db_connect.php";
     ob_start();
     
 ?>

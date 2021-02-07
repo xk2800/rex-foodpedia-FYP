@@ -9,7 +9,7 @@
  * XAVIER
  */
 
-    include "../db-connect.php";
+    include "../db_connect.php";
     ob_start();
 
 ?>
@@ -43,7 +43,7 @@
     <div class="container">
 
     <?php
-            $check_transaction = mysqli_query($connect, "SELECT * FROM transaction");
+            $info_call      = mysqli_query($connect, "SELECT * FROM transaction");
 
         if(mysqli_num_rows($info_call)==0){
             echo "No Data Available";
@@ -64,16 +64,6 @@
                 <th>Delivery/Pickup Time</th>
             </table>
     <?php
-            while($output_check = mysqli_fetch_assoc($check_transaction)){
-    ?>
-            <table>
-                <tr>
-                    <td></td>
-                </tr>
-            </table>
-    ?>
-    <?php
-            }
         }
     ?>
 
