@@ -28,16 +28,25 @@ if(isset($_POST["receipt_id"]))
                 $paymentmethod = "No Payment Found In System";
             }
 
-            $db_time = $row["payment_time"];
-            $output_date = date('d M Y, H:i:s', strtotime(str_replace('-','/', $db_time)));   //remove/replace symbols from string in db
+            if(($row["address"]) == NULL){
+                $address_out = "Self Pickup";
+            }else{
+                $address_out = $row["address"];
+            }
+
+            $db_time        = $row["payment_time"];
+            $output_date    = date('d M Y, H:i:s', strtotime(str_replace('-','/', $db_time)));   //remove/replace symbols from string in db
+
+            $receipt_date           = $row["date"];
+            $receipt_date_output    = date('d M Y, H:i:s', strtotime(str_replace('-','/', $receipt_date)));
 
             $output .= '  
                 <tr>  
-                    <td width="30%"><label>email</label></td>  
+                    <td width="30%"><label>Customer Email</label></td>  
                     <td width="70%">'.$row["email"].'</td>  
                 </tr>  
                 <tr>  
-                    <td width="30%"><label>Contactless</label></td>  
+                    <td width="30%"><label>Contact Type</label></td>  
                     <td width="70%">'.$row["contactornot"].'</td>  
                 </tr>  
                 <tr>  
@@ -50,11 +59,11 @@ if(isset($_POST["receipt_id"]))
                 </tr>  
                 <tr>  
                     <td width="30%"><label>Receipt Date</label></td>  
-                    <td width="70%">'.$row["date"].' Year</td>  
+                    <td width="70%">'.$receipt_date_output.'</td>  
                 </tr>  
                 <tr>  
                     <td width="30%"><label>Address(If applicable)</label></td>  
-                    <td width="70%">'.$row["address"].'</td>  
+                    <td width="70%">'.$address_out.'</td>  
                 </tr>
                 <tr>  
                     <td width="30%"><label>Subtotal</label></td>  

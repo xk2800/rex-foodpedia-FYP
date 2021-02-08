@@ -35,7 +35,7 @@
 
 <script>
 $(document).ready(function(){
-  $("#myInput").on("keyup", function() {
+  $("#searchinput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
     $("#myTable tr").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
@@ -64,14 +64,16 @@ $(document).ready(function(){
         
         <br /><br /><br><br>
     <div class="container" style="width:700px;">
-    <input id="myInput" type="text" placeholder="Search..">
+        <span class="search">You can search for by email or Receipt ID</span><br>
+        <input id="searchinput" type="text" placeholder="Search..">
         <br />
         <div class="table-responsive">
             <br />
             <div id="employee_table">
                 <table class="table table-bordered">
                     <tr>
-                        <th width="70%">Employee Name</th>
+                        <th width="30%">Transaction Date</th>
+                        <th width="50%">Customer Email</th>
                         <th width="15%">Receipt ID</th>
                         <th width="15%">View</th>
                     </tr>
@@ -81,6 +83,7 @@ $(document).ready(function(){
                                ?>
                     <tbody id="myTable">
                     <tr>
+                        <td><?php echo $row["date"]; ?></td>
                         <td><?php echo $row["email"]; ?></td>
                         <td><?php echo $row["receipt_id"]; ?></td>
                         <td><input type="button" name="view" value="view" id="<?php echo $row["receipt_id"]; ?>"
