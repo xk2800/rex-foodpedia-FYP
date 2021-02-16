@@ -1,0 +1,68 @@
+table: admin_acc
+column: admin_isDelete
+Status: 
+0 = active
+1 = inactive
+
+---------------------------
+
+table: menu
+column: menu_available
+status:
+0 = unavailable
+1 = available
+
+column: menu_random
+status:
+0 = no
+1 = yes
+
+column: deleted_menu
+status:
+0 = no
+1 = yes
+
+---------------------------
+
+table: order_rec
+column: order_status
+status: 
+0 = past order
+1 = active order
+
+column: delivery_type
+status: 
+0 = delivery
+1 = pick up
+
+column: delivery_status
+status: unknown
+
+---------------------------
+
+table: staff_acc
+column: staff_isDelete
+Status: 
+0 = active
+1 = inactive
+
+---------------------------
+
+table: transaction
+column: payment_method
+status:
+0 = COD
+1 = credit/debit card
+2 = online banking
+
+---------------------------
+
+table: user-acc
+column: lpoints_status
+status:
+
+column: verified
+status:
+0 = no
+1 = yes
+

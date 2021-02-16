@@ -119,7 +119,7 @@
 
 <?php
         include("nav.html");
-        $email = "xavierkhew00@gmail.com";
+        $email = "xavierkhew123@gmail.com";
         //$email = $_SESSION["email"];
 ?>
 
@@ -375,23 +375,23 @@
                             <th id="db-subtotal" class="db-rows">RM
                                 <?php echo number_format((float)$total_price, 2, '.', '') ?></th>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td id="discount">- Discount</td>
                             <td id="db-discount" class="db-rows">RM 
                     <?php 
 
-                                                if($payit ["discount"]){
+                                                /*if($payit ["discount"]){
                                                     $discount = $payit ["discount"];
                                                     echo number_format((float)$discount, 2, '.', '');
 
                                                 }else{
                                                     $nill = 0;
                                                     echo number_format((float)$nill, 2, '.', '');
-                                                }
+                                                }*/
                             
                     ?>
                             </td>
-                        </tr>
+                        </tr> -->
                         <!--tr>
                             <td id="voucher">- Voucher <br>
                     <?php
@@ -405,11 +405,11 @@
 
                             <!--td id="db-voucher" class="db-rows">RM
                     <?php
-                                                    if( $payit ["voucher_code"]){
+                                                    /*if( $payit ["voucher_code"]){
                                                         echo number_format((float)$payit ["voucher"], 2, '.', '');
                                                     } else{
                                                         echo "0";
-                                                    }
+                                                    }*/
                     ?>
                             </td-->
                             <td>
@@ -425,12 +425,12 @@
                                         //$tax = $subtotal * 6/100;
                                         
                                         //discount tax amount
-                                        $pretax_discount    = $discount /((6/100)+1);
-                                        $tax_discount       = $discount - $pretax_discount;
+                                        /*$pretax_discount    = $discount /((6/100)+1);
+                                        $tax_discount       = $discount - $pretax_discount;*/
 
                                         //tax amount of subtotal
                                         $pretax             = $total_price /((6/100)+1);
-                                        $tax                = $total_price - $pretax - $tax_discount;
+                                        $tax                = $total_price - $pretax /*- $tax_discount*/;
                                         //$tax = ($subtotal * (100/6));
 
                     ?>
@@ -440,7 +440,7 @@
                         <tr>
                     <?php
                                         //$total_taxed = $tax + $subtotal;
-                                        $total_to_pay = $total_price - $discount;
+                                        $total_to_pay = $total_price/* - $discount*/;
                     ?>
                             <th id="total">Total</th>
                             <th id="db-total" class="db-rows">RM
@@ -559,11 +559,17 @@ echo "<br>".$email;
             $send_type  = '1';
             $order_stats= '1';
 
+            //qty * unit price = product_total; -> product_total INTO transaction table, column subtotal
 
-            $insert_test = $mysqli->query("INSERT INTO order_rec(email, dish_name, dish_price, dish_id, dish_qty)
-            VALUES ('$email', '$dish_name', '$dish_price', '$dish_id', '$dish_qty')");
+            /*$insert_test = $mysqli->query("INSERT INTO order_rec(email, dish_name, dish_price, dish_id, dish_qty)
+            VALUES ('$email', '$dish_name', '$dish_price', '$dish_id', '$dish_qty')");*/
 
-            $delete_test = mysqli_query($connects, "DELETE FROM cart_test WHERE email='$email'");
+            $
+
+
+            //$delete_test = mysqli_query($connects, "DELETE FROM cart WHERE email='$email'");
+
+
     
             
             

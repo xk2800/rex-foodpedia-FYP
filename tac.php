@@ -6,7 +6,6 @@
     ob_start();
     $_SESSION["cardnum"];
 
-
 ?>
 <html>
 
@@ -83,7 +82,7 @@
         $del_pass_address   = $_SESSION['del_address'];
         //$cardnum = $_SESSION['cardnum'];
         //$email = "xavierkhew00@gmail.com";
-        $email = $_SESSION["email"];
+        $email              = $_SESSION['email'];
         
 
         //$test = $_POST['cardnum'];
