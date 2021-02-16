@@ -9,7 +9,7 @@
 <html>
 
 <head>
-    <title>Delivery Checkout | REX Foodipedia</title>
+    <title>Self Pick Up Checkout | REX Foodipedia</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

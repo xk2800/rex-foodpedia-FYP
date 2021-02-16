@@ -2,7 +2,6 @@
 <?php
 
     include "db-connect.php";
-    session_start();
     ob_start();
 
 ?>
@@ -466,7 +465,7 @@
                             <th id="db-subtotal" class="db-rows">RM
                                 <?php echo number_format((float)$total_price, 2, '.', '') ?></th>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td id="discount">- Discount</td>
                             <td id="db-discount" class="db-rows">RM 
                     <?php 
@@ -483,7 +482,7 @@
                     ?>
                             </td>
                         </tr>
-                        <!--tr>
+                        <!-tr>
                             <td id="voucher">- Voucher <br>
                     <?php
                                                     /*if( $payit ["voucher_code"]){
@@ -502,26 +501,27 @@
                                                         echo "0";
                                                     }
                     ?>
-                            </td-->
+                            </td->
                             <td>
                         </tr>
                         <tr>
                             <p id="hori-line">
                                 <hr>
                             </p>
-                        </tr>
+                        </tr> -->
+                        <hr>
                         <tr>
                     <?php
                     //fix this algo, need to take total price 
                                         //$tax = $subtotal * 6/100;
                                         
                                         //discount tax amount
-                                        $pretax_discount    = $discount /((6/100)+1);
-                                        $tax_discount       = $discount - $pretax_discount;
+                                        /*$pretax_discount    = $discount /((6/100)+1);
+                                        $tax_discount       = $discount - $pretax_discount;*/
 
                                         //tax amount of subtotal
                                         $pretax             = $total_price /((6/100)+1);
-                                        $tax                = $total_price - $pretax - $tax_discount;
+                                        $tax                = $total_price - $pretax/* - $tax_discount*/;
                                         //$tax = ($subtotal * (100/6));
 
                     ?>
@@ -531,7 +531,7 @@
                         <tr>
                     <?php
                                         //$total_taxed = $tax + $subtotal;
-                                        $total_to_pay = $total_price - $discount;
+                                        $total_to_pay = $total_price /*- $discount*/;
                     ?>
                             <th id="total">Total</th>
                             <th id="db-total" class="db-rows">RM
@@ -647,10 +647,10 @@ echo "<br>".$email;
             $pay_out = '0';
         }
 
-        $query = "UPDATE transaction SET contactornot='$contact', address='$address', payment_method='$pay_out', send_type='$send_type', payment_time='$input_time' WHERE email='$email'";
+        //$query = "UPDATE transaction SET contactornot='$contact', address='$address', payment_method='$pay_out', send_type='$send_type', payment_time='$input_time' WHERE email='$email'";
         
-        if(mysqli_query($connect, $query)){
-            echo "<br>success insert into db";
+        //if(mysqli_query($connect, $query)){
+            //echo "<br>success insert into db";
             //echo '<script>("Your account is verified")</script>'; //not needed if unwanted
             //session_start();
 
@@ -673,11 +673,57 @@ echo "<br>".$email;
 
             $_SESSION['email']          = $email;
             
-            header('location:tac');
-        }else{
-            echo "failed";
-        }
+            //header('location:tac');
+        //}//else{
+            //echo "failed";
+        //}
         //header('location: test.php');
+
+/* 
+    TODO: add logic to move from cart to transaction n order_rec table 
+*/
+            $run_test = mysqli_query($connect, "SELECT * FROM cart WHERE email='$email'");
+                    
+            //$dish_total = 0;
+            while($run_test_out = mysqli_fetch_assoc($run_test)){
+
+                $email      = $run_test_out['email'];
+                $dish_name  = $run_test_out['dish_name'];
+                $dish_price = $run_test_out['dish_price'];
+                $dish_id    = $run_test_out['dish_id'];
+                $dish_qty   = $run_test_out['dish_qty'];
+                $send_type  = 'Delivery';
+                $order_stats= '1';
+
+                //qty * unit price = product_total; -> product_total INTO transaction table, column subtotal
+
+                //$dish_total_sql += $dish_price * $dish_qty;
+
+
+                //must build purchase total logic here then push 
+                
+                $delete_test = mysqli_query($connects, "DELETE FROM cart WHERE email='$email'");
+
+            }
+            //$dish_total_sql = $dish_total;
+
+            $insert_test = $mysqli->query("INSERT INTO order_rec(email, dish_name, dish_price, dish_id, dish_qty)
+            VALUES ('$email', '$dish_name', '$dish_price', '$dish_id', '$dish_qty')");
+
+
+            $sql_insert_into_transaction = mysqli_query($connect, "INSERT INTO transaction
+            (email, contactornot, send_type, date, address, subtotal, total, payment_method, payment_time) 
+            VALUES ('$email', '$contact', '$send_type', '$input_time', '$address', '$pay_total', '$pay_total', '$pay_out', '$input_time')");
+
+            echo $pay_total;
+
+            if($insert_test && $delete_test && $sql_insert_into_transaction){
+                echo "insert done";
+            }else{
+                echo "insert fail";
+            }
+
+
     }
 
 
