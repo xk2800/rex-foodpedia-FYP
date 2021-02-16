@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 
-    session_start();
+    //session_start();
     include "db-connect.php";
     ob_start();
     $_SESSION["cardnum"];

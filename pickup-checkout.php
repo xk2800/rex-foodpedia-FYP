@@ -2,7 +2,7 @@
 <?php
 
     include "db-connect.php";
-    session_start();
+    //session_start();
     ob_start();
 
 ?>
@@ -534,11 +534,13 @@ echo "<br>".$email;
             $pay_transfer               = $pay_total;
             $delivery_type              = 'pick_up';
             $payment_type               = $pay_out;
+            $del_address                = "";
 
             $_SESSION['cardnum']        = $cardnum;
             $_SESSION['pay_total']      = $pay_transfer;
             $_SESSION['delivery_type']  = $delivery_type;
             $_SESSION['payment_types']  = $payment_type;
+            $_SESSION['del_address']    = $del_address;
 
             $_SESSION['email']          = $email;
             
