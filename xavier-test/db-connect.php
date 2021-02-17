@@ -18,8 +18,6 @@ $mysqli = NEW MySQLi ('13.212.90.225', 'database', 'DZUUuox3oDVC3s3A', 'rex-food
 //actual db connection
 @mysqli_connect("13.212.90.225", "database", "DZUUuox3oDVC3s3A", "rex-foodipedia") || die('<p>Error: 500. <br> DB not connected</p>');
 
-$connectings = new PDO("mysql:host=13.212.90.225; dbname=rex-foodipedia", "database", "DZUUuox3oDVC3s3A");
-
 //session_start();
 //session_regenerate_id(true);
 // change the information according to your database

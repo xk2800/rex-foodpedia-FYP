@@ -34,6 +34,13 @@
                    margin-top: 13px;
                 }
 
+                #t-status th {
+                    font-size: 1.1em;
+                    letter-spacing: 1.1px;
+                    /*text-align: center;*/
+                    font-weight: 400;
+                }
+
             </style>
 
         </head>
@@ -84,8 +91,8 @@
 
                 <?php 
                     // SQL Query for Fetching Limited Records using LIMIT Clause and OFFSET
-                    $query_cus_status = mysqli_query($connect, "SELECT email, status, category FROM user_acc LIMIT $offset, $total_records_per_page");
-                    $numrow = mysqli_num_rows($query_cus_status);
+                    $query_cus_points_landing = mysqli_query($connect, "SELECT * FROM user_acc LIMIT $offset, $total_records_per_page");
+                    $numrow = mysqli_num_rows($query_cus_points_landing);
                 ?>
                 
                 <!-- pagination + font awesome icon -->
@@ -120,28 +127,54 @@
                 </ul>
                 
                
-                <table class="table table-bordered table-hover table-dark" >
+                <table class="table table-bordereless table-hover table-dark" >
                     <thead>
-                        <tr>
-                            <th scope="col">#</th>
+                        <tr id="t-status" style="text-align: center;">
                             <th scope="col">Customer Email</th>
                             <th scope="col">Available Point</th>
-                            <th scope="col">Point Validity</th>
+                            <th scope="col">Point Validity (Day)</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>test</td>
-                            <td>test_test</td>
-                            <td>test_test_test</td>
-                            <td>test_test_test_test</td>
-                            <td ><a href="#">Edit</a>&emsp;<a href="#">Delete</a></td>
-                        </tr>
+                        <?php 
+                            if($numrow > 0) {
+                        
+                                while($row = mysqli_fetch_assoc($query_cus_points_landing)) {
+                                    
+                                    $db_email_cus_points_landing = $row['email'];
+                                    $db_lpoints_cus_points_landing = $row['lpoints'];
+                                    $db_lpoints_valid_cus_points_landing = $row['lpoints_valid'];
+                                    $db_lpoints_status_cus_points_landing = $row['lpoints_status'];
+
+                                   if( $db_lpoints_status_cus_points_landing == 0) {
+                                        $db_status_cus_status_string = "Unavailable";
+
+                                   } else if($db_lpoints_status_cus_points_landing == 1) {           
+                                       $db_status_cus_status_string = "Available";
+                                                
+                                   } else {
+                                       $db_status_cus_status_string = "NULL";
+                                   }
+                        ?>
+
+                                    <tr style="text-align: center;">
+                                        <th scope="row" style="font-style: italic;"><?php echo  $db_email_cus_points_landing; ?></th>
+                                        <td><?php echo $db_lpoints_cus_points_landing; ?></td>
+                                        <td><?php echo $db_lpoints_valid_cus_points_landing; ?></td>
+                                        <td><?php echo  $db_status_cus_status_string; ?></td>
+                                        <td ><a href="cus-points-add.php?email=<?php echo $row['email']; ?>">Edit</a>&emsp;
+                                        <a onclick="return confirm('Delete this record?')" href="cus-points-delete.php?email=<?php echo $row['email']; ?>">Delete</a>
+                                        </td>
+                                    </tr>
+                        <?php
+                                }
+                            }    
+                        ?>
                     </tbody>
                 </table>
+                <p style='float: right; margin-top: 8px; font-style: italic; border-top: 1px #CCC;'>Page <?php echo $page_no." of ".$total_no_of_pages; ?></p>
             </div>
 
             <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
@@ -149,4 +182,4 @@
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         </body>
-</html>
+    </html>                            

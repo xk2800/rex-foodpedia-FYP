@@ -271,7 +271,7 @@ else:
                     <h5 class="card-title">Login</h5>
                     
                     <div id="card-input-login">
-                        <form name="login-form" method="POST" onsubmit="return alert('Login successfully');">
+                        <form name="login-form" method="POST" >
                             <div class="form-group">
                                 <input type="email" class="form-control" id="card-email-login" aria-describedby="emailHelp" placeholder="Enter email" style="margin-bottom: 40px;" name="email_login" required>
                             </div>
@@ -345,10 +345,11 @@ else:
                         
                         echo "<script>
                                 location.href = 'user-profile.php';
+                                alert('Login successfully');
                               </script>";
                                 
-                    } else {  
-                        echo "Incorrect credientials, please try again";
+                    } else if($var_email_login != $db_email_login ||  $salted_var_password_login != $db_password_login) {  
+                        echo "<script> alert('Incorrect credientials, please try again'); </script>";
                     }   
                 } 
             }    

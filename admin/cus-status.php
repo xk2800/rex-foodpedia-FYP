@@ -96,30 +96,36 @@
                     $query_cus_status = mysqli_query($connect, "SELECT email, status, category FROM user_acc LIMIT $offset, $total_records_per_page");
                     $numrow = mysqli_num_rows($query_cus_status);
                 ?>
-
                 
-
+                <!-- pagination + font awesome icon -->
                 <ul class="pagination" style="margin: 40px 0px 40px 0px;">
                     <?php 
                         if($page_no > 1) {
-                            echo "<li style='padding-right: 30px;'><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=1'>First Page</a> &emsp; </li>";
+                            echo "<li style='padding-right: 30px;'><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=1'>
+                                                                    <i class='fa fa-fast-backward' aria-hidden='true'></i>
+                                                                   </a> &emsp; 
+                                  </li>";
                         } 
                     ?>
                     <li style="padding-right: 30px;" <?php if($page_no <= 1) { echo "class='disabled'"; } ?> >
                         <a style="margin-right: 30px;" class="btn btn-secondary btn-block " <?php if($page_no > 1) {
                                     echo "href='?page_no=$previous_page'";
-                                 } ?>>Previous 
+                                } ?>><i class="fa fa-backward" aria-hidden="true"></i>
                         </a>
                     </li>
                     <li style="padding-right: 30px;" <?php if($page_no >= $total_no_of_pages) { echo "class='disabled'"; } ?> >
                         <a style="margin-right: 30px;" class="btn btn-secondary btn-block " <?php if($page_no < $total_no_of_pages) {
                                     echo "href='?page_no=$next_page'";
-                                 } ?>>Next 
+                                } ?>><i class="fa fa-forward" aria-hidden="true"></i>
                         </a>
                     </li>
-                    <?php if($page_no < $total_no_of_pages) { echo "<li><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=$total_no_of_pages'>Last</a> </li>"; } ?>
-                    
-                    
+                    <?php if($page_no < $total_no_of_pages) { 
+                                echo "<li><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=$total_no_of_pages'>
+                                            <i class='fa fa-step-forward' aria-hidden='true'></i>
+                                          </a> 
+                                      </li>"; 
+                          } 
+                    ?>
                 </ul>
 
                 <table class="table table-borderless table-hover table-dark" >

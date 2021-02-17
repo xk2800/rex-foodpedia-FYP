@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
     include "db-connect.php";
-    session_start();
+    //session_start();
 
 ?>
 <html>
@@ -10,7 +10,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
 <!--INCLUDE START HERE-->
     <link rel="icon" type="image/png" href= "image/MYRUN 1.png">
 
@@ -32,28 +32,32 @@
 
     <?php
 
-        
+
 
         $time = time();
         $actual_time = date('Y-m-d H:i:s', $time);
 
-        $email = "xavierkhew00@gmail.com";
+        //$email              = $_SESSION['email'];
+        $email = "xavierkhew123@gmail.com";
+        echo $email;
 
-        $result = mysqli_query($connect, "SELECT * from transaction WHERE email = '$email'");
-        $row = mysqli_fetch_assoc($result);
 
         $check_receipt_id = mysqli_query($connect, "SELECT * from transaction ORDER BY receipt_id DESC");
         $call_receipt_id = mysqli_fetch_assoc($check_receipt_id);
-        
+
         $receipt_id_check = $call_receipt_id ["receipt_id"];
         $number = $receipt_id_check+1;
         $number = sprintf('%07d',$number);
-        $numbers="0000001";
+        $numbers="0000501";
         //echo "<br>";
         //print $number;
 
+        //grabbing total from db
+        $result = mysqli_query($connect, "SELECT * from transaction WHERE receipt_id='$numbers' AND email = '$email'");
+        $row = mysqli_fetch_assoc($result);
+
         //$add_transaction_id = mysqli_query($connect, "INSERT INTO transaction(receipt_id) VALUES ('$number') WHERE email='$email'");
-        $add_transaction_id = mysqli_query($connect, "UPDATE transaction SET receipt_id='$numbers' WHERE email='$email' AND date='$actual_time'");
+        //$add_transaction_id = mysqli_query($connect, "UPDATE transaction SET receipt_id='$numbers' WHERE email='$email' AND date='$actual_time'");
 
         /*if($add_transaction_id){
             echo "SET";
@@ -90,10 +94,10 @@
         <p id="send-type"><b><?php echo $delivery_type ?></b></p>
 <!-- **production changes to be made here -->
         <p id="receipt_id"><b>Receipt Number:</b> <?php echo $numbers;?></p>
-        <p id="date"><b>Date:</b> 
-    <?php 
+        <p id="date"><b>Date:</b>
+    <?php
                                         $date_db = $row ["date"];
-                                        $output_date = date('M d, Y', strtotime(str_replace('-','/', $date_db))); 
+                                        $output_date = date('M d, Y', strtotime(str_replace('-','/', $date_db)));
                                         echo $output_date;
     ?>
         </p>
@@ -115,7 +119,7 @@
 
             <?php
 //** */                <!-- production changes to be made here -->
-                    $items_sql = mysqli_query($connect, "SELECT * from order_rec WHERE email = 'xavierkhew00@gmail.com' AND trans_id='$numbers'");
+                    $items_sql = mysqli_query($connect, "SELECT * from order_rec WHERE email = '$email' AND trans_id='$numbers'");
                     //$items = mysqli_fetch_assoc($result1);
 
                     //$price_result = mysqli_fetch_assoc($price_sql);
@@ -140,7 +144,7 @@
                 <tbody>
                 <?php
                     while(($items = mysqli_fetch_assoc($items_sql)) /*|| ($price_result = mysqli_fetch_assoc($price_sql))*/){
-                ?>          
+                ?>
                         <tr id="items-display">
                             <th id="item"><?php echo $items ["dish_name"]?></th>
                             <th id="quantity"><?php echo $items ["dish_qty"]?></th>
@@ -155,7 +159,7 @@
             ?>
                 </tbody>
             </table>
-            
+
         </span>
 
         <p id="hori-line"><hr></p>
@@ -164,45 +168,45 @@
                 <table id="default-text">
                     <tr>
                         <th id="subtotal">Subtotal</th>
-                        <th id="db-subtotal">RM 
-            <?php 
+                        <th id="db-subtotal">RM
+            <?php
                                     $subtotal = $row ["subtotal"];
                                     echo number_format((float)$subtotal, 2, '.', '');
             ?>
                         </th>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td id="discount">- Discount</td>
-                        <td id="db-discount">RM 
+                        <td id="db-discount">RM
             <?php
-                                    $discount = $row ["discount"];
-                                    echo number_format((float)$discount, 2, '.', '');
+                                    /*$discount = $row ["discount"];
+                                    echo number_format((float)$discount, 2, '.', '');*/
             ?></td>
                     </tr>
                     <tr>
                         <td id="voucher">- Voucher
                                             <?php //echo $row ["voucher"];
-                                                if(!$row ["voucher_code"]){
-                                                    
+                                                /*if(!$row ["voucher_code"]){
+
 
                                                 } else{
                                                     echo "<br>";
                                                     echo "Voucher Code: ";
-                                                }
+                                                }*/
                                             ?>
                         </td>
                         <td id="db-voucher"><?php //echo $row ["voucher"];
-                                                if(!$row ["voucher_code"]){
+                                               /* if(!$row ["voucher_code"]){
                                                     echo "RM 0";
 
                                                 } else{
                                                     echo "RM ".$row ["voucher"];
                                                     echo "<br>";
                                                     echo $row ["voucher_code"];
-                                                }
+                                                }*/
                                             ?>
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td id="tax">+Service Tax (6%)</td>
             <?php
@@ -219,7 +223,7 @@
                         <th id="db-total">RM <?php echo $total_to_pay ?></th>
                     </tr>
                     <tr>
-                        <th id="payment-type">Payment method: <?php 
+                        <th id="payment-type">Payment method: <?php
 
                                                                 if(($row ["payment_method"]) == '0'){
                                                                     echo "Cash On Demand(COD)";
@@ -233,7 +237,7 @@
                                                                 }else{
                                                                     echo "No Payment Found In System";
                                                                 }
-                        
+
                                                             ?>
                         </th>
                     </tr>
@@ -249,7 +253,7 @@
 
 
 <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <!--THIS IS BOOTSTRAP JAVASCRIPT PART END-->

@@ -32,6 +32,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <!--THIS IS BOOTSTRAP CSS PART END-->
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+
 <!--FONTS.CSS-->
     <link rel="stylesheet" href="css/fonts.css">
 
@@ -39,6 +42,14 @@
 
 
 <script>
+    $(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
     function option_drop(val){
         var element=document.getElementById('editstaff');
         var doc = document.getElementById('editadmin');
@@ -103,6 +114,7 @@
 ?>
 
     <div class="container">
+    <input id="myInput" type="text" placeholder="Search..">
 
             <div class="updated_info"></div>
 
@@ -136,6 +148,7 @@
                     while($admin_output = mysqli_fetch_assoc($getadmininfo)){
     ?>
                         <table>
+                        <tbody id="myTable">
                             <tr>
                                 <td><?php if($admin_output['staff_id']): echo $admin_output['staff_id']; else: echo 'No Data'; endif;?></td>
                                 <td><?php if($admin_output['fname']): echo $admin_output['fname']; else: echo 'No Data'; endif;?></td>
@@ -155,6 +168,7 @@
                                 </td>
                                 <td><a href="edit-accounts-info?staff_id=<?php echo $admin_output["staff_id"];?>&account=admin"><button type="submit">Edit</button></a></td>
                             </tr>
+                            </tbody>
                         </table>
     <?php
                     }
