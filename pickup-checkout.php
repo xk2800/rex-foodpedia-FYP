@@ -491,6 +491,7 @@
 
 echo "<br>".$email;
 
+
     if(isset($_POST["make_paymentbtn"])){
         
         $send_type  = "Self Pick Up";
@@ -550,7 +551,7 @@ echo "<br>".$email;
 */
         $run_test = mysqli_query($connect, "SELECT * FROM cart WHERE email='$email'");
         
-        //$dish_total = 0;
+        //loop for getting data from cart
         while($run_test_out = mysqli_fetch_assoc($run_test)){
 
             $email      = $run_test_out['email'];
@@ -568,38 +569,42 @@ echo "<br>".$email;
 
             //must build purchase total logic here then push 
             
+            //delete data(s) from cart table
             $delete_test = mysqli_query($connects, "DELETE FROM cart WHERE email='$email'");
 
         }
         //$dish_total_sql = $dish_total;
+
+        //used to check latest receipt id 
+        $check_receipt_id = mysqli_query($connect, "SELECT * from transaction ORDER BY receipt_id DESC");
+        $call_receipt_id = mysqli_fetch_assoc($check_receipt_id);
+
+        $receipt_id_check = $call_receipt_id ["receipt_id"];
+        $number = $receipt_id_check+1;
+        $number = sprintf('%07d',$number);
+        echo $number;
         
-        $insert_test = $mysqli->query("INSERT INTO order_rec(email, dish_name, dish_price, dish_id, dish_qty)
-        VALUES ('$email', '$dish_name', '$dish_price', '$dish_id', '$dish_qty')");
+        //add into order record table
+        $insert_test = $mysqli->query("INSERT INTO order_rec(email, trans_id, dish_name, dish_price, dish_id, dish_qty)
+        VALUES ('$email', '$number', '$dish_name', '$dish_price', '$dish_id', '$dish_qty')");
 
-
+        //add into transaction table
         $sql_insert_into_transaction = mysqli_query($connect, "INSERT INTO transaction
-        (email, contactornot, send_type, date, subtotal, total, payment_method, payment_time) 
-        VALUES ('$email', '$contact', '$send_type', '$input_time', '$pay_total', '$pay_total', '$pay_out', '$input_time')");
+        (email, contactornot, send_type, receipt_id, date, subtotal, total, payment_method, payment_time) 
+        VALUES ('$email', '$contact', '$send_type', '$number','$input_time', '$pay_total', '$pay_total', '$pay_out', '$input_time')");
 
         echo $pay_total;
 
         if($insert_test && $delete_test && $sql_insert_into_transaction){
+            header("location: tac");
             echo "insert done";
         }else{
             echo "insert fail";
         }
 
-            //$select = "INSERT INTO transaction "
-
-           
-        /*}else{
-            echo "failed";
-        }*/
-        //header('location: test.php');
-
-        //header('location:tac');
+        
 
 
-    }
+}
 
 ?>

@@ -718,6 +718,7 @@ echo "<br>".$email;
             echo $pay_total;
 
             if($insert_test && $delete_test && $sql_insert_into_transaction){
+                header("location: tac");
                 echo "insert done";
             }else{
                 echo "insert fail";
