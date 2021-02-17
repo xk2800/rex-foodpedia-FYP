@@ -1,8 +1,15 @@
+<!DOCTYPE html>
+
+<?php
+    include("db-connect.php");
+    //session_start();
+?>
+
 <html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Menu | REX Foodipedia</title>
+        <title>Product Details | REX Foodipedia</title>
 
     <!--FONTS.CSS STARTS-->
         <link rel="preload" href="css/fonts.css" as="style">
@@ -113,8 +120,26 @@
         include("nav.html");
     ?>
 <!--PHP-->
+
+    <?php
+        $email = $_SESSION["email"];
+        
+        $product_details_query = mysqli_query($connect, "SELECT * from menu");
+        $numrow = mysqli_num_rows($product_details_query);
+    ?>
+
+    <?php
+        while($row = mysqli_fetch_assoc($product_details_query))
+        {
+            $db_dish_name = $row['dish_name'];
+            $db_dish_price = $row['price'];
+            $db_dish_id = $row['dish_id'];
+            $db_dish_qty = $row['stock_qty'];
+            $db_dish_description = $row['description'];
+        }
+    ?>
     
-        <!--<form action="...">-->
+        <form name="product-details" method ="POST" >
         <div class="container">
             <div class="row"> 
                 <div class="col-md-5">
@@ -128,8 +153,8 @@
                 </div>
 
                 <div class="col-md-7">
-                    <h4 class="product-name">Nasi Ayam</h4>
-                    <p class="price">RM 12.50</p>
+                    <h4 class="product-name" name="dish-name"><?php echo $db_dish_name; ?></h4>
+                    <p class="price" name="dish-price">RM <?php echo $db_dish_price; ?></p>
                     
 
                     <hr style="border:1px solid black; width:50%;">
@@ -140,18 +165,20 @@
                     
                     <p><b>Special Instruction</b></p>
                     <p>
-                    <textarea placeholder="Allergy to peanut etc..."></textarea>
+                    <textarea placeholder="Allergy to peanut etc..." name="dish-special-instruction"></textarea>
                     </p>
 
                     <label>Quantity:</label>
-                    <input type="text" value="1" style="width:5%;">
-                    <button type="button" class="btn btn-default cart">Add to cart</button>
+                    <input type="text" value="1" style="width:5%;" name="dish-quantity">
+                    <button type="submit" class="btn btn-default cart" name="add-to-cart">Add to cart</button>
 
                 </div>
 
+       
+
                 <div>
                     <p class="description"><b>Description</b></p>
-                    <p style="font-size: large;">Nasi ayam (chicken rice) is originally a Chinese dish that consists of specially cooked rice teamed together with chicken (thinly sliced) in dark soya sauce and oyster sauce gravy usually accompanied by cucumber slices</p>
+                    <p style="font-size: large;"><?php echo $db_dish_description;?></p>
                 </div>
 
                 <div id="home" class="tabcontent">
@@ -208,8 +235,41 @@
                     </div>
             </div>
         </div>
-        <!--</form>-->
+        </form>
 
+        <?php 
+
+            if(isset($_POST['add-to-cart'])){
+                $var_email = $email;
+                $var_dish_name = $db_dish_name;
+                $var_dish_price = $db_dish_price;
+                $var_dish_special_instruction = $_POST['dish-special-instruction'];
+                $var_dish_quantity = $_POST['dish-quantity'];
+
+                if(!empty($var_dish_quantity)){
+
+                    $cart = mysqli_query($connect, "INSERT INTO cart(email,dish_name, dish_price, dish_qty) 
+                    VALUES ('$var_email' ,'$var_dish_name' , '$var_dish_price', '$var_dish_quantity')");
+                
+                    echo "<script>
+                            alert('Added to cart');
+                            location.href = 'shopping-cart.php';
+                        </script>";
+
+                            if($cart)
+                            {
+                                echo "<script>
+                                    alert('Error');
+                                    location.href = 'shopping-cart.php';
+                                    </script>";
+                            }
+                } else {
+                    echo "<script> 
+                            alert('Error');
+                        </script>";
+                }
+            }
+        ?>
         <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

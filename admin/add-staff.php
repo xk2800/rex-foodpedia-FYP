@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+
+<?php
+    include "../db-connect.php"; 
+    session_start();
+?>
     <html>
         <head>
             <title>Add Staff | REX Foodipedia</title>
@@ -74,33 +79,46 @@
                 include("navbar.html");
             ?>
 
+            <?php
+                
+                $admin_username = $_SESSION['staffuname'];
+
+                $query_select_menu_detail = mysqli_query($connect, "SELECT * FROM staff_acc WHERE username = '$admin_username' ");
+                $row = mysqli_fetch_assoc($query_select_menu_detail);
+            ?>    
+
             <div class="container">
                 <div class="card" id="card-whole-add-staff">
                     <h6 class="card-header" id="card-title">Add Staff</h6>
                   
                     <div class="card-body"> 
                         <div id="card-input-add-product">
-                            <form>
+                            <form name="form-add-staff" method="POST">
 
                                 <div class="form-group">       
-                                    <label for="card-dish-edit-menu">Staff IC</label>
+                                    <label for="card-dish-edit-menu">Staff ID</label>
                                     <br>
-                                    <input type="text" name="ic1" maxlength="6" size="6" style="width: 10%;" required>-
-                                    <input type="text" name="ic2" maxlength="2" size="2" style="width: 4%;" required>-
-                                    <input type="text" name="ic3" maxlength="4" size="4" style="width: 6%;" required>
+                                    <input type="text" name="staffid" maxlength="6" size="6" style="width: 10%;" required>-
                                 </div>
 
                                 <div class="form-group">
                                     <label for="name">Staff Name</label>
                                     <div class="custom-file">
-                                        <input type="text" name="Name" id="name" style="width: 80%;" required>
+                                        <input type="text" name="staffname" id="name" style="width: 80%;" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="phone">Staff Phone Number</label>
+                                    <label for="phone">Username</label>
                                     <div class="custom-file">
-                                        <input type="text" name="phone-num" style="width: 20%;" maxlength="10" id="phone" required>
+                                        <input type="text" name="staffuname" style="width: 20%;" maxlength="10" id="phone" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pwd">Password</label>
+                                    <div class="custom-file">
+                                        <input type="text" name="staffpassword" style="width: 20%;" maxlength="10" id="pwd" required>
                                     </div>
                                 </div>
 
@@ -111,6 +129,7 @@
                                     </div>
                                 </div>
 
+<!--
                                 <div class="form-group">
                                     <label for="merc-address">Merchant Address</label>
                                     <div class="custom-file">
@@ -131,14 +150,53 @@
                                         <input type="number" name="outlets" id="outlets" style="width: 7%;" required>
                                     </div>
                                 </div>
-
+-->
+<button type="submit" class="btn btn-primary btn-block" id="card-button-edit-menu" name="submit-add-staff">Add Staff</button>
                             </form>
                         </div>
                         
-                        <a href="#" class="btn btn-primary btn-block" id="card-button-edit-menu">Add Staff</a>
+                        
                     </div>
                 </div> 
             </div>
+
+            <?php 
+
+                if(isset($_POST['submit-add-staff'])) {
+                    
+                    //$var_dish_menu_detail = $_POST['dish_menu_detail'];
+                    //$var_image_menu_detail = $_POST['image_menu_detail'];
+
+                    $var_staffid = $_POST["staffid"];
+                    $var_staffname = $_POST["staffname"];
+                    $var_staffuname = $_POST["staffuname"];
+                    $var_staffpassword = $_POST["staffpassword"];
+                    $var_staffemail = $_POST["emails"];
+
+                    if(!empty($var_staffid) && !empty($var_staffname) && !empty($var_staffuname) && !empty($var_staffpassword) && !empty($var_staffemail)) {
+                        
+                        //!empty($var_dish_menu_detail)
+                        
+                        //$session_dish_id = $_SESSION['dish_id'];
+                        
+                        //$session_dish_id = "F001";
+                        
+                        //harcode a temp dish_id session
+
+                        $query_add_staff = mysqli_query($connect, "INSERT INTO staff_acc(fname, staff_id, username, pwd, email) 
+                        VALUES ('$var_staffname','$var_staffid','$var_staffuname','$var_staffpassword','$var_staffemail')");
+
+                        echo "<script>
+                                    alert('Staff Added');
+                                    location.href = '../user-login.php';
+                                </script>";
+
+                    } else {
+                        echo "Please fill in all the inputs!";
+                    }
+                }
+
+            ?>
                 
             <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   

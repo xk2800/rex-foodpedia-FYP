@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+    include("db-connect.php");
+    //session_start();
+?>
     <html lang="en">
         <head>
             <meta charset="UTF-8">
@@ -62,67 +66,54 @@
                             <th> </th>
                         </tr>
                     </thead>
+
+                    <?php
+                        $email = $_SESSION["email"];
+                        $shopping_cart_query = mysqli_query($connect, "SELECT * from cart WHERE email = '$email' ");
+                        $numrow = mysqli_num_rows($shopping_cart_query);
+                    ?>
+
                     <tbody>
-                        
-                        <tr>
-                            <td class="col-sm-8 col-md-6">
-                            <div class="media">
-                                <a class="thumbnail pull-left" href="#"> 
-                                    <img src="img/food1.jpg" style="width: 72px; height: 72px;">
-                                </a>
-                                <div class="media-body">
-                                    <h5><a href="#">Product name</a></h5>
-                                    <h6> by <a href="#">Brand name</a></h6>
-                                    <span>Delivery time: </span><span class="text-success"><strong>45 Minutes</strong></span>
-                                </div>
-                            </div>
-                            </td>
-                            <td class="col-sm-1 col-md-1" style="text-align: center">
-                                <input type="email" class="form-control" id="quantity" value="1">
-                            </td>
-                            
-                            <td class="col-sm-1 col-md-1 text-center">
-                                <strong>$4.87</strong>
-                            </td>
-                            
-                            <td class="col-sm-1 col-md-1 text-center">
-                                <strong>$14.61</strong>
-                            </td>
-                            
-                            <td class="col-sm-1 col-md-1">
-                                <button type="button" class="btn btn-danger">
-                                    <span class="glyphicon glyphicon-remove"><i class="fas fa-trash"></i></span> 
-                                </button>
-                            </td>
-                        </tr>
+                   
+                        <?php
+                            if($numrow != 0) {
+                                    while($row = mysqli_fetch_assoc($shopping_cart_query)) {
 
-                        <tr>
-                            <td class="col-md-6">
-                            <div class="media">
-                                <a class="thumbnail pull-left" href="#"> <img src="img/food1.jpg" style="width: 72px; height: 72px;"> </a>
-                                <div class="media-body">
-                                    <h5><a href="#">Product name</a></h5>
-                                    <h6> by <a href="#">Brand name</a></h6>
-                                    <span>Delivery time: </span><span class="text-success"><strong>30 Minutes</strong></span>
-                                </div>
-                            </div>
-                            </td>
-
-                            <td class="col-md-1" style="text-align: center">
-                            <input type="email" class="form-control" id="quantity" value="2">
-                            </td>
-                            
-                            <td class="col-md-1 text-center"><strong>$4.99</strong></td>
-                            <td class="col-md-1 text-center"><strong>$9.98</strong></td>
-                            <td class="col-md-1">
-                            <button type="button" class="btn btn-danger">
-                                <span class="glyphicon glyphicon-remove"><i class="fas fa-trash"></i></span> 
-                            </button>
-                            </td>
-                        </tr>
-
-                        
-
+                                        $db_dish_name = $row['dish_name'];
+                                        $db_dish_price = $row['dish_price'];
+                                        $db_dish_id = $row['dish_id'];
+                                        $db_dish_qty = $row['dish_qty'];
+                        ?>
+                                        <tr>            
+                                        <td class="col-sm-8 col-md-6">
+                                        <div class="media">
+                                            <a class="thumbnail pull-left" href="#"> 
+                                                <img src="img/food1.jpg" style="width: 72px; height: 72px;">
+                                            </a>
+                                            <div class="media-body">
+                                                <h3><?php echo "hello";?></h3>
+                                                <h5><a href="#"><?php echo  $db_dish_name; ?></a></h5>
+                                                <!-- <h6> by <a href="#"> </a></h6> -->
+                                                <!-- <span>Delivery time: </span><span class="text-success"><strong>45 Minutes</strong></span> -->
+                                            </div>
+                                            </div>
+                                            </td>
+            
+                                            <td class="col-sm-1 col-md-1" style="text-align: center"><input type="text" class="form-control" id="quantity" value="<?php echo $db_dish_qty;?>"> </td>
+                                                    
+                                            <td class="col-sm-1 col-md-1 text-center"><strong><?php echo $db_dish_price;?></strong></td>
+                                                    
+                                            <td class="col-sm-1 col-md-1">
+                                                <button type="button" class="btn btn-danger">
+                                                    <span class="glyphicon glyphicon-remove"><i class="fas fa-trash"></i></span> 
+                                                </button>
+                                            </td>
+                                        </tr>
+                            <?php           
+                                    }  
+                                }
+                            ?>   
+                                  
                         <tr>
                             <td>   </td>
                             <td>   </td>

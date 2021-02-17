@@ -2,7 +2,7 @@
 
 <?php
     include "../db-connect.php"; 
-    session_start();
+    //session_start();
 ?>
     <html>
         <head>
@@ -160,14 +160,6 @@
                     $var_price_menu_detail = $_POST['price'];
 
                     if(!empty($var_name_menu_detail) && !empty($var_id_menu_detail) && !empty($var_desc_menu_detail) && !empty($var_qty_menu_detail) && !empty($var_price_menu_detail)) {
-                        
-                        //!empty($var_dish_menu_detail)
-                        
-                        //$session_dish_id = $_SESSION['dish_id'];
-                        
-                        //$session_dish_id = "F001";
-                        
-                        //harcode a temp dish_id session
 
                         $query_menu_detail = mysqli_query($connect, "INSERT INTO menu(dish_name, dish_id, price, description, stock_qty) 
                         VALUES ('$var_name_menu_detail','$var_id_menu_detail','$var_price_menu_detail','$var_desc_menu_detail','$var_qty_menu_detail')");
@@ -177,8 +169,14 @@
                                     location.href = 'user-login.php';
                                 </script>";
 
+                                if($query_menu_detail){
+                                    echo "<script>
+                                            location.href = '../menu.php;
+                                            </script>";
+                                }
+
                     } else {
-                        echo "Please fill in all the inputs!";
+                        echo "<script> alert('Please fill in all the inputs!'); </script>";
                     }
                 }
 

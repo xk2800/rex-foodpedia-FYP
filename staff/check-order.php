@@ -1,9 +1,14 @@
 <!DOCTYPE html>
+
+<?php
+    include "../db-connect.php"; 
+    //session_start();
+?>
     <html lang="en">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Shopping Cart | REX Foodipedia</title>
+            <title>Check Order | REX Foodipedia</title>
 
         <!--FONTS.CSS STARTS-->
             <link rel="preload" href="css/fonts.css" as="style">
@@ -48,21 +53,45 @@
     <?php
         include("navbar.html");
     ?>
-    
+   
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-10 col-md-offset-1">
-                <table class="table table-hover">
+                <table class="table table-hover" style="margin-top: 5rem;">
                     <thead>
                         <tr>
                             <th>Product</th>
+                            <th class="text-center">Order by</th>
+                            <th class="text-center">Time</th>
+                            <th class="text-center">Quantity</th>
                             <th class="text-center">Price</th>
                             <th class="text-center">Total</th>
                             <th class="text-center">Status</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        
+                            <?php
+                                $staff_username = $_SESSION['staffuname'];
+
+                                $check_order_query = mysqli_query($connect, "SELECT * FROM order_rec");
+                                $numrow = mysqli_num_rows($check_order_query);
+                            ?>  
+                    <tbody>  
+                            <?php
+                                if($numrow != 0)
+                                {
+                                    while($row = mysqli_fetch_assoc($check_order_query))
+                                    {
+                                        $db_id = $row['id'];
+                                        $db_email = $row['email'];
+                                        $db_date = $row['date'];
+                                        $db_dish_name = $row['dish_name'];
+                                        $db_dish_price = $row['dish_price'];
+                                        $db_dish_id = $row['dish_id'];
+                                        $db_order_status = $row['order_status'];
+                                        $db_delivery_status = $row['delivery_status'];
+                                        $db_qty = $row['dish_qty'];
+                            ?>
+
                         <tr>
                             <td class="col-sm-8 col-md-6">
                             <div class="media">
@@ -70,85 +99,54 @@
                                     <img src="../img/food1.jpg" style="width: 72px; height: 72px;">
                                 </a>
                                 <div class="media-body">
-                                    <h5><a href="#">#1</a></h5>
-                                    <h6>Description: <br>Nasi Lemak x2 <br> Rendang x1</h6>
-                                </div>
-                            </div>
-                            </td>
-                            
-                            <td class="col-sm-1 col-md-1 text-center">
-                                <strong>$12.34</strong>
-                            </td>
-                            
-                            <td class="col-sm-1 col-md-1 text-center">
-                                <strong>$42.22</strong>
-                            </td>
-
-                            <td class="col-sm-1 col-md-1 text-center">
-                                <span class="text-danger"><strong>Preparing</strong></span>
-                            </td>
-                            
-                            <!--
-                            <td class="col-md-1">
-                            <button type="button" class="btn">
-                                <span class="glyphicon glyphicon-edit"><i class="fas fa-edit"></i></span> 
-                            </button>
-                            </td>
-                            -->
-                        </tr>
-
-                        <tr>
-                            <td class="col-md-6">
-                            <div class="media">
-                                <a class="thumbnail pull-left" href="#"> <img src="../img/food1.jpg" style="width: 72px; height: 72px;"> </a>
-                                <div class="media-body">
-                                    <h5><a href="#">#2</a></h5>
-                                    <h6>Description: <br>Rendang x2 <br>Ayam Masak Merah x3</h6>
+                                    <h5><a href="#">#<?php echo $db_id;?></a></h5>
+                                    <h6>Description: <br> <?php echo $db_dish_name;?></h6>
                                 </div>
                             </div>
                             </td>
 
-                            <td class="col-md-1 text-center"><strong>$32.33</strong></td>
-                            <td class="col-md-1 text-center"><strong>$123.33</strong></td>
-                            <td class="col-sm-1 col-md-1 text-center">
-                                <span class="text-warning"><strong>Delivery</strong></span>
+                            <td>
+                            <strong><?php echo $db_email;?></strong>
                             </td>
 
-                            <!--
-                            <td class="col-md-1">
+                            <td>
+                                <strong><?php echo $db_date;?></strong>
+                            </td>
+
+                            <td>
+                                <strong>
+                                <?php echo $db_qty;?>
+                                </strong>
+                            </td>
+                            
+                            <td class="col-sm-1 col-md-1 text-center">
+                                <strong><?php echo $db_dish_price;?></strong>
+                            </td>
+                            
+                            <td class="col-sm-1 col-md-1 text-center">
+                                <strong>
+                                <?php 
+                                    $total = $db_qty * $db_dish_price;
+                                    echo number_format((float)$total,2,'.','');
+                                ?>
+                                </strong>
+                            </td>
+
+                            <td class="col-sm-1 col-md-1 text-center">
+                            <?php echo $db_delivery_status == 0 ? '<span class="text-warning"> <strong>Delivery</strong> </span>' : '<span class="text-success"><strong> Delivered </strong></span>';?>
+                            </td>
+                            
+                            <!-- <td class="col-md-1">
                             <button type="button" class="btn">
                                 <span class="glyphicon glyphicon-edit"><i class="fas fa-edit"></i></span> 
                             </button>
-                            </td>
-                            -->
+                            </td> -->
                         </tr>
 
-                        <tr>
-                            <td class="col-md-6">
-                            <div class="media">
-                                <a class="thumbnail pull-left" href="#"> <img src="../img/food1.jpg" style="width: 72px; height: 72px;"> </a>
-                                <div class="media-body">
-                                    <h5><a href="#">#3</a></h5>
-                                    <h6>Description: <br>Ayam Goreng x2 <br>Nasi Goreng x2 <br> Rendang x1<br>Ayam Goreng x2 <br>Nasi Goreng x2 <br> Rendang x1</a></h6>
-                                </div>
-                            </div>
-                            </td>
-
-                            
-                            <td class="col-md-1 text-center"><strong>$5.00</strong></td>
-                            <td class="col-md-1 text-center"><strong>$18.59</strong></td>
-                            <td class="col-sm-1 col-md-1 text-center">
-                                <span class="text-success"><strong>Delivered</strong></span>
-                            </td>
-                            
-                            <!--
-                            <td class="col-md-1">
-                            <button type="button" class="btn">
-                                <span class="glyphicon glyphicon-edit"><i class="fas fa-edit"></i></span> 
-                            </button>
-                            </td>
-                            -->
-                        </tr>
+                        <?php 
+                            }
+                        }
+                        ?>
 
                     </tbody>
                 </table>

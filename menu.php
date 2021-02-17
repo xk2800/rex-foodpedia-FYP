@@ -1,112 +1,116 @@
 <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Menu | REX Foodipedia</title>
+    <?php
+        include("db-connect.php");
+        //session_start();
+    ?>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Menu | REX Foodipedia</title>
 
-        <!--FONTS.CSS STARTS-->
-            <link rel="preload" href="css/fonts.css" as="style">
-        <!--FONTS.CSS END-->
+            <!--FONTS.CSS STARTS-->
+                <link rel="preload" href="css/fonts.css" as="style">
+            <!--FONTS.CSS END-->
 
-        <!--THIS IS FONT AWESOME JAVASCRIPT START-->
-            <script src="https://kit.fontawesome.com/daa253e478.js" crossorigin="anonymous"></script>
-        <!--THIS IS FONT AWESOME JAVASCRIPT END-->
+            <!--THIS IS FONT AWESOME JAVASCRIPT START-->
+                <script src="https://kit.fontawesome.com/daa253e478.js" crossorigin="anonymous"></script>
+            <!--THIS IS FONT AWESOME JAVASCRIPT END-->
 
-        <!--THIS IS BOOTSTRAP CSS PART START-->
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <!--THIS IS BOOTSTRAP CSS PART END-->
+            <!--THIS IS BOOTSTRAP CSS PART START-->
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+            <!--THIS IS BOOTSTRAP CSS PART END-->
 
-        <!--External CSS Start-->
-            <!--<link rel="stylesheet" href="user-menus.css">-->
-        <!--External CSS End-->    
+            <!--External CSS Start-->
+                <!--<link rel="stylesheet" href="user-menus.css">-->
+            <!--External CSS End-->    
 
 <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 <style>
-                body{
-                    background-color: #e7ded2;
-                }
+        body{
+            background-color: #e7ded2;
+        }
 
-                .text-center h1,h2,h3,h4,h5,h6{
-                    padding: 10rem 0 0 0;
-                }
+        .text-center h1,h2,h3,h4,h5,h6{
+            padding: 5rem 0 0 0;
+        }
 
-                .text-center hr{
-                    overflow: visible;
-                    height: 30px;
-                    border-style: solid;
-                    border-color: black;
-                    border-width: 1px 0 0 0;
-                    border-radius: 20px;
-                }
+        .text-center hr{
+            overflow: visible;
+            height: 30px;
+            border-style: solid;
+            border-color: black;
+            border-width: 1px 0 0 0;
+            border-radius: 20px;
+        }
 
-                .text-center hr::before{
-                    display: block;
-                    content: "";
-                    height: 30px;
-                    margin-top: -31px;
-                    border-style: solid;
-                    border-color: black;
-                    border-width: 0 0 1px 0;
-                    border-radius: 20px;
-                }
-            
-            /* Menu Navigation (FOOD SELECTION) STARTS */
-                #btns{
-                    background-color: #a3d2ca;
-                    color: black;
-                    margin: 40px 25px 20px 25px;
-                    border-radius:12px;
-                    border:1px solid black;
-                    padding:5px;
-                }
+        .text-center hr::before{
+            display: block;
+            content: "";
+            height: 30px;
+            margin-top: -31px;
+            border-style: solid;
+            border-color: black;
+            border-width: 0 0 1px 0;
+            border-radius: 20px;
+        }
+    
+    /* Menu Navigation (FOOD SELECTION) STARTS */
+        #btns{
+            background-color: #a3d2ca;
+            color: black;
+            margin: 40px 25px 20px 25px;
+            border-radius:12px;
+            border:1px solid black;
+            padding:5px;
+        }
+
+        #btns:hover {
+            background-color: #056676;
+            color:black;
+            text-decoration: none;
+        }
+
+        #btns.active {
+            background-color:blue;
+            color: gold;
+        }
+    /* Menu Navigation (FOOD SELECTION) ENDS */
+
+    /* Item Grid Starts */
+        .col {
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px 20px 20px 20px;
+        }
+
+        .col:hover {
+            transition: scale(1.1);
+            transform: scale(1.1);
+        }
         
-                #btns:hover {
-                    background-color: #056676;
-                    color:black;
-                    text-decoration: none;
-                }
+        .container img {
+            border-radius: 15px;
+            width: 100%;
+            height: 100%;   
+        }
 
-                #btns.active {
-                    background-color:blue;
-                    color: gold;
-                }
-            /* Menu Navigation (FOOD SELECTION) ENDS */
+        .container img:hover {
+            transition: scale(1.04);
+            transform: scale(1.04);
+        }
+    /* Item Grid Ends */
 
-            /* Item Grid Starts */
-                .col {
-                    border-radius: 15px;
-                    padding: 15px;
-                    margin: 20px 20px 20px 20px;
-                }
+        .container p{
+            font-size: x-large;
+            color: black;
+            font-weight: bold;
+        }
 
-                .col:hover {
-                    transition: scale(1.1);
-                    transform: scale(1.1);
-                }
-                
-                .container img {
-                    border-radius: 15px;
-                    width: 100%;
-                    height: 100%;   
-                }
-
-                .container img:hover {
-                    transition: scale(1.04);
-                    transform: scale(1.04);
-                }
-            /* Item Grid Ends */
-
-                .container p{
-                    font-size: x-large;
-                    color: black;
-                    font-weight: bold;
-                }
-
-                .container hr{
-                    border: 1px solid black; 
-                    border-radius: 12px;
-                }
+        .container hr{
+            border: 1px solid black; 
+            border-radius: 12px;
+        }
 </style>
 
         
@@ -148,47 +152,67 @@
             <p>Random Picks</p>
             <hr>
 
-            <div class="row">
+                <div class="row">
+                    <div class="col">
 
-                <div class="col">
-                    <div class="panel">
-                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                            <img src="img/food1.jpg">
-                        </a>
-                    <b>Chicken Curry</b>
-                    <div>
-                    Chicken curry is a dish originating from the Indian subcontinent. 
-                    </div>
-                    </div>
-                </div>
+                    <?php
+                        $email = $_SESSION["email"];
+                        //$menu_query = mysqli_query($connect, "SELECT * from menu WHERE email = '$email' ");
+                        $menu_query = mysqli_query($connect, "SELECT dish_name,description FROM menu");
+                        $numrow = mysqli_num_rows($menu_query);
+                    ?>
 
-                <div class="col">
-                    <div class="panel">
-                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                            <img src="img/food1.jpg">
-                        </a> 
-                    <b>Rendang</b>
-                    <div>
-                    Rendang is an Indonesian spicy meat dish originating from the 
-                    Minangkabau region in West Sumatra, Indonesia.
+                     <?php 
+                if($numrow != 0)
+                {
+                    while($row = mysqli_fetch_assoc($menu_query))
+                    {
+                        $db_dish_name = $row['dish_name'];
+                        $db_dish_description = $row['description'];
+                ?>
+                        <div class="panel">
+                            <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
+                                <img src="img/food1.jpg">
+                            </a>
+                                <b><?php echo $db_dish_name ?></b>
+                            <div>
+                                <?php echo $db_dish_description?> 
+                            </div>
+                        </div>
+                        
                     </div>
-                    </div>
-                </div>
 
-                <div class="col">
-                    <div class="panel">
-                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                            <img src="img/food1.jpg">
-                        </a>     
-                    <b>Nasi Lemak</b>
-                    <div>
-                    Nasi lemak is a Malay cuisine dish consisting of fragrant rice 
-                    cooked in coconut milk and pandan leaf.   
+                    <div class="col">
+                        <div class="panel">
+                            <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
+                                <img src="img/food1.jpg">
+                            </a> 
+                            <b>Rendang</b>
+                            <div>
+                            Rendang is an Indonesian spicy meat dish originating from the 
+                            Minangkabau region in West Sumatra, Indonesia.
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="col">
+                        <div class="panel">
+                            <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
+                                <img src="img/food1.jpg">
+                            </a>     
+                            <b>Nasi Lemak</b>
+                            <div>
+                            Nasi lemak is a Malay cuisine dish consisting of fragrant rice 
+                            cooked in coconut milk and pandan leaf.   
+                            </div>
+                        </div> -->
                     </div>
-                </div>
-            </div>
-        </div>
+                            </div>
+                        </div>
+                <?php 
+                }
+            }
+            ?>  
         <!-- Menu Item 1st row End -->
 
         <!-- Menu Item 2nd row Starts -->
