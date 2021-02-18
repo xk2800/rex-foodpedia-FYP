@@ -351,7 +351,8 @@
 
                                             
                                             $dish_price = $countlogic_out['dish_price'];
-                                            $total_price += $dish_price;
+                                            $dish_qty = $countlogic_out['dish_qty'];
+                                            $total_price += $dish_price * $dish_qty;
                                             //echo $total_price;
                                             
                                         }
@@ -491,6 +492,36 @@
 
 echo "<br>".$email;
 
+/*
+         $run_test = mysqli_query($connect, "SELECT * FROM cart WHERE email='$email'");
+        
+        //loop for getting data from cart
+        //$dish_total_sql = 0;
+        while($run_test_out = mysqli_fetch_assoc($run_test)){
+
+            $email      = $run_test_out['email'];
+            $dish_name  = $run_test_out['dish_name'];
+            $dish_price = $run_test_out['dish_price'];
+            $dish_id    = $run_test_out['dish_id'];
+            $dish_qty   = $run_test_out['dish_qty'];
+            $send_type  = 'Self Pick Up';
+            $order_stats= '1';
+
+            //qty * unit price = product_total; -> product_total INTO transaction table, column subtotal
+
+            $dish_total_sql1 += $dish_price * $dish_qty;
+
+
+            //must build purchase total logic here then push 
+            
+            //delete data(s) from cart table
+            //$delete_test = mysqli_query($connects, "DELETE FROM cart WHERE email='$email'");
+
+        }
+        
+        echo $dish_total_sql1;
+
+*/
 
     if(isset($_POST["make_paymentbtn"])){
         
@@ -501,6 +532,8 @@ echo "<br>".$email;
         $email      = $_POST["user_email"];
         $pay_total  = $total_payment_to_pay;
         $input_time = $actual_time;
+
+        //$dish_total_sql =$dish_total_sql1;
 
         echo $total_payment_to_pay;
 
@@ -545,6 +578,15 @@ echo "<br>".$email;
             $_SESSION['del_address']    = $del_address;
 
             $_SESSION['email']          = $email;
+
+            //used to check latest receipt id 
+            $check_receipt_id = mysqli_query($connect, "SELECT * from transaction ORDER BY receipt_id DESC");
+            $call_receipt_id = mysqli_fetch_assoc($check_receipt_id);
+
+            $receipt_id_check = $call_receipt_id ["receipt_id"];
+            $number = $receipt_id_check+1;
+            $number = sprintf('%07d',$number);
+            echo $number;
             
 /* 
     TODO: add logic to move from cart to transaction n order_rec table 
@@ -554,6 +596,7 @@ echo "<br>".$email;
         //loop for getting data from cart
         while($run_test_out = mysqli_fetch_assoc($run_test)){
 
+            $dish_total_sql = 0;
             $email      = $run_test_out['email'];
             $dish_name  = $run_test_out['dish_name'];
             $dish_price = $run_test_out['dish_price'];
@@ -564,29 +607,24 @@ echo "<br>".$email;
 
             //qty * unit price = product_total; -> product_total INTO transaction table, column subtotal
 
-            //$dish_total_sql += $dish_price * $dish_qty;
+            $dish_total_sql += $dish_price * $dish_qty;
 
 
             //must build purchase total logic here then push 
             
             //delete data(s) from cart table
-            $delete_test = mysqli_query($connects, "DELETE FROM cart WHERE email='$email'");
+            //$delete_test = mysqli_query($connects, "DELETE FROM cart WHERE email='$email'");
+
+            //add into order record table
+            $insert_test = $mysqli->query("INSERT INTO order_rec(email, trans_id, dish_name, dish_price, dish_id, dish_qty)
+            VALUES ('$email', '$number', '$dish_name', '$dish_price', '$dish_id', '$dish_qty')");
 
         }
         //$dish_total_sql = $dish_total;
+        //$dish_total_sql += $dish_price * $dish_qty;
 
-        //used to check latest receipt id 
-        $check_receipt_id = mysqli_query($connect, "SELECT * from transaction ORDER BY receipt_id DESC");
-        $call_receipt_id = mysqli_fetch_assoc($check_receipt_id);
-
-        $receipt_id_check = $call_receipt_id ["receipt_id"];
-        $number = $receipt_id_check+1;
-        $number = sprintf('%07d',$number);
-        echo $number;
-        
-        //add into order record table
-        $insert_test = $mysqli->query("INSERT INTO order_rec(email, trans_id, dish_name, dish_price, dish_id, dish_qty)
-        VALUES ('$email', '$number', '$dish_name', '$dish_price', '$dish_id', '$dish_qty')");
+        $total_sql                    = $dish_total_sql;
+        $_SESSION['total_sql']        = $total_sql;
 
         //add into transaction table
         $sql_insert_into_transaction = mysqli_query($connect, "INSERT INTO transaction
@@ -595,7 +633,7 @@ echo "<br>".$email;
 
         echo $pay_total;
 
-        if($insert_test && $delete_test && $sql_insert_into_transaction){
+        if($insert_test /*&& $delete_test*/ && $sql_insert_into_transaction){
             header("location: tac");
             echo "insert done";
         }else{
@@ -606,5 +644,7 @@ echo "<br>".$email;
 
 
 }
+echo "<br><br>";
+echo $dish_total_sql;
 
 ?>

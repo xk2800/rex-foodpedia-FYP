@@ -48,7 +48,7 @@
         // $receipt_id_check = $call_receipt_id ["receipt_id"];
         // $number = $receipt_id_check+1;
         // $number = sprintf('%07d',$number);
-        $numbers="0000504";
+        $numbers="0000520";
         //echo "<br>";
         //print $number;
 
