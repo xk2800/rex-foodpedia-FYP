@@ -536,7 +536,7 @@ echo "<br>".$email;
             $pay_transfer               = $pay_total;
             $delivery_type              = 'pick_up';
             $payment_type               = $pay_out;
-            $del_address                = "";
+            $del_address                = NULL;
 
             $_SESSION['cardnum']        = $cardnum;
             $_SESSION['pay_total']      = $pay_transfer;
