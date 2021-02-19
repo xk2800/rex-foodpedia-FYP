@@ -38,17 +38,17 @@
         $actual_time = date('Y-m-d H:i:s', $time);
 
         //$email              = $_SESSION['email'];
-        $email = "xavierkhew123@gmail.com";
+        $email = "xavierkhew00@gmail.com";
         echo $email;
 
 
-        $check_receipt_id = mysqli_query($connect, "SELECT * from transaction ORDER BY receipt_id DESC");
-        $call_receipt_id = mysqli_fetch_assoc($check_receipt_id);
+        // $check_receipt_id = mysqli_query($connect, "SELECT * from transaction ORDER BY receipt_id DESC");
+        // $call_receipt_id = mysqli_fetch_assoc($check_receipt_id);
 
-        $receipt_id_check = $call_receipt_id ["receipt_id"];
-        $number = $receipt_id_check+1;
-        $number = sprintf('%07d',$number);
-        $numbers="0000501";
+        // $receipt_id_check = $call_receipt_id ["receipt_id"];
+        // $number = $receipt_id_check+1;
+        // $number = sprintf('%07d',$number);
+        $numbers="0000520";
         //echo "<br>";
         //print $number;
 
