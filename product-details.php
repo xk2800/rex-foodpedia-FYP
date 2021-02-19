@@ -123,15 +123,16 @@
 <!--PHP-->
 
     <?php
-        // $email = $_SESSION["email"];
-        $product_details_query = mysqli_query($connect, "SELECT * FROM menu WHERE id = '$id' ");
+        $email = $_SESSION["email"];
+        
+        $product_details_query = mysqli_query($connect, "SELECT * FROM menu WHERE id = '$id'");
         $numrow = mysqli_num_rows($product_details_query);
     ?>
 
     <?php
         while($row = mysqli_fetch_assoc($product_details_query))
         {
-            $db_dish_id = $row['id'];
+            $db_id = $row['id'];
             $db_dish_name = $row['dish_name'];
             $db_dish_price = $row['price'];
             $db_dish_id = $row['dish_id'];
@@ -249,8 +250,8 @@
 
                 if(!empty($var_dish_quantity)){
 
-                    $cart = mysqli_query($connect, "INSERT INTO cart(id,email,dish_name, dish_price, dish_qty) 
-                    VALUES ('$db_dish_id','$var_email' ,'$var_dish_name' , '$var_dish_price', '$var_dish_quantity')");
+                    $cart = mysqli_query($connect, "INSERT INTO cart(email,dish_name, dish_price, dish_qty) 
+                    VALUES ('$var_email' ,'$var_dish_name' , '$var_dish_price', '$var_dish_quantity')");
 
                             if($cart)
                             {
