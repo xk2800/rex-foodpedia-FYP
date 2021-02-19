@@ -84,9 +84,6 @@
         //$email = "xavierkhew00@gmail.com";
         $email              = $_SESSION['email'];
         
-        $total_sql = $_SESSION['total_sql'];
-        echo "<br><br><br><br>";
-        echo $total_sql;
 
         //$test = $_POST['cardnum'];
         //$test = $_REQUEST['cardnum'];

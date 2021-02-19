@@ -623,8 +623,8 @@ echo "<br>".$email;
         //$dish_total_sql = $dish_total;
         //$dish_total_sql += $dish_price * $dish_qty;
 
-        $total_sql                    = $dish_total_sql;
-        $_SESSION['total_sql']        = $total_sql;
+        /*$total_sql                    = $dish_total_sql;
+        $_SESSION['total_sql']        = $total_sql;*/
 
         //add into transaction table
         $sql_insert_into_transaction = mysqli_query($connect, "INSERT INTO transaction
