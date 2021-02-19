@@ -77,8 +77,8 @@
                    
                         <?php
                             if($numrow != 0) {
-                                    while($row = mysqli_fetch_assoc($shopping_cart_query)) {
-
+                                    while($row = mysqli_fetch_assoc($shopping_cart_query)) 
+                                    {
                                         $db_dish_name = $row['dish_name'];
                                         $db_dish_price = $row['dish_price'];
                                         $db_dish_id = $row['dish_id'];
@@ -91,8 +91,7 @@
                                                 <img src="img/food1.jpg" style="width: 72px; height: 72px;">
                                             </a>
                                             <div class="media-body">
-                                                <h3><?php echo "hello";?></h3>
-                                                <h5><a href="#"><?php echo  $db_dish_name; ?></a></h5>
+                                                <h3><a href="product-details.php?id=<?php echo $row['id']?>"><?php echo $db_dish_name;?></a></h3>
                                                 <!-- <h6> by <a href="#"> </a></h6> -->
                                                 <!-- <span>Delivery time: </span><span class="text-success"><strong>45 Minutes</strong></span> -->
                                             </div>
@@ -104,9 +103,11 @@
                                             <td class="col-sm-1 col-md-1 text-center"><strong><?php echo $db_dish_price;?></strong></td>
                                                     
                                             <td class="col-sm-1 col-md-1">
+                                            <a onclick="return confirm('Delete this product from cart?')" href="shopping-cart-delete.php?id=<?php echo $row['id'];?>">
                                                 <button type="button" class="btn btn-danger">
                                                     <span class="glyphicon glyphicon-remove"><i class="fas fa-trash"></i></span> 
                                                 </button>
+                                            </a>
                                             </td>
                                         </tr>
                             <?php           

@@ -77,7 +77,21 @@
         }
     /* Menu Navigation (FOOD SELECTION) ENDS */
 
+
     /* Item Grid Starts */
+        .card {
+            box-shadow:0 4px 8px 0 rgba(0,0,0,0.2);
+            transition:0.3s;
+        }
+
+        .card:hover{
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .container{
+            padding: 2px 16px;
+        }
+
         .col {
             border-radius: 15px;
             padding: 15px;
@@ -91,8 +105,8 @@
         
         .container img {
             border-radius: 15px;
-            width: 100%;
-            height: 100%;   
+            width: 50%;
+            height: 50%;   
         }
 
         .container img:hover {
@@ -145,41 +159,89 @@
     </div>
     <!-- Menu Nav End -->
 
+
+    
+ <?php
+        $email = $_SESSION["email"];
+        //$menu_query = mysqli_query($connect, "SELECT * from menu WHERE email = '$email' ");
+        $menu_query = mysqli_query($connect, "SELECT dish_name,description,id FROM menu");
+        $numrow = mysqli_num_rows($menu_query);
+    ?>
     <!-- Menu Item 1st row Starts -->
-    <div id="home" class="tabcontent">
-        <div class="container" >
-        
-            <p>Random Picks</p>
-            <hr>
+        <div id="home" class="tabcontent">
+    
+                            <div class="container">
+                                <p>Random Picks</p>
+                                <hr>
+                        
+            
+                                 <!-- <div class="container" style="display:flex; background-color:blue;"> -->
+                                <div class="row">
+                                    <div class="column" style="float:left;">
+                                        <div class="container" style="display:flex; flex-direction:row; width:100%;">
+                                                
+                                                   
+
+                                                    <?php 
+                                                        if($numrow != 0)
+                                                        {
+                                                            while($row = mysqli_fetch_assoc($menu_query))
+                                                            {
+                                                                $db_dish_name = $row['dish_name'];
+                                                                $db_dish_description = $row['description'];
+                                                        ?>
+
+                                                    
+                                                        <div class="container" style="width:50%;">
+                                                            <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
+                                                                <img src="img/food1.jpg" style="width:100%">
+                                                            
+                                                            <div style="margin:10px 0 0 0; text-decoration:none;">
+                                                                <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_description?></b></p>
+                                                            </div></a>
+                                                        </div>
+                                                    
+                                       
+
+                                                <!-- <div class="card">
+                                                    <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
+                                                        <img src="img/food1.jpg" style="width:100%">
+                                                    </a>
+                                                    <div class="container">
+                                                        <b><?php echo $db_dish_name ?></b>
+                                                        <?php echo $db_dish_description?> 
+                                                    </div>
+                                                </div> -->
+                                                
+                                                <!-- </div>  -->
+                                
+
+                                                    <?php 
+                                                    }
+                                                }
+                                                ?>  
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div> 
+
+            <!-- Menu Item 1st row End -->
+
+            <!-- Menu Item 2nd row Starts -->
+            <div class="container">
+
+                <p>Recommended Restaurants</p>
+                <hr>
 
                 <div class="row">
+
                     <div class="col">
-
-                    <?php
-                        $email = $_SESSION["email"];
-                        //$menu_query = mysqli_query($connect, "SELECT * from menu WHERE email = '$email' ");
-                        $menu_query = mysqli_query($connect, "SELECT dish_name,description FROM menu");
-                        $numrow = mysqli_num_rows($menu_query);
-                    ?>
-
-                     <?php 
-                if($numrow != 0)
-                {
-                    while($row = mysqli_fetch_assoc($menu_query))
-                    {
-                        $db_dish_name = $row['dish_name'];
-                        $db_dish_description = $row['description'];
-                ?>
                         <div class="panel">
                             <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
                                 <img src="img/food1.jpg">
                             </a>
-                                <b><?php echo $db_dish_name ?></b>
-                            <div>
-                                <?php echo $db_dish_description?> 
-                            </div>
+                            Abcd
                         </div>
-                        
                     </div>
 
                     <div class="col">
@@ -187,11 +249,7 @@
                             <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
                                 <img src="img/food1.jpg">
                             </a> 
-                            <b>Rendang</b>
-                            <div>
-                            Rendang is an Indonesian spicy meat dish originating from the 
-                            Minangkabau region in West Sumatra, Indonesia.
-                            </div>
+                            Efgh
                         </div>
                     </div>
 
@@ -200,93 +258,47 @@
                             <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
                                 <img src="img/food1.jpg">
                             </a>     
-                            <b>Nasi Lemak</b>
-                            <div>
-                            Nasi lemak is a Malay cuisine dish consisting of fragrant rice 
-                            cooked in coconut milk and pandan leaf.   
-                            </div>
-                        </div> -->
-                    </div>
-                            </div>
+                            Ijkl
                         </div>
-                <?php 
-                }
-            }
-            ?>  
-        <!-- Menu Item 1st row End -->
-
-        <!-- Menu Item 2nd row Starts -->
-        <div class="container">
-
-            <p>Recommended Restaurants</p>
-            <hr>
-
-            <div class="row">
-
-                <div class="col">
-                    <div class="panel">
-                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                            <img src="img/food1.jpg">
-                        </a>
-                        Abcd
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="panel">
-                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                            <img src="img/food1.jpg">
-                        </a> 
-                        Efgh
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="panel">
-                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                            <img src="img/food1.jpg">
-                        </a>     
-                        Ijkl
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Menu Item 2nd row End -->
+            <!-- Menu Item 2nd row End -->
 
-        <!-- Menu Item 3rd row Start -->
-        <div class="container">
-            <div class="row">
+            <!-- Menu Item 3rd row Start -->
+            <div class="container">
+                <div class="row">
 
-                <div class="col">
-                    <div class="panel">
-                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                            <img src="img/food1.jpg">
-                        </a>
-                        Mno
+                    <div class="col">
+                        <div class="panel">
+                            <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
+                                <img src="img/food1.jpg">
+                            </a>
+                            Mno
+                        </div>
                     </div>
-                </div>
 
-                <div class="col">
-                    <div class="panel">
-                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                            <img src="img/food1.jpg">
-                        </a> 
-                        Pqrs
+                    <div class="col">
+                        <div class="panel">
+                            <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
+                                <img src="img/food1.jpg">
+                            </a> 
+                            Pqrs
+                        </div>
                     </div>
-                </div>
 
-                <div class="col">
-                    <div class="panel">
-                        <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                            <img src="img/food1.jpg">
-                        </a>     
-                        Tuv
+                    <div class="col">
+                        <div class="panel">
+                            <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
+                                <img src="img/food1.jpg">
+                            </a>     
+                            Tuv
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- Menu Item 3rd row End -->
         </div>
-    <!-- Menu Item 3rd row End -->
-    </div>
 
 
     <div id="chinese" class="tabcontent">
@@ -294,18 +306,18 @@
     </div>
 
     <script>
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
+        function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
 }
 
 </script>
