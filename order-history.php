@@ -78,7 +78,8 @@
                                                         //call for time build in php function
                                                         $time_now = time();
                                                         //current time
-                                                        $output_current_time = date('Y/m/d H:i:s', $time_now);
+                                                        $output_current_time = date('Y-m-d H:i:s', $time_now);
+                                                        
 
                                                         //time after 5 mins
                                                         $added_time = 300 + $time_now;
@@ -86,7 +87,7 @@
 
                                                         //echo $output_current_time;
 
-                                                        $time_checking =  $mysqli->query("SELECT * from transaction WHERE email='$email' AND receipt_id"); //where email='$email'
+                                                        $time_checking =  $mysqli->query("SELECT * from transaction WHERE email='$email' AND receipt_id='$trans_id'"); //where email='$email'
                                                         
                                                         //$transi = $time_checking["receipt_id"];
 
@@ -96,10 +97,14 @@
                                                         while($time_check = mysqli_fetch_assoc($time_checking)){
 
                                                             $change_time = $time_check["change_time"];
+                                                            //echo $time_check["receipt_id"];
+                                                            //echo $output_current_time;
+                                                            //echo $change_time;
                                                             
                                                             //working
                                                             if($change_time > $output_current_time){
-                                                                echo '<div class="re-order"><button type="submit" name="submitbtn" class="">Check Order Status</button></div>';
+                    ?>                                          <div class="re-order"><button type="submit" name="submitbtn" class="btn btn-light btn-md rounded-pill">Check Order Status</button></div>
+                    <?php
                                                             }else{
                     ?>                                          <div class="re-order"><a href="order-review?orderid=<?php echo $trans_id; ?>" class="btn btn-light btn-md rounded-pill">Review Order</a></div>
                                                                 
@@ -117,7 +122,7 @@
                     ?>
                                                         <div class="date"><?php echo $output_date;?></div>
                     <?php
-                                                        echo "<div class='white-space'>hjghg </div>";
+                                                        //echo "<div class='white-space'>hjghg </div>";
                                                         
                                                         ?><span class="items"><?php
                                                         //nested to print all food items till end of table
@@ -204,7 +209,7 @@
                     ?>
                                                         <div class="date"><?php echo $output_date;?></div>
                     <?php
-                                                        echo "<div class='white-space'>hjghg </div>";
+                                                        //echo "<div class='white-space'>hjghg </div>";
 
                                                         ?><span class="items"><?php
                                                         //nested to print all food items till end of table
@@ -253,6 +258,10 @@
     </section>
 
     </div><!--/div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div-->
+
+<?php
+echo $date_db;
+?>
 
 <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
