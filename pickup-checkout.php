@@ -596,7 +596,7 @@ echo "<br>".$email;
         //loop for getting data from cart
         while($run_test_out = mysqli_fetch_assoc($run_test)){
 
-            $dish_total_sql = 0;
+            //$dish_total_sql = 0;
             $email      = $run_test_out['email'];
             $dish_name  = $run_test_out['dish_name'];
             $dish_price = $run_test_out['dish_price'];
@@ -607,7 +607,7 @@ echo "<br>".$email;
 
             //qty * unit price = product_total; -> product_total INTO transaction table, column subtotal
 
-            $dish_total_sql += $dish_price * $dish_qty;
+            //$dish_total_sql += $dish_price * $dish_qty;
 
 
             //must build purchase total logic here then push 
@@ -644,7 +644,5 @@ echo "<br>".$email;
 
 
 }
-echo "<br><br>";
-echo $dish_total_sql;
 
 ?>

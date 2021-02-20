@@ -32,6 +32,8 @@
 
 <?php
         include("nav.html");
+
+        $email = "xavierkhew00@gmail.com";
 ?>
     <div class="whitespace"><br><br></div>
     <section id="orders">
@@ -43,7 +45,7 @@
             <div id="order-list-item" class="container d-flex flex-column">
                     
                     <?php
-                                        $order_history = mysqli_query($connect, "SELECT * from order_rec WHERE email='xavierkhew00@gmail.com' AND order_status='1' GROUP BY trans_id"); //where email='$email'
+                                        $order_history = mysqli_query($connect, "SELECT * from order_rec WHERE email='$email' AND order_status='1' GROUP BY trans_id"); //where email='$email'
 
                                         if($order_history){
                                             while($history_output = mysqli_fetch_assoc($order_history)){
@@ -55,7 +57,7 @@
                     ?>
                                                         <div class="trans-id"><?php echo "<br> Transaction ID: ".$trans_id."<br>";?></div>
                     <?php
-                                                        $receipt_id_check = mysqli_query($connect, "SELECT * from transaction WHERE email='xavierkhew00@gmail.com' AND receipt_id=$trans_id GROUP BY receipt_id");
+                                                        $receipt_id_check = mysqli_query($connect, "SELECT * from transaction WHERE email='$email' AND receipt_id=$trans_id GROUP BY receipt_id");
                                                         while($receipt_output = mysqli_fetch_assoc($receipt_id_check)){
                     ?>
                                                             <div class="price">RM<?php echo $receipt_output ["subtotal"];?></div>
@@ -84,7 +86,7 @@
 
                                                         //echo $output_current_time;
 
-                                                        $time_checking =  $mysqli->query("SELECT * from transaction WHERE email='xavierkhew00@gmail.com' AND receipt_id"); //where email='$email'
+                                                        $time_checking =  $mysqli->query("SELECT * from transaction WHERE email='$email' AND receipt_id"); //where email='$email'
                                                         
                                                         //$transi = $time_checking["receipt_id"];
 
@@ -119,7 +121,7 @@
                                                         
                                                         ?><span class="items"><?php
                                                         //nested to print all food items till end of table
-                                                        $chicken_fried_rice = mysqli_query($connect, "SELECT * from order_rec WHERE email='xavierkhew00@gmail.com' AND trans_id = '$trans_id' AND order_status='1'");
+                                                        $chicken_fried_rice = mysqli_query($connect, "SELECT * from order_rec WHERE email='$email' AND trans_id = '$trans_id' AND order_status='1'");
                                                         while($qqq = mysqli_fetch_assoc($chicken_fried_rice)){
                                                             $dish_qty = $qqq ["dish_qty"];
                                                             $dish_name = $qqq ["dish_name"];
@@ -163,7 +165,7 @@
                 <div id="order-list-item" class="container d-flex flex-column">
                     
                     <?php
-                                        $order_history = mysqli_query($connect, "SELECT * from order_rec WHERE email='xavierkhew00@gmail.com' AND order_status='0' GROUP BY trans_id"); //where email='$email'
+                                        $order_history = mysqli_query($connect, "SELECT * from order_rec WHERE email='$email' AND order_status='0' GROUP BY trans_id"); //where email='$email'
 
                                         if($order_history){
                                             while($history_output = mysqli_fetch_assoc($order_history)){
@@ -176,7 +178,7 @@
                     ?>
                                                         <div class="trans-id"><?php echo "<br> Transaction ID: ".$trans_id."<br>";?></div>
                     <?php
-                                                        $receipt_id_check = mysqli_query($connect, "SELECT * from transaction WHERE email='xavierkhew00@gmail.com' AND receipt_id=$trans_id GROUP BY receipt_id");
+                                                        $receipt_id_check = mysqli_query($connect, "SELECT * from transaction WHERE email='$email' AND receipt_id=$trans_id GROUP BY receipt_id");
                                                         while($receipt_output = mysqli_fetch_assoc($receipt_id_check)){
                     ?>
                                                             <div class="price">RM<?php echo $receipt_output ["subtotal"];?></div>
@@ -206,7 +208,7 @@
 
                                                         ?><span class="items"><?php
                                                         //nested to print all food items till end of table
-                                                        $chicken_fried_rice = mysqli_query($connect, "SELECT * from order_rec WHERE email='xavierkhew00@gmail.com' AND trans_id = '$trans_id' AND order_status='0'");
+                                                        $chicken_fried_rice = mysqli_query($connect, "SELECT * from order_rec WHERE email='$email' AND trans_id = '$trans_id' AND order_status='0'");
                                                         while($qqq = mysqli_fetch_assoc($chicken_fried_rice)){
                                                             $dish_qty = $qqq ["dish_qty"];
                                                             $dish_name = $qqq ["dish_name"];

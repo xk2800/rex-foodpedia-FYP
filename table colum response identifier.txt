@@ -36,7 +36,9 @@ status:
 1 = pick up
 
 column: delivery_status
-status: unknown
+status: 
+0 = preparing/delivering
+1 = delivered
 
 ---------------------------
 
