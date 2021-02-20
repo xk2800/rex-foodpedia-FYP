@@ -262,7 +262,7 @@
                 <div class="personal-details">
 
                     <?php
-                                        $user_info = mysqli_query($connect, "SELECT * from user_acc"); //where email='$email'
+                                        $user_info = mysqli_query($connect, "SELECT * from user_acc WHERE email='$email'"); //where email='$email'
                                         $u_i_o = mysqli_fetch_assoc($user_info);
                     ?>
                     <br>
@@ -712,11 +712,11 @@ echo "<br>".$email;
                 //must build purchase total logic here then push 
 
                 //delete data(s) from cart table
-                //$delete_test = mysqli_query($connects, "DELETE FROM cart WHERE email='$email'");
+                $delete_test = mysqli_query($connects, "DELETE FROM cart WHERE email='$email'");
                 
-               //add into order record table
-                $insert_test = $mysqli->query("INSERT INTO order_rec(email, dish_name, dish_price, dish_id, dish_qty)
-                VALUES ('$email', '$dish_name', '$dish_price', '$dish_id', '$dish_qty')");
+                //add into order record table
+                $insert_test = $mysqli->query("INSERT INTO order_rec(email, trans_id, dish_name, dish_price, dish_id, dish_qty, date)
+                VALUES ('$email', '$number', '$dish_name', '$dish_price', '$dish_id', '$dish_qty','$input_time')");
     
             }
             //$dish_total_sql = $dish_total;
@@ -727,8 +727,9 @@ echo "<br>".$email;
 
             //add into transaction table
             $sql_insert_into_transaction = mysqli_query($connect, "INSERT INTO transaction
-            (email, contactornot, send_type, date, address, subtotal, total, payment_method, payment_time) 
-            VALUES ('$email', '$contact', '$send_type', '$input_time', '$address', '$pay_total', '$pay_total', '$pay_out', '$input_time')");
+            (email, contactornot, send_type, receipt_id, date, subtotal, total, payment_method, payment_time, address) 
+            VALUES ('$email', '$contact', '$send_type', '$number','$input_time', '$pay_total', '$pay_total', '$pay_out', '$input_time', '$address')");
+
 
             echo $pay_total;
 
