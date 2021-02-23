@@ -2,7 +2,8 @@
 
 <?php
     include "../db-connect.php"; 
-    session_start();
+    //session_start();
+    $admin_username = $_SESSION['staffuname'];
 ?>
     <html>
         <head>
@@ -81,8 +82,6 @@
 
             <?php
                 
-                $admin_username = $_SESSION['staffuname'];
-
                 $query_select_menu_detail = mysqli_query($connect, "SELECT * FROM staff_acc WHERE username = '$admin_username' ");
                 $row = mysqli_fetch_assoc($query_select_menu_detail);
             ?>    

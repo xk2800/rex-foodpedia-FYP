@@ -3,6 +3,8 @@
 <?php
     include "../db-connect.php";
     //session_start();
+
+    $id = $_GET['id'];
 ?>
     <html>
         <head>
@@ -73,7 +75,7 @@
                 
                 $staff_username = $_SESSION['staffuname'];
 
-                $query_select_menu_detail = mysqli_query($connect, "SELECT * FROM menu WHERE username = '$staff_username' ");
+                $query_select_menu_detail = mysqli_query($connect, "SELECT * FROM menu WHERE username = '$staff_username' AND id = '$id' ");
                 $row = mysqli_fetch_assoc($query_select_menu_detail);
             ?>    
 
@@ -83,7 +85,7 @@
                   
                     <div class="card-body"> 
                         <div id="card-input-edit-menu">
-                            <form name="form_menu_detail" method="POST" onsubmit='return alert('Details are updated successfuly');'>
+                            <form name="form_menu_detail" method="POST" onsubmit="return alert('Details are updated successfuly');">
 
                                 <div class="form-group">       
                                     <label for="card-dish-edit-menu">#ID</label>
@@ -140,6 +142,7 @@
 
                 if(isset($_POST['submit_menu_detail'])) {
                     
+                    //cloudinary
                     $var_dish_menu_detail = $_POST['dish_menu_detail'];
                     //$var_image_menu_detail = $_POST['image_menu_detail'];
                     $var_desc_menu_detail = $_POST['desc_menu_detail'];
@@ -147,13 +150,9 @@
                     $var_price_menu_detail = $_POST['price_menu_detail'];
 
                     if(!empty($var_dish_menu_detail) && !empty($var_desc_menu_detail) && !empty($var_qty_menu_detail) && !empty($var_price_menu_detail)) {
-                        
-                        //$session_dish_id = $_SESSION['dish_id'];
-                        $session_dish_id = "F001";
-                        
-                        //harcode a temp dish_id session
+                
                         $query_menu_detail = mysqli_query($connect, "UPDATE menu SET dish_name = '$var_dish_menu_detail', price = '$var_price_menu_detail', 
-                                                                                     description = '$var_desc_menu_detail', stock_qty = '$var_qty_menu_detail' WHERE username = '$staff_username' AND dish_id = '$session_dish_id' "); 
+                                                                                     description = '$var_desc_menu_detail', stock_qty = '$var_qty_menu_detail' WHERE username = '$staff_username' "); 
 
                     } else {
                         echo "Please fill in all the inputs!";
