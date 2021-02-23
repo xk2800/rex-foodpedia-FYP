@@ -118,9 +118,9 @@
                         $query_update_cus_status_edit = mysqli_query($connect, "UPDATE user_acc SET status = '$var_acc_cus_edit', category = '$var_category_cus_edit' WHERE email = '$email' ");
 
                         if($query_update_cus_status_edit) {
-                            echo "<script>
+                            echo " <script>
                                     location.href = 'cus-status.php';
-                                  </script>";
+                                   </script> ";
                         }
                     }
                 ?>

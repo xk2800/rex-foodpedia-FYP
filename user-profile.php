@@ -135,6 +135,10 @@
 
                             $var_contact_profile = $_POST['contact_profile'];
                             $query_name_profile = mysqli_query($connect,"UPDATE user_acc SET phone_number = '$var_contact_profile' WHERE email = '$email'");
+
+                            echo " <script> 
+                                    location.href = 'user-profile.php';
+                                   </script> ";
                         }
                     ?>
                 </div>
@@ -232,6 +236,10 @@
                                          </script>";
                                 }
                             }
+
+                            echo " <script> 
+                                    location.href = 'user-login.php';
+                                   </script> ";
                         }
                     ?>
                 </div>
@@ -310,6 +318,10 @@
                             } else {
                                 $query_office_profile_1 = mysqli_query($connect,"UPDATE address SET user_address = '$var_office_profile' WHERE email = '$email' AND label = '$office'");
                             }
+
+                            echo " <script> 
+                                    location.href = 'user-profile.php';
+                                   </script> ";
                         }
 
                         if(isset($_POST['button_address_home_profile'])) {
@@ -322,6 +334,10 @@
                             } else {
                                 $query_home_profile_1 = mysqli_query($connect,"UPDATE address SET user_address = '$var_home_profile' WHERE email = '$email' AND label = '$home'");
                             }
+
+                            echo " <script> 
+                                    location.href = 'user-profile.php';
+                                  </script> ";
                         }              
                 ?>
 

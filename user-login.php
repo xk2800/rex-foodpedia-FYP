@@ -344,7 +344,7 @@ else:
                         $_SESSION["email"] = $var_email_login;
                         
                         echo "<script>
-                                location.href = 'user-profile.php';
+                                location.href = 'index.php';
                                 alert('Login successfully');
                               </script>";
                                 

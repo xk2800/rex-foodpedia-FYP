@@ -3,7 +3,7 @@
 <?php
     include "../db-connect.php";
     //session_start();
-
+    
     $id = $_GET['id'];
 ?>
     <html>
@@ -135,7 +135,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <?php 
@@ -152,7 +151,10 @@
                     if(!empty($var_dish_menu_detail) && !empty($var_desc_menu_detail) && !empty($var_qty_menu_detail) && !empty($var_price_menu_detail)) {
                 
                         $query_menu_detail = mysqli_query($connect, "UPDATE menu SET dish_name = '$var_dish_menu_detail', price = '$var_price_menu_detail', 
-                                                                                     description = '$var_desc_menu_detail', stock_qty = '$var_qty_menu_detail' WHERE username = '$staff_username' "); 
+                                                                                     description = '$var_desc_menu_detail', stock_qty = '$var_qty_menu_detail' WHERE username = '$staff_username' AND id = '$id' ");
+                        echo " <script>
+                                    location.href = 'edit-menu-landing.php';
+                               </script> "; 
 
                     } else {
                         echo "Please fill in all the inputs!";
