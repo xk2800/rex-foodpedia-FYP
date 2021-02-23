@@ -596,7 +596,7 @@ echo "<br>".$email;
         //loop for getting data from cart
         while($run_test_out = mysqli_fetch_assoc($run_test)){
 
-            $dish_total_sql = 0;
+            //$dish_total_sql = 0;
             $email      = $run_test_out['email'];
             $dish_name  = $run_test_out['dish_name'];
             $dish_price = $run_test_out['dish_price'];
@@ -607,17 +607,17 @@ echo "<br>".$email;
 
             //qty * unit price = product_total; -> product_total INTO transaction table, column subtotal
 
-            $dish_total_sql += $dish_price * $dish_qty;
+            //$dish_total_sql += $dish_price * $dish_qty;
 
 
             //must build purchase total logic here then push 
             
             //delete data(s) from cart table
-            //$delete_test = mysqli_query($connects, "DELETE FROM cart WHERE email='$email'");
+            $delete_test = mysqli_query($connects, "DELETE FROM cart WHERE email='$email'");
 
             //add into order record table
-            $insert_test = $mysqli->query("INSERT INTO order_rec(email, trans_id, dish_name, dish_price, dish_id, dish_qty)
-            VALUES ('$email', '$number', '$dish_name', '$dish_price', '$dish_id', '$dish_qty')");
+            $insert_test = $mysqli->query("INSERT INTO order_rec(email, trans_id, dish_name, dish_price, dish_id, dish_qty, date)
+            VALUES ('$email', '$number', '$dish_name', '$dish_price', '$dish_id', '$dish_qty','$input_time')");
 
         }
         //$dish_total_sql = $dish_total;
@@ -633,7 +633,7 @@ echo "<br>".$email;
 
         echo $pay_total;
 
-        if($insert_test /*&& $delete_test*/ && $sql_insert_into_transaction){
+        if($insert_test && $delete_test && $sql_insert_into_transaction){
             header("location: tac");
             echo "insert done";
         }else{
@@ -644,7 +644,5 @@ echo "<br>".$email;
 
 
 }
-echo "<br><br>";
-echo $dish_total_sql;
 
 ?>

@@ -113,7 +113,7 @@
                                     <td><?php echo $db_dish_desc; ?></td>
                                     <td><?php echo $db_dish_qty; ?></td>
                                     <td><?php echo $db_dish_price; ?></td>
-                                    <td><a class="btn btn-primary" href="edit-menu-detail.php" role="button">Update</a></td>
+                                    <td><a class="btn btn-primary" href="edit-menu-detail.php?id=<?php echo $row['id']; ?>" role="button">Update</a></td>
                                 </tr>   
                            <?php
 

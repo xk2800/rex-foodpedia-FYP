@@ -119,6 +119,10 @@
                        }
 
                         $rating_query = mysqli_query($connect, "INSERT INTO user_rating (email, comment, radio_button) VALUES ('$email', '$var_text_rating', '$value_rating_button')");
+
+                        echo " <script> 
+                                location.href = 'index.php';
+                               </script> ";
                    }  
                 ?>
                 

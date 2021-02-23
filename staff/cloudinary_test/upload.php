@@ -1,18 +1,20 @@
 <?php
 
-$ip=getenv('DBIP');
-$use='root';
-$pwd='';
-$table='cloudinary_zombie_test';
+include "../../db-connect.php";
 
-//used for procedule php call
-$connectss = mysqli_connect("localhost", $use, $pwd, $table);
+// $ip=getenv('DBIP');
+// $use='root';
+// $pwd='';
+// $table='cloudinary_zombie_test';
 
-//using PDO call
-$mysqli = NEW MySQLi ("localhost", $use, $pwd, $table);
+// //used for procedule php call
+// $connectss = mysqli_connect("localhost", $use, $pwd, $table);
 
-//actual db connection
-@mysqli_connect("localhost", $use, $pwd, $table) || die('<p>Error: 500. <br> DB not connected</p>');
+// //using PDO call
+// $mysqli = NEW MySQLi ("localhost", $use, $pwd, $table);
+
+// //actual db connection
+// @mysqli_connect("localhost", $use, $pwd, $table) || die('<p>Error: 500. <br> DB not connected</p>');
 
 //include "./db-connect.php";
 
@@ -52,9 +54,12 @@ if(in_array($fileActualExt, $allowed)){
 if (is_file( __DIR__ .'../cloudinary/vendor/autoload.php') && is_readable( __DIR__ .'../cloudinary/vendor/autoload.php')) {
     require_once __DIR__ .'../cloudinary/vendor/autoload.php';
 } else {
+
+    //FYP NOTE: if there not working then you remove 1 of the ../ on line 60 & 61
+
     // Fallback to legacy autoloader
-    require_once '../cloudinary/vendor/autoload.php';
-    require_once '../cloudinary/vendor/cloudinary/cloudinary_php/src/Helpers.php';
+    require_once '../../cloudinary/vendor/autoload.php';
+    require_once '../../cloudinary/vendor/cloudinary/cloudinary_php/src/Helpers.php';
 }
 
 //api settings from cloudinary
@@ -96,8 +101,8 @@ $files = array();
 
     $url_cloud = cloudinary_url($files['remote']['public_id']);
 
-
-    $sql = mysqli_query($connectss, "INSERT INTO cloudinary(cloudinary_link) VALUE ('$url_cloud')");
+//CHANGE BASED ON YOUR TABLE YOU WANT TO USE 
+    $sql = mysqli_query($connect, "INSERT INTO cloudinary_test(cloudinary_link) VALUE ('$url_cloud')");
 
     if($sql){
         echo "works";
@@ -105,6 +110,7 @@ $files = array();
         echo "failed";
     }
 
-/* }  */
+//ADD OTHER PHP PART HERE
+
 
 ?>
