@@ -126,6 +126,7 @@
         $email = $_SESSION["email"];
         
         $product_details_query = mysqli_query($connect, "SELECT * FROM menu WHERE id = '$id'");
+        $display_other_menu = mysqli_query($connect,"SELECT * FROM menu LIMIT 4");
         $numrow = mysqli_num_rows($product_details_query);
     ?>
 
@@ -138,6 +139,9 @@
             $db_dish_id = $row['dish_id'];
             $db_dish_qty = $row['stock_qty'];
             $db_dish_description = $row['description'];
+            $db_dish_permissible = $row['permissible'];
+            $db_dish_cuisine = $row['cuisine'];
+            $db_dish_prep = $row['preparationTime'];
         }
     ?>
     
@@ -160,9 +164,9 @@
                     
 
                     <hr style="border:1px solid black; width:50%;">
-                    <p><b>Prepared by:</b> Mamee Chef</p>
-                    <p><b>Preparation time:</b> 15 Minutes</p>
-                    <p><b>Permissible:</b> <b class="halal">Halal Certified!</b></p>
+                    <p><b>Types of Cuisine:</b><b class="text-primary"> <?php echo $db_dish_cuisine;?> Cuisine</b> </p>
+                    <p><b>Preparation time:</b><b class="text-warning"> <?php echo $db_dish_prep; ?> Minutes</b></p>
+                    <p><b>Permissible:</b><?php echo $db_dish_permissible == 'yes' ? '<b class="text-success"> Halal Certified!</b>' : '<b class="text-danger"> Not Halal</b>'; ?></p>
                     
                     
                     <p><b>Special Instruction</b></p>
@@ -183,56 +187,44 @@
                     <p style="font-size: large;"><?php echo $db_dish_description;?></p>
                 </div>
 
-                <div id="home" class="tabcontent">
-                    <div class="container" >
+                    <div id="home" class="tabcontent">
+                        <div class="container">
+                                        <p>Random Picks</p>
+                                        <hr>
+                                
                     
-                        <p>Other dishes</p>
-                        <hr>
-            
-                        <div class="row">
-            
-                            <div class="col" >
-                                <div class="panel">
-                                    <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                                        <img src="img/food1.jpg">
-                                    </a>
-                                
-                                <div>
-                                    <h4>Chicken Curry</h4>
-                                <p class="other-definition" style="font-size:medium; ">Chicken curry is a dish originating from the Indian subcontinent.</p> 
-                                </div>
-                                </div>
-                            </div>
-            
-                            <div class="col">
-                                <div class="panel">
-                                    <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                                        <img src="img/food1.jpg">
-                                    </a> 
-                                
-                                <div>
-                                <h4>Rendang</h4>
-                                <p class="other-definition" style="font-size:medium;">Rendang is an Indonesian spicy meat dish originating from the 
-                                Minangkabau region in West Sumatra, Indonesia.</p>
-                                
-                                </div>
-                                </div>
-                            </div>
-            
-                            <div class="col">
-                                <div class="panel">
-                                    <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                                        <img src="img/food1.jpg">
-                                    </a>     
-                                
-                                <div>
-                                    <h4>Nasi Lemak</h4>
-                                <p class="other-definition" style="font-size:medium;">Nasi lemak is a Malay cuisine dish consisting of fragrant rice 
-                                cooked in coconut milk and pandan leaf. </p>
-                                  
-                                </div>
-                                </div>
-                            </div>
+                                        <!-- <div class="container" style="display:flex; background-color:blue;"> -->
+                                    <div class="row">
+                                            <div class="column" style="float:left;">
+                                                    <div class="container" style="display:flex; flex-direction:row; width:100%;">
+
+                                                            <?php 
+                                                                if($numrow != 0)
+                                                                {
+                                                                    while($row = mysqli_fetch_assoc($display_other_menu))
+                                                                    {
+                                                                        $db_other_dish_name = $row['dish_name'];
+                                                                        $db_other_dish_description = $row['description'];
+                                                                        $db_other_dish_price = $row['price'];
+                                                                ?>
+
+                                                            
+                                                                <div class="container" style="width:50%;">
+                                                                    <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
+                                                                        <img src="img/food1.jpg" style="width:100%">
+                                                                    
+                                                                    <div style="margin:10px 0 0 0; text-decoration:none;">
+                                                                        <p><?php echo $db_other_dish_name ?> <br> <b>RM <?php echo $db_other_dish_price?></b></p>
+                                                                    </div></a>
+                                                                </div>
+                                        
+                                                            <?php 
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </div>
+                                            </div>
+                                    </div>
                         </div>
                     </div>
             </div>
@@ -247,11 +239,12 @@
                 $var_dish_price = $db_dish_price;
                 $var_dish_special_instruction = $_POST['dish-special-instruction'];
                 $var_dish_quantity = $_POST['dish-quantity'];
+                $var_dish_total = $var_dish_price * $var_dish_quantity;
 
                 if(!empty($var_dish_quantity)){
 
-                    $cart = mysqli_query($connect, "INSERT INTO cart(email,dish_name, dish_price, dish_qty) 
-                    VALUES ('$var_email' ,'$var_dish_name' , '$var_dish_price', '$var_dish_quantity')");
+                    $cart = mysqli_query($connect, "INSERT INTO cart(email,dish_name, dish_price,dish_total, dish_qty) 
+                    VALUES ('$var_email' ,'$var_dish_name' , '$var_dish_price','$var_dish_total','$var_dish_quantity')");
 
                             if($cart)
                             {

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
     include("db-connect.php");
+    $email = $_SESSION["email"];
     //session_start();
 ?>
     <html lang="en">
@@ -61,16 +62,18 @@
                         <tr>
                             <th>Product</th>
                             <th>Quantity</th>
-                            <th class="text-center">Price</th>
+                            <th class="text-center">Price(RM)</th>
                             <th class="text-center">Total</th>
                             <th> </th>
                         </tr>
                     </thead>
 
                     <?php
-                        $email = $_SESSION["email"];
-                        $shopping_cart_query = mysqli_query($connect, "SELECT * from cart WHERE email = '$email' ");
+                        $shopping_cart_query = mysqli_query($connect, "SELECT dish_name,dish_price,dish_id,dish_qty,id FROM cart WHERE email = '$email' ");
+                        $shopping_subtotal = "SELECT  SUM(dish_total) as subtotal FROM cart WHERE email ='$email'";
+                        
                         $numrow = mysqli_num_rows($shopping_cart_query);
+                        
                     ?>
 
                     <tbody>
@@ -83,75 +86,95 @@
                                         $db_dish_price = $row['dish_price'];
                                         $db_dish_id = $row['dish_id'];
                                         $db_dish_qty = $row['dish_qty'];
+                                        // $subtotal = $row['SUM(dish_total)'];
+                                        $shipping_fee = 5;
                         ?>
-                                        <tr>            
+                                    <tr>            
                                         <td class="col-sm-8 col-md-6">
-                                        <div class="media">
-                                            <a class="thumbnail pull-left" href="#"> 
-                                                <img src="img/food1.jpg" style="width: 72px; height: 72px;">
-                                            </a>
-                                            <div class="media-body">
-                                                <h3><a href="product-details.php?id=<?php echo $row['id']?>"><?php echo $db_dish_name;?></a></h3>
-                                                <!-- <h6> by <a href="#"> </a></h6> -->
-                                                <!-- <span>Delivery time: </span><span class="text-success"><strong>45 Minutes</strong></span> -->
+                                            <div class="media">
+                                                <a class="thumbnail pull-left" href="#"> 
+                                                    <img src="img/food1.jpg" style="width: 72px; height: 72px;">
+                                                </a>
+                                                    <div class="media-body">
+                                                        <!-- <a href="product-details.php?id=<?php echo $row['id']?>"> </a>-->
+                                                        <h3><?php echo $db_dish_name;?></h3>
+                                                    </div>
                                             </div>
-                                            </div>
-                                            </td>
+                                        </td>
             
-                                            <td class="col-sm-1 col-md-1" style="text-align: center"><input type="text" class="form-control" id="quantity" value="<?php echo $db_dish_qty;?>"> </td>
+                                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                                        <input type="text" class="form-control" id="quantity" value="<?php echo $db_dish_qty;?>"> 
+                                        </td>
                                                     
-                                            <td class="col-sm-1 col-md-1 text-center"><strong><?php echo $db_dish_price;?></strong></td>
+                                        <td class="col-sm-1 col-md-1 text-center">
+                                            <strong>
+                                                <?php echo $db_dish_price;?>
+                                            </strong>
+                                        </td>
+
+                                        <td class="col-sm-1 col-md-1"><strong>
+                                            <?php
+                                                $dish_total = $db_dish_qty * $db_dish_price;
+                                                echo "RM".number_format((float)$dish_total,2,'.','');
+                                            ?>
+                                        </strong></td>
                                                     
-                                            <td class="col-sm-1 col-md-1">
+                                        <td class="col-sm-1 col-md-1">
                                             <a onclick="return confirm('Delete this product from cart?')" href="shopping-cart-delete.php?id=<?php echo $row['id'];?>">
                                                 <button type="button" class="btn btn-danger">
                                                     <span class="glyphicon glyphicon-remove"><i class="fas fa-trash"></i></span> 
                                                 </button>
                                             </a>
-                                            </td>
-                                        </tr>
+                                        </td>
+                                    </tr>
                             <?php           
                                     }  
                                 }
                             ?>   
-                                  
-                        <tr>
-                            <td>   </td>
-                            <td>   </td>
-                            <td>   </td>
-                            <td><h6>Subtotal</h6></td>
-                            <td class="text-right"><h5><strong>$24.59</strong></h5></td>
-                        </tr>
 
-                        <tr>
-                            <td>   </td>
-                            <td>   </td>
-                            <td>   </td>
-                            <td><h6>Estimated shipping</h6></td>
-                            <td class="text-right"><h5><strong>$6.94</strong></h5></td>
-                        </tr>
+
+
+                            <?php
+                                $query_subtotal = mysqli_query($connect, $shopping_subtotal);
+                                while($row = mysqli_fetch_assoc($query_subtotal))
+                                {
+                                    $subtotal = $row['subtotal'];
+                                }
+                            ?>
 
                         <tr>
                             <td>   </td>
                             <td>   </td>
                             <td>   </td>
                             <td><h4>Total</h4></td>
-                            <td class="text-right"><h3><strong>$31.53</strong></h3></td>
+                            <td class="text-right"><h3><strong>
+                            <?php
+                             
+                             
+                            $total = 0;
+                            $total = $total +$subtotal;
+                                echo "RM".number_format((float)$total,2,'.','');
+                            ?>
+                            </strong></h3></td>
                         </tr>
 
                         <tr>
                             <td>
+                            <a href="menu.php" style="text-decoration:none;">
                                 <button type="button" class="btn btn-default" id="continue-shopping">
-                                <i class="fas fa-shopping-cart"> Continue Shopping</i>
+                                    <i class="fas fa-shopping-cart"> Continue Shopping</i>
                                 </button>   
+                            </a>
                             </td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td>
-                            <button type="button" class="btn btn-success" id="checkout">
-                                <span>Checkout</span>
-                            </button></td>
+                            <a href="pickup-checkout.php">
+                                <button type="button" class="btn btn-success" id="checkout">
+                                    <span>Checkout</span>
+                                </button></td>
+                            </a>
                         </tr>
                     </tbody>
                 </table>

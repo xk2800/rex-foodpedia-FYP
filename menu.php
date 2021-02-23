@@ -1,6 +1,7 @@
 <!DOCTYPE html>
     <?php
         include("db-connect.php");
+        $email = $_SESSION["email"];
         //session_start();
     ?>
         <html lang="en">
@@ -60,7 +61,7 @@
             background-color: #a3d2ca;
             color: black;
             margin: 40px 25px 20px 25px;
-            border-radius:12px;
+            border-radius:6px;
             border:1px solid black;
             padding:5px;
         }
@@ -151,10 +152,10 @@
         <a type="button" href="https://www.youtube.com/">Indian Cuisine</a-->
         <!--div class="tab"-->
         <button id="btns" class="tablinks" onclick="openCity(event, 'home')">Home</button>
-        <button id="btns" class="tablinks" onclick="openCity(event, 'chinese')">Chinese Cuisine</button>
-        <button id="btns" class="tablinks" onclick="openCity(event, 'malaysian')">Malaysian Cuisine</button>
-        <button id="btns" class="tablinks" onclick="openCity(event, 'japanese')">Japanese Cuisine</button>
-        <button id="btns" class="tablinks" onclick="openCity(event, 'indian')">Indian Cuisine</button>
+        <button id="btns" class="tablinks" onclick="openCity(event, 'Malaysian')">Malaysian Cuisine</button>
+        <button id="btns" class="tablinks" onclick="openCity(event, 'Japanese')">Japanese Cuisine</button>
+        <button id="btns" class="tablinks" onclick="openCity(event, 'Korean')">Korean Cuisine</button>
+        <button id="btns" class="tablinks" onclick="openCity(event, 'Thailand')">Thailand Cuisine</button>
         <!--/div-->
     </div>
     <!-- Menu Nav End -->
@@ -162,12 +163,12 @@
 
     
  <?php
-        $email = $_SESSION["email"];
         //$menu_query = mysqli_query($connect, "SELECT * from menu WHERE email = '$email' ");
-        $menu_query = mysqli_query($connect, "SELECT dish_name,description,id FROM menu");
-        $numrow = mysqli_num_rows($menu_query);
+        $menu_query_random = mysqli_query($connect, "SELECT * FROM menu LIMIT 4 ");
+        $menu_query = mysqli_query($connect,"SELECT * FROM menu");
+        $numrow = mysqli_num_rows($menu_query_random);
     ?>
-    <!-- Menu Item 1st row Starts -->
+    <!-- Random Menu -->
         <div id="home" class="tabcontent">
     
                             <div class="container">
@@ -185,10 +186,11 @@
                                                     <?php 
                                                         if($numrow != 0)
                                                         {
-                                                            while($row = mysqli_fetch_assoc($menu_query))
+                                                            while($row = mysqli_fetch_assoc($menu_query_random))
                                                             {
                                                                 $db_dish_name = $row['dish_name'];
                                                                 $db_dish_description = $row['description'];
+                                                                $db_dish_price = $row['price'];
                                                         ?>
 
                                                     
@@ -197,24 +199,9 @@
                                                                 <img src="img/food1.jpg" style="width:100%">
                                                             
                                                             <div style="margin:10px 0 0 0; text-decoration:none;">
-                                                                <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_description?></b></p>
+                                                                <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>
                                                             </div></a>
                                                         </div>
-                                                    
-                                       
-
-                                                <!-- <div class="card">
-                                                    <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                                                        <img src="img/food1.jpg" style="width:100%">
-                                                    </a>
-                                                    <div class="container">
-                                                        <b><?php echo $db_dish_name ?></b>
-                                                        <?php echo $db_dish_description?> 
-                                                    </div>
-                                                </div> -->
-                                                
-                                                <!-- </div>  -->
-                                
 
                                                     <?php 
                                                     }
@@ -225,7 +212,7 @@
                                 </div>  
                             </div> 
 
-            <!-- Menu Item 1st row End -->
+            <!-- Random Menu -->
 
             <!-- Menu Item 2nd row Starts -->
             <div class="container">
@@ -233,75 +220,87 @@
                 <p>Recommended Restaurants</p>
                 <hr>
 
-                <div class="row">
+                    
+                                        
+                        <!-- <div class="row"> -->
+                            <!-- <div class="column" style="float:left;"> -->
+                               
 
-                    <div class="col">
-                        <div class="panel">
-                            <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                                <img src="img/food1.jpg">
-                            </a>
-                            Abcd
-                        </div>
-                    </div>
+                                            <?php 
+                                                if($numrow != 0)
+                                                { 
+                                                    // $numrow++;
+                                                    while($row = mysqli_fetch_assoc($menu_query))
+                                                    {
+                                                        $db_dish_name = $row['dish_name'];
+                                                        $db_dish_description = $row['description'];
+                                                        $db_dish_price = $row['price'];
 
-                    <div class="col">
-                        <div class="panel">
-                            <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                                <img src="img/food1.jpg">
-                            </a> 
-                            Efgh
-                        </div>
-                    </div>
+                                                        // while($row= 4)
+                                                        // {
+                                                        //     echo '<div class="row">';
+                                                        
+                                                            
+                                                ?>
+                                                
+                                                <?php 
+                                                    $numOfCols = 4;
+                                                    $rowCount = 0;
+                                                    $bootstrapColWidth = 12 / $numOfCols;
+                                                ?>
+                                            <div class="row" style="display:flex; flex-direction:row; width:100%;">
+                                                    <?php
+                                                    foreach($row as $rows)
+                                                    {
+                                                    ?>
+                                            
+                                                            <div class="container" style="width:50%;">
+                                                                <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
+                                                                    <img src="img/food1.jpg" style="width:100%">
+                                                                
+                                                                <div style="margin:10px 0 0 0; text-decoration:none;">
+                                                                    <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>
+                                                                </div></a>
+                                                            </div>
+                                                        <!-- </div> -->
 
-                    <div class="col">
-                        <div class="panel">
-                            <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                                <img src="img/food1.jpg">
-                            </a>     
-                            Ijkl
-                        </div>
-                    </div>
-                </div>
+                                                            <?php 
+                                                            $rowCount++;
+                                                            if($rowCount % $numOfCols == 0)
+                                                                        {
+                                                                            echo '</div><div class="row"';
+
+                                                                }
+                                                            }
+                                                                // if($numrow % 4 == 1)
+                                                                // {
+                                                                //echo '</div>';
+                                                                // }
+                                                            }
+                                                        }
+                                                        ?> 
+                                            </div> 
+                                <!-- </div> -->
+                            <!-- </div> -->
+
+                    <!-- </div>  -->
             </div>
             <!-- Menu Item 2nd row End -->
 
-            <!-- Menu Item 3rd row Start -->
-            <div class="container">
-                <div class="row">
 
-                    <div class="col">
-                        <div class="panel">
-                            <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                                <img src="img/food1.jpg">
-                            </a>
-                            Mno
-                        </div>
-                    </div>
+    <div id="Malaysian" class="tabcontent">
 
-                    <div class="col">
-                        <div class="panel">
-                            <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                                <img src="img/food1.jpg">
-                            </a> 
-                            Pqrs
-                        </div>
-                    </div>
+    </div>
 
-                    <div class="col">
-                        <div class="panel">
-                            <a href="https://www.youtube.com/watch?v=-PItSeOJ1hQ">
-                                <img src="img/food1.jpg">
-                            </a>     
-                            Tuv
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Menu Item 3rd row End -->
-        </div>
+    <div id="Japanese" class="tabcontent">
 
+    </div>
 
-    <div id="chinese" class="tabcontent">
+    <div id="Korean" class="tabcontent">
+
+    </div>
+
+    <div id="Thailand" class="tabcontent">
 
     </div>
 

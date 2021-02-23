@@ -2,7 +2,6 @@
 
 <?php
     include "../db-connect.php"; 
-    session_start();
 ?>
     <html>
         <head>
@@ -81,7 +80,7 @@
 
             <?php
                 
-                $admin_username = $_SESSION['staffuname'];
+                $admin_username = $_SESSION['adminuname'];
 
                 $query_select_menu_detail = mysqli_query($connect, "SELECT * FROM staff_acc WHERE username = '$admin_username' ");
                 $row = mysqli_fetch_assoc($query_select_menu_detail);
@@ -98,7 +97,7 @@
                                 <div class="form-group">       
                                     <label for="card-dish-edit-menu">Staff ID</label>
                                     <br>
-                                    <input type="text" name="staffid" maxlength="6" size="6" style="width: 10%;" required>-
+                                    <input type="text" name="staffid" maxlength="6" size="6" style="width: 10%;" required>
                                 </div>
 
                                 <div class="form-group">
@@ -188,7 +187,7 @@
 
                         echo "<script>
                                     alert('Staff Added');
-                                    location.href = '../user-login.php';
+                                    location.href = 'dashboard.php';
                                 </script>";
 
                     } else {

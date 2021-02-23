@@ -84,8 +84,8 @@
                 
                 $staff_username = $_SESSION['staffuname'];
 
-                $query_select_menu_detail = mysqli_query($connect, "SELECT * FROM menu WHERE username = '$staff_username' ");
-                $row = mysqli_fetch_assoc($query_select_menu_detail);
+                $query_add_product = mysqli_query($connect, "SELECT * FROM menu WHERE username = '$staff_username' ");
+                $row = mysqli_fetch_assoc($query_add_product);
             ?>    
 
             <div class="container">
@@ -98,12 +98,12 @@
 
                                 <div class="form-group">       
                                     <label for="ID">#ID</label>
-                                    <input type="text" class="form-control" id="ID" style="width:80%" name="dish-id">
+                                    <input type="text" class="form-control" id="ID" style="width:80%" name="dish_id">
                                 </div>
 
                                 <div class="form-group">       
                                     <label for="dish">Dish</label>
-                                    <input type="text" class="form-control" id="dish" style="width:80%" name="dish-name">
+                                    <input type="text" class="form-control" id="dish" style="width:80%" name="dish_name">
                                 </div>
 
 <!--COMING SOON-->
@@ -125,6 +125,29 @@
                                 </script>
 
                                 <div class="form-group">
+                                    <label for="cuisine">Types of Cuisine</label>
+                                    <select type="text" class="form-control" id="cuisine" name="cuisine">
+                                        <option value="Malaysian">Malaysian Cuisine</option>
+                                        <option value="Japanese">Japanese Cuisine</option>
+                                        <option value="Korean">Korean Cuisine</option>
+                                        <option value="Thailand">Thailand Cuisine</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="perm">Permissible?</label>
+                                    <select type="text" class="form-control" id="perm" name="permissible" value="Select">
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">       
+                                    <label for="prep">Preparation Time (minute)</label>
+                                    <input type="number" class="form-control" id="prep" name="preparationTime" >
+                                </div>
+
+                                <div class="form-group">
                                     <label for="desc">Description</label>
                                     <textarea class="form-control" id="desc" name="description" rows="3"></textarea>
                                 </div>
@@ -136,10 +159,10 @@
 
                                 <div class="form-group">       
                                     <label for="unit-price">Unit Price</label>
-                                    <input type="text" class="form-control" id="unit-price" name="price">
+                                    <input type="text" class="form-control" id="unit-price" name="price" style="width:80%">
                                 </div>
 
-                                <button type="submit" class="btn btn-primary btn-block" id="card-button-add-menu" name="submit-add-product">Add</button>
+                                <button type="submit" class="btn btn-primary btn-block" id="card-button-add-menu" name="submit_add_button">Add</button>
                             </form>
                         </div>
                     </div>
@@ -148,31 +171,37 @@
 
             <?php 
 
-                if(isset($_POST['submit-add-product'])) {
+                if(isset($_POST['submit_add_button'])) {
                     
                     //$var_dish_menu_detail = $_POST['dish_menu_detail'];
                     //$var_image_menu_detail = $_POST['image_menu_detail'];
-                    
-                    $var_name_menu_detail = $_POST["dish-name"];
-                    $var_id_menu_detail = $_POST["dish-id"];
-                    $var_desc_menu_detail = $_POST["description"];
+
+                    $var_username = $staff_username;
+                    $var_name_menu_detail = $_POST['dish_name'];
+                    $var_id_menu_detail = $_POST['dish_id'];
+                    $var_desc_menu_detail = $_POST['description'];
                     $var_qty_menu_detail = $_POST['qty'];
                     $var_price_menu_detail = $_POST['price'];
+                    $var_permissible = $_POST['permissible'];
+                    $var_cuisine = $_POST['cuisine'];
+                    $var_preparationTime = $_POST['preparationTime'];
 
                     if(!empty($var_name_menu_detail) && !empty($var_id_menu_detail) && !empty($var_desc_menu_detail) && !empty($var_qty_menu_detail) && !empty($var_price_menu_detail)) {
 
-                        $query_menu_detail = mysqli_query($connect, "INSERT INTO menu(dish_name, dish_id, price, description, stock_qty) 
-                        VALUES ('$var_name_menu_detail','$var_id_menu_detail','$var_price_menu_detail','$var_desc_menu_detail','$var_qty_menu_detail')");
+                        $query_menu_detail = mysqli_query($connect, "INSERT INTO menu(username,dish_name, dish_id, price, description, stock_qty,permissible,cuisine,preparationTime) 
+                        VALUES ('$var_username','$var_name_menu_detail','$var_id_menu_detail','$var_price_menu_detail','$var_desc_menu_detail','$var_qty_menu_detail','$var_permissible','$var_cuisine','$var_preparationTime')");
 
-                        echo "<script>
-                                    alert('Product Added');
-                                    location.href = 'user-login.php';
-                                </script>";
-
-                                if($query_menu_detail){
+                                if($query_menu_detail)
+                                {
                                     echo "<script>
-                                            location.href = '../menu.php;
-                                            </script>";
+                                    alert('Product Added');
+                                    location.href = 'dashboard.php';
+                                    </script>";
+                                }
+                                else{
+                                    echo "<script>
+                                    alert('Error');
+                                    </script>";
                                 }
 
                     } else {

@@ -17,6 +17,7 @@
             $shopping_cart_delete = mysqli_query($connects, "DELETE FROM cart WHERE id = '$id' ") or die("Error, Item can't be delete");
             
             echo " <script>
+                    alert('Product Deleted');
                      location.href = 'shopping-cart.php';
                    </script> ";
         } 

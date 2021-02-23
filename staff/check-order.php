@@ -55,7 +55,49 @@
     ?>
    
     <div class="container">
+
+
         <div class="row">
+
+        <!-- TESTINGGGGGGGGGGGGGGGGGGGGGG -->
+                <?php 
+
+            // Get the Current Page Number
+            if (isset($_GET['page_no']) && $_GET['page_no'] != "") {
+                $page_no = $_GET['page_no'];
+
+            } else {
+                $page_no = 1;
+            }
+
+            // SET Total Records Per Page Value
+            $total_records_per_page = 8;
+
+            // Calculate OFFSET Value and SET other Variables
+            $offset = ($page_no-1) * $total_records_per_page;
+            $previous_page = $page_no - 1;
+            $next_page = $page_no + 1;
+            $adjacents = "2";
+
+            // Get the Total Number of Pages for Pagination
+            $result_count = mysqli_query($connect,"SELECT COUNT(*) As total_records FROM order_rec");
+            $total_records = mysqli_fetch_array($result_count);
+
+            $total_records = $total_records['total_records'];
+            $total_no_of_pages = ceil($total_records / $total_records_per_page);
+            $second_last = $total_no_of_pages - 1; // total pages minus 1
+
+            ?>
+
+            <?php 
+            // SQL Query for Fetching Limited Records using LIMIT Clause and OFFSET
+            $query_cus_status = mysqli_query($connect, "SELECT * FROM order_rec LIMIT $offset, $total_records_per_page");
+            $numrow = mysqli_num_rows($query_cus_status);
+            ?>
+
+            
+
+<!--  TESTINGGGGGGGGGGGGGG  -->
             <div class="col-sm-12 col-md-10 col-md-offset-1">
                 <table class="table table-hover" style="margin-top: 5rem;">
                     <thead>
@@ -79,7 +121,7 @@
                             <?php
                                 if($numrow != 0)
                                 {
-                                    while($row = mysqli_fetch_assoc($check_order_query))
+                                    while($row = mysqli_fetch_assoc($query_cus_status))
                                     {
                                         $db_id = $row['id'];
                                         $db_email = $row['email'];
@@ -99,7 +141,7 @@
                                     <img src="../img/food1.jpg" style="width: 72px; height: 72px;">
                                 </a>
                                 <div class="media-body">
-                                    <h5><a href="#">#<?php echo $db_id;?></a></h5>
+                                    <h5>#<?php echo $db_id;?></h5>
                                     <h6>Description: <br> <?php echo $db_dish_name;?></h6>
                                 </div>
                             </div>
@@ -149,7 +191,45 @@
                         ?>
 
                     </tbody>
+                    
                 </table>
+                <!-- pagination + font awesome icon -->
+            <ul class="pagination" style="margin: 40px 0px 40px 0px;">
+            <?php 
+                if($page_no > 1) {
+                    echo "<li style='padding-right: 30px;'><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=1'>
+                                                            First Page
+                                                            <!--<i class='fa fa-fast-backward' aria-hidden='true'></i>-->
+                                                        </a> &emsp; 
+                        </li>";
+                } 
+            ?>
+            <li style="padding-right: 30px;" <?php if($page_no <= 1) { echo "class='disabled'";}?>>
+                <a style="margin-right: 30px;" class="btn btn-secondary btn-block " 
+                <?php if($page_no > 1) {
+                            echo "href='?page_no=$previous_page'";
+                        } ?>>
+                        Previous
+                        <!-- <i class="fa fa-backward" aria-hidden="true"></i> -->
+                </a>
+            </li>
+            <li style="padding-right: 30px;" <?php if($page_no >= $total_no_of_pages) { echo "class='disabled'"; } ?> >
+                <a style="margin-right: 30px;" class="btn btn-secondary btn-block " <?php if($page_no < $total_no_of_pages) {
+                            echo "href='?page_no=$next_page'";
+                        } ?>>Next
+                        <!-- <i class="fa fa-forward" aria-hidden="true"></i> -->
+                </a>
+            </li>
+            <?php if($page_no < $total_no_of_pages) { 
+                        echo "<li><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=$total_no_of_pages'>
+                                    Last Page
+                                    <!--<i class='fa fa-step-forward' aria-hidden='true'></i>-->
+                                </a> 
+                            </li>"; 
+                } 
+            ?>
+            </ul>
+            <p style='float: right; margin-top: 8px; font-style: italic; border-top: 1px #CCC;'>Page <?php echo $page_no." of ".$total_no_of_pages; ?></p>
             </div>
         </div>
     </div>
