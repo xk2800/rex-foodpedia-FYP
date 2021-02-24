@@ -51,7 +51,7 @@
 
     <!-- PHP-->
     <?php
-        include("nav.html");
+        include("nav.php");
     ?>
     
     <div class="container">

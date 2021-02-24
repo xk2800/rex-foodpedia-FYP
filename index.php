@@ -77,7 +77,7 @@
 <div id="overlay">
 <!--LEVEL 1-->
 <?php
-    include ("nav.html");
+    include ("nav.php");
 ?>
 <!--LEVEL 1 END-->
 

@@ -62,7 +62,7 @@ foreach($result as $row)
  $sub_array[] = $row['description'];
  $sub_array[] = $row['stock_qty'];
  $sub_array[] = $row['price'];
- $sub_array[] = $row['menu_available'];
+ $sub_array[] = $row['deleted_menu'];
  $sub_array[] = $menu_random_output;
  $data[] = $sub_array;
 }
