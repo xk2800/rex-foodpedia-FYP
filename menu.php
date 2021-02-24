@@ -31,6 +31,10 @@
         body{
             background-color: #e7ded2;
         }
+        
+        .card{
+            background-color: #e7ded2;
+        }
 
         .text-center h1,h2,h3,h4,h5,h6{
             padding: 5rem 0 0 0;
@@ -126,6 +130,20 @@
             border: 1px solid black; 
             border-radius: 12px;
         }
+
+        #grid{
+            width:25%;
+            display:grid;
+            grid-template-columns: auto;
+            gap:10px;
+            /* grid-auto-rows:100px; */
+            grid-auto-columns:100px;
+        }
+
+
+        #grid > div{
+            background-color:#e7ded2;
+        }
 </style>
 
         
@@ -164,7 +182,7 @@
     
  <?php
         //$menu_query = mysqli_query($connect, "SELECT * from menu WHERE email = '$email' ");
-        $menu_query_random = mysqli_query($connect, "SELECT * FROM menu LIMIT 4 ");
+        $menu_query_random = mysqli_query($connect, "SELECT * FROM menu ORDER BY RAND() LIMIT 4 ");
         $menu_query = mysqli_query($connect,"SELECT * FROM menu");
         $numrow = mysqli_num_rows($menu_query_random);
     ?>
@@ -179,7 +197,7 @@
                                  <!-- <div class="container" style="display:flex; background-color:blue;"> -->
                                 <div class="row">
                                     <div class="column" style="float:left;">
-                                        <div class="container" style="display:flex; flex-direction:row; width:100%;">
+                                        <div class="grid" style="display:flex; flex-direction:row; width:100%;">
                                                 
                                                    
 
@@ -224,7 +242,7 @@
                                         
                         <!-- <div class="row"> -->
                             <!-- <div class="column" style="float:left;"> -->
-                               
+                                        <div id="grid" class="container" style="display:flex; flex-direction:row; width:100%;">
 
                                             <?php 
                                                 if($numrow != 0)
@@ -244,31 +262,33 @@
                                                 ?>
                                                 
                                                 <?php 
-                                                    $numOfCols = 4;
-                                                    $rowCount = 0;
-                                                    $bootstrapColWidth = 12 / $numOfCols;
+                                                    // $numOfCols = 4;
+                                                    // $rowCount = 0;
+                                                    // $bootstrapColWidth = 12 / $numOfCols;
                                                 ?>
-                                            <div class="row" style="display:flex; flex-direction:row; width:100%;">
+                                            
                                                     <?php
-                                                    foreach($row as $rows)
-                                                    {
+                                                    // foreach($row as $rows)
+                                                    // {
                                                     ?>
                                             
-                                                            <div class="container" style="width:50%;">
+                                                            <div id="item" style="width:50%;">
                                                                 <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
-                                                                    <img src="img/food1.jpg" style="width:100%">
+                                                                    <img class="card-img-top" src="img/food1.jpg" style="width:100%">
                                                                 
                                                                 <div style="margin:10px 0 0 0; text-decoration:none;">
-                                                                    <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>
+                                                                    <p class="card-title"><?php echo $db_dish_name ?></p>
+                                                                    <p class="card-text"><b>RM <?php echo $db_dish_price?></b></p>
                                                                 </div></a>
                                                             </div>
                                                         <!-- </div> -->
 
                                                             <?php 
-                                                            $rowCount++;
-                                                            if($rowCount % $numOfCols == 0)
-                                                                        {
-                                                                            echo '</div><div class="row"';
+                                                            // $rowCount++;
+                                                            // if($rowCount % $numOfCols == 2)
+                                                            //             {
+                                                            //                 echo '</div><div class="container" ';
+                                                            //                 $rowCount =0;
 
                                                                 }
                                                             }
@@ -276,8 +296,8 @@
                                                                 // {
                                                                 //echo '</div>';
                                                                 // }
-                                                            }
-                                                        }
+                                                            // }
+                                                        // }
                                                         ?> 
                                             </div> 
                                 <!-- </div> -->
