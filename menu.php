@@ -180,15 +180,16 @@
 
 
     
- <?php
-        //$menu_query = mysqli_query($connect, "SELECT * from menu WHERE email = '$email' ");
-        $menu_query_random = mysqli_query($connect, "SELECT * FROM menu ORDER BY RAND() LIMIT 4 ");
-        $menu_query = mysqli_query($connect,"SELECT * FROM menu");
-        $numrow = mysqli_num_rows($menu_query_random);
-    ?>
+
     <!-- Random Menu -->
         <div id="home" class="tabcontent">
-    
+
+            <?php
+                //$menu_query = mysqli_query($connect, "SELECT * from menu WHERE email = '$email' ");
+                $menu_query_random = mysqli_query($connect, "SELECT * FROM menu ORDER BY RAND() LIMIT 4 ");
+                $menu_query = mysqli_query($connect,"SELECT * FROM menu");
+                $numrow = mysqli_num_rows($menu_query_random);
+            ?>
                             <div class="container">
                                 <p>Random Picks</p>
                                 <hr>
@@ -306,21 +307,151 @@
                     <!-- </div>  -->
             </div>
             <!-- Menu Item 2nd row End -->
-
+            </div>
 
     <div id="Malaysian" class="tabcontent">
+        <?php
+            //$menu_query = mysqli_query($connect, "SELECT * from menu WHERE email = '$email' ");
+            $menu_query_malaysian = mysqli_query($connect,"SELECT * FROM menu WHERE cuisine = 'Malaysian'");
+            $numrow = mysqli_num_rows($menu_query_malaysian);
+        ?>
+
+        <div id="grid" class="container" style="display:flex; flex-direction:row; width:100%;">
+
+                                            <?php 
+                                                if($numrow != 0)
+                                                { 
+                                                    while($row = mysqli_fetch_assoc($menu_query_malaysian))
+                                                    {
+                                                        $db_dish_name = $row['dish_name'];
+                                                        $db_dish_description = $row['description'];
+                                                        $db_dish_price = $row['price'];
+                                                ?>
+                                                            <div id="item" style="width:50%;">
+                                                                <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
+                                                                    <img class="card-img-top" src="img/food1.jpg" style="width:100%">
+                                                                
+                                                                <div style="margin:10px 0 0 0; text-decoration:none;">
+                                                                    <p class="card-title"><?php echo $db_dish_name ?></p>
+                                                                    <p class="card-text"><b>RM <?php echo $db_dish_price?></b></p>
+                                                                </div></a>
+                                                            </div>
+
+                                                            <?php 
+                                                                }
+                                                            }
+                                                        ?> 
+                                            </div> 
 
     </div>
 
     <div id="Japanese" class="tabcontent">
+        <?php
+            //$menu_query = mysqli_query($connect, "SELECT * from menu WHERE email = '$email' ");
+            $menu_query_japanese = mysqli_query($connect,"SELECT * FROM menu WHERE cuisine = 'Japanese'");
+            $numrow = mysqli_num_rows($menu_query_japanese);
+        ?>
+
+        <div id="grid" class="container" style="display:flex; flex-direction:row; width:100%;">
+
+                                            <?php 
+                                                if($numrow != 0)
+                                                { 
+                                                    while($row = mysqli_fetch_assoc($menu_query_japanese))
+                                                    {
+                                                        $db_dish_name = $row['dish_name'];
+                                                        $db_dish_description = $row['description'];
+                                                        $db_dish_price = $row['price'];
+                                                ?>
+                                                            <div id="item" style="width:50%;">
+                                                                <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
+                                                                    <img class="card-img-top" src="img/food1.jpg" style="width:100%">
+                                                                
+                                                                <div style="margin:10px 0 0 0; text-decoration:none;">
+                                                                    <p class="card-title"><?php echo $db_dish_name ?></p>
+                                                                    <p class="card-text"><b>RM <?php echo $db_dish_price?></b></p>
+                                                                </div></a>
+                                                            </div>
+
+                                                            <?php 
+                                                                }
+                                                            }
+                                                        ?> 
+                                            </div> 
 
     </div>
 
     <div id="Korean" class="tabcontent">
 
+        <?php
+                //$menu_query = mysqli_query($connect, "SELECT * from menu WHERE email = '$email' ");
+                $menu_query_korean = mysqli_query($connect,"SELECT * FROM menu WHERE cuisine = 'Korean'");
+                $numrow = mysqli_num_rows($menu_query_korean);
+        ?>
+
+        <div id="grid" class="container" style="display:flex; flex-direction:row; width:100%;">
+
+                                            <?php 
+                                                if($numrow != 0)
+                                                { 
+                                                    while($row = mysqli_fetch_assoc($menu_query_korean))
+                                                    {
+                                                        $db_dish_name = $row['dish_name'];
+                                                        $db_dish_description = $row['description'];
+                                                        $db_dish_price = $row['price'];
+                                                ?>
+                                                            <div id="item" style="width:50%;">
+                                                                <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
+                                                                    <img class="card-img-top" src="img/food1.jpg" style="width:100%">
+                                                                
+                                                                <div style="margin:10px 0 0 0; text-decoration:none;">
+                                                                    <p class="card-title"><?php echo $db_dish_name ?></p>
+                                                                    <p class="card-text"><b>RM <?php echo $db_dish_price?></b></p>
+                                                                </div></a>
+                                                            </div>
+
+                                                            <?php 
+                                                                }
+                                                            }
+                                                        ?> 
+                                            </div> 
+
     </div>
 
     <div id="Thailand" class="tabcontent">
+
+        <?php
+            //$menu_query = mysqli_query($connect, "SELECT * from menu WHERE email = '$email' ");
+            $menu_query_thailand = mysqli_query($connect,"SELECT * FROM menu WHERE cuisine = 'Thailand'");
+            $numrow = mysqli_num_rows($menu_query_thailand);
+        ?>
+
+        <div id="grid" class="container" style="display:flex; flex-direction:row; width:100%;">
+
+                                            <?php 
+                                                if($numrow != 0)
+                                                { 
+                                                    while($row = mysqli_fetch_assoc($menu_query_thailand))
+                                                    {
+                                                        $db_dish_name = $row['dish_name'];
+                                                        $db_dish_description = $row['description'];
+                                                        $db_dish_price = $row['price'];
+                                                ?>
+                                                            <div id="item" style="width:50%;">
+                                                                <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
+                                                                    <img class="card-img-top" src="img/food1.jpg" style="width:100%">
+                                                                
+                                                                <div style="margin:10px 0 0 0; text-decoration:none;">
+                                                                    <p class="card-title"><?php echo $db_dish_name ?></p>
+                                                                    <p class="card-text"><b>RM <?php echo $db_dish_price?></b></p>
+                                                                </div></a>
+                                                            </div>
+
+                                                            <?php 
+                                                                }
+                                                            }
+                                                        ?> 
+                                            </div> 
 
     </div>
 
