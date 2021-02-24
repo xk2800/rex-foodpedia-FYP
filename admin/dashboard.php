@@ -13,6 +13,9 @@
     <title>Document</title>
 </head>
 <body>
+<?php
+        include("navbar.html");
+?>
     <?php
 $admin_username = $_SESSION['adminuname'];
 echo $admin_username;
