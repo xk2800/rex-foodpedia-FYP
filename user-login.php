@@ -2,7 +2,7 @@
 
 //in line 329, file user-login.php, thats the issue, db-connect is called suddenly
 require 'db-connect.php';
-
+ob_start();
 /*
 if(isset($_SESSION['login_id'])){
     header('Location: home.php');
@@ -45,11 +45,12 @@ if(isset($_GET['code'])):
         $profile_pic = mysqli_real_escape_string($db_connection, $google_account_info->picture);
 
         // checking user already exists or not
-        $get_user = mysqli_query($db_connection, "SELECT `google_id` FROM `user_acc` WHERE `google_id`='$id'");
+        $get_user = mysqli_query($db_connection, "SELECT `google_id`  FROM `user_acc` WHERE `google_id`='$id'");
         if(mysqli_num_rows($get_user) > 0){
 
-            $_SESSION['login_id'] = $id; 
-            header('Location: menu.php');
+
+            $_SESSION['google_id'] = $id; ;
+            header('Location: menu');
             exit;
 
         }
@@ -59,8 +60,8 @@ if(isset($_GET['code'])):
             $insert = mysqli_query($db_connection, "INSERT INTO `user_acc`(`google_id`,`name`,`email`,`profile_image`) VALUES('$id','$full_name','$email','$profile_pic')");
 
             if($insert){
-                $_SESSION['login_id'] = $id; 
-                header('Location: menu.php');
+                $_SESSION['google_id'] = $id; 
+                header('Location: menu');
                 exit;
             }
             else{
@@ -71,7 +72,7 @@ if(isset($_GET['code'])):
 
     }
     else{
-        header('Location: login.php');
+        header('Location: user-login.php');
         exit;
     }
     
