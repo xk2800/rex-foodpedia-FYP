@@ -38,14 +38,6 @@
     <link rel="stylesheet" href="css/checkout.css">
 
     <script>
-        /*$('.radio-group .radio').click(function(){
-    $(this).parent().find('.radio').removeClass('selected');
-    $(this).addClass('selected');
-    var val = $(this).attr('data-value');
-    //alert(val);
-    $(this).parent().find('input').val(val);
-});
-*/
         function others(val) {
             var element = document.QuerySelector('#other');
             if (val == 'others') {
@@ -118,13 +110,27 @@
 
 <?php
         include("nav.php");
-        //$email = "xavierkhew00@gmail.com";
         $email = $_SESSION["email"];
 ?>
 
     <br><br>
     <div class="container">
+<?php
 
+    /**
+     *  !!! IF INPUT EMPTY  !!!
+     */
+    $fullUrl ="https:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+        if(strpos($fullUrl, "selection=empty") == true){
+            echo "<div class='container'>
+                    <div class='alert alert-danger words' role='alert'>
+                        Hmm, looks like you did't fill in all fields. Lets try that again.
+                    </div>
+                </div>";
+        }
+
+?>
         <div class="row">
 
             <div class="col-lg-8 col-md-9 col-sm-10">
@@ -340,11 +346,6 @@
                                     <input type="text" name="other" id="other" style='display:none;' />
                                     <input type="text" name="other" id="others" style='display:none;' />
 
-                                    <!-- <form method="post" id="others"> -->
-                                        <!-- <input type="radio" name="other" id="other" style='display:none;' value="">
-                                        <input type="text" name="other" id="other" style='display:none;' /> -->
-                                    <!-- </form> -->
-
                                 </div>
                     <?php
                                         $card_info = mysqli_query($connect, "SELECT * from card_info WHERE email='$email'"); //where email='$email'
@@ -382,7 +383,6 @@
 
                                                     $number =  $card_out ["card_num"]; //https://stackoverflow.com/questions/45588890/displaying-last-4-digit-credit-card/45588941
                                                     $masked =  str_pad(substr($number, -4), strlen($number), '*', STR_PAD_LEFT);
-                                                    //echo $masked;
                         ?>
                                             <?php echo $masked;?>&emsp;
                                             <?php echo $card_out ["name_on_card"]?>,
@@ -391,7 +391,6 @@
                     <?php
                                         }
                     ?>
-                                        <!-- What can we do to accommodate you?  <input type='text' id='acc' name='acc'> -->
                                     </div>
                                     <div id="online_banking" style="display:none">
                                         <p id="title">PAY WITH ONLINE BANKING</p>
@@ -409,12 +408,9 @@
                             <span id="t&c">By making this purchase, you agree to our Terms and conditions</span><br><br>
                             
                             <!-- PAYMENT BUTTON -->
-                            <!--p><button type="submit" name="makepaymentbtn" id="pay">MAKE PAYMENT & PLACE ORDER</button></p-->
                             <p><button type="submit" class="btn btn-secondary btn-lg btn-block" name="make_paymentbtn" id="pay">MAKE PAYMENT & PLACE ORDER</button></p>
                             
-                            <!-- <button type="submit" name="submitbtn" class="btn btn-secondary btn-lg btn-block">Submit</button> -->
-                            <!-- <button type="submit" name="testingbtn" class="btn btn-secondary btn-lg btn-block">Submit</button> -->
-
+                            
                             <span id="t&c">
                                 I agree and I demand that you execute the ordered service before the end of the
                                 revocation period.<br>
@@ -439,11 +435,9 @@
                                         $total_price = 0;
                                         while($countlogic_out = mysqli_fetch_assoc($countlogic)){
 
-                                            
                                             $dish_price = $countlogic_out['dish_price'];
                                             $dish_qty = $countlogic_out['dish_qty'];
                                             $total_price += $dish_price * $dish_qty;
-                                            //echo $total_price;
                                             
                                         }
 
@@ -460,15 +454,9 @@
                     <table id="default-text">
                         <tr>
                             <th id="subtotal">Subtotal</th>
-                    <?php
-                        //$subtotal = $payit ["subtotal"];
-                    ?>
                             <th id="db-subtotal" class="db-rows">RM
                                 <?php echo number_format((float)$total_price, 2, '.', '') ?></th>
                         </tr>
-                        <!-- <tr>
-                            <td id="discount">- Discount</td>
-                            <td id="db-discount" class="db-rows">RM 
                     <?php 
 
                                                 if($payit ["discount"]){
@@ -480,50 +468,15 @@
                                                     echo number_format((float)$nill, 2, '.', '');
                                                 }
                             
-                    ?>
-                            </td>
-                        </tr>
-                        <!-tr>
-                            <td id="voucher">- Voucher <br>
-                    <?php
-                                                    /*if( $payit ["voucher_code"]){
-                                                        echo "Voucher code: ".$payit ["voucher_code"];
-                                                    } else{
-                                                        echo "No Voucher Code Found";
-                                                    }*/
-                    ?>
-                            </td-->
-
-                            <!--td id="db-voucher" class="db-rows">RM
-                    <?php
                                                     if( $payit ["voucher_code"]){
                                                         echo number_format((float)$payit ["voucher"], 2, '.', '');
                                                     } else{
                                                         echo "0";
                                                     }
-                    ?>
-                            </td->
-                            <td>
-                        </tr>
-                        <tr>
-                            <p id="hori-line">
-                                <hr>
-                            </p>
-                        </tr> -->
-                        <hr>
-                        <tr>
-                    <?php
-                    //fix this algo, need to take total price 
-                                        //$tax = $subtotal * 6/100;
-                                        
-                                        //discount tax amount
-                                        /*$pretax_discount    = $discount /((6/100)+1);
-                                        $tax_discount       = $discount - $pretax_discount;*/
 
                                         //tax amount of subtotal
                                         $pretax             = $total_price /((6/100)+1);
-                                        $tax                = $total_price - $pretax/* - $tax_discount*/;
-                                        //$tax = ($subtotal * (100/6));
+                                        $tax                = $total_price - $pretax;
 
                     ?>
                             <td id="tax">+Service Tax(6%)</td>
@@ -591,90 +544,88 @@ echo "<br>".$email;
         $pay_total  = $total_to_pay;
         $input_time = $actual_time;
 
-
-        echo $contact."<br>".$address."<br>".$pay."<br>".$email;
-
-        //$query = "UPDATE resume SET phone_number='$p_number' , last_edit_by='user' , vetting='1' , file='$file' , job_type='$job', last_edit_time='$time', db_time='$db_info' WHERE email='$email'";
-        
-        if($pay == "Cash On Delivery"){
-            $pay_out = '0';
-
-        } else if ($pay == "Credit / Debit Car"){
-            $pay_out = '1';
-        
-        } else if ($pay == "Online Banking"){
-            $pay_out = '2';
-        
+        if(empty($contact) || empty($address) || empty($pay)){
+            header('location: delivery-checkout?selection=empty');
+            exit();
         }else{
-            $pay_out = '0';
-        }
 
-            $cardnum                    = $pay;
-            $pay_transfer               = $pay_total;
-            $del_address                = $address;
-            $delivery_type              = 'delivery';
-            $payment_type               = $pay_out;
-
-            $_SESSION['cardnum']        = $cardnum;
-            $_SESSION['pay_total']      = $pay_transfer;
-            $_SESSION['del_address']    = $del_address;
-            $_SESSION['delivery_type']  = $delivery_type;
-            $_SESSION['payment_types']  = $payment_type;
-
-            $_SESSION['email']          = $email;
-
-            //used to check latest receipt id 
-            $check_receipt_id = mysqli_query($connect, "SELECT * from transaction ORDER BY receipt_id DESC");
-            $call_receipt_id = mysqli_fetch_assoc($check_receipt_id);
-
-            $receipt_id_check = $call_receipt_id ["receipt_id"];
-            $number = $receipt_id_check+1;
-            $number = sprintf('%07d',$number);
-            echo $number;
+            echo $contact."<br>".$address."<br>".$pay."<br>".$email;
             
+            if($pay == "Cash On Delivery"){
+                $pay_out = '0';
 
-
-/* 
-    TODO: add logic to move from cart to transaction n order_rec table 
-*/
-            $run_test = mysqli_query($connect, "SELECT * FROM cart WHERE email='$email'");
-                    
-            //loop for getting data from cart
-            while($run_test_out = mysqli_fetch_assoc($run_test)){
-
-                $email      = $run_test_out['email'];
-                $dish_name  = $run_test_out['dish_name'];
-                $dish_price = $run_test_out['dish_price'];
-                $dish_id    = $run_test_out['dish_id'];
-                $dish_qty   = $run_test_out['dish_qty'];
-                $send_type  = 'Delivery';
-                $order_stats= '1';
- 
-
-                //delete data(s) from cart table
-                $delete_test = mysqli_query($connects, "DELETE FROM cart WHERE email='$email'");
-                
-                //add into order record table
-                $insert_test = $mysqli->query("INSERT INTO order_rec(email, trans_id, dish_name, dish_price, dish_id, dish_qty, date)
-                VALUES ('$email', '$number', '$dish_name', '$dish_price', '$dish_id', '$dish_qty','$input_time')");
-    
-            }
-
-            //add into transaction table
-            $sql_insert_into_transaction = mysqli_query($connect, "INSERT INTO transaction
-            (email, contactornot, send_type, receipt_id, date, subtotal, total, payment_method, payment_time, address) 
-            VALUES ('$email', '$contact', '$send_type', '$number','$input_time', '$pay_total', '$pay_total', '$pay_out', '$input_time', '$address')");
-
-
-            echo $pay_total;
-
-            if($insert_test && $delete_test && $sql_insert_into_transaction){
-                header("location: tac");
-                echo "insert done";
+            } else if ($pay == "Credit / Debit Car"){
+                $pay_out = '1';
+            
+            } else if ($pay == "Online Banking"){
+                $pay_out = '2';
+            
             }else{
-                echo "insert fail";
+                $pay_out = '0';
             }
 
+                $cardnum                    = $pay;
+                $pay_transfer               = $pay_total;
+                $del_address                = $address;
+                $delivery_type              = 'delivery';
+                $payment_type               = $pay_out;
+
+                $_SESSION['cardnum']        = $cardnum;
+                $_SESSION['pay_total']      = $pay_transfer;
+                $_SESSION['del_address']    = $del_address;
+                $_SESSION['delivery_type']  = $delivery_type;
+                $_SESSION['payment_types']  = $payment_type;
+
+                $_SESSION['email']          = $email;
+
+                //used to check latest receipt id 
+                $check_receipt_id = mysqli_query($connect, "SELECT * from transaction ORDER BY receipt_id DESC");
+                $call_receipt_id = mysqli_fetch_assoc($check_receipt_id);
+
+                $receipt_id_check = $call_receipt_id ["receipt_id"];
+                $number = $receipt_id_check+1;
+                $number = sprintf('%07d',$number);
+                echo $number;
+                
+                
+                $run_test = mysqli_query($connect, "SELECT * FROM cart WHERE email='$email'");
+                        
+                //loop for getting data from cart
+                while($run_test_out = mysqli_fetch_assoc($run_test)){
+
+                    $email      = $run_test_out['email'];
+                    $dish_name  = $run_test_out['dish_name'];
+                    $dish_price = $run_test_out['dish_price'];
+                    $dish_id    = $run_test_out['dish_id'];
+                    $dish_qty   = $run_test_out['dish_qty'];
+                    $send_type  = 'Delivery';
+                    $order_stats= '1';
+    
+
+                    //delete data(s) from cart table
+                    $delete_test = mysqli_query($connects, "DELETE FROM cart WHERE email='$email'");
+                    
+                    //add into order record table
+                    $insert_test = $mysqli->query("INSERT INTO order_rec(email, trans_id, dish_name, dish_price, dish_id, dish_qty, date)
+                    VALUES ('$email', '$number', '$dish_name', '$dish_price', '$dish_id', '$dish_qty','$input_time')");
+
+                }
+
+                //add into transaction table
+                $sql_insert_into_transaction = mysqli_query($connect, "INSERT INTO transaction
+                (email, contactornot, send_type, receipt_id, date, subtotal, total, payment_method, payment_time, address) 
+                VALUES ('$email', '$contact', '$send_type', '$number','$input_time', '$pay_total', '$pay_total', '$pay_out', '$input_time', '$address')");
+
+
+                echo $pay_total;
+
+                if($insert_test && $delete_test && $sql_insert_into_transaction){
+                    header("location: tac");
+                    echo "insert done";
+                }else{
+                    echo "insert fail";
+                }
+        }
 
     }
 
