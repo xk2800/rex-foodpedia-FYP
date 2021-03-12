@@ -133,11 +133,14 @@
                                     });
                                 </script>
 
+
                                 <div class="form-group">
                                     <label for="card-desc-edit-menu">Description</label>
-                                    <textarea class="form-control" id="card-desc-edit-menu" rows="3" name="desc_menu_detail" value="<?php echo $row["description"] ?>"></textarea>
+                                    <textarea class="form-control" id="card-desc-edit-menu" rows="3" name="desc_menu_detail" value="<?php echo $row["description"] ?>"> 
+                                        <?php echo $row['description'] ?> 
+                                    </textarea>
                                 </div>
-
+                                
                                 <div class="form-group">       
                                     <label for="card-stock-edit-menu">Stock Quantity</label>
                                     <input type="number" class="form-control" id="card-stock-edit-menu" name="qty_menu_detail" value="<?php echo $row["stock_qty"] ?>">
@@ -167,8 +170,6 @@
                     $var_desc_menu_detail = $_POST['desc_menu_detail'];
                     $var_qty_menu_detail = $_POST['qty_menu_detail'];
                     $var_price_menu_detail = $_POST['price_menu_detail'];
-
-                   // if(!empty($var_dish_menu_detail) && !empty($var_desc_menu_detail) && !empty($var_qty_menu_detail) && !empty($var_price_menu_detail)&& !empty($var_dish_menu_type)) {
                 
                     $query_menu_detail = mysqli_query($connect, "UPDATE menu SET dish_name = '$var_dish_menu_detail', price = '$var_price_menu_detail', 
                                                                                  description = '$var_desc_menu_detail', stock_qty = '$var_qty_menu_detail', 
@@ -177,10 +178,6 @@
                     echo " <script>
                                 location.href = 'edit-menu-landing.php';
                            </script> "; 
-
-                    //} else {
-                        //echo "Please fill in all the inputs!";
-                    //}
                 }
 
             ?>

@@ -151,3 +151,9 @@
                 </div>
 
 -->
+
+
+// if(!empty($var_dish_menu_detail) && !empty($var_desc_menu_detail) && !empty($var_qty_menu_detail) && !empty($var_price_menu_detail)&& !empty($var_dish_menu_type)) {
+//} else {
+//echo "Please fill in all the inputs!";
+//}
