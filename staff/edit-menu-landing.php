@@ -67,12 +67,13 @@
                 <table class="table table-hover" >
                     <thead>
                         <tr id="form-title-edit">
-                            <th colspan="8" scope="col" height="auto">Edit Food Menu</th>
+                            <th colspan="9" scope="col" height="auto">Edit Food Menu</th>
                         </tr>   
                         
                         <tr id="form-header-edit">
                             <th scope="col">#ID</th>
                             <th scope="col">Dish</th>
+                            <th scope="col">Permissible?</th>
                             <th scope="col">Image</th>
                             <th scope="col">Type</th>
                             <th scope="col">Desciption</th>
@@ -99,6 +100,7 @@
                                 
                             $db_dish_name = $row['dish_name'];
                             $db_dish_id = $row['dish_id'];
+                            $db_dish_permissible = $row['permissible'];
                             $db_dish_price = $row['price'];
                             $db_dish_type = $row['cuisine'];
                             $db_dish_desc = $row['description'];
@@ -111,6 +113,7 @@
                                 <tr>
                                     <th scope="row"><?php echo $db_dish_id; ?></th>
                                     <td><?php echo $db_dish_name; ?></td>
+                                    <td><?php echo $db_dish_permissible; ?></td>
                                     <td rowspan=""><img src="../img/dummy.jpg" alt="Girl in a jacket" style="width:20em; height:10em"></td>
                                     <td><?php echo $db_dish_type; ?></td>
                                     <td><?php echo $db_dish_desc; ?></td>

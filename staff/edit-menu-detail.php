@@ -98,7 +98,15 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="card-dish-edit-menu">Type</label>
+                                    <label for="card-permissible-edit-menu">Permissible?</label>
+                                    <select class="form-control" id="card-permissible-edit-menu" name="permissible_menu_detail">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="card-type-edit-menu">Type</label>
                                     <select class="form-control" id="card-type-edit-menu" name="type_menu_detail">
                                         <option value="Malaysian">Malaysian Cuisine</option>
                                         <option value="Japanese">Japanese Cuisine</option>
@@ -153,23 +161,26 @@
                     
                     //cloudinary
                     $var_dish_menu_detail = $_POST['dish_menu_detail'];
+                    $var_permissible_menu_type = $_POST['permissible_menu_detail'];
                     $var_dish_menu_type = $_POST['type_menu_detail'];
                     //$var_image_menu_detail = $_POST['image_menu_detail'];
                     $var_desc_menu_detail = $_POST['desc_menu_detail'];
                     $var_qty_menu_detail = $_POST['qty_menu_detail'];
                     $var_price_menu_detail = $_POST['price_menu_detail'];
 
-                    if(!empty($var_dish_menu_detail) && !empty($var_desc_menu_detail) && !empty($var_qty_menu_detail) && !empty($var_price_menu_detail)&& !empty($var_dish_menu_type)) {
+                   // if(!empty($var_dish_menu_detail) && !empty($var_desc_menu_detail) && !empty($var_qty_menu_detail) && !empty($var_price_menu_detail)&& !empty($var_dish_menu_type)) {
                 
-                        $query_menu_detail = mysqli_query($connect, "UPDATE menu SET dish_name = '$var_dish_menu_detail', price = '$var_price_menu_detail', 
-                                                                                     description = '$var_desc_menu_detail', stock_qty = '$var_qty_menu_detail', cuisine = '$var_dish_menu_type' WHERE username = '$staff_username' AND id = '$id' ");
-                        echo " <script>
-                                    location.href = 'edit-menu-landing.php';
-                               </script> "; 
+                    $query_menu_detail = mysqli_query($connect, "UPDATE menu SET dish_name = '$var_dish_menu_detail', price = '$var_price_menu_detail', 
+                                                                                 description = '$var_desc_menu_detail', stock_qty = '$var_qty_menu_detail', 
+                                                                                 cuisine = '$var_dish_menu_type', permissible = '$var_permissible_menu_type'
+                                                                                 WHERE username = '$staff_username' AND id = '$id' ");
+                    echo " <script>
+                                location.href = 'edit-menu-landing.php';
+                           </script> "; 
 
-                    } else {
-                        echo "Please fill in all the inputs!";
-                    }
+                    //} else {
+                        //echo "Please fill in all the inputs!";
+                    //}
                 }
 
             ?>
