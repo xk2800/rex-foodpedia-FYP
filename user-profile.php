@@ -104,6 +104,13 @@
                                         <input type="email" class="form-control" id="card-email-profile" name="email_profile" readonly value="<?php echo $row_table_1["email"]?>">
                                     </div>
 
+                                    <div class="form-group pl-5 col-md-6 pb-3">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        &ensp;
+                                        <label for="card-email-register">Loyalty Points Balance</label>
+                                        <input type="email" class="form-control" id="card-email-profile" name="email_profile" readonly value="<?php echo $row_table_1["lpoints"]?>">
+                                    </div>
+
                                     <div class="form-group col-md-6 pl-5 pb-3">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         &ensp;
@@ -111,12 +118,12 @@
                                         <input type="text" class="form-control" id="card-firstname-profile" name="firstname_profile" value="<?php echo $row_table_1["name"]?>">
                                     </div>
 
-                                <div class="form-group col-md-6 ml-4 pb-3">
-                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                    &ensp;
-                                    <label for="card-contact-register">Contact Number  </label>
-                                    <input type="tel" class="form-control" id="card-contact-register" name="contact_profile" value="<?php echo $row_table_1["phone_number"]?>">
-                                </div>
+                                   <div class="form-group col-md-6 ml-4 pb-3">
+                                       <i class="fa fa-phone" aria-hidden="true"></i>
+                                       &ensp;
+                                       <label for="card-contact-register">Contact Number  </label>
+                                       <input type="tel" class="form-control" id="card-contact-register" name="contact_profile" value="<?php echo $row_table_1["phone_number"]?>">
+                                   </div>
                             </div>
 
                             <div id="card-profile-button">
