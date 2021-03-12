@@ -24,7 +24,7 @@
 
         <!--External CSS Start-->
             <!--<link rel="stylesheet" href="user-menus.css">-->
-        <!--External CSS End-->    
+        <!--External CSS End-->
 
     <style>
         body{
@@ -34,7 +34,7 @@
         .media-body{
             margin-left:20px;
         }
-        
+
         .lower-button button{
             width: 100%;
         }
@@ -53,7 +53,7 @@
     <?php
         include("nav.php");
     ?>
-    
+
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-10 col-md-offset-1">
@@ -71,16 +71,16 @@
                     <?php
                         $shopping_cart_query = mysqli_query($connect, "SELECT dish_name,dish_price,dish_id,dish_qty,id FROM cart WHERE email = '$email' ");
                         $shopping_subtotal = "SELECT  SUM(dish_total) as subtotal FROM cart WHERE email ='$email'";
-                        
+
                         $numrow = mysqli_num_rows($shopping_cart_query);
-                        
+
                     ?>
 
                     <tbody>
-                   
+
                         <?php
                             if($numrow != 0) {
-                                    while($row = mysqli_fetch_assoc($shopping_cart_query)) 
+                                    while($row = mysqli_fetch_assoc($shopping_cart_query))
                                     {
                                         $db_dish_name = $row['dish_name'];
                                         $db_dish_price = $row['dish_price'];
@@ -89,10 +89,10 @@
                                         // $subtotal = $row['SUM(dish_total)'];
                                         $shipping_fee = 5;
                         ?>
-                                    <tr>            
+                                    <tr>
                                         <td class="col-sm-8 col-md-6">
                                             <div class="media">
-                                                <a class="thumbnail pull-left" href="#"> 
+                                                <a class="thumbnail pull-left" href="#">
                                                     <img src="img/food1.jpg" style="width: 72px; height: 72px;">
                                                 </a>
                                                     <div class="media-body">
@@ -101,11 +101,11 @@
                                                     </div>
                                             </div>
                                         </td>
-            
+
                                         <td class="col-sm-1 col-md-1" style="text-align: center">
-                                        <input type="text" class="form-control" id="quantity" value="<?php echo $db_dish_qty;?>"> 
+                                        <input type="text" class="form-control" id="quantity" value="<?php echo $db_dish_qty;?>">
                                         </td>
-                                                    
+
                                         <td class="col-sm-1 col-md-1 text-center">
                                             <strong>
                                                 <?php echo $db_dish_price;?>
@@ -118,19 +118,19 @@
                                                 echo "RM".number_format((float)$dish_total,2,'.','');
                                             ?>
                                         </strong></td>
-                                                    
+
                                         <td class="col-sm-1 col-md-1">
                                             <a onclick="return confirm('Delete this product from cart?')" href="shopping-cart-delete.php?id=<?php echo $row['id'];?>">
                                                 <button type="button" class="btn btn-danger">
-                                                    <span class="glyphicon glyphicon-remove"><i class="fas fa-trash"></i></span> 
+                                                    <span class="glyphicon glyphicon-remove"><i class="fas fa-trash"></i></span>
                                                 </button>
                                             </a>
                                         </td>
                                     </tr>
-                            <?php           
-                                    }  
+                            <?php
+                                    }
                                 }
-                            ?>   
+                            ?>
 
 
 
@@ -149,8 +149,8 @@
                             <td><h4>Total</h4></td>
                             <td class="text-right"><h3><strong>
                             <?php
-                             
-                             
+
+
                             $total = 0;
                             $total = $total +$subtotal;
                                 echo "RM".number_format((float)$total,2,'.','');
@@ -163,19 +163,26 @@
                             <a href="menu.php" style="text-decoration:none;">
                                 <button type="button" class="btn btn-default" id="continue-shopping">
                                     <i class="fas fa-shopping-cart"> Continue Shopping</i>
-                                </button>   
+                                </button>  
                             </a>
                             </td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td>
-                            <a href="pickup-checkout.php">
+                            <!-- <a href="pickup_delivery_selection.php">
                                 <button type="button" class="btn btn-success" id="checkout">
                                     <span>Checkout</span>
                                 </button></td>
-                            </a>
-                        </tr>
+                            </a> -->
+                                <a href="pickup-checkout" class="btn btn-light btn-md rounded-pill add-newbtn words" id="checkout">
+                                    Self Pick Up
+                                </a>
+                            </td>
+                            <td>
+                                <a href="delivery-checkout" class="btn btn-light btn-md rounded-pill add-newbtn words" id="checkout">Delivery</a>
+                            </td>
+                            </tr>
                     </tbody>
                 </table>
             </div>
@@ -183,7 +190,7 @@
     </div>
 
 <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <!--THIS IS BOOTSTRAP JAVASCRIPT PART END-->
