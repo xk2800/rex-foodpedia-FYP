@@ -3,6 +3,8 @@
 <?php
     include "../db-connect.php";
     //session_start();
+    ob_start();
+    $_SESSION['staffuname'];
 ?>
     <html>
         <head> 
@@ -60,7 +62,7 @@
         <body style="background-color: #E4F6E6">
 
             <?php
-                include("navbar.html");
+                include("navbar.php");
             ?>
 
             <div class="container">

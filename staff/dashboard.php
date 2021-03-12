@@ -3,6 +3,7 @@
     include "../db-connect.php";
     //session_start();
     ob_start();
+    $_SESSION['staffuname'];
 ?>
 <!DOCTYPE html>
 <?php
@@ -16,7 +17,7 @@
 ?>
 <html>
 <head>
-    <title>Welcome | REX Foodipedia</title>
+    <title>Welcome Staff Dashboard| REX Foodipedia</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -35,7 +36,7 @@
 </head>
 
 <?php
-    include("navbar.html");
+    include("navbar.php");
 ?>
 
 <?php
@@ -52,6 +53,7 @@
 
     <div class="container">
 
+    <br><br>
         <h3>
             <p>Hello @<?php echo $staff_username ?>, today is <?php echo $output_current_time ?></p>
 

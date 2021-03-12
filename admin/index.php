@@ -56,6 +56,7 @@
         <span><img class="logo" src="../img/logo/logo.png"/></span></div>
     <div id="bottom"></div>
 
+        <br>
         <p class="panel">REX Foodipedia Staff & Admin Login Panel</p>
         <div class="gap"></div>
 

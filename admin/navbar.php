@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +90,7 @@
                         </div>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link text-center" href="../logout.php">Logout</a>
+                        <a class="nav-link text-center" href="logout.php">Logout</a>
                     </li>
                 </ul>
             </div>

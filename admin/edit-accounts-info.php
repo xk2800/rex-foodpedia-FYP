@@ -82,7 +82,7 @@
 <body>
 
     <?php
-            include("navbar.html");
+            include("navbar.php");
             //$admin_username = '123';
     ?>
         <div class="container">

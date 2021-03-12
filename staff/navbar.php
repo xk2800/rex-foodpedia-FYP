@@ -1,3 +1,16 @@
+<?php
+
+    //include "../db-connect.php";
+    session_start();
+    ob_start();
+    $_SESSION['staffuname'];
+
+    //$_SESSION['staffuname'];
+
+    //error_reporting(E_ERROR | E_PARSE);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,7 +114,7 @@
                         </div>
                     </li-->
                     <li class="nav-item active">
-                        <a class="nav-link text-center" href="cart"><i class="fas fa-shopping-cart"></i>View Transactions</a>
+                        <a class="nav-link text-center" href="view-transactions"><i class="fas fa-shopping-cart"></i>View Transactions</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -45,7 +45,7 @@
             <!-- credit : https://www.11zon.com/zon/php/how-to-edit-data-in-php-using-form.php -->
 
             <?php
-                include("navbar.html");
+                include("navbar.php");
             ?>
 
             <?php 
