@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>ADMIN LOGIN PAGE | REX Foodipedia ADMIN</title>
+        <title>STAFF & ADMIN LOGIN PAGE | REX Foodipedia ADMIN</title>
         
         <link rel="icon" type="image/png" href= "../img/logo/logo.png">
 
@@ -56,7 +56,7 @@
         <span><img class="logo" src="../img/logo/logo.png"/></span></div>
     <div id="bottom"></div>
 
-        <p class="panel">REX Foodipedia Admin Login Panel</p>
+        <p class="panel">REX Foodipedia Staff & Admin Login Panel</p>
         <div class="gap"></div>
 
             <div class="box">

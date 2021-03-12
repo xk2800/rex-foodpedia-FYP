@@ -33,7 +33,9 @@
 <?php
         include("nav.php");
 
-        $email = "xavierkhew00@gmail.com";
+        // Create$email = "xavierkhew22@gmail.com";
+        $email = $_SESSION['email'];
+        echo $email;
 ?>
     <div class="whitespace"><br><br></div>
     <section id="orders">
@@ -160,7 +162,12 @@
 
                                             
                                         } else{
-                                            echo "You have no active orders.";
+                                            //echo "You have no active orders.";
+                    ?>  
+                                        
+                                        <div class="trans-id">You have no active orders.</div>
+                                        
+                    <?php
                                         }
                     ?>
                 </div>
@@ -170,10 +177,10 @@
                 <div id="order-list-item" class="container d-flex flex-column">
                     
                     <?php
-                                        $order_history = mysqli_query($connect, "SELECT * from order_rec WHERE email='$email' AND order_status='0' GROUP BY trans_id"); //where email='$email'
+                                        $order_history1 = mysqli_query($connect, "SELECT * from order_rec WHERE email='$email' AND order_status='0' GROUP BY trans_id"); //where email='$email'
 
-                                        if($order_history){
-                                            while($history_output = mysqli_fetch_assoc($order_history)){
+                                        if($order_history1){
+                                            while($history_output = mysqli_fetch_assoc($order_history1)){
                     ?>
                                                 <!-- <div class="parent shadow col-lg-5 col-md-10 col-sm-10"> -->
 
@@ -260,7 +267,7 @@
     </div><!--/div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div-->
 
 <?php
-echo $date_db;
+//echo $date_db;
 ?>
 
 <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->

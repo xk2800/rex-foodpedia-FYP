@@ -104,7 +104,7 @@
                 </script>
             </div>
             <!--ORDER NOT BTN-->
-            <button type="submit" name="orderbtn" class="orderbtn from-center">ORDER NOW</button>
+            <button type="submit" name="orderbtn" class="orderbtn from-center" >ORDER NOW</button>
             <!--div class="orderbtn from-center">ORDER NOW</div-->
             </span>
         </div>
