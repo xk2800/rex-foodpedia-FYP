@@ -118,8 +118,8 @@
 
 <?php
         include("nav.php");
-        $email = "xavierkhew00@gmail.com";
-        //$email = $_SESSION["email"];
+        //$email = "xavierkhew00@gmail.com";
+        $email = $_SESSION["email"];
 ?>
 
     <br><br>
@@ -441,7 +441,8 @@
 
                                             
                                             $dish_price = $countlogic_out['dish_price'];
-                                            $total_price += $dish_price;
+                                            $dish_qty = $countlogic_out['dish_qty'];
+                                            $total_price += $dish_price * $dish_qty;
                                             //echo $total_price;
                                             
                                         }
