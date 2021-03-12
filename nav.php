@@ -4,7 +4,7 @@
 
     //error_reporting(E_ERROR | E_PARSE);
 
-    if(isset($_SESSION['google_id']) ||  $_SESSION["email"] == true){
+    if(isset($_SESSION['google_id']) /*||  $_SESSION["email"] == true*/){
 
         echo $id = $_SESSION['google_id']; 
         $google = $_SESSION['google_id'];
