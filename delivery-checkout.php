@@ -553,45 +553,6 @@
     </div>
     <br><br>
 
-    <!--div class="personal-details">
-
-<?php
-                    /*$user_info = mysqli_query($connect, "SELECT * from user_acc"); //where email='$email'
-                    $u_i_o = mysqli_fetch_assoc($user_info);*/
-?>
-<br>
-
-<form method="post">
-
-<select name="contect" id="contect">
-                                        <option value="Contactless" default>Contactless</option>
-                                        <option value="Non-Contactless">Non-Contactless</option>
-                                    </select>
-<div class="container">
-    <span id="step">
-        <p>Step 2
-    </span>
-    <span id="payment-title">Personal Details</span>
-    <br>
-    <a href="" id="addinfo">+ Edit Personal Info</a>
-    <br>
-    <div class="container">
-        <span
-            id="name">Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-            <?php //echo $u_i_o ["name"]?></span><br>
-        <span
-            id="email">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-            <input type="text" name="testing" id="email_value" value="<?php //echo $u_i_o ["email"]?>" readonly>
-            </span><br>
-        <span id="phone_number">Contact Number: <?php //echo $u_i_o ["phone_number"]?></span>
-    </div>
-    </p>
-</div>
-<br>                            <button type="submit" name="testingbtn" class="btn btn-secondary btn-lg btn-block">Submit</button>
-
-</div><br><br><br><br>
-</form-->
-
     <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
@@ -648,18 +609,6 @@ echo "<br>".$email;
             $pay_out = '0';
         }
 
-        //$query = "UPDATE transaction SET contactornot='$contact', address='$address', payment_method='$pay_out', send_type='$send_type', payment_time='$input_time' WHERE email='$email'";
-        
-        //if(mysqli_query($connect, $query)){
-            //echo "<br>success insert into db";
-            //echo '<script>("Your account is verified")</script>'; //not needed if unwanted
-            //session_start();
-
-            //Using POST
-            //$test = $_POST['cardnum'];
-
-            //Using GET, POST or COOKIE.
-            //$var_value = $_REQUEST['varname'];
             $cardnum                    = $pay;
             $pay_transfer               = $pay_total;
             $del_address                = $address;
@@ -683,11 +632,7 @@ echo "<br>".$email;
             $number = sprintf('%07d',$number);
             echo $number;
             
-            //header('location:tac');
-        //}//else{
-            //echo "failed";
-        //}
-        //header('location: test.php');
+
 
 /* 
     TODO: add logic to move from cart to transaction n order_rec table 
@@ -704,13 +649,7 @@ echo "<br>".$email;
                 $dish_qty   = $run_test_out['dish_qty'];
                 $send_type  = 'Delivery';
                 $order_stats= '1';
-
-                //qty * unit price = product_total; -> product_total INTO transaction table, column subtotal
-
-                //$dish_total_sql += $dish_price * $dish_qty;
-
-
-                //must build purchase total logic here then push 
+ 
 
                 //delete data(s) from cart table
                 $delete_test = mysqli_query($connects, "DELETE FROM cart WHERE email='$email'");
@@ -720,11 +659,6 @@ echo "<br>".$email;
                 VALUES ('$email', '$number', '$dish_name', '$dish_price', '$dish_id', '$dish_qty','$input_time')");
     
             }
-            //$dish_total_sql = $dish_total;
-
-            
-
-            
 
             //add into transaction table
             $sql_insert_into_transaction = mysqli_query($connect, "INSERT INTO transaction

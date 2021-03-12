@@ -182,7 +182,7 @@
                         </span>
                         <span id="payment-title">Personal Details</span>
                         <br>
-                        <a href="" id="addinfo">+ Edit Personal Info</a>
+                        <a href="user-profile#account-details" id="addinfo">+ Edit Personal Info</a>
                         <br>
                         <div class="container">
                             <span
