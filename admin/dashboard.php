@@ -3,6 +3,12 @@
     include "../db-connect.php";
     //session_start();
     ob_start();
+
+    $_SESSION['adminuname'];
+
+    if(!isset($_SESSION['adminuname'])){
+        header("Location:index");
+    }
 ?>
 <!DOCTYPE html>
 <?php

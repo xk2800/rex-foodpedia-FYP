@@ -119,8 +119,8 @@
 
 <?php
         include("nav.php");
-        $email = "xavierkhew00@gmail.com";
-        //$email = $_SESSION["email"];
+        //$email = "xavierkhew00@gmail.com";
+        $email = $_SESSION["email"];
 ?>
 
     <br><br>
