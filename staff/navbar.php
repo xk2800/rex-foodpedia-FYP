@@ -1,7 +1,7 @@
 <?php
 
     //include "../db-connect.php";
-    session_start();
+    //session_start();
     ob_start();
     $_SESSION['staffuname'];
 

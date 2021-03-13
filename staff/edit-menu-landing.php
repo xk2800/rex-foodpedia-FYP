@@ -69,14 +69,13 @@
                 <table class="table table-hover" >
                     <thead>
                         <tr id="form-title-edit">
-                            <th colspan="9" scope="col" height="auto">Edit Food Menu</th>
+                            <th colspan="8" scope="col" height="auto">Edit Food Menu</th>
                         </tr>   
                         
                         <tr id="form-header-edit">
                             <th scope="col">#ID</th>
                             <th scope="col">Dish</th>
                             <th scope="col">Permissible?</th>
-                            <th scope="col">Image</th>
                             <th scope="col">Type</th>
                             <th scope="col">Desciption</th>
                             <th scope="col">Stock Quantity</th>
@@ -91,7 +90,6 @@
 
                         $query_select_menu_landing = mysqli_query($connect, "SELECT * FROM menu WHERE username = '$staff_username' ");
                         $numrow = mysqli_num_rows($query_select_menu_landing);
-    
                     ?>
 
                     <tbody style="font-size: 0.8em">
@@ -116,7 +114,6 @@
                                     <th scope="row"><?php echo $db_dish_id; ?></th>
                                     <td><?php echo $db_dish_name; ?></td>
                                     <td><?php echo $db_dish_permissible; ?></td>
-                                    <td rowspan=""><img src="../img/dummy.jpg" alt="Girl in a jacket" style="width:20em; height:10em"></td>
                                     <td><?php echo $db_dish_type; ?></td>
                                     <td><?php echo $db_dish_desc; ?></td>
                                     <td><?php echo $db_dish_qty; ?></td>
