@@ -143,10 +143,10 @@
     </div>
 <!--Main Bootstrap end-->
 <!--LEVEL 4 END-->
-
+<br>
 <!--LEVEL 5-->
 <?php
-    include ("footer.html")
+    include ("foot.html")
 ?>
 <!--LEVEL 5 END-->
 
