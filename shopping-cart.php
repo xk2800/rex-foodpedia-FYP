@@ -103,8 +103,11 @@
                                         </td>
             
                                         <td class="col-sm-1 col-md-1" style="text-align: center">
-                                        <input type="text" class="form-control" id="quantity" value="<?php echo $db_dish_qty;?>"> 
+                                        <!-- <input type="number" class="form-control" id="quantity" value="<?php echo $db_dish_qty;?>" readonly>  -->
+                                        <?php echo $db_dish_qty;?>
+                                        <input type="hidden" class="pid" value="<?php echo $row['id']?>"> <!-- HIDDEN ID-->
                                         </td>
+                                        <input type="hidden" class="pprice" value="<?php echo $row['dish_price']?>"> <!-- HIDDEN PRICE -->
                                                     
                                         <td class="col-sm-1 col-md-1 text-center">
                                             <strong>
@@ -187,6 +190,33 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <!--THIS IS BOOTSTRAP JAVASCRIPT PART END-->
+
+<script>
+
+    $(document).ready(function(){
+        $("#quantity").on('change',function(){
+            var $el = $(this).closest('tr');
+
+            var pid = $el.find(".pid").val();
+            var pprice = $el.find(".pprice").val();
+            var qty = $el.find("#quantity").val();
+            
+            console.log(qty);
+
+            $.ajax({
+                url : 'action.php',
+                method : 'POST',
+                cache : false,
+                data : {qty:qty,pid:pid,pprice:pprice},
+                success : function(response){
+                    
+                    console.log(response);
+                }
+            })
+        });
+    })
+
+</script>
 
 </body>
 </html>
