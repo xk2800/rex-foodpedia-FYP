@@ -79,10 +79,10 @@ if(isset($_POST["submit"])){
 
     $emailTo = $_POST["email"];
 
-    $check_google_login = "SELECT email AND password FROM user_acc WHERE email = '$emailTo' AND password=NULL";
+    $check_google_login = "SELECT * FROM user_acc WHERE email = '$emailTo' AND password is NULL";
     $result = mysqli_query($connect, $check_google_login);
 
-    if(mysqli_num_rows($result) == 0){
+    if(mysqli_num_rows($result) > 0){
         
         header('location: forgot-password?email=google_linked');
         die();
