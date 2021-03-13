@@ -157,3 +157,23 @@
 //} else {
 //echo "Please fill in all the inputs!";
 //}
+
+
+
+
+<!-- <div class="form-group">
+                                    <label for="image">Image</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="image">
+                                        <label class="custom-file-label" for="image">Choose file</label>
+                                    </div>
+                                </div>
+                                
+                                <!--https://www.w3schools.com/bootstrap4/bootstrap_forms_custom.asp-->
+                                <script>
+                                    // // Add the following code if you want the name of the file appear on select
+                                    // $(".custom-file-input").on("change", function() {
+                                    //     var fileName = $(this).val().split("\\").pop();
+                                    //     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                                    // });
+                                </script> -->

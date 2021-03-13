@@ -89,6 +89,34 @@
             ?>    
 
             <div class="container">
+
+                <div class="card" id="card-whole-add-product">
+                    <h6 class="card-header" id="card-title">Add Products</h6>
+                    
+                    <div class="card-body">
+                        <div id="card-input-add-product">
+                                <form name="form_menu_detail" method="POST" onsubmit="return alert('Details are updated successfuly');" 
+                                  enctype="multipart/form-data" action="add-menu-cloudinary-upload.php">
+
+                                    <div class="form-group" style="margin-left: 15px;">
+                                        <label for="card-dish-add-product">Image</label>
+                                        <div class="custom-file">  
+                                            <div class="row">
+                                                <div class="col">
+                                                    <input type="file" class="custom-file-input" id="card-dish-add-product" name="file">
+                                                    <label class="custom-file-label" for="card-dish-add-product">Choose file</label>
+                                                </div>
+                                                <div class="col">
+                                                    <button type="submit" class="btn btn-info" style="margin-left: 30px;">Submit</button>
+                                                </div>    
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </form>
+                        </div>
+                    </div>            
+                </div>
+        
                 <div class="card" id="card-whole-add-product">
                     <h6 class="card-header" id="card-title">Add Products</h6>
                   
@@ -105,24 +133,6 @@
                                     <label for="dish">Dish</label>
                                     <input type="text" class="form-control" id="dish" style="width:80%" name="dish_name">
                                 </div>
-
-<!--COMING SOON-->
-                                <div class="form-group">
-                                    <label for="image">Image</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="image">
-                                        <label class="custom-file-label" for="image">Choose file</label>
-                                    </div>
-                                </div>
-                                
-                                <!--https://www.w3schools.com/bootstrap4/bootstrap_forms_custom.asp-->
-                                <script>
-                                    // Add the following code if you want the name of the file appear on select
-                                    $(".custom-file-input").on("change", function() {
-                                        var fileName = $(this).val().split("\\").pop();
-                                        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-                                    });
-                                </script>
 
                                 <div class="form-group">
                                     <label for="cuisine">Types of Cuisine</label>
@@ -166,7 +176,8 @@
                             </form>
                         </div>
                     </div>
-                </div> 
+                </div>
+
             </div>
 
             <?php 

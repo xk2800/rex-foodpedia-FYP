@@ -21,7 +21,7 @@
 
             <!--THIS IS BOOTSTRAP CSS PART START-->
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-        
+            
             <!--FONTS.CSS-->
             <link rel="stylesheet" href="css/fonts.css">
 
@@ -85,8 +85,9 @@
                   
                     <div class="card-body"> 
                         <div id="card-input-edit-menu">
+                            <!-- <form name="form_menu_detail" method="POST" onsubmit="return alert('Details are updated successfuly');" 
+                                  enctype="multipart/form-data" action="edit-menu-cloudinary-upload.php"> -->
                             <form name="form_menu_detail" method="POST" onsubmit="return alert('Details are updated successfuly');">
-
                                 <div class="form-group">       
                                     <label for="card-dish-edit-menu">#ID</label>
                                     <input type="text" class="form-control" id="card-dish-edit-menu" name="dish_menu_detail" readonly value="<?php echo $row["dish_id"] ?>">
@@ -96,6 +97,8 @@
                                     <label for="card-dish-edit-menu">Dish</label>
                                     <input type="text" class="form-control" id="card-dish-edit-menu" name="dish_menu_detail" value="<?php echo $row["dish_name"] ?>">
                                 </div>
+
+                                
 
                                 <div class="form-group">
                                     <label for="card-permissible-edit-menu">Permissible?</label>
@@ -113,15 +116,6 @@
                                         <option value="Korean">Korean Cuisine</option>
                                         <option value="Thailand">Thailand Cuisine</option>
                                     </select>
-                                </div>
-
-                                <!--coming soon -->
-                                <div class="form-group">
-                                    <label for="card-dish-edit-menu">Image</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="card-dish-edit-menu" name="image_menu_detail">
-                                        <label class="custom-file-label" for="card-dish-edit-menu">Choose file</label>
-                                    </div>
                                 </div>
                                 
                                 <!--https://www.w3schools.com/bootstrap4/bootstrap_forms_custom.asp-->
@@ -154,19 +148,19 @@
                                 <button type="submit" class="btn btn-primary btn-block" id="card-button-edit-menu" name="submit_menu_detail">Update</a>
                             </form>
                         </div>
+
                     </div>
                 </div>
+
             </div>
 
             <?php 
 
-                if(isset($_POST['submit_menu_detail'])) {
+                if(isset($_POST['submit_menu_detail'])) {  
                     
-                    //cloudinary
                     $var_dish_menu_detail = $_POST['dish_menu_detail'];
                     $var_permissible_menu_type = $_POST['permissible_menu_detail'];
                     $var_dish_menu_type = $_POST['type_menu_detail'];
-                    //$var_image_menu_detail = $_POST['image_menu_detail'];
                     $var_desc_menu_detail = $_POST['desc_menu_detail'];
                     $var_qty_menu_detail = $_POST['qty_menu_detail'];
                     $var_price_menu_detail = $_POST['price_menu_detail'];
@@ -175,6 +169,7 @@
                                                                                  description = '$var_desc_menu_detail', stock_qty = '$var_qty_menu_detail', 
                                                                                  cuisine = '$var_dish_menu_type', permissible = '$var_permissible_menu_type'
                                                                                  WHERE username = '$staff_username' AND id = '$id' ");
+
                     echo " <script>
                                 location.href = 'edit-menu-landing.php';
                            </script> "; 
@@ -183,6 +178,7 @@
             ?>
                 
             <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

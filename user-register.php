@@ -89,25 +89,27 @@
                 <div class="card shadow-lg p-3 mb-5 bg-white rounded" id="card-whole-register" style="width: 50rem;">
                     <div class="card-body">
                     <h5 class="card-title"><center>Registration</center></h5>
-<?php
-        $fullUrl ="http:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-        if(strpos($fullUrl, "email=exist") == true){
-            echo '<div class="container">
-                    <div class="alert alert-warning words" role="alert">
-                    Email already exist in system. Try login in <a href="user-login">here</a>
-                    </div>
-                </div>';
-        }
+                    <?php
+                            $fullUrl ="http:// $_SERVER[HTTP_HOST]$_SERVER[REQUE1ST_URI]";
 
-        if(strpos($fullUrl, "phone_number=exist") == true){
-            echo '<div class="container">
-                    <div class="alert alert-warning words" role="alert">
-                    Phone number already exist in system. Kindly recheck your phone number and try again.</a>
-                    </div>
-                </div>';
-        }
-?>
+                            if(strpos($fullUrl, "email=exist") == true){
+                                echo '<div class="container">
+                                        <div class="alert alert-warning words" role="alert">
+                                            Email already exist in system. Try login in <a href="user-login">here</a>
+                                        </div>
+                                      </div>';
+                            }
+
+                            if(strpos($fullUrl, "phone_number=exist") == true){
+                                echo '<div class="container">
+                                        <div class="alert alert-warning words" role="alert">
+                                            Phone number already exist in system. Kindly recheck your phone number and try again.</a>
+                                        </div>
+                                      </div>';
+                            }
+                    ?>
+                    
                     <form name="register-form" method="POST">
                         <div id="card-input-register"> 
                             <div class="form-group">
@@ -181,21 +183,21 @@
 
                 }
 
-                    //$salted_pass = password_hash($var_password, PASSWORD_BCRYPT);
-                    $salted_pass = md5($var_password);
+                //$salted_pass = password_hash($var_password, PASSWORD_BCRYPT);
+                $salted_pass = md5($var_password);
 
-                    if($var_password != $var_cfrmpassword) {
-                        echo " <script> 
-                                    alert('Password you have entered is not matched with Confirm Password, Please try again !'); 
-                                </script> "; 
-                    } else {
-                        
-                        $query_user_register = mysqli_query($connect,"INSERT INTO user_acc(email, password, phone_number) VALUES ('$var_email', '$salted_pass', '$var_contact')");
+                if($var_password != $var_cfrmpassword) {
+                    echo " <script> 
+                                alert('Password you have entered is not matched with Confirm Password, Please try again !'); 
+                            </script> "; 
+                } else {
                     
-                            echo " <script> 
-                                        location.href = 'user-login.php';
-                                    </script> ";
-                    }
+                    $query_user_register = mysqli_query($connect,"INSERT INTO user_acc(email, password, phone_number) VALUES ('$var_email', '$salted_pass', '$var_contact')");
+                
+                        echo " <script> 
+                                    location.href = 'user-login.php';
+                                </script> ";
+                }
                 
             }
         ?>
