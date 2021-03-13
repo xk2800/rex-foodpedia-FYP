@@ -2,7 +2,7 @@
 
     //include "../db-connect.php";
     //session_start();
-    //error_reporting(E_ERROR | E_PARSE);
+    error_reporting(E_ERROR | E_PARSE);
     ob_start();
     $_SESSION['staffuname'];
 

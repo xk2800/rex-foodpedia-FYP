@@ -4,7 +4,7 @@
 
 include('../db-connect.php');
 
-$column = array("dish_id", "dish_name", "picture", "description", "stock_qty", "stock_qty", "menu_available", "menu_random");
+$column = array("dish_id", "dish_name", "picture", "description", "stock_qty", "stock_qty", "deleted_menu", "menu_random");
 
 $query = "SELECT * FROM menu";
 
@@ -17,7 +17,7 @@ if(isset($_POST["search"]["value"]))
  OR description LIKE "%'.$_POST["search"]["value"].'%"
  OR stock_qty LIKE "%'.$_POST["search"]["value"].'%"
  OR price LIKE "%'.$_POST["search"]["value"].'%"
- OR menu_available LIKE "%'.$_POST["search"]["value"].'%"
+ OR deleted_menu LIKE "%'.$_POST["search"]["value"].'%"
  OR menu_random LIKE "%'.$_POST["search"]["value"].'%"
  ';
 }
@@ -28,7 +28,7 @@ if(isset($_POST["order"]))
 }
 else
 {
- $query .= 'ORDER BY menu_available DESC ';
+ $query .= 'ORDER BY deleted_menu DESC ';
 }
 $query1 = '';
 
@@ -66,7 +66,7 @@ foreach($result as $row)
  $sub_array[] = $menu_random_output;
  $data[] = $sub_array;
 }
-//"dish_name", "dish_id", "price", "picture", "description", "stock_qty", "menu_available", "menu_random"
+//"dish_name", "dish_id", "price", "picture", "description", "stock_qty", "deleted_menu", "menu_random"
 function count_all_data($connectings)
 {
  $query = "SELECT * FROM menu";
