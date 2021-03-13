@@ -2,6 +2,7 @@
 <html lang="en">
 
 <?php
+//WORKING - Xavier
     //include "../db-connect.php";
     ob_start();
 ?>
