@@ -9,9 +9,6 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Account Registration | REX Foodipedia</title>
 
-            <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
-
-
             <!--THIS IS FONT AWESOME JAVASCRIPT START-->
             <script src="https://kit.fontawesome.com/daa253e478.js" crossorigin="anonymous"></script>
 
@@ -70,6 +67,7 @@
 
                 #signupbtn{
                     background-color:#a3d2ca;
+                    font-family: 'Bangers', cursive;
                 }
 
                 #signupbtn:hover{
