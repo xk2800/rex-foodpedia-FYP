@@ -130,6 +130,14 @@
                 </div>";
         }
 
+        if(strpos($fullUrl, "cart=empty") == true){
+            echo "<div class='container'>
+                    <div class='alert alert-danger words' role='alert'>
+                        Hmm, looks like your cart is empty, try adding items into your cart before checking out.
+                    </div>
+                </div>";
+        }
+
 ?>
         <div class="row">
 
@@ -623,7 +631,7 @@ echo "<br>".$email;
                     header("location: tac");
                     echo "insert done";
                 }else{
-                    echo "insert fail";
+                    header('location: pickup-checkout?cart=empty');
                 }
         }
 

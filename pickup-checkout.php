@@ -136,7 +136,15 @@ $fullUrl ="https:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     if(strpos($fullUrl, "selection=empty") == true){
         echo "<div class='container'>
                 <div class='alert alert-danger words' role='alert'>
-                    Hmm, looks like you did't fill in all fields. Lets try that again.
+                    Hmm, looks like you didn't fill in all fields. Lets try that again.
+                </div>
+            </div>";
+    }
+
+    if(strpos($fullUrl, "cart=empty") == true){
+        echo "<div class='container'>
+                <div class='alert alert-danger words' role='alert'>
+                    Hmm, looks like your cart is empty, try adding items into your cart before checking out.
                 </div>
             </div>";
     }
@@ -485,32 +493,30 @@ echo "<br>".$email;
         }
 
 
-            $cardnum                    = $pay;
-            $pay_transfer               = $pay_total;
-            $delivery_type              = 'pick_up';
-            $payment_type               = $pay_out;
-            $del_address                = NULL;
+        $cardnum                    = $pay;
+        $pay_transfer               = $pay_total;
+        $delivery_type              = 'pick_up';
+        $payment_type               = $pay_out;
+        $del_address                = NULL;
 
-            $_SESSION['cardnum']        = $cardnum;
-            $_SESSION['pay_total']      = $pay_transfer;
-            $_SESSION['delivery_type']  = $delivery_type;
-            $_SESSION['payment_types']  = $payment_type;
-            $_SESSION['del_address']    = $del_address;
+        $_SESSION['cardnum']        = $cardnum;
+        $_SESSION['pay_total']      = $pay_transfer;
+        $_SESSION['delivery_type']  = $delivery_type;
+        $_SESSION['payment_types']  = $payment_type;
+        $_SESSION['del_address']    = $del_address;
 
-            $_SESSION['email']          = $email;
+        $_SESSION['email']          = $email;
 
-            //used to check latest receipt id 
-            $check_receipt_id = mysqli_query($connect, "SELECT * from transaction ORDER BY receipt_id DESC");
-            $call_receipt_id = mysqli_fetch_assoc($check_receipt_id);
+        //used to check latest receipt id 
+        $check_receipt_id = mysqli_query($connect, "SELECT * from transaction ORDER BY receipt_id DESC");
+        $call_receipt_id = mysqli_fetch_assoc($check_receipt_id);
 
-            $receipt_id_check = $call_receipt_id ["receipt_id"];
-            $number = $receipt_id_check+1;
-            $number = sprintf('%07d',$number);
-            echo $number;
+        $receipt_id_check = $call_receipt_id ["receipt_id"];
+        $number = $receipt_id_check+1;
+        $number = sprintf('%07d',$number);
+        echo $number;
             
-/* 
-    TODO: add logic to move from cart to transaction n order_rec table 
-*/
+
         $run_test = mysqli_query($connect, "SELECT * FROM cart WHERE email='$email'");
         
         //loop for getting data from cart
@@ -547,7 +553,7 @@ echo "<br>".$email;
             header("location: tac");
             echo "insert done";
         }else{
-            echo "insert fail";
+            header('location: pickup-checkout?cart=empty');
         }
 
     }
