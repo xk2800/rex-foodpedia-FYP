@@ -29,21 +29,19 @@
 include ('db-connect.php');
 
     if (!isset($_GET["code"])) {
-        //echo ("Page can't be found! Err_msg: Can't get code");
         echo '<script>document.getElementById("error").innerHTML = "Page unable to be found! <br>Err_msg: Unable to get code<br><br>"</script>';
         exit();
 
     }
 
     $code = $_GET["code"];
-    $getEmailQuery = mysqli_query($connect, "SELECT email FROM resetpwduser WHERE code='$code'");
+    $getEmailQuery = mysqli_query($connect, "SELECT email FROM resetpwd WHERE code='$code'");
     if(mysqli_num_rows($getEmailQuery) == 0){
-        //echo ("Page can't be found! Err_msg: No code found in database.");
         echo "<script>document.getElementById('error').innerHTML = 'Page unable to be found! <br>Err_msg: No code found in database.<br><br>'</script>";
         exit();
     }
 
-    $connects = mysqli_connect("3.0.146.123", "removal", "VIfYFM0xj6LSTRUe", "TCD-resume");
+    //$connects = mysqli_connect("13.212.90.225", "deletes", "XFhvEdqYVQw4RaS4", "rex-foodipedia");
 
 
     if (isset($_POST["password"])) {
@@ -54,15 +52,15 @@ include ('db-connect.php');
         $email = $row["email"];
 
         //salty
-        $salty = "t5)%@PH--6Eh%ZRC7HEgk+K,*<,nB73YeDJC`ZL!Ru%vQ#U]c<Fp::5bs:4<37N>+t73(:MpynRv3Ps8bm";
+        //$salty = "t5)%@PH--6Eh%ZRC7HEgk+K,*<,nB73YeDJC`ZL!Ru%vQ#U]c<Fp::5bs:4<37N>+t73(:MpynRv3Ps8bm";
 
         //salty pwd
-        $saltypwd = $salty.$pwdd;
+        //$saltypwd = $salty.$pwdd;
 
-        $query = mysqli_query($connect, "UPDATE acc SET password='$saltypwd' WHERE email='$email'");
+        $query = mysqli_query($connect, "UPDATE user_acc SET password='$pwdd' WHERE email='$email'");
 
         if ($query) {
-            $query = mysqli_query($connects, "DELETE FROM resetpwduser WHERE code='$code'");
+            $query = mysqli_query($connects, "DELETE FROM resetpwd WHERE code='$code'");
             
             //if($remove){
                 //echo ("Password has been updated!");
