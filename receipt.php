@@ -119,7 +119,7 @@
 
             <?php
 //** */                <!-- production changes to be made here -->
-                    $items_sql = mysqli_query($connect, "SELECT * from order_rec WHERE email = '$email' AND trans_id='$numbers'");
+                    $items_sql = mysqli_query($connect, "SELECT * from order_rec WHERE email = '$email' AND receipt_id='$numbers'");
                     //$items = mysqli_fetch_assoc($result1);
 
                     //$price_result = mysqli_fetch_assoc($price_sql);

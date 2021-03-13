@@ -19,28 +19,17 @@
         <!--THIS IS FONT AWESOME JAVASCRIPT END-->
 
         <!--THIS IS BOOTSTRAP CSS PART START-->
-            <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <!--THIS IS BOOTSTRAP CSS PART END-->
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 
 
         <!--External CSS Start-->
             <!--<link rel="stylesheet" href="user-menus.css">-->
         <!--External CSS End-->    
-
-        <script>
-$(document).ready(function(){
-  $("#searchinput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
 
     <style>
         body{
@@ -68,8 +57,6 @@ $(document).ready(function(){
     <!-- PHP-->
     <?php
         //include("navbar.php");
-        $query = "SELECT * FROM transaction ORDER BY receipt_id DESC";  
-        $result = mysqli_query($connect, $query);
     ?>
    
     <div class="container">
@@ -120,7 +107,6 @@ $(document).ready(function(){
                 <table class="table table-hover" style="margin-top: 5rem;">
                     <thead>
                         <tr>
-                            <th width="15%">Receipt ID</th>
                             <th>Product</th>
                             <th class="text-center">Order by</th>
                             <th class="text-center">Time</th>
@@ -128,7 +114,6 @@ $(document).ready(function(){
                             <th class="text-center">Price</th>
                             <th class="text-center">Total</th>
                             <th class="text-center">Status</th>
-                            <th width="15%">View</th>
                         </tr>
                     </thead>
                             <?php
@@ -155,13 +140,6 @@ $(document).ready(function(){
                             ?>
 
                         <tr>
-                        <?php
-                            //while(){
-                        ?>
-                            <td><?php echo $row["receipt_id"]; ?></td>
-                        <?php
-                        //}
-                        ?>
                             <td class="col-sm-8 col-md-6">
                             <div class="media">
                                 <a class="thumbnail pull-left" href="#"> 
@@ -204,9 +182,6 @@ $(document).ready(function(){
                             <td class="col-sm-1 col-md-1 text-center">
                             <?php echo $db_delivery_status == 0 ? '<span class="text-warning"> <strong>Delivery</strong> </span>' : '<span class="text-success"><strong> Delivered </strong></span>';?>
                             </td>
-
-                            <td><input type="button" name="view" value="view" id="<?php echo $row["receipt_id"]; ?>"
-                                class="btn btn-info btn-xs view_data" /></td>
                             
                             <!-- <td class="col-md-1">
                             <button type="button" class="btn">
@@ -265,46 +240,10 @@ $(document).ready(function(){
     </div>
 
 <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
-<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <!--THIS IS BOOTSTRAP JAVASCRIPT PART END-->
 
 </body>
 </html>
-<div id="dataModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Transaction Details</h4>
-            </div>
-            <div class="modal-body" id="receipt_id">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    $(document).ready(function () {
-        $(document).on('click', '.view_data', function () {
-            var receipt_id = $(this).attr("id");
-            if (receipt_id != '') {
-                $.ajax({
-                    url: "fetch-transactions.php",
-                    method: "POST",
-                    data: {
-                        receipt_id: receipt_id
-                    },
-                    success: function (data) {
-                        $('#receipt_id').html(data);
-                        $('#dataModal').modal('show');
-                    }
-                });
-            }
-        });
-    });
-</script>

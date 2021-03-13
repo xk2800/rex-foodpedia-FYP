@@ -47,7 +47,7 @@
             <div id="order-list-item" class="container d-flex flex-column">
                     
                     <?php
-                                        $order_history = mysqli_query($connect, "SELECT * from order_rec WHERE email='$email' AND order_status='1' GROUP BY trans_id"); //where email='$email'
+                                        $order_history = mysqli_query($connect, "SELECT * from order_rec WHERE email='$email' AND order_status='1' GROUP BY receipt_id"); //where email='$email'
 
                                         if($order_history){
                                             while($history_output = mysqli_fetch_assoc($order_history)){
@@ -55,11 +55,11 @@
                                                 <!-- <div class="parent shadow col-lg-5 col-md-10 col-sm-10"> -->
                                                     <form method="post" class="parent shadow col-lg-5 col-md-10 col-sm-10">
                     <?php
-                                                        $trans_id = $history_output ["trans_id"];
+                                                        $receipt_id = $history_output ["receipt_id"];
                     ?>
-                                                        <div class="trans-id"><?php echo "<br> Transaction ID: ".$trans_id."<br>";?></div>
+                                                        <div class="trans-id"><?php echo "<br> Transaction ID: ".$receipt_id."<br>";?></div>
                     <?php
-                                                        $receipt_id_check = mysqli_query($connect, "SELECT * from transaction WHERE email='$email' AND receipt_id=$trans_id GROUP BY receipt_id");
+                                                        $receipt_id_check = mysqli_query($connect, "SELECT * from transaction WHERE email='$email' AND receipt_id=$receipt_id GROUP BY receipt_id");
                                                         while($receipt_output = mysqli_fetch_assoc($receipt_id_check)){
                     ?>
                                                             <div class="price">RM<?php echo $receipt_output ["subtotal"];?></div>
@@ -89,7 +89,7 @@
 
                                                         //echo $output_current_time;
 
-                                                        $time_checking =  $mysqli->query("SELECT * from transaction WHERE email='$email' AND receipt_id='$trans_id'"); //where email='$email'
+                                                        $time_checking =  $mysqli->query("SELECT * from transaction WHERE email='$email' AND receipt_id='$receipt_id'"); //where email='$email'
                                                         
                                                         //$transi = $time_checking["receipt_id"];
 
@@ -108,7 +108,7 @@
                     ?>                                          <div class="re-order"><button type="submit" name="submitbtn" class="btn btn-light btn-md rounded-pill">Check Order Status</button></div>
                     <?php
                                                             }else{
-                    ?>                                          <div class="re-order"><a href="order-review?orderid=<?php echo $trans_id; ?>" class="btn btn-light btn-md rounded-pill">Review Order</a></div>
+                    ?>                                          <div class="re-order"><a href="order-review?orderid=<?php echo $receipt_id; ?>" class="btn btn-light btn-md rounded-pill">Review Order</a></div>
                                                                 
                     <?php
                                                             }
@@ -128,7 +128,7 @@
                                                         
                                                         ?><span class="items"><?php
                                                         //nested to print all food items till end of table
-                                                        $chicken_fried_rice = mysqli_query($connect, "SELECT * from order_rec WHERE email='$email' AND trans_id = '$trans_id' AND order_status='1'");
+                                                        $chicken_fried_rice = mysqli_query($connect, "SELECT * from order_rec WHERE email='$email' AND receipt_id = '$receipt_id' AND order_status='1'");
                                                         while($qqq = mysqli_fetch_assoc($chicken_fried_rice)){
                                                             $dish_qty = $qqq ["dish_qty"];
                                                             $dish_name = $qqq ["dish_name"];
@@ -177,7 +177,7 @@
                 <div id="order-list-item" class="container d-flex flex-column">
                     
                     <?php
-                                        $order_history1 = mysqli_query($connect, "SELECT * from order_rec WHERE email='$email' AND order_status='0' GROUP BY trans_id"); //where email='$email'
+                                        $order_history1 = mysqli_query($connect, "SELECT * from order_rec WHERE email='$email' AND order_status='0' GROUP BY receipt_id"); //where email='$email'
 
                                         if($order_history1){
                                             while($history_output = mysqli_fetch_assoc($order_history1)){
@@ -186,11 +186,11 @@
 
                                                     <form method="post" class="parent shadow col-lg-5 col-md-10 col-sm-10">
                     <?php
-                                                        $trans_id = $history_output ["trans_id"];
+                                                        $receipt_id = $history_output ["receipt_id"];
                     ?>
-                                                        <div class="trans-id"><?php echo "<br> Transaction ID: ".$trans_id."<br>";?></div>
+                                                        <div class="trans-id"><?php echo "<br> Transaction ID: ".$receipt_id."<br>";?></div>
                     <?php
-                                                        $receipt_id_check = mysqli_query($connect, "SELECT * from transaction WHERE email='$email' AND receipt_id=$trans_id GROUP BY receipt_id");
+                                                        $receipt_id_check = mysqli_query($connect, "SELECT * from transaction WHERE email='$email' AND receipt_id=$receipt_id GROUP BY receipt_id");
                                                         while($receipt_output = mysqli_fetch_assoc($receipt_id_check)){
                     ?>
                                                             <div class="price">RM<?php echo $receipt_output ["subtotal"];?></div>
@@ -207,7 +207,7 @@
                                                         }
                     ?>
                         <!-- can add feature if got time later -->
-                                                        <!-- <div class="re-order"><a href="order-review?orderid=<?php echo $trans_id; ?>" class="btn btn-light btn-md rounded-pill">Review Order</a></div> -->
+                                                        <!-- <div class="re-order"><a href="order-review?orderid=<?php echo $receipt_id; ?>" class="btn btn-light btn-md rounded-pill">Review Order</a></div> -->
                     <?php
                                                         $date_db = $history_output ["date"];
                                                         $output_date = date('M d, Y', strtotime(str_replace('-','/', $date_db)));   //remove/replace symbols from string in db
@@ -220,7 +220,7 @@
 
                                                         ?><span class="items"><?php
                                                         //nested to print all food items till end of table
-                                                        $chicken_fried_rice = mysqli_query($connect, "SELECT * from order_rec WHERE email='$email' AND trans_id = '$trans_id' AND order_status='0'");
+                                                        $chicken_fried_rice = mysqli_query($connect, "SELECT * from order_rec WHERE email='$email' AND receipt_id = '$receipt_id' AND order_status='0'");
                                                         while($qqq = mysqli_fetch_assoc($chicken_fried_rice)){
                                                             $dish_qty = $qqq ["dish_qty"];
                                                             $dish_name = $qqq ["dish_name"];
