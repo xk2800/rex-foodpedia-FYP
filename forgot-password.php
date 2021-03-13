@@ -57,76 +57,103 @@ require 'Mailer/vendor/autoload.php';
             </div>';
     }
 
+    if(strpos($fullUrl, "email=google_linked") == true){
+        //echo '<script>document.getElementById("error").innerHTML = "<br><br>"</script>';
+        echo '<div class="container">
+                <div class="alert alert-warning words" role="alert">
+                Opps! Look like this email is linked with Google, try to "Login with Google"</a>
+                </div>
+            </div>';
+    }
+
+    if(strpos($fullUrl, "email=reset_sent_before") == true){
+        //echo '<script>document.getElementById("error").innerHTML = "<br><br>"</script>';
+        echo '<div class="container">
+                <div class="alert alert-warning words" role="alert">
+                Opps! Look like this email has been sent before, kindly check your email.</a>
+                </div>
+            </div>';
+    }
+
 if(isset($_POST["submit"])){
 
     $emailTo = $_POST["email"];
-    //$ip      = $ip_add;
 
-    $check_dup_email = "SELECT * FROM user_acc WHERE email = '$emailTo'"; 
-    $res = mysqli_query($connect, $check_dup_email);
+    $check_google_login = "SELECT email AND password FROM user_acc WHERE email = '$emailTo' AND password=NULL";
+    $result = mysqli_query($connect, $check_google_login);
 
-    if(mysqli_num_rows($res) == 0){
+    if(mysqli_num_rows($result) == 0){
         
-        header('location: forgot-password?email=nonexist');
+        header('location: forgot-password?email=google_linked');
         die();
-
-
     }else{
-        
-        $check_reset = "SELECT * FROM resetpwd WHERE email = '$emailTo'"; 
-        $check = mysqli_query($connect, $check_reset);
-        
-        if(mysqli_num_rows($check) > 0){
 
+        $check_dup_email = "SELECT * FROM user_acc WHERE email = '$emailTo'"; 
+        $res = mysqli_query($connect, $check_dup_email);
+
+        if(mysqli_num_rows($res) == 0){
+            
             header('location: forgot-password?email=nonexist');
             die();
-        
-        } else{
+
+
+        }else{
             
-            $code = uniqid(true);
-            $query = mysqli_query($connect, "INSERT INTO resetpwd(email, code) VALUES('$emailTo', '$code')");
-            if (!$query) {
-                echo ("Error! Err_msg: query var unable to read.");
+            $check_reset = "SELECT * FROM resetpwd WHERE email = '$emailTo'"; 
+            $check = mysqli_query($connect, $check_reset);
+            
+            if(mysqli_num_rows($check) > 0){
+
+                header('location: forgot-password?email=reset_sent_before');
+                die();
+            
+            } else{
+                
+                $code = uniqid(true);
+                $query = mysqli_query($connect, "INSERT INTO resetpwd(email, code) VALUES('$emailTo', '$code')");
+                if (!$query) {
+                    echo ("Error! Err_msg: query var unable to read.");
+                    die();
+                }
+            
+            
+                // Instantiation and passing `true` enables exceptions
+                $mail = new PHPMailer(true);
+            
+                try {
+                    //Server settings
+                    $mail->SMTPDebug = 0;         //change to 0 for no debug message, 1 for debug message     
+                    $mail->isSMTP();                                            // Send using SMTP
+                    $mail->Host       = 'smtp.gmail.com';                      // Set the SMTP server to send through
+                    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+                    $mail->Username   = 'noreply.rexfoodipedia@gmail.com';                     // SMTP username
+                    $mail->Password   = 'srzbcsrqcghavujd';                              // SMTP password
+                    $mail->SMTPSecure = "tls";         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+                    $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+            
+                    //Recipients
+                    $mail->Sender=('noreply.rexfoodipedia@gmail.com');
+                    $mail->setFrom('noreply.rexfoodipedia@gmail.com', 'REX Foodipedia System', FALSE);
+                    $mail->addAddress($emailTo);     // Add a recipient
+            
+                    $url = "https://" .$_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"]) . "/resetPassword?code=$code";
+            
+                    // Content
+                    $mail->isHTML(true);                                  // Set email format to HTML
+                    $mail->Subject = 'Reset Password Link';
+                    $mail->Body    = "<h1>You have requsted a password reset.</h1>
+                                        <p>Click <a href='$url'>here</a> to reset your password.</p>
+                                        <p></p><p>If you can't click the link then try here $url</p>";
+                    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            
+                    $mail->send();
+                    echo 'Message has been sent';
+                } catch (Exception $e) {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                }
+            
                 die();
             }
-        
-        
-            // Instantiation and passing `true` enables exceptions
-            $mail = new PHPMailer(true);
-        
-            try {
-                //Server settings
-                $mail->SMTPDebug = 0;         //change to 0 for no debug message, 1 for debug message     
-                $mail->isSMTP();                                            // Send using SMTP
-                $mail->Host       = 'smtp.gmail.com';                      // Set the SMTP server to send through
-                $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-                $mail->Username   = 'noreply.rexfoodipedia@gmail.com';                     // SMTP username
-                $mail->Password   = 'srzbcsrqcghavujd';                              // SMTP password
-                $mail->SMTPSecure = "tls";         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-                $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
-        
-                //Recipients
-                $mail->Sender=('noreply.rexfoodipedia@gmail.com');
-                $mail->setFrom('noreply.rexfoodipedia@gmail.com', 'REX Foodipedia System', FALSE);
-                $mail->addAddress($emailTo);     // Add a recipient
-        
-                $url = "https://" .$_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"]) . "/resetPassword?code=$code";
-        
-                // Content
-                $mail->isHTML(true);                                  // Set email format to HTML
-                $mail->Subject = 'Reset Password Link';
-                $mail->Body    = "<h1>You have requsted a password reset.</h1>
-                                    <p>Click <a href='$url'>here</a> to reset your password.</p>
-                                    <p></p><p>If you can't click the link then try here $url</p>";
-                $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-        
-                $mail->send();
-                echo 'Message has been sent';
-            } catch (Exception $e) {
-                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-            }
-        
-            die();
         }
     }
 

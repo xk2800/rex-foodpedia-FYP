@@ -182,7 +182,7 @@
         <a type="button" href="#">Japanese Cuisine</a>
         <a type="button" href="https://www.youtube.com/">Indian Cuisine</a-->
         <!--div class="tab"-->
-        <button id="btns" class="tablinks" onclick="openCity(event, 'home')">Home</button>
+        <button id="btns" class="tablinks active" onclick="openCity(event, 'home')" >Home</button>
         <button id="btns" class="tablinks" onclick="openCity(event, 'Malaysian')">Malaysian Cuisine</button>
         <button id="btns" class="tablinks" onclick="openCity(event, 'Japanese')">Japanese Cuisine</button>
         <button id="btns" class="tablinks" onclick="openCity(event, 'Korean')">Korean Cuisine</button>
@@ -195,7 +195,7 @@
     
 
     <!-- Random Menu -->
-        <div id="home" class="tabcontent">
+        <div id="home" class="tabcontent active">
 
             <?php
                 //$menu_query = mysqli_query($connect, "SELECT * from menu WHERE email = '$email' ");
