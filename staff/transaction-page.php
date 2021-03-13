@@ -56,7 +56,7 @@ $(document).ready(function(){
 
 <?php
     
-    //include "navbar.html";
+    //include "navbar.php";
 
             $query = "SELECT * FROM transaction ORDER BY receipt_id DESC";  
             $result = mysqli_query($connect, $query);

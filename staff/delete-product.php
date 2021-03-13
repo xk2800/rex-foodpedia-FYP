@@ -31,7 +31,7 @@
 
 <?php
     
-    include "navbar.html";
+    include "navbar.php";
 ?>
 
     <iframe width="100%" height="100%" src="del-prod_iframe.php" frameborder="0" class="page"></iframe>

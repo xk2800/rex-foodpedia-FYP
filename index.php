@@ -1,10 +1,12 @@
 <?php
     //session_start();
     include("db-connect.php");
-
+    //error_reporting(E_ERROR | E_PARSE);
     /**
      * using if else statement for homepage
      */
+
+    $_SESSION['email'];
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +19,7 @@
 
 
 <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true){?>
-                <title> Welcome <?php echo $_SESSION['uname']?> | REX Foodipedia</title>
+                <title> Welcome <?php echo $_SESSION['email']?> | REX Foodipedia</title>
          <?php } else { ?>
                 <title>Home | REX Foodipedia</title>
          <?php } ?>
@@ -77,7 +79,7 @@
 <div id="overlay">
 <!--LEVEL 1-->
 <?php
-    include ("nav.html");
+    include ("nav.php");
 ?>
 <!--LEVEL 1 END-->
 
@@ -102,7 +104,7 @@
                 </script>
             </div>
             <!--ORDER NOT BTN-->
-            <button type="submit" name="orderbtn" class="orderbtn from-center">ORDER NOW</button>
+            <button type="submit" name="orderbtn" class="orderbtn from-center" >ORDER NOW</button>
             <!--div class="orderbtn from-center">ORDER NOW</div-->
             </span>
         </div>

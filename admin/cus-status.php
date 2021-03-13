@@ -49,7 +49,7 @@
         <body style="background-color: #4C5C68;">
 
             <?php
-                include("navbar.html");
+                include("navbar.php");
             ?>
 
             <div class="container">

@@ -75,7 +75,7 @@
 <body>
 
 <?php
-        include("nav.html");
+        include("nav.php");
 
         $cardnum            = $_SESSION["cardnum"];
         $pay_transfer       = $_SESSION['pay_total'];

@@ -77,7 +77,7 @@
         <body style="background-color: #E4F6E6">
                 
             <?php
-                include("navbar.html");
+                include("navbar.php");
             ?>
 
             <?php
@@ -137,8 +137,8 @@
                                 <div class="form-group">
                                     <label for="perm">Permissible?</label>
                                     <select type="text" class="form-control" id="perm" name="permissible" value="Select">
-                                        <option value="yes">Yes</option>
-                                        <option value="no">No</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
                                     </select>
                                 </div>
 

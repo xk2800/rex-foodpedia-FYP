@@ -1,21 +1,13 @@
 <!DOCTYPE html>
-  
 <?php
     include("db-connect.php");
-    //include("db_connection.php");
-    //session_start();
 ?>
 
     <html lang="en">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Register | REX Foodipedia</title>
-
-            <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
-
-            <!--FONTS.CSS-->
-            <link rel="preload" href="css/fonts.css" as="style">
+            <title>Account Registration | REX Foodipedia</title>
 
             <!--THIS IS FONT AWESOME JAVASCRIPT START-->
             <script src="https://kit.fontawesome.com/daa253e478.js" crossorigin="anonymous"></script>
@@ -23,11 +15,14 @@
             <!--THIS IS BOOTSTRAP CSS PART START-->
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
             
+            <!--FONTS.CSS-->
+            <link rel="stylesheet" href="css/fonts.css" as="style">
             <style>
 
                 h5 {
                     padding-bottom: 10px; 
-                    font-family: Lato;
+                    font-family: 'Lexend Deca', sans-serif;
+                    /*font-family: Lato;*/
                     text-transform: uppercase;
                     letter-spacing: 1px;
                 }
@@ -48,6 +43,7 @@
 
                 #card-input-register {
                     padding: 30px 10px 25px 10px;
+                    height: 100%;
                     width: 95%;
                 }
 
@@ -69,6 +65,16 @@
                     font-family: Oswald;
                 }
 
+                #signupbtn{
+                    background-color:#a3d2ca;
+                    font-family: 'Bangers', cursive;
+                }
+
+                #signupbtn:hover{
+                    background-color:#056676;
+                    color: white;
+                }
+
             </style>
         
         </head>
@@ -76,15 +82,33 @@
         <body style="background-color: #e8ded2";>
             
             <?php
-                include("nav.html");
+                include("nav.php");
             ?>
 
             <div class="container">
                 <div class="card shadow-lg p-3 mb-5 bg-white rounded" id="card-whole-register" style="width: 50rem;">
                     <div class="card-body">
-                    <h5 class="card-title"><center>Register</center></h5>
+                    <h5 class="card-title"><center>Registration</center></h5>
+<?php
+        $fullUrl ="http:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-                    <form name="register-form" method="POST" onsubmit="return alert('Register successfully');">
+        if(strpos($fullUrl, "email=exist") == true){
+            echo '<div class="container">
+                    <div class="alert alert-warning words" role="alert">
+                    Email already exist in system. Try login in <a href="user-login">here</a>
+                    </div>
+                </div>';
+        }
+
+        if(strpos($fullUrl, "phone_number=exist") == true){
+            echo '<div class="container">
+                    <div class="alert alert-warning words" role="alert">
+                    Phone number already exist in system. Kindly recheck your phone number and try again.</a>
+                    </div>
+                </div>';
+        }
+?>
+                    <form name="register-form" method="POST">
                         <div id="card-input-register"> 
                             <div class="form-group">
                                 <i class="fa fa-envelope-open" aria-hidden="true"></i>
@@ -116,7 +140,7 @@
                             </div>
 
                         <div id="card-register-button">
-                            <button type="submit" class="btn btn-primary btn-block" name="signupbtn">Sign Up</button>
+                            <button type="submit" class="btn btn-block" name="signupbtn" id="signupbtn">Sign Up</button>
                         </div>
                     </form>
             </div>    
@@ -137,21 +161,42 @@
                 $var_cfrmpassword = $_POST["cfrmpass"];
                 $var_contact = $_POST["contact"];
 
-                //$salted_pass = password_hash($var_password, PASSWORD_BCRYPT);
-                $salted_pass = md5($var_password);
+                $check_dup_email = "SELECT * FROM user_acc WHERE email = '$var_email'";
+                $res = mysqli_query($connect, $check_dup_email);
 
-                if($var_password != $var_cfrmpassword) {
-                     echo " <script> 
-                                alert('Password you have entered is not matched with Confirm Password, Please try again !'); 
-                            </script> "; 
-                } else {
-                    
-                    $query_user_register = mysqli_query($connect,"INSERT INTO user_acc(email, password, phone_number) VALUES ('$var_email', '$salted_pass', '$var_contact')");
-                   
-                        echo " <script> 
-                                    location.href = 'user-login.php';
-                                </script> ";
+                $check_dup_number = "SELECT * FROM user_acc";
+                $res_number = mysqli_query($connect, $check_dup_number);
+
+                if(mysqli_num_rows($res) > 0){
+
+                    header('location: user-register?email=exist');
+                    exit();
+
                 }
+                
+                if(mysqli_num_rows($res_number) > 0){
+
+                    header('location: user-register?phone_number=exist');
+                    exit();
+
+                }
+
+                    //$salted_pass = password_hash($var_password, PASSWORD_BCRYPT);
+                    $salted_pass = md5($var_password);
+
+                    if($var_password != $var_cfrmpassword) {
+                        echo " <script> 
+                                    alert('Password you have entered is not matched with Confirm Password, Please try again !'); 
+                                </script> "; 
+                    } else {
+                        
+                        $query_user_register = mysqli_query($connect,"INSERT INTO user_acc(email, password, phone_number) VALUES ('$var_email', '$salted_pass', '$var_contact')");
+                    
+                            echo " <script> 
+                                        location.href = 'user-login.php';
+                                    </script> ";
+                    }
+                
             }
         ?>
 </html>

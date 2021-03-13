@@ -68,7 +68,7 @@
         <body style="background-color: #E4F6E6">
                 
             <?php
-                include("navbar.html");
+                include("navbar.php");
             ?>
 
             <?php
@@ -94,7 +94,25 @@
                                 
                                 <div class="form-group">       
                                     <label for="card-dish-edit-menu">Dish</label>
-                                    <input type="text" class="form-control" id="card-dish-edit-menu" name="dish_menu_detail" required value="<?php echo $row["dish_name"] ?>">
+                                    <input type="text" class="form-control" id="card-dish-edit-menu" name="dish_menu_detail" value="<?php echo $row["dish_name"] ?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="card-permissible-edit-menu">Permissible?</label>
+                                    <select class="form-control" id="card-permissible-edit-menu" name="permissible_menu_detail">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="card-type-edit-menu">Type</label>
+                                    <select class="form-control" id="card-type-edit-menu" name="type_menu_detail">
+                                        <option value="Malaysian">Malaysian Cuisine</option>
+                                        <option value="Japanese">Japanese Cuisine</option>
+                                        <option value="Korean">Korean Cuisine</option>
+                                        <option value="Thailand">Thailand Cuisine</option>
+                                    </select>
                                 </div>
 
                                 <!--coming soon -->
@@ -115,19 +133,22 @@
                                     });
                                 </script>
 
+
                                 <div class="form-group">
                                     <label for="card-desc-edit-menu">Description</label>
-                                    <textarea class="form-control" id="card-desc-edit-menu" rows="3" name="desc_menu_detail" required value="<?php echo $row["description"] ?>"></textarea>
+                                    <textarea class="form-control" id="card-desc-edit-menu" rows="3" name="desc_menu_detail" value="<?php echo $row["description"] ?>"> 
+                                        <?php echo $row['description'] ?> 
+                                    </textarea>
                                 </div>
-
+                                
                                 <div class="form-group">       
                                     <label for="card-stock-edit-menu">Stock Quantity</label>
-                                    <input type="number" class="form-control" id="card-stock-edit-menu" name="qty_menu_detail" required value="<?php echo $row["stock_qty"] ?>">
+                                    <input type="number" class="form-control" id="card-stock-edit-menu" name="qty_menu_detail" value="<?php echo $row["stock_qty"] ?>">
                                 </div>
 
                                 <div class="form-group">       
                                     <label for="card-price-edit-menu">Unit Price</label>
-                                    <input type="number" class="form-control" id="card-price-edit-menu" name="price_menu_detail" required value="<?php echo $row["price"] ?>">
+                                    <input type="number" class="form-control" id="card-price-edit-menu" name="price_menu_detail" value="<?php echo $row["price"] ?>">
                                 </div>
 
                                 <button type="submit" class="btn btn-primary btn-block" id="card-button-edit-menu" name="submit_menu_detail">Update</a>
@@ -143,22 +164,20 @@
                     
                     //cloudinary
                     $var_dish_menu_detail = $_POST['dish_menu_detail'];
+                    $var_permissible_menu_type = $_POST['permissible_menu_detail'];
+                    $var_dish_menu_type = $_POST['type_menu_detail'];
                     //$var_image_menu_detail = $_POST['image_menu_detail'];
                     $var_desc_menu_detail = $_POST['desc_menu_detail'];
                     $var_qty_menu_detail = $_POST['qty_menu_detail'];
                     $var_price_menu_detail = $_POST['price_menu_detail'];
-
-                    if(!empty($var_dish_menu_detail) && !empty($var_desc_menu_detail) && !empty($var_qty_menu_detail) && !empty($var_price_menu_detail)) {
                 
-                        $query_menu_detail = mysqli_query($connect, "UPDATE menu SET dish_name = '$var_dish_menu_detail', price = '$var_price_menu_detail', 
-                                                                                     description = '$var_desc_menu_detail', stock_qty = '$var_qty_menu_detail' WHERE username = '$staff_username' AND id = '$id' ");
-                        echo " <script>
-                                    location.href = 'edit-menu-landing.php';
-                               </script> "; 
-
-                    } else {
-                        echo "Please fill in all the inputs!";
-                    }
+                    $query_menu_detail = mysqli_query($connect, "UPDATE menu SET dish_name = '$var_dish_menu_detail', price = '$var_price_menu_detail', 
+                                                                                 description = '$var_desc_menu_detail', stock_qty = '$var_qty_menu_detail', 
+                                                                                 cuisine = '$var_dish_menu_type', permissible = '$var_permissible_menu_type'
+                                                                                 WHERE username = '$staff_username' AND id = '$id' ");
+                    echo " <script>
+                                location.href = 'edit-menu-landing.php';
+                           </script> "; 
                 }
 
             ?>

@@ -2,7 +2,7 @@
 
 //in line 329, file user-login.php, thats the issue, db-connect is called suddenly
 require 'db-connect.php';
-
+ob_start();
 /*
 if(isset($_SESSION['login_id'])){
     header('Location: home.php');
@@ -19,7 +19,8 @@ $client->setClientId('981967059646-u56d1fku9i52fb53rb9o7t6deav37ddq.apps.googleu
 // Enter your Client Secrect
 $client->setClientSecret('_TTBH-saxhTlvSHZVt-COrHw');
 // Enter the Redirect URL
-$client->setRedirectUri('https://rex-foodipedia-fyp.herokuapp.com/user-login.php');
+//$client->setRedirectUri('https://rex-foodipedia-fyp.herokuapp.com/user-login.php');
+$client->setRedirectUri('http://localhost/hddocs/rex-foodpedia-FYP/user-login.php');
 
 // Adding those scopes which we want to get (email & profile Information)
 $client->addScope("email");
@@ -45,11 +46,12 @@ if(isset($_GET['code'])):
         $profile_pic = mysqli_real_escape_string($db_connection, $google_account_info->picture);
 
         // checking user already exists or not
-        $get_user = mysqli_query($db_connection, "SELECT `google_id` FROM `user_acc` WHERE `google_id`='$id'");
+        $get_user = mysqli_query($db_connection, "SELECT `google_id`  FROM `user_acc` WHERE `google_id`='$id'");
         if(mysqli_num_rows($get_user) > 0){
 
-            $_SESSION['login_id'] = $id; 
-            header('Location: menu.php');
+
+            $_SESSION['google_id'] = $id; ;
+            header('Location: menu');
             exit;
 
         }
@@ -59,8 +61,8 @@ if(isset($_GET['code'])):
             $insert = mysqli_query($db_connection, "INSERT INTO `user_acc`(`google_id`,`name`,`email`,`profile_image`) VALUES('$id','$full_name','$email','$profile_pic')");
 
             if($insert){
-                $_SESSION['login_id'] = $id; 
-                header('Location: menu.php');
+                $_SESSION['google_id'] = $id; 
+                header('Location: menu');
                 exit;
             }
             else{
@@ -71,7 +73,7 @@ if(isset($_GET['code'])):
 
     }
     else{
-        header('Location: login.php');
+        header('Location: user-login.php');
         exit;
     }
     
@@ -262,7 +264,7 @@ else:
     <body style="background-color: #e8ded2;">
         
         <?php
-            include("nav.html");
+            include("nav.php");
         ?>
 
         <div class = "container">

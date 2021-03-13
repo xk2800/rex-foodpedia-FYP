@@ -3,6 +3,8 @@
 <?php
     include "../db-connect.php";
     //session_start();
+    ob_start();
+    $_SESSION['staffuname'];
 ?>
     <html>
         <head> 
@@ -60,20 +62,22 @@
         <body style="background-color: #E4F6E6">
 
             <?php
-                include("navbar.html");
+                include("navbar.php");
             ?>
 
             <div class="container">
                 <table class="table table-hover" >
                     <thead>
                         <tr id="form-title-edit">
-                            <th colspan="7" scope="col" height="auto">Edit Food Menu</th>
+                            <th colspan="9" scope="col" height="auto">Edit Food Menu</th>
                         </tr>   
                         
                         <tr id="form-header-edit">
                             <th scope="col">#ID</th>
                             <th scope="col">Dish</th>
+                            <th scope="col">Permissible?</th>
                             <th scope="col">Image</th>
+                            <th scope="col">Type</th>
                             <th scope="col">Desciption</th>
                             <th scope="col">Stock Quantity</th>
                             <th scope="col">Unit Price </th>
@@ -82,7 +86,7 @@
                     </thead>
 
                     <?php 
-                        //need to add session after this
+                      
                         $staff_username = $_SESSION['staffuname'];
 
                         $query_select_menu_landing = mysqli_query($connect, "SELECT * FROM menu WHERE username = '$staff_username' ");
@@ -98,7 +102,9 @@
                                 
                             $db_dish_name = $row['dish_name'];
                             $db_dish_id = $row['dish_id'];
+                            $db_dish_permissible = $row['permissible'];
                             $db_dish_price = $row['price'];
+                            $db_dish_type = $row['cuisine'];
                             $db_dish_desc = $row['description'];
                             $db_dish_qty = $row['stock_qty'];
                     ?>
@@ -109,7 +115,9 @@
                                 <tr>
                                     <th scope="row"><?php echo $db_dish_id; ?></th>
                                     <td><?php echo $db_dish_name; ?></td>
+                                    <td><?php echo $db_dish_permissible; ?></td>
                                     <td rowspan=""><img src="../img/dummy.jpg" alt="Girl in a jacket" style="width:20em; height:10em"></td>
+                                    <td><?php echo $db_dish_type; ?></td>
                                     <td><?php echo $db_dish_desc; ?></td>
                                     <td><?php echo $db_dish_qty; ?></td>
                                     <td><?php echo $db_dish_price; ?></td>

@@ -1,3 +1,33 @@
+<?php
+    //include "db-connect.php";
+    ob_start();
+
+    //error_reporting(E_ERROR | E_PARSE);
+
+    if(isset($_SESSION['google_id']) /*||  $_SESSION["email"] == true*/){
+
+        echo $id = $_SESSION['google_id']; 
+        $google = $_SESSION['google_id'];
+        $convert_google_id = mysqli_query($connect, "SELECT email FROM user_acc WHERE google_id='$id'");
+        $output_change = mysqli_fetch_assoc($convert_google_id);
+        
+        echo $output_change["email"];
+
+        if ($converted_google_output = $output_change["email"]){
+            $_SESSION['email'] = $output_change["email"];
+        }else if($var_email_login = $_SESSION['email']){
+            $_SESSION['email'];
+        }
+
+
+        if(!empty($_SESSION['email'])){
+            echo "has session";
+        }else{
+            echo "no session";
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,20 +109,45 @@
                             Account
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                            <a class="dropdown-item" href="order-history">My Orders</a>
-                            <a class="dropdown-item" href="user-profile">Profile</a>
+    <?php
+                if(!empty($_SESSION['email'])){
+                            echo '<a class="dropdown-item" href="order-history">My Orders</a>';
+                            echo '<a class="dropdown-item" href="user-profile">Profile</a>';
+                }
+    ?>
                             <!-- <a class="dropdown-item" href="loyalty-points">Loyalty Points</a> -->
-                            <a class="dropdown-item" href="user-rating">Feedback to Us</a>
+                            <a class="dropdown-item" href="user-rating.php">Feedback to Us</a>
                             <!--div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a-->
                         </div>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link text-center" href="shopping-cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link text-center" href="user-login.php">Login/Register</a>
-                    </li>
+    <?php
+                    if(!empty($_SESSION['email'])){
+                        echo '<li class="nav-item active">';
+                            echo '<a class="nav-link text-center" href="shopping-cart.php"><i class="fas fa-shopping-cart"></i> Cart</a>';
+                        echo '</li>';
+                    }else{
+                        echo "";
+                    }
+
+    ?>
+    <?php
+                //if($activesessh = 'yes'){
+                if(!empty($_SESSION['email'])){
+                    
+                    echo '<li class="nav-item active">';
+                        echo '<a class="nav-link text-center" href="logout">Logout</a>';
+                    echo '</li>';
+    
+                }else{
+    
+                    echo '<li class="nav-item active">';
+                        echo '<a class="nav-link text-center" href="user-login.php">Login/Register</a>';
+                    echo '</li>';
+    
+                }
+    ?>
+                    
                 </ul>
             </div>
         <!--/div-->

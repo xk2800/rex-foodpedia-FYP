@@ -75,7 +75,7 @@
         <body style="background-color: #e8ded2";>
 
             <?php
-                include("nav.html");
+                include("nav.php");
             ?>
 
             <?php
@@ -89,59 +89,69 @@
             ?>
 
             <div class="container">
-                <div class="card p-3 mb-5 rounded mx-auto" id="card-whole-profile">
-                    <div class="card-header" id="card-input-title">
-                        Account Details
-                    </div>
-                    <div class="card-body" >
-                        <form name="user-details-profile-form" method="POST" onsubmit="return alert('Data is updated successfully');">
-                            <div id="card-input-profile">
+                <section id="account-details">
+                    <div class="card p-3 mb-5 rounded mx-auto" id="card-whole-profile">
+                        <div class="card-header" id="card-input-title">
+                            Account Details
+                        </div>
+                        <div class="card-body" >
+                            <form name="user-details-profile-form" method="POST" onsubmit="return alert('Data is updated successfully');">
+                                <div id="card-input-profile">
 
-                                    <div class="form-group pl-5 pb-3">
-                                        <i class="fa fa-envelope-open" aria-hidden="true"></i>
+                                        <div class="form-group pl-5 pb-3">
+                                            <i class="fa fa-envelope-open" aria-hidden="true"></i>
+                                            &ensp;
+                                            <label for="card-email-register">Email Address</label>
+                                            <input type="email" class="form-control" id="card-email-profile" name="email_profile" readonly value="<?php echo $row_table_1["email"]?>">
+                                        </div>
+
+                                        <div class="form-group pl-5 col-md-6 pb-3">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            &ensp;
+                                            <label for="card-email-register">Loyalty Points Balance</label>
+                                            <input type="email" class="form-control" id="card-email-profile" name="email_profile" readonly value="<?php echo $row_table_1["lpoints"]?>">
+                                        </div>
+
+                                        <div class="form-group col-md-6 pl-5 pb-3">
+                                            <i class="fa fa-user" aria-hidden="true"></i>
+                                            &ensp;
+                                            <label for="card-firstname-profile">Username</label>
+                                            <input type="text" class="form-control" id="card-firstname-profile" name="firstname_profile" value="<?php echo $row_table_1["name"]?>">
+                                        </div>
+
+                                    <div class="form-group col-md-6 ml-4 pb-3">
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
                                         &ensp;
-                                        <label for="card-email-register">Email Address</label>
-                                        <input type="email" class="form-control" id="card-email-profile" name="email_profile" readonly value="<?php echo $row_table_1["email"]?>">
+                                        <label for="card-contact-register">Contact Number  </label>
+                                        <input type="tel" class="form-control" id="card-contact-register" name="contact_profile" value="<?php echo $row_table_1["phone_number"]?>">
                                     </div>
+                                </div>
 
-                                    <div class="form-group col-md-6 pl-5 pb-3">
-                                        <i class="fa fa-user" aria-hidden="true"></i>
-                                        &ensp;
-                                        <label for="card-firstname-profile">Username</label>
-                                        <input type="text" class="form-control" id="card-firstname-profile" name="firstname_profile" value="<?php echo $row_table_1["name"]?>">
+                                <div id="card-profile-button">
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-secondary btn-block w-25 p-1" name="button_acc_details_profile">Save</button>
                                     </div>
-
-                                <div class="form-group col-md-6 ml-4 pb-3">
-                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                    &ensp;
-                                    <label for="card-contact-register">Contact Number  </label>
-                                    <input type="tel" class="form-control" id="card-contact-register" name="contact_profile" value="<?php echo $row_table_1["phone_number"]?>">
                                 </div>
-                            </div>
+                            </form>
+                        </div>
+                    </section>
 
-                            <div id="card-profile-button">
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-secondary btn-block w-25 p-1" name="button_acc_details_profile">Save</button>
-                                </div>
-                            </div>
-                        </form>
+                        <?php
+                            if(isset($_POST['button_acc_details_profile'])) {
+
+                                $var_firstname_profile = $_POST['firstname_profile'];
+                                $query_name_profile = mysqli_query($connect,"UPDATE user_acc SET name = '$var_firstname_profile' WHERE email = '$email'");
+
+                                $var_contact_profile = $_POST['contact_profile'];
+                                $query_name_profile = mysqli_query($connect,"UPDATE user_acc SET phone_number = '$var_contact_profile' WHERE email = '$email'");
+
+                                echo " <script> 
+                                        location.href = 'user-profile.php';
+                                    </script> ";
+                            }
+                        ?>
                     </div>
-
-                    <?php
-                        if(isset($_POST['button_acc_details_profile'])) {
-
-                            $var_firstname_profile = $_POST['firstname_profile'];
-                            $query_name_profile = mysqli_query($connect,"UPDATE user_acc SET name = '$var_firstname_profile' WHERE email = '$email'");
-
-                            $var_contact_profile = $_POST['contact_profile'];
-                            $query_name_profile = mysqli_query($connect,"UPDATE user_acc SET phone_number = '$var_contact_profile' WHERE email = '$email'");
-
-                            echo " <script> 
-                                    location.href = 'user-profile.php';
-                                   </script> ";
-                        }
-                    ?>
-                </div>
+                
 
                 <div class="card p-3 mb-5 rounded mx-auto" id="card-whole-profile">
                     <div class="card-header" id="card-input-title">
@@ -243,68 +253,70 @@
                         }
                     ?>
                 </div>
+                
+                <section id="delivery-address">
+                    <div class="card p-3 mb-5 rounded mx-auto" id="card-whole-profile">
+                        <div class="card-header" id="card-input-title">
+                            Manage Delivery Address
+                        </div>
+                        <div class="card-body">
+                            <form name="user_address_profile_form" method="POST" onsubmit="return alert('Details are updated successfuly');">
+                                <div id="card-input-profile">
+                                    <div class="form-group pl-5 pb-3 w-100">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        &nbsp;
+                                        <label for="card-address1-profile">Office</label>
+                                        <?php
+                                            $sql_office = mysqli_query($connect, "SELECT * FROM address WHERE label='Office' AND email='$email'");
+                                            $fetch_data_office = mysqli_fetch_assoc($sql_office);
+                                        ?>
+                                        <?php
+                                            $show_data_office = $fetch_data_office["user_address"];
+                                            if($show_data_office){
+                                        ?>
+                                                <input type="text" class="form-control" id="card-address1-profile" name="office_profile" value="<?php echo $show_data_office;?>">
+                                        <?php
+                                            } else {
+                                        ?>
+                                                <input type="text" class="form-control" id="card-address1-profile" name="office_profile" placeholder="No info found.">
+                                        <?php
+                                            }
+                                        ?>
+                                        <div id="card-profile-button">
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-secondary btn-block w-25 p-1" name="button_address_office_profile">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                <div class="card p-3 mb-5 rounded mx-auto" id="card-whole-profile">
-                    <div class="card-header" id="card-input-title">
-                        Manage Shipment Address
-                    </div>
-                    <div class="card-body">
-                        <form name="user_address_profile_form" method="POST" onsubmit="return alert('Details are updated successfuly');">
-                            <div id="card-input-profile">
-                                <div class="form-group pl-5 pb-3 w-100">
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                    &nbsp;
-                                    <label for="card-address1-profile">Office</label>
-                                    <?php
-                                        $sql_office = mysqli_query($connect, "SELECT * FROM address WHERE label='Office' AND email='$email'");
-                                        $fetch_data_office = mysqli_fetch_assoc($sql_office);
-                                    ?>
-                                    <?php
-                                        $show_data_office = $fetch_data_office["user_address"];
-                                        if($show_data_office){
-                                    ?>
-                                            <input type="text" class="form-control" id="card-address1-profile" name="office_profile" value="<?php echo $show_data_office;?>">
-                                    <?php
-                                        } else {
-                                    ?>
-                                            <input type="text" class="form-control" id="card-address1-profile" name="office_profile" placeholder="No info found.">
-                                    <?php
-                                        }
-                                    ?>
-                                    <div id="card-profile-button">
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-secondary btn-block w-25 p-1" name="button_address_office_profile">Save</button>
+                                    <div class="form-group pl-5 pb-3 w-100">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        &nbsp;
+                                        <label for="card-address2-profile">Home</label>
+                                        <?php
+                                            $sql_home = mysqli_query($connect, "SELECT * FROM address WHERE label='Home' AND email='$email'");
+                                            $fetch_data_home = mysqli_fetch_assoc($sql_home);
+                                        ?>
+                                        <input type="text" class="form-control" id="card-address2-profile" name="home_profile" 
+                                            value="<?php $show_data_home = $fetch_data_home["user_address"];
+                                                            
+                                                            if($show_data_home){
+                                                                echo $show_data_home;
+                                                            } else{
+                                                                echo "No info found.";
+                                                            }
+                                                    ?>">
+                                        <div id="card-profile-button">
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-secondary btn-block w-25 p-1" name="button_address_home_profile">Save</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="form-group pl-5 pb-3 w-100">
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                    &nbsp;
-                                    <label for="card-address2-profile">Home</label>
-                                    <?php
-                                        $sql_home = mysqli_query($connect, "SELECT * FROM address WHERE label='Home' AND email='$email'");
-                                        $fetch_data_home = mysqli_fetch_assoc($sql_home);
-                                    ?>
-                                    <input type="text" class="form-control" id="card-address2-profile" name="home_profile" 
-                                           value="<?php $show_data_home = $fetch_data_home["user_address"];
-                                                        
-                                                        if($show_data_home){
-                                                            echo $show_data_home;
-                                                        } else{
-                                                            echo "No info found.";
-                                                        }
-                                                  ?>">
-                                    <div id="card-profile-button">
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-secondary btn-block w-25 p-1" name="button_address_home_profile">Save</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                </section>
 
                 <?php
                         if(isset($_POST['button_address_office_profile'])) {

@@ -58,7 +58,7 @@
         <body style="background-color: #e8ded2;">
             
             <?php
-                include("nav.html"); 
+                include("nav.php"); 
             ?>
 
             <?php 

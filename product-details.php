@@ -118,7 +118,7 @@
 
 <!-- PHP-->
     <?php
-        include("nav.html");
+        include("nav.php");
     ?>
 <!--PHP-->
 

@@ -75,7 +75,7 @@
 <body>
 
 <?php
-        include("navbar.html");
+        include("navbar.php");
 ?>
 
 <?php

@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+body{
+    background-color: #e8ded2;
+    color: black;
+    text-align: center;
+}
+
+h1{
+    font-family: 'Lexend Deca', sans-serif;;
+    font-size: 4em;
+}
+
+#error, #info{
+    /*font-weight: bold;*/
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2em;
+}
+
+img{
+    width: 30%;
+}
+
+#sendingbtn{
+    background-color:#a3d2ca;
+    font-family: 'Bangers', cursive;
+    font-size: 20px;
+}
+
+#sendingbtn:hover{
+    background-color:#056676;
+    color: white;
+}
+
+@import url(http://weloveiconfonts.com/api/?family=typicons);
+
+
+
+.btn-send {
+  display: block;
+  margin: 5% auto;
+  font-family: 'Arial';
+  font-size: 20px;
+  overflow: hidden;
+  color: #fff;
+  border-radius: 7px;
+  line-height: 20px;
+  padding: 15px 30px 15px 50px;
+  position: relative;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.btn-send:before {
+  position: absolute;
+  left: 15px;
+  top: 18px;
+  font-size: 24px;
+  line-height: 20px;
+  color: #FFFFFF;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.icon-mail:before {
+  font-family: 'typicons';
+  content: "[";
+}
+
+.btn-success {
+	color: transparent;
+}
+
+.btn-success:before {
+	content: "g";
+  -webkit-animation: slideInRight 0.5s;
+	-moz-animation: slideInRight 0.5s;
+	animation: slideInRight 0.5s;
+}
+
+.btn-success:after {
+   position: absolute;
+	z-index: 1;
+	color: #fff;
+	left: 50px;
+	content: "Sent!";
+	-webkit-animation: slideInRight 0.5s;
+	-moz-animation: slideInRight 0.5s;
+	animation: slideInRight 0.5s;
+}
+
+.orange {
+  border: 3px solid #d19d45;
+  background: #efba64;
+}
+
+.orange:hover {
+  background: #d19d45;
+}
+
+.green {
+  border: 3px solid #3BAA71;
+  background: #3CB878;
+}
+
+.green:hover {
+  background: #3BAA71;
+}
+
+.yellow {
+  border: 3px solid #e0e06d;
+  background: #f2f291;
+}
+
+.yellow:hover {
+  background: #e0e06d;
+}
+
+.red {
+  border: 3px solid #d36e6e;
+  background: #ea8181;
+}
+
+.red:hover {
+  background: #d36e6e;
+}
+
+.blue {
+  border: 3px solid #6c9ddd;
+  background: #82b2ed;
+}
+
+.blue:hover {
+  background: #6c9ddd;
+}
+
+.purple {
+  border: 3px solid #a46ed1;
+  background: #bf8bed;
+}
+
+.purple:hover {
+  background: #a46ed1;
+}
+
+@-webkit-keyframes slideInRight {
+	0% {
+		-webkit-transform: translateX(100%);
+		opacity: 0;
+	}
+	100% { 
+		opacity: 1;
+		-webkit-transform: translateX(0);
+	}
+}
+
+@-moz-keyframes slideInRight {
+	0% {
+		-moz-transform: translateX(100%);
+		opacity: 0;
+	}
+	100% { 
+		opacity: 1;
+		-moz-transform: translateX(0);
+	}
+}
+
+@keyframes slideInRight {
+	0% {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+	100% { 
+		opacity: 1;
+		transform: translateX(0);
+	}
+}

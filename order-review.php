@@ -21,7 +21,7 @@
 <body>
 
 <?php
-        include("nav.html");
+        include("nav.php");
 ?>
     
 </body>
