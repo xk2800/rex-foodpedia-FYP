@@ -139,8 +139,9 @@ if(isset($_POST["submit"])){
         <div id="error" style="color: #39FF14;"></div>
             <form method="post">
                 <p id="info">An e-mail will be sent to you with instructions on how to reset your password.</p>
-                <input type="text" name="email" placeholder="Enter your email">
-                <br><br>
+                <p id="info">Enter your email:<br>
+                <input type="text" name="email" placeholder="john@example.com"></p>
+                <br>
                 <button type="submit" name="submit" id="sendingbtn" class="btn btn-light btn-md rounded-pill">Get new password by email</button>
 
             </form>

@@ -26,6 +26,7 @@ img{
 #sendingbtn{
     background-color:#a3d2ca;
     font-family: 'Bangers', cursive;
+    font-size: 20px;
 }
 
 #sendingbtn:hover{
