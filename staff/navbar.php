@@ -2,6 +2,7 @@
 
     //include "../db-connect.php";
     //session_start();
+    //error_reporting(E_ERROR | E_PARSE);
     ob_start();
     $_SESSION['staffuname'];
 
@@ -67,7 +68,7 @@
     -->
     <nav class="sticky-top navbar navbar-expand-lg navbar-dark" id="navbar">
             <a class="navbar-brand" href="dashboard.php">
-                <img class="logo horizontal-logo" src="img/logo/logo.png" alt="REX Foodipedia logo">
+                <img class="logo horizontal-logo" src="../img/logo/logo.png" alt="REX Foodipedia logo">
             </a>
             <!-- Button for mobile -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,7 +115,7 @@
                         </div>
                     </li-->
                     <li class="nav-item active">
-                        <a class="nav-link text-center" href="view-transactions"><i class="fas fa-shopping-cart"></i>View Transactions</a>
+                        <a class="nav-link text-center" href="check-order"><i class="fas fa-shopping-cart"></i> View Transactions</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
