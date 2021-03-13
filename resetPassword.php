@@ -19,32 +19,27 @@
 
     <div class="container">
         <br><br><br>
-        <img src="../img/logo/LOGO standard.png" alt="REX Foodipedia Logo">
+        <img src="img/logo/logo.png" alt="REX Foodipedia Logo">
         <br><br>
         <h1>Reset Account Password</h1>
         <br>
-        <div id="error" style="color: yellow;"></div>
+        <div id="error" style="color: red; font-weight: bold;"></div>
     </div>
 <?php
 include ('db-connect.php');
 
     if (!isset($_GET["code"])) {
-        //echo ("Page can't be found! Err_msg: Can't get code");
-        echo '<script>document.getElementById("error").innerHTML = "Page unable to be found! <br>Err_msg: Unable to get code<br><br>"</script>';
+        echo '<script>document.getElementById("error").innerHTML = "Password reset unable to continue! <br>Err_msg: Unable to get password reset request<br><br>"</script>';
         exit();
 
     }
 
     $code = $_GET["code"];
-    $getEmailQuery = mysqli_query($connect, "SELECT email FROM resetpwduser WHERE code='$code'");
+    $getEmailQuery = mysqli_query($connect, "SELECT email FROM resetpwd WHERE code='$code'");
     if(mysqli_num_rows($getEmailQuery) == 0){
-        //echo ("Page can't be found! Err_msg: No code found in database.");
-        echo "<script>document.getElementById('error').innerHTML = 'Page unable to be found! <br>Err_msg: No code found in database.<br><br>'</script>";
+        echo "<script>document.getElementById('error').innerHTML = 'Password reset unable to continue! <br>Err_msg: No password reset request found in system.<br><br>'</script>";
         exit();
     }
-
-    $connects = mysqli_connect("3.0.146.123", "removal", "VIfYFM0xj6LSTRUe", "TCD-resume");
-
 
     if (isset($_POST["password"])) {
         $pw = $_POST["password"];
@@ -53,30 +48,18 @@ include ('db-connect.php');
         $row = mysqli_fetch_array($getEmailQuery);
         $email = $row["email"];
 
-        //salty
-        $salty = "t5)%@PH--6Eh%ZRC7HEgk+K,*<,nB73YeDJC`ZL!Ru%vQ#U]c<Fp::5bs:4<37N>+t73(:MpynRv3Ps8bm";
-
-        //salty pwd
-        $saltypwd = $salty.$pwdd;
-
-        $query = mysqli_query($connect, "UPDATE acc SET password='$saltypwd' WHERE email='$email'");
+        $query = mysqli_query($connect, "UPDATE user_acc SET password='$pwdd' WHERE email='$email'");
 
         if ($query) {
-            $query = mysqli_query($connects, "DELETE FROM resetpwduser WHERE code='$code'");
+            $query = mysqli_query($connects, "DELETE FROM resetpwd WHERE code='$code'");
             
-            //if($remove){
-                //echo ("Password has been updated!");
-                echo '<script>document.getElementById("error").innerHTML = "Password has been updated!<br><br>"</script>';
-            //}else{
+            echo '<script>document.getElementById("error").innerHTML = "Password has been updated!<br><br>You may try to login again."</script>';
             exit();
-            //}
         } else {
-            //echo ("Password update failed! Err_msg: Unable to delete code & update password.");
-            echo '<script>document.getElementById("error").innerHTML = "Password update failed! <br>Err_msg: Unable to delete code & update password.<br><br>"</script>';
+            echo '<script>document.getElementById("error").innerHTML = "Password update failed! <br>Err_msg: Unable to update password.<br><br>"</script>';
         }
     } 
 ?>
-
 
     <div class="container">
     <div id="error" style="color: #39FF14;"></div>
@@ -84,7 +67,7 @@ include ('db-connect.php');
             <p id="info">Enter your new password:</p>
                 <input type="password" name="password" placeholder="New password">
                 <br><br>
-                <input type="submit" name="submit" value="Update Password">
+                <input type="submit" name="submit" value="Update Password" id="sendingbtn" class="btn btn-light btn-md rounded-pill">
         </form>
     </div>
 

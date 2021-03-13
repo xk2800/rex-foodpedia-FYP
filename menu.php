@@ -144,6 +144,19 @@
         #grid > div{
             background-color:#e7ded2;
         }
+
+        .vendor-list-item{
+            display:inline-block;
+            width:22%;
+            /* float:left;
+            flex-direction:row;
+            width:25%;
+            background-color:blue;
+            column:3;
+            -webkit-columns:3;  */
+            margin:10px 10px 10px 10px;
+        }
+
 </style>
 
         
@@ -169,7 +182,7 @@
         <a type="button" href="#">Japanese Cuisine</a>
         <a type="button" href="https://www.youtube.com/">Indian Cuisine</a-->
         <!--div class="tab"-->
-        <button id="btns" class="tablinks" onclick="openCity(event, 'home')">Home</button>
+        <button id="btns" class="tablinks active" onclick="openCity(event, 'home')" >Home</button>
         <button id="btns" class="tablinks" onclick="openCity(event, 'Malaysian')">Malaysian Cuisine</button>
         <button id="btns" class="tablinks" onclick="openCity(event, 'Japanese')">Japanese Cuisine</button>
         <button id="btns" class="tablinks" onclick="openCity(event, 'Korean')">Korean Cuisine</button>
@@ -182,13 +195,14 @@
     
 
     <!-- Random Menu -->
-        <div id="home" class="tabcontent">
+        <div id="home" class="tabcontent active">
 
             <?php
                 //$menu_query = mysqli_query($connect, "SELECT * from menu WHERE email = '$email' ");
                 $menu_query_random = mysqli_query($connect, "SELECT * FROM menu ORDER BY RAND() LIMIT 4 ");
                 $menu_query = mysqli_query($connect,"SELECT * FROM menu");
-                $numrow = mysqli_num_rows($menu_query_random);
+                $numrowrandom = mysqli_num_rows($menu_query_random);
+                $numrow = mysqli_num_rows($menu_query);
             ?>
                             <div class="container">
                                 <p>Random Picks</p>
@@ -203,7 +217,7 @@
                                                    
 
                                                     <?php 
-                                                        if($numrow != 0)
+                                                        if($numrowrandom != 0)
                                                         {
                                                             while($row = mysqli_fetch_assoc($menu_query_random))
                                                             {
@@ -237,77 +251,33 @@
             <div class="container">
 
                 <p>Recommended Restaurants</p>
-                <hr>
-
-                    
-                                        
-                        <!-- <div class="row"> -->
-                            <!-- <div class="column" style="float:left;"> -->
-                                        <div id="grid" class="container" style="display:flex; flex-direction:row; width:100%;">
-
-                                            <?php 
-                                                if($numrow != 0)
-                                                { 
-                                                    // $numrow++;
-                                                    while($row = mysqli_fetch_assoc($menu_query))
-                                                    {
-                                                        $db_dish_name = $row['dish_name'];
-                                                        $db_dish_description = $row['description'];
-                                                        $db_dish_price = $row['price'];
-
-                                                        // while($row= 4)
-                                                        // {
-                                                        //     echo '<div class="row">';
-                                                        
-                                                            
-                                                ?>
-                                                
-                                                <?php 
-                                                    // $numOfCols = 4;
-                                                    // $rowCount = 0;
-                                                    // $bootstrapColWidth = 12 / $numOfCols;
-                                                ?>
-                                            
-                                                    <?php
-                                                    // foreach($row as $rows)
-                                                    // {
-                                                    ?>
-                                            
-                                                            <div id="item" style="width:50%;">
-                                                                <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
-                                                                    <img class="card-img-top" src="img/food1.jpg" style="width:100%">
-                                                                
-                                                                <div style="margin:10px 0 0 0; text-decoration:none;">
-                                                                    <p class="card-title"><?php echo $db_dish_name ?></p>
-                                                                    <p class="card-text"><b>RM <?php echo $db_dish_price?></b></p>
-                                                                </div></a>
-                                                            </div>
-                                                        <!-- </div> -->
-
-                                                            <?php 
-                                                            // $rowCount++;
-                                                            // if($rowCount % $numOfCols == 2)
-                                                            //             {
-                                                            //                 echo '</div><div class="container" ';
-                                                            //                 $rowCount =0;
-
-                                                                }
-                                                            }
-                                                                // if($numrow % 4 == 1)
-                                                                // {
-                                                                //echo '</div>';
-                                                                // }
-                                                            // }
-                                                        // }
-                                                        ?> 
-                                            </div> 
-                                <!-- </div> -->
-                            <!-- </div> -->
-
-                    <!-- </div>  -->
-            </div>
-            <!-- Menu Item 2nd row End -->
-            </div>
+                <hr>                    
+                        <ul class="vendor-list" style="width:100%;">
+                            <?php 
+                            if($numrow != 0)
+                            {
+                                while($row = mysqli_fetch_assoc($menu_query))
+                                {
+                                    $db_dish_name = $row['dish_name'];
+                                    $db_dish_description = $row['description'];
+                                    $db_dish_price = $row['price'];
+                            ?>
+                           
+                                    
+                                        <li class="vendor-list-item">
+                                           
+                                                    <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
+                                                        <img src="img/food1.jpg" style="width:100%">
+                                                        <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
+                                                    </a>
+                                        </li>
+                            <?php
+                                    }
+                                }
+                            ?>
+                        </ul>           
+                </div>
+        </div>
 
     <div id="Malaysian" class="tabcontent">
         <?php
@@ -316,32 +286,33 @@
             $numrow = mysqli_num_rows($menu_query_malaysian);
         ?>
 
-        <div id="grid" class="container" style="display:flex; flex-direction:row; width:100%;">
+        <div class="container" style="display:flex; flex-direction:row; width:100%;">
 
-                                            <?php 
-                                                if($numrow != 0)
-                                                { 
-                                                    while($row = mysqli_fetch_assoc($menu_query_malaysian))
-                                                    {
-                                                        $db_dish_name = $row['dish_name'];
-                                                        $db_dish_description = $row['description'];
-                                                        $db_dish_price = $row['price'];
-                                                ?>
-                                                            <div id="item" style="width:50%;">
-                                                                <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
-                                                                    <img class="card-img-top" src="img/food1.jpg" style="width:100%">
-                                                                
-                                                                <div style="margin:10px 0 0 0; text-decoration:none;">
-                                                                    <p class="card-title"><?php echo $db_dish_name ?></p>
-                                                                    <p class="card-text"><b>RM <?php echo $db_dish_price?></b></p>
-                                                                </div></a>
-                                                            </div>
-
-                                                            <?php 
-                                                                }
-                                                            }
-                                                        ?> 
-                                            </div> 
+            <ul class="vendor-list" style="width:100%;">
+                            <?php 
+                            if($numrow != 0)
+                            {
+                                while($row = mysqli_fetch_assoc($menu_query_malaysian))
+                                {
+                                    $db_dish_name = $row['dish_name'];
+                                    $db_dish_description = $row['description'];
+                                    $db_dish_price = $row['price'];
+                            ?>
+                           
+                                    
+                                        <li class="vendor-list-item">
+                                           
+                                                    <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
+                                                        <img src="img/food1.jpg" style="width:100%">
+                                                        <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
+                                                    </a>
+                                        </li>
+                            <?php
+                                    }
+                                }
+                            ?>
+                        </ul>    
+                            </div>  
 
     </div>
 
@@ -352,33 +323,32 @@
             $numrow = mysqli_num_rows($menu_query_japanese);
         ?>
 
-        <div id="grid" class="container" style="display:flex; flex-direction:row; width:100%;">
+        <div class="container" style="display:flex; flex-direction:row; width:100%;">
 
-                                            <?php 
-                                                if($numrow != 0)
-                                                { 
-                                                    while($row = mysqli_fetch_assoc($menu_query_japanese))
-                                                    {
-                                                        $db_dish_name = $row['dish_name'];
-                                                        $db_dish_description = $row['description'];
-                                                        $db_dish_price = $row['price'];
-                                                ?>
-                                                            <div id="item" style="width:50%;">
-                                                                <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
-                                                                    <img class="card-img-top" src="img/food1.jpg" style="width:100%">
-                                                                
-                                                                <div style="margin:10px 0 0 0; text-decoration:none;">
-                                                                    <p class="card-title"><?php echo $db_dish_name ?></p>
-                                                                    <p class="card-text"><b>RM <?php echo $db_dish_price?></b></p>
-                                                                </div></a>
-                                                            </div>
-
-                                                            <?php 
-                                                                }
-                                                            }
-                                                        ?> 
-                                            </div> 
-
+        <ul class="vendor-list" style="width:100%;">
+                            <?php 
+                            if($numrow != 0)
+                            {
+                                while($row = mysqli_fetch_assoc($menu_query_japanese))
+                                {
+                                    $db_dish_name = $row['dish_name'];
+                                    $db_dish_description = $row['description'];
+                                    $db_dish_price = $row['price'];
+                            ?>
+                           
+                                    
+                                        <li class="vendor-list-item">
+                                                    <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
+                                                        <img src="img/food1.jpg" style="width:100%">
+                                                        <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
+                                                    </a>
+                                        </li>
+                            <?php
+                                    }
+                                }
+                            ?>
+            </ul>      
+        </div>
     </div>
 
     <div id="Korean" class="tabcontent">
@@ -389,31 +359,31 @@
                 $numrow = mysqli_num_rows($menu_query_korean);
         ?>
 
-        <div id="grid" class="container" style="display:flex; flex-direction:row; width:100%;">
+        <div class="container" style="display:flex; flex-direction:row; width:100%;">
 
-                                            <?php 
-                                                if($numrow != 0)
-                                                { 
-                                                    while($row = mysqli_fetch_assoc($menu_query_korean))
-                                                    {
-                                                        $db_dish_name = $row['dish_name'];
-                                                        $db_dish_description = $row['description'];
-                                                        $db_dish_price = $row['price'];
-                                                ?>
-                                                            <div id="item" style="width:50%;">
-                                                                <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
-                                                                    <img class="card-img-top" src="img/food1.jpg" style="width:100%">
-                                                                
-                                                                <div style="margin:10px 0 0 0; text-decoration:none;">
-                                                                    <p class="card-title"><?php echo $db_dish_name ?></p>
-                                                                    <p class="card-text"><b>RM <?php echo $db_dish_price?></b></p>
-                                                                </div></a>
-                                                            </div>
-
-                                                            <?php 
-                                                                }
-                                                            }
-                                                        ?> 
+        <ul class="vendor-list" style="width:100%;">
+                            <?php 
+                            if($numrow != 0)
+                            {
+                                while($row = mysqli_fetch_assoc($menu_query_korean))
+                                {
+                                    $db_dish_name = $row['dish_name'];
+                                    $db_dish_description = $row['description'];
+                                    $db_dish_price = $row['price'];
+                            ?>
+                           
+                                    
+                                        <li class="vendor-list-item">
+                                                    <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
+                                                        <img src="img/food1.jpg" style="width:100%">
+                                                        <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
+                                                    </a>
+                                        </li>
+                            <?php
+                                    }
+                                }
+                            ?>
+            </ul>      
                                             </div> 
 
     </div>
@@ -426,32 +396,32 @@
             $numrow = mysqli_num_rows($menu_query_thailand);
         ?>
 
-        <div id="grid" class="container" style="display:flex; flex-direction:row; width:100%;">
+            <div class="container" style="display:flex; flex-direction:row; width:100%;">
 
-                                            <?php 
-                                                if($numrow != 0)
-                                                { 
-                                                    while($row = mysqli_fetch_assoc($menu_query_thailand))
-                                                    {
-                                                        $db_dish_name = $row['dish_name'];
-                                                        $db_dish_description = $row['description'];
-                                                        $db_dish_price = $row['price'];
-                                                ?>
-                                                            <div id="item" style="width:50%;">
-                                                                <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
-                                                                    <img class="card-img-top" src="img/food1.jpg" style="width:100%">
-                                                                
-                                                                <div style="margin:10px 0 0 0; text-decoration:none;">
-                                                                    <p class="card-title"><?php echo $db_dish_name ?></p>
-                                                                    <p class="card-text"><b>RM <?php echo $db_dish_price?></b></p>
-                                                                </div></a>
-                                                            </div>
-
-                                                            <?php 
-                                                                }
-                                                            }
-                                                        ?> 
-                                            </div> 
+            <ul class="vendor-list" style="width:100%;">
+                            <?php 
+                            if($numrow != 0)
+                            {
+                                while($row = mysqli_fetch_assoc($menu_query_thailand))
+                                {
+                                    $db_dish_name = $row['dish_name'];
+                                    $db_dish_description = $row['description'];
+                                    $db_dish_price = $row['price'];
+                            ?>
+                           
+                                    
+                                        <li class="vendor-list-item">
+                                                    <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
+                                                        <img src="img/food1.jpg" style="width:100%">
+                                                        <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
+                                                    </a>
+                                        </li>
+                            <?php
+                                    }
+                                }
+                            ?>
+            </ul>      
+</div>
 
     </div>
 
