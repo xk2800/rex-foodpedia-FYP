@@ -126,7 +126,7 @@
         $email = $_SESSION["email"];
         
         $product_details_query = mysqli_query($connect, "SELECT * FROM menu WHERE id = '$id'");
-        $display_other_menu = mysqli_query($connect,"SELECT * FROM menu LIMIT 4");
+        $display_other_menu = mysqli_query($connect,"SELECT * FROM menu ORDER BY RAND() LIMIT 4");
         $numrow = mysqli_num_rows($product_details_query);
     ?>
 

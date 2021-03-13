@@ -111,7 +111,7 @@
                                         <input type="hidden" class="pprice" value="<?php echo $row['dish_price']?>"> <!-- HIDDEN PRICE -->
                                                     
 
-                                        <input type="text" class="form-control" id="quantity" value="<?php echo $db_dish_qty;?>">
+                                        <!-- <input type="text" class="form-control" id="quantity" value="<?php echo $db_dish_qty;?>"> -->
                                         </td>
 
 
