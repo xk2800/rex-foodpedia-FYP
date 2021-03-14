@@ -1,7 +1,7 @@
 <?php
     //session_start();
     include("db-connect.php");
-    //error_reporting(E_ERROR | E_PARSE);
+    error_reporting(E_ERROR | E_PARSE);
     /**
      * using if else statement for homepage
      */

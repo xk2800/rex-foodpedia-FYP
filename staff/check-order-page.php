@@ -139,7 +139,7 @@
                         </tr>
                     </thead>
                             <?php
-                                $staff_username = $_SESSION['staffuname'];
+                                //$staff_username = $_SESSION['staffuname'];
 
                                 $check_order_query = mysqli_query($connect, "SELECT * FROM order_rec");
                                 $numrow = mysqli_num_rows($check_order_query);
