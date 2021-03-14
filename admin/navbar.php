@@ -10,9 +10,9 @@
         
     }
 
-    echo "<br><br>JACK";
-    echo $admin_username1["username"];
-    echo "JACK<br><br>";
+    //echo "<br><br>JACK";
+    //echo $admin_username1["username"];
+    //echo "JACK<br><br>";
     //echo $_SESSION['hashed'];
 
     //echo $cash;
