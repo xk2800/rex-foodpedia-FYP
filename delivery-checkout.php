@@ -186,7 +186,7 @@
                     ?>
                                     <span id="title">Delivery Address:</span>
                                     <br>
-                                    <a href="user-profile.php" id="addinfo">+ Add Address</a>
+                                    <a href="user-profile" id="addinfo">+ Add Address</a>
                                 <div class="col-lg-12 col-md-12 col-sm-12">
 
                                     <div class="radio-toolbar">
@@ -295,7 +295,7 @@
                         </span>
                         <span id="payment-title">Personal Details</span>
                         <br>
-                        <a href="" id="addinfo">+ Edit Personal Info</a>
+                        <a href="user-profile#account-details" id="addinfo">+ Edit Personal Info</a>
                         <br>
                         <div class="container">
                             <span
@@ -326,6 +326,7 @@
                         <!--col-lg-12 col-md-2 -->
                         <div class="container">
                             <div class="col-lg-11 col-md-12 col-sm-12">
+                                <a href="payment-gateway" id="addinfo">+ Add Card Details</a><br><br>
 
                                 <div class="radio-toolbar">
                                     <span class="COD_payment">

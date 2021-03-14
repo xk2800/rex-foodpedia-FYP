@@ -90,23 +90,16 @@
             
         }
     
-        echo $admin_username1["username"];
+        
     
         $admin_username = $admin_username1["username"];
     
-        echo "<br>";
-    
-        echo $admin_username;
-    
-    
-        if(!isset($_REQUEST["access"])){
-            //header("Location:index");
-        }
 ?>
 
 <?php
     //$admin_username = $_SESSION['adminuname'];
-    echo $admin_username;
+    //echo $admin_username;
+    echo "<br>";
     //onclick="javascript:option_drop();"
 
     $fullUrl ="https:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
