@@ -111,7 +111,7 @@
 <?php
                     $fullUrl ="https:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-                    if(strpos($fullUrl, "dish-id_duplicate") == true){
+                    if(strpos($fullUrl, "dish-id=duplicate") == true){
                         //echo '<script>document.getElementById("error").innerHTML = "<br><br>"</script>';
                         echo '<div class="container">
                                 <div class="alert alert-warning words" role="alert">
@@ -298,7 +298,7 @@
                     //$count = mysqli_num_rows($res);
 
                     if(mysqli_num_rows($res) > 0){
-                        header('location: add-product?dish-id_duplicate');
+                        header('location: add-product?dish-id=duplicate&access='.$name);
                         exit();
                     }
 
