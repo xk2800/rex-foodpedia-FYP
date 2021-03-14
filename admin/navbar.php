@@ -1,4 +1,25 @@
+<?php
+    //session_start();
+    //$cash = $name;
 
+    if(isset($_REQUEST["access"])){
+        $name = $_REQUEST["access"];
+
+        $result = mysqli_query($connect, "SELECT username from admin_acc WHERE hashed = '$name'");
+        $admin_username1 = mysqli_fetch_assoc($result);
+        
+    }
+
+    echo "<br><br>JACK";
+    echo $admin_username1["username"];
+    echo "JACK<br><br>";
+    //echo $_SESSION['hashed'];
+
+    //echo $cash;
+
+    $cash = $_REQUEST["access"];
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,16 +81,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto w-100 justify-content-end">
                     <li class="nav-item active">
-                        <a class="nav-link text-center" href="dashboard">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link text-center" href="dashboard?access=<?php echo $cash ?>">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Manage Accounts
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                            <a class="dropdown-item" href="add-staff.php">Add Staff</a>
-                            <a class="dropdown-item" href="add-admin.php">Add Admin</a>
-                            <a class="dropdown-item" href="edit-accounts">Edit Accounts</a>
+                            <a class="dropdown-item" href="add-staff?access=<?php echo $cash ?>">Add Staff</a>
+                            <a class="dropdown-item" href="add-admin?access=<?php echo $cash ?>">Add Admin</a>
+                            <a class="dropdown-item" href="edit-accounts?access=<?php echo $cash ?>">Edit Accounts</a>
                             <!--a class="dropdown-item" href="our-background">Our Background</a>
                             <a class="dropdown-item" href="faq">FAQ</a-->
                             <!--div class="dropdown-divider"></div>
@@ -81,8 +102,8 @@
                             Manage Customer Information
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                            <a class="dropdown-item" href="cus-status.php">Update Customer Account Status</a>
-                            <a class="dropdown-item" href="cus-points-landing.php">Update Customer Loyalty Points</a>
+                            <a class="dropdown-item" href="cus-status?access=<?php echo $cash ?>">Update Customer Account Status</a>
+                            <a class="dropdown-item" href="cus-points-landing?access=<?php echo $cash ?>">Update Customer Loyalty Points</a>
                             <!--a class="dropdown-item" href="our-background">Our Background</a>
                             <a class="dropdown-item" href="faq">FAQ</a-->
                             <!--div class="dropdown-divider"></div>
@@ -90,7 +111,7 @@
                         </div>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link text-center" href="logout.php">Logout</a>
+                        <a class="nav-link text-center" href="logout">Logout</a>
                     </li>
                 </ul>
             </div>

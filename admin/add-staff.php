@@ -5,7 +5,8 @@
     include "../db-connect.php"; 
     //session_start();
     ob_start();
-    echo $_SESSION['adminuname'];
+    //echo  $_SESSION['name'];
+
 ?>
     <html>
         <head>
@@ -80,6 +81,27 @@
                 
             <?php
                 include("navbar.php");
+
+                if(isset($_REQUEST["access"])){
+                    $name = $_REQUEST["access"];
+            
+                    $result = mysqli_query($connect, "SELECT username from admin_acc WHERE hashed = '$name'");
+                    $admin_username1 = mysqli_fetch_assoc($result);
+                    
+                }
+            
+                echo $admin_username1["username"];
+            
+                $admin_username = $admin_username1["username"];
+            
+                echo "<br>";
+            
+                echo $admin_username;
+            
+            
+                if(!isset($_REQUEST["access"])){
+                    //header("Location:index");
+                }
             ?>
 
             <?php
@@ -195,10 +217,7 @@
                         $query_add_staff = mysqli_query($connect, "INSERT INTO staff_acc(fname, staff_id, username, pwd, email) 
                         VALUES ('$var_staffname','$var_staffid','$var_staffuname','$salted_var_staffpassword','$var_staffemail')");
 
-                        echo "<script>
-                                    alert('Staff Added');
-                                    location.href = 'dashboard.php';
-                                </script>";
+                                header("location: dashboard?access=".$name);
 
                     } else {
                         echo "Please fill in all the inputs!";

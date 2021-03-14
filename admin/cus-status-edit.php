@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php 
+    ob_start();
       include("../db-connect.php");   
       $email = $_GET['email'];
 ?>
@@ -46,6 +47,27 @@
 
             <?php
                 include("navbar.php");
+
+                if(isset($_REQUEST["access"])){
+                    $name = $_REQUEST["access"];
+            
+                    $result = mysqli_query($connect, "SELECT username from admin_acc WHERE hashed = '$name'");
+                    $admin_username1 = mysqli_fetch_assoc($result);
+                    
+                }
+            
+                echo $admin_username1["username"];
+            
+                $admin_username = $admin_username1["username"];
+            
+                echo "<br>";
+            
+                echo $admin_username;
+            
+            
+                if(!isset($_REQUEST["access"])){
+                    //header("Location:index");
+                }
             ?>
 
             <?php 
@@ -103,7 +125,7 @@
                             </div>
 
                             <center><button type="submit" class="btn btn-primary btn-block w-75 " id="button-status-edit" name="btn_cus_edit">Save Account Status</button>
-                            <a href="cus-status.php" class="btn btn-secondary btn-block w-75 " id="button-status-edit-2">Cancel</a></center>
+                            <a href="cus-status.php?access=<?php echo $name ?>" class="btn btn-secondary btn-block w-75 " id="button-status-edit-2">Cancel</a></center>
 
                         </form>  
                     </div>`
@@ -118,9 +140,8 @@
                         $query_update_cus_status_edit = mysqli_query($connect, "UPDATE user_acc SET status = '$var_acc_cus_edit', category = '$var_category_cus_edit' WHERE email = '$email' ");
 
                         if($query_update_cus_status_edit) {
-                            echo " <script>
-                                    location.href = 'cus-status.php';
-                                   </script> ";
+                            //header("location: dashboard?access=".$admin_username);
+                            header("location: cus-status?access=".$name);
                         }
                     }
                 ?>
