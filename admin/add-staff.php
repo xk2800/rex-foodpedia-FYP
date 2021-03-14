@@ -13,7 +13,7 @@
 ?>
     <html>
         <head>
-            <title>Add Staff | REX Foodipedia</title>
+            <title>Add Staff | REX Foodipedia ADMIN</title>
 
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -92,19 +92,10 @@
                     $admin_username1 = mysqli_fetch_assoc($result);
                     
                 }
-            
-                echo $admin_username1["username"];
-            
+                        
                 $admin_username = $admin_username1["username"];
             
-                echo "<br>";
             
-                echo $admin_username;
-            
-            
-                if(!isset($_REQUEST["access"])){
-                    //header("Location:index");
-                }
             ?>
 
             <?php
@@ -201,6 +192,8 @@
 
                     $md_var_staffpassword = md5($var_staffpassword);
 
+                    $md_username = md5($var_staffuname);
+
                     //salt variable
                     $salt = "!2y$10*GJIZkOgbCNwTH5ji^JZ0mGev36Cj&2EKuRdLp#HP.crF.VQy751493147";
 
@@ -209,16 +202,9 @@
 
                     if(!empty($var_staffid) && !empty($var_staffname) && !empty($var_staffuname) && !empty($var_staffpassword) && !empty($var_staffemail)) {
                         
-                        //!empty($var_dish_menu_detail)
-                        
-                        //$session_dish_id = $_SESSION['dish_id'];
-                        
-                        //$session_dish_id = "F001";
-                        
-                        //harcode a temp dish_id session
 
-                        $query_add_staff = mysqli_query($connect, "INSERT INTO staff_acc(fname, staff_id, username, pwd, email) 
-                        VALUES ('$var_staffname','$var_staffid','$var_staffuname','$salted_var_staffpassword','$var_staffemail')");
+                        $query_add_staff = mysqli_query($connect, "INSERT INTO staff_acc(fname, staff_id, username, pwd, email, hashed) 
+                        VALUES ('$var_staffname','$var_staffid','$var_staffuname','$salted_var_staffpassword','$var_staffemail', '$md_username')");
 
                                 header("location: dashboard?access=".$name);
 

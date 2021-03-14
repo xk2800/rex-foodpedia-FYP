@@ -126,6 +126,7 @@
         include("nav.php");
         //$email = "xavierkhew00@gmail.com";
         $email = $_SESSION["email"];
+        //echo $email;
 ?>
 
     <br><br>
@@ -202,7 +203,7 @@ $fullUrl ="https:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                 <div class="personal-details">
 
                     <?php
-                                        $user_info = mysqli_query($connect, "SELECT * from user_acc"); //where email='$email'
+                                        $user_info = mysqli_query($connect, "SELECT * from user_acc where email='$email'");
                                         $u_i_o = mysqli_fetch_assoc($user_info);
                     ?>
                     <br>
