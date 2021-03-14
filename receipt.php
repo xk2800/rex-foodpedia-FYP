@@ -44,8 +44,8 @@
         $time = time();
         $actual_time = date('Y-m-d H:i:s', $time);
 
-        //$email              = $_SESSION['email'];
-        $email = "xavierkhew00@gmail.com";
+        $email              = $_SESSION['email'];
+        //$email = "xavierkhew00@gmail.com";
         echo $email;
 
 
