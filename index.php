@@ -122,15 +122,15 @@
         <!--OUR STORY-->
         <div data-aos="fade-right">
             <div class="slides"><p>Our Story<br>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            In these uncertain times where a pandemic is going on, people are now more often than not, shopping and making transactions online rather than face-to-face to avoid the spread of Covid-19. The implementation of this system will be able to do great for the community, as people can continue to make purchases online from the comfort of their own home.</p>
             </div>
         </div>
-        <!--HOW TO USE-->
-        <div data-aos="fade-left">
+        
+        <!-- <div data-aos="fade-left">
             <div class="slides"><p>How to Use<br>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
             </div>
-        </div>
+        </div> -->
         <!--FAQ-->
         <div data-aos="fade-right">
             <div class="slides"><p>FAQ<br>
