@@ -3,8 +3,11 @@
 
 <?php
 //WORKING - Xavier
-    //include "../db-connect.php";
+    include "../db-connect.php";
     ob_start();
+    /*if(!isset($_REQUEST["access"])){
+        header("Location:../admin/index");
+    }*/
 ?>
 
 <head>
@@ -25,8 +28,26 @@
     /* .tabledit-edit-button{
         display: none !important;
     } */
+    body{
+        background-color: ;
+    }
 </style>
 </head>
+<?php
+    /*if(isset($_REQUEST["access"])){
+        $name = $_REQUEST["access"];
+
+        $result = mysqli_query($connect, "SELECT username from staff_acc WHERE hashed = '$name'");
+        $staff_username1 = mysqli_fetch_assoc($result);
+        
+    }
+
+    //echo $staff_username1["username"];
+
+    $staff_username = $staff_username1["username"];*/
+
+
+?>
 
 <br><br><br>
     <div class="container">
@@ -45,7 +66,6 @@
                                 <th>Stock Quantity</th>
                                 <th>Unit Price</th>
                                 <th>Menu Availability</th>
-                                <th>Menu Set Random</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
