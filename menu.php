@@ -224,12 +224,14 @@
                                                                 $db_dish_name = $row['dish_name'];
                                                                 $db_dish_description = $row['description'];
                                                                 $db_dish_price = $row['price'];
+                                                                $db_dish_image = $row['cloudinary_link'];
                                                         ?>
 
                                                     
                                                         <div class="container" style="width:50%;">
                                                             <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
-                                                                <img src="img/food1.jpg" style="width:100%">
+                                                                <!-- <img src="img/food1.jpg" style="width:100%"> -->
+                                                                <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:100%">
                                                             
                                                             <div style="margin:10px 0 0 0; text-decoration:none;">
                                                                 <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>
@@ -261,13 +263,15 @@
                                     $db_dish_name = $row['dish_name'];
                                     $db_dish_description = $row['description'];
                                     $db_dish_price = $row['price'];
+                                    $db_dish_image = $row['cloudinary_link'];
                             ?>
                            
                                     
                                         <li class="vendor-list-item">
                                            
                                                     <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
-                                                        <img src="img/food1.jpg" style="width:100%">
+                                                        <!-- <img src="img/food1.jpg" style="width:100%"> -->
+                                                        <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:100%">
                                                         <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
                                                     </a>
                                         </li>
@@ -297,13 +301,15 @@
                                     $db_dish_name = $row['dish_name'];
                                     $db_dish_description = $row['description'];
                                     $db_dish_price = $row['price'];
+                                    $db_dish_image = $row['cloudinary_link'];
                             ?>
                            
                                     
                                         <li class="vendor-list-item">
                                            
                                                     <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
-                                                        <img src="img/food1.jpg" style="width:100%">
+                                                        <!-- <img src="img/food1.jpg" style="width:100%"> -->
+                                                        <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:100%">
                                                         <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
                                                     </a>
                                         </li>
@@ -334,12 +340,14 @@
                                     $db_dish_name = $row['dish_name'];
                                     $db_dish_description = $row['description'];
                                     $db_dish_price = $row['price'];
+                                    $db_dish_image = $row['cloudinary_link'];
                             ?>
                            
                                     
                                         <li class="vendor-list-item">
                                                     <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
-                                                        <img src="img/food1.jpg" style="width:100%">
+                                                        <!-- <img src="img/food1.jpg" style="width:100%"> -->
+                                                        <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:100%">
                                                         <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
                                                     </a>
                                         </li>
@@ -370,12 +378,14 @@
                                     $db_dish_name = $row['dish_name'];
                                     $db_dish_description = $row['description'];
                                     $db_dish_price = $row['price'];
+                                    $db_dish_image = $row['cloudinary_link'];
                             ?>
                            
                                     
                                         <li class="vendor-list-item">
                                                     <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
-                                                        <img src="img/food1.jpg" style="width:100%">
+                                                        <!-- <img src="img/food1.jpg" style="width:100%"> -->
+                                                        <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:100%">
                                                         <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
                                                     </a>
                                         </li>
@@ -407,12 +417,14 @@
                                     $db_dish_name = $row['dish_name'];
                                     $db_dish_description = $row['description'];
                                     $db_dish_price = $row['price'];
+                                    $db_dish_image = $row['cloudinary_link'];
                             ?>
                            
                                     
                                         <li class="vendor-list-item">
                                                     <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
-                                                        <img src="img/food1.jpg" style="width:100%">
+                                                        <!-- <img src="img/food1.jpg" style="width:100%"> -->
+                                                        <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:100%">
                                                         <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
                                                     </a>
                                         </li>
@@ -427,20 +439,23 @@
 
     <script>
         function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-}
+            
+            var i, tabcontent, tablinks;
 
-</script>
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
 
         <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   

@@ -142,6 +142,7 @@
             $db_dish_permissible = $row['permissible'];
             $db_dish_cuisine = $row['cuisine'];
             $db_dish_prep = $row['preparationTime'];
+            $db_dish_img = $row['cloudinary_link'];
         }
     ?>
     
@@ -152,7 +153,8 @@
                     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-interval="false">
                         <div class="carousel-inner">
                           <div class="carousel-item active">
-                            <img src="img/food1.jpg" class="d-block w-100" alt="slides" style="height:auto;width: auto;">
+                            <!-- <img src="img/food1.jpg" class="d-block w-100" alt="slides" style="height:auto;width: auto;"> -->
+                            <img src="<?php echo $db_dish_img ?>" alt="slides" class="d-block w-100" style="height:auto;width: auto;">
                           </div>
                         </div>
                     </div>
@@ -206,12 +208,14 @@
                                                                         $db_other_dish_name = $row['dish_name'];
                                                                         $db_other_dish_description = $row['description'];
                                                                         $db_other_dish_price = $row['price'];
+                                                                        $db_other_dish_img = $row['cloudinary_link'];
                                                                 ?>
 
                                                             
                                                                 <div class="container" style="width:50%;">
                                                                     <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
-                                                                        <img src="img/food1.jpg" style="width:100%">
+                                                                        <!-- <img src="img/food1.jpg" style="width:100%"> -->
+                                                                        <img src="<?php echo $db_dish_img ?>" alt="" class="images" style="width:100%">
                                                                     
                                                                     <div style="margin:10px 0 0 0; text-decoration:none;">
                                                                         <p><?php echo $db_other_dish_name ?> <br> <b>RM <?php echo $db_other_dish_price?></b></p>

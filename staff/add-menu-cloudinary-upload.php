@@ -77,7 +77,7 @@
 
     $url_cloud = cloudinary_url($files['remote']['public_id']);
 
-    $sql = mysqli_query($connect, "INSERT INTO cloudinary_test(cloudinary_link) VALUE ('$url_cloud')");
+    $sql = mysqli_query($connect, "INSERT INTO menu(cloudinary_link) VALUE ('$url_cloud')");
 
     if($sql){
         echo " <script>
