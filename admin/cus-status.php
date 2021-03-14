@@ -50,6 +50,27 @@
 
             <?php
                 include("navbar.php");
+
+                if(isset($_REQUEST["access"])){
+                    $name = $_REQUEST["access"];
+            
+                    $result = mysqli_query($connect, "SELECT username from admin_acc WHERE hashed = '$name'");
+                    $admin_username1 = mysqli_fetch_assoc($result);
+                    
+                }
+            
+                echo $admin_username1["username"];
+            
+                $admin_username = $admin_username1["username"];
+            
+                echo "<br>";
+            
+                echo $admin_username;
+            
+            
+                if(!isset($_REQUEST["access"])){
+                    //header("Location:index");
+                }
             ?>
 
             <div class="container">
@@ -103,8 +124,8 @@
                         if($page_no > 1) {
                             echo "<li style='padding-right: 30px;'><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=1'>
                                                                     <i class='fa fa-fast-backward' aria-hidden='true'></i>
-                                                                   </a> &emsp; 
-                                  </li>";
+                                                                    </a> &emsp; 
+                                </li>";
                         } 
                     ?>
                     <li style="padding-right: 30px;" <?php if($page_no <= 1) { echo "class='disabled'"; } ?> >
@@ -122,9 +143,9 @@
                     <?php if($page_no < $total_no_of_pages) { 
                                 echo "<li><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=$total_no_of_pages'>
                                             <i class='fa fa-step-forward' aria-hidden='true'></i>
-                                          </a> 
-                                      </li>"; 
-                          } 
+                                        </a> 
+                                        </li>"; 
+                    } 
                     ?>
                 </ul>
 
@@ -173,7 +194,7 @@
                                         <td><?php echo $db_status_cus_status_string; ?></td>
                                         <td><?php echo $db_category_cus_status_string; ?></td>
                                         <td>
-                                            <a href="cus-status-edit.php?email=<?php echo $row['email']; ?>">Edit</a>
+                                            <a href="cus-status-edit.php?access=<?php echo $name ?>&email=<?php echo $row['email']; ?>">Edit</a>
                                             &emsp;
                                             <a onclick="return confirm('Delete this record?')" href="cus-status-delete.php?email=<?php echo $row['email']; ?>">Delete</a>
                                         </td>
