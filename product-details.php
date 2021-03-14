@@ -184,7 +184,7 @@
                     </p>
 
                     <label>Quantity:</label>
-                    <input type="text" value="1" style="width:5%;" name="dish-quantity">
+                    <input type="number" value="1" style="width:5%;" name="dish-quantity">
                     <button type="submit" class="btn btn-default cart" name="add-to-cart">Add to cart</button>
 
                 </div>
