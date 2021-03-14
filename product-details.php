@@ -168,7 +168,7 @@
                 </div>
 
                 <div class="col-md-7">
-                    <h4 class="product-name" name="dish-name"><?php echo $db_dish_name; ?></h4>
+                    <h4 class="product-name" name="dish-name"><?php echo $row['dish_name'] ?></h4>
                     <p class="price" name="dish-price">RM <?php echo $db_dish_price; ?></p>
                     
 
