@@ -121,7 +121,7 @@
     <div class="container">
         <!--OUR STORY-->
         <div data-aos="fade-right">
-            <div class="slides"><p>Our Story<br>
+            <div class="slides"><p><b>Our Story</b><br>
             In these uncertain times where a pandemic is going on, people are now more often than not, shopping and making transactions online rather than face-to-face to avoid the spread of Covid-19. The implementation of this system will be able to do great for the community, as people can continue to make purchases online from the comfort of their own home.</p>
             </div>
         </div>
@@ -132,8 +132,8 @@
             </div>
         </div> -->
         <!--FAQ-->
-        <div data-aos="fade-right">
-            <div class="slides"><p>FAQ<br>
+        <div data-aos="fade-right" style="margin-top: 50px; margin-bottom: 50px;" >
+            <div class="slides" ><p><b>FAQ</b><br>
             <?php
                 //include("basic-faq.html");
                 include("homepage-elements/faq-front.html");
