@@ -163,7 +163,7 @@
     
     <div class="text-center">
         <h1>MENU</h1>
-        <hr style="width:15%;">
+        <hr style="width:15%; margin-left: 52em;">
     </div>
 
     <!-- Menu Nav Start-->
