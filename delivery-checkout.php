@@ -182,7 +182,7 @@
                     ?>
                                     <span id="title">Delivery Address:</span>
                                     <br>
-                                    <a href="" id="addinfo">+ Add Address</a>
+                                    <a href="user-profile.php" id="addinfo">+ Add Address</a>
                                 <div class="col-lg-12 col-md-12 col-sm-12">
 
                                     <div class="radio-toolbar">
