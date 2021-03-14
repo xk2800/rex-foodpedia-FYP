@@ -181,16 +181,36 @@
 
 echo "<br>".$email;
 
+
+//while($run_test_out = mysqli_fetch_assoc($run_test)){
+
+
+
     if(isset($_POST["submit_tacbtn"])){
         
         $tac    = $_POST["taccode"];
         $check  = '123456';
 
-        if($tac == $check){
-            //echo $del_pass_address."<br>";
-            header('location: receipt');
-        }else{
-            echo "Error";
+        $floored = floor($pay_transfer);
+
+        $select_loyalty_points = mysqli_query($connect, "SELECT * from user_acc WHERE email='$email'");
+        while($get_points = mysqli_fetch_assoc($select_loyalty_points)){
+            $read_points = $get_points["lpoints"];
+        }
+    
+        $final_points = $read_points + $floored;
+
+        $update_points = "UPDATE user_acc SET lpoints='$final_points' WHERE email='$email'";
+
+        if(mysqli_query($connect, $update_points)){
+            
+            if($tac == $check){
+                //echo $del_pass_address."<br>";
+                header('location: receipt');
+            }else{
+                echo "Error";
+            }
+
         }
 
         //echo "WORKING";

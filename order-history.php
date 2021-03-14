@@ -35,7 +35,7 @@
 
         // Create$email = "xavierkhew22@gmail.com";
         $email = $_SESSION['email'];
-        echo $email;
+        //echo $email;
 ?>
     <div class="whitespace"><br><br></div>
     <section id="orders">
