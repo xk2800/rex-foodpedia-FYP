@@ -55,7 +55,7 @@
          $receipt_id_check = $call_receipt_id ["receipt_id"];
          $number = $receipt_id_check;
          $numbers = sprintf('%07d',$number);
-        //$numbers="0000704";
+        //$numbers="0000050";
         //echo "<br>";
         //print $number;
 
@@ -97,31 +97,38 @@
         <br>
         <img src="img/logo/logo.png" alt="REX Foodipedia Logo" id="logo">
         <p id="hori-line"><hr></p>
-        <p id="receipt title"><b>RECEIPT</b></p>
-        <p id="send-type"><b><?php echo $delivery_type ?></b></p>
-<!-- **production changes to be made here -->
-        <p id="receipt_id"><b>Receipt Number:</b> <?php echo $numbers;?></p>
-        <p id="date"><b>Date:</b>
+        <div class="sidechange">
+            <p id="receipt title"><b>RECEIPT</b></p>
+            <p id="send-type"><b><?php echo $delivery_type ?></b></p>
+    <!-- **production changes to be made here -->
+            <p id="receipt_id"><b>Receipt Number:</b> <?php echo $numbers;?></p>
+            <p id="date"><b>Date:</b>
+        </div>
     <?php
                                         $date_db = $row ["date"];
                                         $output_date = date('M d, Y', strtotime(str_replace('-','/', $date_db)));
+    ?>
+        <div class="sidechange">
+    <?php
                                         echo $output_date;
     ?>
+        </div>
         </p>
         <p id="hori-line"><hr></p>
-        <p id="company-info"><b>From:</b> <?php echo $company_info ?></p>
-        <p id="cust-address">
-    <?php
-            if($delivery_type == 'Self Pick Up'){
-                echo "<b>Self Pick Up</b>";
-            }else if($delivery_type == 'Delivery'){
-                echo "<b>Delivery Address:</b>".$del_pass_address;
-            }else{
+        <div class="sidechange">
+            <p id="company-info"><b>From:</b> <?php echo $company_info ?></p>
+            <p id="cust-address">
+        <?php
+                if($delivery_type == 'Self Pick Up'){
+                    echo "<b>Self Pick Up</b>";
+                }else if($delivery_type == 'Delivery'){
+                    echo "<b>Delivery Address:</b>".$del_pass_address;
+                }else{
 
-            }
-    ?>
-            </p>
-
+                }
+        ?>
+                </p>
+        </div>
         <span class="items">
 
             <?php

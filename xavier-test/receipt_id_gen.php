@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
     include "../db-connect.php";
-    session_start();
+    //session_start();
 
 ?>
 <html lang="en">
@@ -13,7 +13,7 @@
 <body>
     <?php
 
-        $result = mysqli_query($connect, "SELECT * from transaction WHERE email = 'xavierkhew00@gmail.com' ORDER BY receipt_id DESC");
+        /*$result = mysqli_query($connect, "SELECT * from transaction WHERE email = 'xavierkhew00@gmail.com' ORDER BY receipt_id DESC");
         $row = mysqli_fetch_assoc($result);
 
         $output = $row ["receipt_id"];
@@ -26,7 +26,7 @@
         $invID = str_pad($invID, 4, '0', STR_PAD_LEFT);
 
         echo "<br>New outputssss".$invID+$output1;
-*/
+*
 
         $number = $output+1;
         $number = sprintf('%07d',$number);
@@ -93,7 +93,7 @@
         echo $time;
         $actual_time = date('Y-m-d H:i:s', $time);
         echo "<br>".$actual_time;
-        /*7 days = 1 week, 7 days = 604800 seconds*/
+        /*7 days = 1 week, 7 days = 604800 seconds*
         $aweek = 604800;
         $past_week = $time - $aweek;
         $past_week_out = date('Y-m-d', $past_week);
@@ -114,7 +114,25 @@
             $totes  += $outing; 
             
 
-        } echo $totes;
+        } echo $totes;*/
+
+        echo "<br><br><br>";
+
+        $run_test = mysqli_query($connect, "SELECT * FROM transaction"); // WHERE email='$email'
+
+        while($run_test_out = mysqli_fetch_assoc($run_test)){
+
+            $floored = floor($run_test_out['total']);
+            echo $floored ;
+            echo "<br>";
+            //echo $run_test_out['total'];
+        }
+
+
+        echo "<br><br><br>";
+        echo floor(4.3);   // 4
+        echo floor(9.999); // 9
+        echo floor(-3.14);
 ?>
 </body>
 </html>
