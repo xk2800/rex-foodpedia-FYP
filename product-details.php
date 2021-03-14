@@ -220,8 +220,9 @@
                                                                 
                                                                             <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
                                                                                 <!-- <img src="img/food1.jpg" style="width:100%"> -->
-                                                                                <img src="<?php echo $random_image ?>" alt="" class="images" style="width:100%">
-                                                                                <p><?php echo $random_name ?> <br> <b>RM <?php echo $random_price?></b></p>                
+                                                                                <img src="<?php echo $random_image ?>" alt="" class="images" style="width:75%;height:50%;">
+                                                                                <p style="font-size:22px"><b><?php echo $random_name ?></b></p>                
+                                                                                <p style="font-size:18px; margin-top:-1em;"><b>RM <?php echo $random_price?></b></p>
                                                                             </a>
                                                                 </li>
                                                     <?php

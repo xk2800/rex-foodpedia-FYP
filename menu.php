@@ -109,9 +109,7 @@
         }
         
         .container img {
-            border-radius: 15px;
-            width: 50%;
-            height: 50%;   
+            border-radius: 15px; 
         }
 
         .container img:hover {
@@ -213,8 +211,9 @@
                                                     
                                                                 <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
                                                                     <!-- <img src="img/food1.jpg" style="width:100%"> -->
-                                                                    <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:100%">
-                                                                    <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
+                                                                    <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:75%;height:50%;">
+                                                                    <p style="font-size:22px;"><?php echo $db_dish_name ?></p>    
+                                                                    <p style="font-size:18px; margin-top:-1em;"><b>RM <?php echo $db_dish_price?></b></p>            
                                                                 </a>
                                                     </li>
                                         <?php
@@ -249,8 +248,9 @@
                                            
                                                     <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
                                                         <!-- <img src="img/food1.jpg" style="width:100%"> -->
-                                                        <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:100%">
-                                                        <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
+                                                        <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:75%;height:50%;">
+                                                        <p style="font-size:22px"><b><?php echo $db_dish_name ?></b></p>
+                                                        <p style="font-size:18px; margin-top:-1em;"><b>RM <?php echo $db_dish_price?></b></p>                
                                                     </a>
                                         </li>
                             <?php
@@ -287,8 +287,9 @@
                                            
                                                     <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
                                                         <!-- <img src="img/food1.jpg" style="width:100%"> -->
-                                                        <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:100%">
-                                                        <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
+                                                        <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:75%;height:50%;">
+                                                        <p style="font-size:22px;"><b><?php echo $db_dish_name ?></b></p> 
+                                                        <p style="font-size:18px; margin-top:-1em;"><b>RM <?php echo $db_dish_price?></b></p>                
                                                     </a>
                                         </li>
                             <?php
@@ -325,8 +326,9 @@
                                         <li class="vendor-list-item">
                                                     <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
                                                         <!-- <img src="img/food1.jpg" style="width:100%"> -->
-                                                        <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:100%">
-                                                        <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
+                                                        <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:75%;height:50%;">
+                                                        <p style="font-size:22px;"><b><?php echo $db_dish_name ?></b></p> 
+                                                        <p style="font-size:18px; margin-top:-1em;"><b>RM <?php echo $db_dish_price?></b></p>           
                                                     </a>
                                         </li>
                             <?php
@@ -363,8 +365,9 @@
                                         <li class="vendor-list-item">
                                                     <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
                                                         <!-- <img src="img/food1.jpg" style="width:100%"> -->
-                                                        <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:100%">
-                                                        <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
+                                                        <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:75%;height:50%;">
+                                                        <p style="font-size:22px;"><b><?php echo $db_dish_name ?></b></p> 
+                                                        <p style="font-size:18px; margin-top:-1em;"><b>RM <?php echo $db_dish_price?></b></p>                
                                                     </a>
                                         </li>
                             <?php
@@ -402,8 +405,9 @@
                                         <li class="vendor-list-item">
                                                     <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
                                                         <!-- <img src="img/food1.jpg" style="width:100%"> -->
-                                                        <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:100%">
-                                                        <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
+                                                        <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:75%;height:50%;">
+                                                        <p style="font-size:22px;"><b><?php echo $db_dish_name ?></b></p> 
+                                                        <p style="font-size:18px; margin-top:-1em;"><b>RM <?php echo $db_dish_price?></b></p>                
                                                     </a>
                                         </li>
                             <?php
