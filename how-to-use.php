@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | REX Foodipedia</title>
+    <title>How To Use | REX Foodipedia</title>
 
 <!--FONTS.CSS STARTS-->
     <link rel="stylesheet" href="css/fonts.css">
@@ -109,7 +109,7 @@
     <div class="holder">
         
         <div class="row">
-            <div class="about-us" style="float: left; width: 50%; background-image: url(img/how-to-use/1.png); background-position-y: 15%; "></div>
+            <div class="about-us" style="float: left; width: 50%; background-image: url(img/how-to-use/main.png); background-position-y: 15%; "></div>
             <div style="text-align: center; float: right; width: 50%; margin-top: 20em;">
                 <p><b>STEP 1 :</b>
                 <span class="creators">
