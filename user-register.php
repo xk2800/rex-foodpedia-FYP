@@ -91,7 +91,7 @@
                     <h5 class="card-title"><center>Registration</center></h5>
 
                     <?php
-                            $fullUrl ="http:// $_SERVER[HTTP_HOST]$_SERVER[REQUE1ST_URI]";
+                            $fullUrl ="http:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
                             if(strpos($fullUrl, "email=exist") == true){
                                 echo '<div class="container">
