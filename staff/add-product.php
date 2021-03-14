@@ -17,7 +17,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
     
             <!--INCLUDE START HERE-->
-            <link rel="icon" type="image/png" href= "image/MYRUN 1.png">
+            <link rel="icon" type="image/png" href= "../img/logo/logo.png">
 
             <!--THIS IS FONT AWESOME JAVASCRIPT START-->
             <script src="https://kit.fontawesome.com/daa253e478.js" crossorigin="anonymous"></script>
@@ -91,16 +91,12 @@
                     $staff_username1 = mysqli_fetch_assoc($result);
                     
                 }
-            
-                //echo $staff_username1["username"];
-            
+                        
                 $staff_username = $staff_username1["username"];
             ?>
 
             <?php
                 
-                //$staff_username = $_SESSION['staffuname'];
-
                 $query_add_product = mysqli_query($connect, "SELECT * FROM menu WHERE username = '$staff_username' ");
                 $row = mysqli_fetch_assoc($query_add_product);
             ?>    

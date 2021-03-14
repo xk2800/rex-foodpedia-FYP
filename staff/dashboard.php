@@ -5,6 +5,10 @@
     ob_start();
     //$_SESSION['staffuname'];
 
+    if(!isset($_REQUEST["access"])){
+        header("Location:../admin/index");
+    }
+
     if(isset($_REQUEST["access"])){
         $name = $_REQUEST["access"];
 
@@ -13,13 +17,9 @@
         
     }
 
-    echo $staff_username1["username"];
 
     $staff_username = $staff_username1["username"];
 
-    echo "<br>";
-
-    echo $name;
 ?>
 <!DOCTYPE html>
 <?php
@@ -38,7 +38,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--INCLUDE START HERE-->
-    <link rel="icon" type="image/png" href= "img/logo/logo.png">
+    <link rel="icon" type="image/png" href= "../img/logo/logo.png">
 
     <!--THIS IS FONT AWESOME JAVASCRIPT START-->
     <script src="https://kit.fontawesome.com/daa253e478.js" crossorigin="anonymous"></script>

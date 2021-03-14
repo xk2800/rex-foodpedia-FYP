@@ -40,6 +40,8 @@
         //return true;
     }
 
+    <link rel="icon" type="image/png" href= "../img/logo/logo.png">
+
     //echo "<br>";
     //echo $account_type;
 ?>
