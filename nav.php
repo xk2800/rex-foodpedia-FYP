@@ -4,14 +4,14 @@
 
     //error_reporting(E_ERROR | E_PARSE);
 
-    if(isset($_SESSION['google_id']) /*||  $_SESSION["email"] == true*/){
+    /*if(isset($_SESSION['google_id']) /*||  $_SESSION["email"] == true*){
 
-        echo $id = $_SESSION['google_id']; 
+        //echo $id = $_SESSION['google_id']; 
         $google = $_SESSION['google_id'];
         $convert_google_id = mysqli_query($connect, "SELECT email FROM user_acc WHERE google_id='$id'");
         $output_change = mysqli_fetch_assoc($convert_google_id);
         
-        echo $output_change["email"];
+        //echo $output_change["email"];
 
         if ($converted_google_output = $output_change["email"]){
             $_SESSION['email'] = $output_change["email"];
@@ -21,11 +21,11 @@
 
 
         if(!empty($_SESSION['email'])){
-            echo "has session";
+            //echo "has session";
         }else{
-            echo "no session";
+            //echo "no session";
         }
-    }
+    }*/
 ?>
 
 <!DOCTYPE html>

@@ -46,11 +46,11 @@ if(isset($_GET['code'])):
         $profile_pic = mysqli_real_escape_string($db_connection, $google_account_info->picture);
 
         // checking user already exists or not
-        $get_user = mysqli_query($db_connection, "SELECT `google_id`  FROM `user_acc` WHERE `google_id`='$id'");
+        $get_user = mysqli_query($db_connection, "SELECT `email`  FROM `user_acc` WHERE `google_id`='$id'");
         if(mysqli_num_rows($get_user) > 0){
 
 
-            $_SESSION['google_id'] = $id; ;
+            $_SESSION['email'] = $email; ;
             header('Location: menu');
             exit;
 
@@ -61,7 +61,7 @@ if(isset($_GET['code'])):
             $insert = mysqli_query($db_connection, "INSERT INTO `user_acc`(`google_id`,`name`,`email`,`profile_image`) VALUES('$id','$full_name','$email','$profile_pic')");
 
             if($insert){
-                $_SESSION['google_id'] = $id; 
+                $_SESSION['email'] = $email; 
                 header('Location: menu');
                 exit;
             }
@@ -93,7 +93,7 @@ else:
         <!--SIGN-IN WITH GOOGLE META-->
     
         <!--INCLUDE START HERE-->
-        <link rel="icon" type="image/png" href= "image/MYRUN 1.png">
+        <link rel="icon" type="image/png" href= "img/logo/logo.png">
 
         <!--FONT AWESOME JAVASCRIPT-->
         <script src="https://kit.fontawesome.com/daa253e478.js" crossorigin="anonymous"></script>
@@ -359,7 +359,7 @@ else:
                               </script>";
                                 
                     } else if($var_email_login != $db_email_login ||  $salted_var_password_login != $db_password_login) {  
-                        echo "<script> alert('Incorrect credientials, please try again'); </script>";
+                        echo "<script> alert('Incorrect credentials, please try again'); </script>";
                     }   
                 } 
             }    
