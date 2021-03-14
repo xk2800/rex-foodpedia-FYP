@@ -3,6 +3,8 @@
 <?php
     include "../db-connect.php"; 
     //session_start();
+    ob_start();
+
 ?>
     <html>
         <head>
@@ -26,10 +28,10 @@
             <style>
                 
                 #card-whole-add-product {
-                   margin: 120px 0px 60px 0px;
-                   border-style: none;
-                   position: relative;
-                   box-shadow: 7px 7px 6px #888888;
+                    margin: 120px 0px 60px 0px;
+                    border-style: none;
+                    position: relative;
+                    box-shadow: 7px 7px 6px #888888;
                 }
 
                 #card-title {
@@ -94,6 +96,20 @@
                     <h6 class="card-header" id="card-title">Add Products</h6>
                   
                     <div class="card-body"> 
+
+<?php
+                    $fullUrl ="https:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+                    if(strpos($fullUrl, "dish-id_duplicate") == true){
+                        //echo '<script>document.getElementById("error").innerHTML = "<br><br>"</script>';
+                        echo '<div class="container">
+                                <div class="alert alert-warning words" role="alert">
+                                Looks like this Dish ID already exist. Try entering a different Dish ID.
+                                </div>
+                            </div>';
+                    }
+
+?>
                         <div id="card-input-add-product">
                             <form name="form-add-product" method="POST" enctype="multipart/form-data" > 
 
@@ -265,6 +281,15 @@
                     $var_permissible = $_POST['permissible'];
                     $var_cuisine = $_POST['cuisine'];
                     $var_preparationTime = $_POST['preparationTime'];
+
+                    $check_dup_dish_id = "SELECT * FROM menu WHERE dish_id = '$var_id_menu_detail'";
+                    $res = mysqli_query($connect, $check_dup_dish_id);
+                    //$count = mysqli_num_rows($res);
+
+                    if(mysqli_num_rows($res) > 0){
+                        header('location: add-product?dish-id_duplicate');
+                        exit();
+                    }
 
 
                     $check_dish_name = "SELECT * FROM menu WHERE dish_id = $var_id_menu_detail";
