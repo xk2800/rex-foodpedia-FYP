@@ -470,27 +470,16 @@
                             <th id="db-subtotal" class="db-rows">RM
                                 <?php echo number_format((float)$total_price, 2, '.', '') ?></th>
                         </tr>
-                    <?php 
-
-                                                if($payit ["discount"]){
-                                                    $discount = $payit ["discount"];
-                                                    echo number_format((float)$discount, 2, '.', '');
-
-                                                }else{
-                                                    $nill = 0;
-                                                    echo number_format((float)$nill, 2, '.', '');
-                                                }
-                            
-                                                    if( $payit ["voucher_code"]){
-                                                        echo number_format((float)$payit ["voucher"], 2, '.', '');
-                                                    } else{
-                                                        echo "0";
-                                                    }
-
+                        <tr>
+                            <p id="hori-line">
+                                <hr>
+                            </p>
+                        </tr>
+                        <tr>
+                    <?php
                                         //tax amount of subtotal
                                         $pretax             = $total_price /((6/100)+1);
                                         $tax                = $total_price - $pretax;
-
                     ?>
                             <td id="tax">+Service Tax(6%)</td>
                             <td id="db-tax" class="db-rows">RM <?php echo number_format((float)$tax, 2, '.', '') ?></td>
