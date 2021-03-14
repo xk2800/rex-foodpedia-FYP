@@ -187,7 +187,7 @@
                 $numrowrandom = mysqli_num_rows($menu_query_random);
                 $numrow = mysqli_num_rows($menu_query);
             ?>
-                            <div class="container">
+                            <div class="container" style="margin-top: 50px;">
                                 <p>Random Picks</p>
                                 <hr>
                         
@@ -227,7 +227,7 @@
             <!-- Random Menu -->
 
             <!-- Menu Item 2nd row Starts -->
-            <div class="container">
+            <div class="container" style="margin-bottom: 65px;">
 
                 <p>Recommended Restaurants</p>
                 <hr>                    
