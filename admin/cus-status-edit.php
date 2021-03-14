@@ -41,7 +41,7 @@
         
         </head>
         
-        <body style="background-color: #4C5C68;">
+        <body>
             
             <!-- credit : https://www.11zon.com/zon/php/how-to-edit-data-in-php-using-form.php -->
 

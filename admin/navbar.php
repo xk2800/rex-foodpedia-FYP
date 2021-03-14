@@ -10,9 +10,9 @@
         
     }
 
-    echo "<br><br>JACK";
-    echo $admin_username1["username"];
-    echo "JACK<br><br>";
+    //echo "<br><br>JACK";
+    //echo $admin_username1["username"];
+    //echo "JACK<br><br>";
     //echo $_SESSION['hashed'];
 
     //echo $cash;
@@ -58,6 +58,10 @@
         }*/
         #navbar{
             background-color: #5eaaa8;
+        }
+
+        body{
+            background-color: #e8ded2;
         }
     </style>
 </head>

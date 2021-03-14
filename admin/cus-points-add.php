@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <?php 
-     include("../db-connect.php");        
-     $email = $_GET['email'];
+    
+    include("../db-connect.php");        
+    ob_start();
+    $email = $_GET['email'];
 ?>
 <html>
     <head>
@@ -48,10 +50,31 @@
         </style>
     </head>
     
-    <body style="background-color: #4C5C68;">     
+    <body>     
         
         <?php
             include("navbar.php");
+
+            if(isset($_REQUEST["access"])){
+                $name = $_REQUEST["access"];
+        
+                $result = mysqli_query($connect, "SELECT username from admin_acc WHERE hashed = '$name'");
+                $admin_username1 = mysqli_fetch_assoc($result);
+                
+            }
+        
+            echo $admin_username1["username"];
+        
+            $admin_username = $admin_username1["username"];
+        
+            echo "<br>";
+        
+            echo $admin_username;
+        
+        
+            if(!isset($_REQUEST["access"])){
+                //header("Location:index");
+            }
         ?>
         
         <?php  
@@ -103,7 +126,8 @@
                                     </select>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="margin: 0.5em 0em 2em 11.5em;" name="btn_add_points">Save</button> <a href="cus-points-landing" class="btn btn-secondary" style="float: right; margin-top: 0.5em;">Back</a>
+                            <button type="submit" class="btn btn-primary" style="margin: 0.5em 0em 2em 11.5em;" name="btn_add_points">Save</button> 
+                            <a href="cus-points-landing?access=<?php echo $name ?>" class="btn btn-secondary" style="float: right; margin-top: 0.5em;">Back</a>
                         </form>   
                     </div>    
                 </div>
@@ -118,9 +142,7 @@
                         $query_update_cus_points_add = mysqli_query($connect, "UPDATE user_acc SET lpoints = '$var_cus_points_add_points', lpoints_valid = '$var_cus_points_add_validity', lpoints_status = '$var_cus_points_add_status' WHERE email = '$email' ");
 
                         if($query_update_cus_points_add) {
-                            echo "<script>
-                                    location.href = 'cus-points-landing.php';
-                                  </script>";
+                                header("location: cus-points-landing?access=".$name);
                         }
                     }
                 ?>
