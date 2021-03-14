@@ -77,16 +77,18 @@
 ?>
 
     <div class="container">
+    
+        <br><br>
 
-    <br><br>
-        <h3>
-            <p>Hello @<?php echo $admin_username ?>, today is <?php echo $output_current_time ?></p>
+        <div class="d-flex justify-content-center" style="margin-top: 15em;"> 
+            <h3>
+                <p>Hello @<?php echo $admin_username ?>, today is <?php echo $output_current_time ?></p>
 
-            <p>What would you like to carry out today?</p>
-            <p>Section your options available in the navigation bar above.</p>
-        </h3>
-
-
+                <p>What would you like to carry out today?</p>
+                <p>Section your options available in the navigation bar above.</p>
+            </h3>
+        </div>
+        
     </div>
 <body>
     <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->

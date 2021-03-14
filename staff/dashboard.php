@@ -69,16 +69,18 @@
 
     <div class="container">
 
-    <br><br>
-        <h3>
-            <p>Hello @<?php echo $staff_username ?>, today is <?php echo $output_current_time ?></p>
+        <br><br>
 
-            <p>What would you like to carry out today?</p>
-            <p>Section your options available in the navigation bar above.</p>
-        </h3>
+        <div class="d-flex justify-content-center" style="margin-top: 15em;">
+            <h3>
+                <p>Hello @<?php echo $staff_username ?>, today is <?php echo $output_current_time ?></p>
 
-
+                <p>What would you like to carry out today?</p>
+                <p>Section your options available in the navigation bar above.</p>
+            </h3>
+        </div>
     </div>
+
 <body>
     <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   

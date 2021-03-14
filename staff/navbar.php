@@ -1,14 +1,6 @@
 <?php
 
-    //include "../db-connect.php";
-    //session_start();
-    //error_reporting(E_ERROR | E_PARSE);
     ob_start();
-    //$_SESSION['staffuname'];
-
-    //$_SESSION['staffuname'];
-
-    //error_reporting(E_ERROR | E_PARSE);
 
     if(isset($_REQUEST["access"])){
         $name = $_REQUEST["access"];
@@ -17,13 +9,6 @@
         $staff_username1 = mysqli_fetch_assoc($result);
         
     }
-
-    echo "<br><br>JACK";
-    echo $staff_username1["username"];
-    echo "JACK<br><br>";
-    //echo $_SESSION['hashed'];
-
-    //echo $cash;
 
     $cash = $_REQUEST["access"];
 
@@ -48,28 +33,20 @@
             width: 100%;
             padding-top: -100%;
         }
-        /*#nav{
-            width: 100%;
-            position: sticky;
-            /*top: -70px;
-            /*display: block;
-            transition: top 0.3s;
-            z-index: 9999;
-        }*/
+        
         img{
             width: 60px;
             height: 60px;
         }
-        /*.nav-link{
-          /*padding-left: .5em !important;
-          padding-right: .5em !important;
-        }*/
+        
         #navbar{
             background-color: #5eaaa8;
         }
+
         body{
             background-color: #e8ded2;
         }
+        
     </style>
 </head>
 <body>
