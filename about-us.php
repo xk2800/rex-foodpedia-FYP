@@ -6,7 +6,7 @@
     <title>About Us | REX Foodipedia</title>
 
 <!--FONTS.CSS STARTS-->
-    <link rel="preload" href="css/fonts.css" as="style">
+    <link rel="stylesheet" href="css/fonts.css">
 <!--FONTS.CSS END-->
 
 <!--THIS IS FONT AWESOME JAVASCRIPT START-->
@@ -19,6 +19,10 @@
 
 <!--          CSS  START             -->
     <style>
+
+        .holder{
+            margin: 0 25px 0 25px;
+        }
         body{
             background-color: #e7ded2;
         }
@@ -39,9 +43,11 @@
             top:50%;
             left:50%;
             transform:translate(-50%,-50%);
-            color:orange;
+            color: #FFFF;
             font-weight:bold;
+            font-family: 'Lexend Deca', sans-serif;
         }
+
 
 
     </style>
@@ -59,36 +65,40 @@
                 <h1 class="about-text">ABOUT US</h1>
         </div>
    
+<div class="holder">
+    <div class="row">
 
-   <div class="row">
-        <div class="about-us" style="float: left; width: 50%; background-image: url(img/aboutus/whoarewe.jpg); background-position-y: 15%;">
-                <h1 class="about-text">WHO ARE WE</h1>
-        </div>
-        <div style="text-align: center; float: right; width: 50%; margin-top: 5%;">
-            <p><b>REXfoodipedia is created by 3 university students as one of their university project</b></p>
-        </div>
-        
-   </div>
-    
-   <div class="row">
-        <div style="text-align: center; float:left; width: 50%; margin-top:5% ;">
-            <p><b>Our main objectives is to build a website for the home-cook and give them a place to sell or promote their home-cook food, also to help in building a friendly community</b></p>
-        </div>
-
-        <div class="about-us" style="float: right; width: 50%; background-image: url(img/aboutus/whatwedo.png); background-position-y:40% ;">
-            <h1 class="about-text">OBJECTIVES</h1>
-        </div>
-   </div>
-   
-   <div class="row">
-        <div class="about-us" style="float: left; width: 50%; background-image: url(img/aboutus/howwedo.png); background-position-y: 35%;">
-                <h1 class="about-text">HOW WE DO</h1>
-        </div>
-        
-        <div style="text-align: center; float: right; width: 50%; margin-top: 5%;">
-            <p><b>We make a website that are user-friendly for the customer and the seller</b></p>
-        </div>    
+            <div class="about-us" style="float: left; width: 50%; background-image: url(img/aboutus/whoarewe1.jpg); background-position-y: 15%; ">
+                    <h1 class="about-text">WHO ARE WE</h1>
+            </div>
+            <div style="text-align: center; float: right; width: 50%; margin-top: 5%;">
+                <p><b>REX Foodipedia was created by 3 university students as one of their Final Year Project</b></p>
+            </div>
+            
     </div>
+        
+    <div class="row">
+            <div style="text-align: center; float:left; width: 50%; margin-top:5% ;">
+                <p><b>Our main objectives is to build a website for the home-cook and give them a place to sell or promote their home-cook food, also to help in building a friendly community</b></p>
+            </div>
 
+            <div class="about-us" style="float: right; width: 50%; background-image: url(img/aboutus/whatwedo1.png); background-position-y:40% ;">
+                <h1 class="about-text">OBJECTIVES</h1>
+            </div>
+    </div>
+    
+    <div class="row">
+            <div class="about-us" style="float: left; width: 50%; background-image: url(img/aboutus/howwedo.jpg); background-position-y: 35%;">
+                    <h1 class="about-text">HOW WE DO</h1>
+            </div>
+            
+            <div style="text-align: center; float: right; width: 50%; margin-top: 5%;">
+                <p><b>We make a website that are user-friendly for the customer and the seller</b></p>
+            </div>    
+    </div>
+</div>
+<?php
+    include ("foot.html")
+?>
 </body>
 </html>
