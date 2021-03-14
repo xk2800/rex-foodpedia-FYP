@@ -1,8 +1,3 @@
-<?php
-//WORKING: Xavier
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,15 +97,15 @@
                 <h1 class="about-text">ABOUT US</h1>
         </div> -->
 
-        <div class="parallax-one main">
+    <div class="parallax-one main">
         <span class="over-img-txt">
             <span class="contact-us-text">Our Background</span>
         </span>
     </div>
 
-<div class="holder">
-    <div class="row">
-
+    <div class="holder">
+        
+        <div class="row">
             <div class="about-us" style="float: left; width: 50%; background-image: url(img/aboutus/whoarewe1.jpg); background-position-y: 15%; ">
                     <h1 class="about-text">WHO ARE WE</h1>
             </div>
@@ -123,34 +118,34 @@
                 </p>
                 </span>
             </div>
+        </div>
 
-    </div>
+        <div class="row">
+                <div style="text-align: center; float:left; width: 50%; margin-top:5% ;">
+                    <!-- <p><b>Our main objectives is to build a website for the home-cook and give them a place to sell or promote their home-cook food, also to help in building a friendly community</b></p> -->
+                    <p><b>To enable users to purchase food online using our multi-platform website.</b></p>
+                    <p><b>To allow users to have a variety of delivery options.</b></p>
+                    <p><b>To provide viewing of prices feature that allow users to view the product's final price.</b></p>
+                </div>
 
-    <div class="row">
-            <div style="text-align: center; float:left; width: 50%; margin-top:5% ;">
-                <!-- <p><b>Our main objectives is to build a website for the home-cook and give them a place to sell or promote their home-cook food, also to help in building a friendly community</b></p> -->
-                <p><b>To enable users to purchase food online using our multi-platform website.</b></p>
-                <p><b>To allow users to have a variety of delivery options.</b></p>
-                <p><b>To provide viewing of prices feature that allow users to view the product's final price.</b></p>
-            </div>
+                <div class="about-us" style="float: right; width: 50%; background-image: url(img/aboutus/whatwedo1.png); background-position-y:40% ;">
+                    <h1 class="about-text">OBJECTIVES</h1>
+                </div>
+        </div>
 
-            <div class="about-us" style="float: right; width: 50%; background-image: url(img/aboutus/whatwedo1.png); background-position-y:40% ;">
-                <h1 class="about-text">OBJECTIVES</h1>
-            </div>
-    </div>
+        <div class="row">
+                <div class="about-us" style="float: left; width: 50%; background-image: url(img/aboutus/howwedo.jpg); background-position-y: 35%;">
+                        <h1 class="about-text">HOW WE DO IT</h1>
+                </div>
 
-    <div class="row">
-            <div class="about-us" style="float: left; width: 50%; background-image: url(img/aboutus/howwedo.jpg); background-position-y: 35%;">
-                    <h1 class="about-text">HOW WE DO IT</h1>
-            </div>
+                <div style="text-align: center; float: right; width: 50%; margin-top: 5%;">
+                    <p><b>We made a website that is user-friendly for the customer and the seller</b></p>
+                </div>
+        </div>
 
-            <div style="text-align: center; float: right; width: 50%; margin-top: 5%;">
-                <p><b>We made a website that is user-friendly for the customer and the seller</b></p>
-            </div>
-    </div>
-</div>
-<?php
-    include ("foot.html")
-?>
+        <?php
+            include ("foot.html")
+        ?>
+    </div>    
 </body>
 </html>
