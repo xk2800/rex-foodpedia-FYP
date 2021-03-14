@@ -3,6 +3,9 @@
 <?php
     include "../db-connect.php"; 
     //session_start();
+    /*if(!isset($_REQUEST["access"])){
+        header("Location:../admin/index");
+    }*/
 ?>
     <html lang="en">
         <head>
@@ -64,6 +67,14 @@
         //include("navbar.php");
         $query = "SELECT * FROM transaction ORDER BY receipt_id DESC";  
         $result = mysqli_query($connect, $query);
+
+        /*if(isset($_REQUEST["access"])){
+            $name = $_REQUEST["access"];
+    
+            $result = mysqli_query($connect, "SELECT username from staff_acc WHERE hashed = '$name'");
+            $staff_username1 = mysqli_fetch_assoc($result);
+            
+        }*/
     ?>
    
     <div class="container">

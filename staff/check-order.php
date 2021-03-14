@@ -12,6 +12,10 @@
     include "../db-connect.php";
     ob_start();
 
+    if(!isset($_REQUEST["access"])){
+        header("Location:../admin/index");
+    }
+
 ?>
 <html>
     <head><title>Check Orders & View Transactions | REX Foodipedia</title>
@@ -60,6 +64,13 @@
 <?php
     
     include "navbar.php";
+    if(isset($_REQUEST["access"])){
+        $name = $_REQUEST["access"];
+
+        $result = mysqli_query($connect, "SELECT username from staff_acc WHERE hashed = '$name'");
+        $staff_username1 = mysqli_fetch_assoc($result);
+        
+    }
 ?>
 
     <iframe width="100%" height="100%" src="check-order-page.php" frameborder="0" class="page"></iframe>

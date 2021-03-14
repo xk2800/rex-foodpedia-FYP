@@ -2,13 +2,30 @@
 
     //include "../db-connect.php";
     //session_start();
-    error_reporting(E_ERROR | E_PARSE);
+    //error_reporting(E_ERROR | E_PARSE);
     ob_start();
-    $_SESSION['staffuname'];
+    //$_SESSION['staffuname'];
 
     //$_SESSION['staffuname'];
 
     //error_reporting(E_ERROR | E_PARSE);
+
+    if(isset($_REQUEST["access"])){
+        $name = $_REQUEST["access"];
+
+        $result = mysqli_query($connect, "SELECT username from staff_acc WHERE hashed = '$name'");
+        $staff_username1 = mysqli_fetch_assoc($result);
+        
+    }
+
+    echo "<br><br>JACK";
+    echo $staff_username1["username"];
+    echo "JACK<br><br>";
+    //echo $_SESSION['hashed'];
+
+    //echo $cash;
+
+    $cash = $_REQUEST["access"];
 
 ?>
 
@@ -51,7 +68,7 @@
             background-color: #5eaaa8;
         }
         body{
-            background-color: #E4F6E6;
+            background-color: #e8ded2;
         }
     </style>
 </head>
@@ -78,19 +95,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto w-100 justify-content-end">
                     <li class="nav-item active">
-                        <a class="nav-link text-center" href="dashboard">Home<span class="sr-only">(current)</span></a>
+                        <a class="nav-link text-center" href="dashboard?access=<?php echo $cash ?>">Home<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link text-center" href="edit-menu-landing">Edit Menu</a>
+                        <a class="nav-link text-center" href="edit-menu-landing?access=<?php echo $cash ?>">Edit Menu</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Manage Products
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                            <a class="dropdown-item" href="add-product">Add New Products</a>
-                            <a class="dropdown-item" href="edit-menu-landing">Update Current Products</a>
-                            <a class="dropdown-item" href="delete-product">Delete Current Products</a>
+                            <a class="dropdown-item" href="add-product?access=<?php echo $cash ?>">Add New Products</a>
+                            <a class="dropdown-item" href="edit-menu-landing?access=<?php echo $cash ?>">Update Current Products</a>
+                            <a class="dropdown-item" href="delete-product?access=<?php echo $cash ?>">Delete Current Products</a>
                             <!--a class="dropdown-item" href="faq">FAQ</a-->
                             <!--div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a-->
@@ -115,20 +132,20 @@
                         </div>
                     </li-->
                     <li class="nav-item active">
-                        <a class="nav-link text-center" href="check-order"><i class="fas fa-shopping-cart"></i> View Transactions</a>
+                        <a class="nav-link text-center" href="check-order?access=<?php echo $cash ?>"><i class="fas fa-shopping-cart"></i> View Transactions</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Manage Orders
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                            <a class="dropdown-item" href="edit-menu">Edit Menu</a>
-                            <a class="dropdown-item" href="view-order">View Order List</a>
+                            <!-- <a class="dropdown-item" href="edit-menu?access=<?php echo $cash ?>">Edit Menu</a> -->
+                            <a class="dropdown-item" href="check-order?access=<?php echo $cash ?>">View Order List</a>
                             <!--a class="dropdown-item" href="delete-products">Delete Current Products</a-->
                         </div>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link text-center" href="sales-report">Sales Report</a>
+                        <a class="nav-link text-center" href="sales-report?access=<?php echo $cash ?>">Sales Report</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link text-center" href="logout">Logout</a>

@@ -4,6 +4,10 @@
     include("../db-connect.php");
 
     //$staff_username = $_SESSION['staffuname'];
+
+    if(!isset($_REQUEST["access"])){
+        header("Location:../admin/index");
+    }
 ?>    
 
     <html>
@@ -55,6 +59,19 @@
 
             <?php
                 include("navbar.php");
+
+                if(isset($_REQUEST["access"])){
+                    $name = $_REQUEST["access"];
+            
+                    $result = mysqli_query($connect, "SELECT username from staff_acc WHERE hashed = '$name'");
+                    $staff_username1 = mysqli_fetch_assoc($result);
+                    
+                }
+            
+                //echo $staff_username1["username"];
+            
+                $staff_username = $staff_username1["username"];
+            
             ?>
 
             <div class="container">

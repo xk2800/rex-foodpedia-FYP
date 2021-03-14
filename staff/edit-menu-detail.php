@@ -3,6 +3,11 @@
 <?php
     include "../db-connect.php";
     //session_start();
+    ob_start();
+
+    if(!isset($_REQUEST["access"])){
+        header("Location:../admin/index");
+    }
     
     $id = $_GET['id'];
 ?>
@@ -65,17 +70,29 @@
             </style>    
         </head>
 
-        <body style="background-color: #E4F6E6">
+        <body>
                 
             <?php
                 include("navbar.php");
+
+                if(isset($_REQUEST["access"])){
+                    $name = $_REQUEST["access"];
+            
+                    $result = mysqli_query($connect, "SELECT username from staff_acc WHERE hashed = '$name'");
+                    $staff_username1 = mysqli_fetch_assoc($result);
+                    
+                }
+            
+                //echo $staff_username1["username"];
+            
+                $staff_username = $staff_username1["username"];
             ?>
 
             <?php
                 
-                $staff_username = $_SESSION['staffuname'];
+                //$staff_username = $_SESSION['staffuname'];
 
-                $query_select_menu_detail = mysqli_query($connect, "SELECT * FROM menu WHERE username = '$staff_username' AND id = '$id' ");
+                $query_select_menu_detail = mysqli_query($connect, "SELECT * FROM menu WHERE id = '$id' "); // username = '$staff_username' AND
                 $row = mysqli_fetch_assoc($query_select_menu_detail);
             ?>    
 
@@ -97,8 +114,6 @@
                                     <label for="card-dish-edit-menu">Dish</label>
                                     <input type="text" class="form-control" id="card-dish-edit-menu" name="dish_menu_detail" value="<?php echo $row["dish_name"] ?>">
                                 </div>
-
-                                
 
                                 <div class="form-group">
                                     <label for="card-permissible-edit-menu">Permissible?</label>
@@ -168,11 +183,9 @@
                     $query_menu_detail = mysqli_query($connect, "UPDATE menu SET dish_name = '$var_dish_menu_detail', price = '$var_price_menu_detail', 
                                                                                  description = '$var_desc_menu_detail', stock_qty = '$var_qty_menu_detail', 
                                                                                  cuisine = '$var_dish_menu_type', permissible = '$var_permissible_menu_type'
-                                                                                 WHERE username = '$staff_username' AND id = '$id' ");
-
-                    echo " <script>
-                                location.href = 'edit-menu-landing.php';
-                           </script> "; 
+                                                                                 WHERE id = '$id' "); // username = '$staff_username' AND 
+ 
+                    header("location: edit-menu-landing?access=".$name);
                 }
 
             ?>

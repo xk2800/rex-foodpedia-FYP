@@ -4,6 +4,9 @@
     include "../db-connect.php"; 
     //session_start();
     ob_start();
+    if(!isset($_REQUEST["access"])){
+        header("Location:../admin/index");
+    }
 
 ?>
     <html>
@@ -80,11 +83,23 @@
                 
             <?php
                 include("navbar.php");
+
+                if(isset($_REQUEST["access"])){
+                    $name = $_REQUEST["access"];
+            
+                    $result = mysqli_query($connect, "SELECT username from staff_acc WHERE hashed = '$name'");
+                    $staff_username1 = mysqli_fetch_assoc($result);
+                    
+                }
+            
+                //echo $staff_username1["username"];
+            
+                $staff_username = $staff_username1["username"];
             ?>
 
             <?php
                 
-                $staff_username = $_SESSION['staffuname'];
+                //$staff_username = $_SESSION['staffuname'];
 
                 $query_add_product = mysqli_query($connect, "SELECT * FROM menu WHERE username = '$staff_username' ");
                 $row = mysqli_fetch_assoc($query_add_product);
@@ -305,8 +320,8 @@
                             $query_menu_detail = mysqli_query($connect, "INSERT INTO menu(username, cloudinary_link, dish_name, dish_id, price, description, stock_qty, permissible, cuisine, preparationTime) 
                             VALUES ('$var_username', '$url_cloud', '$var_name_menu_detail','$var_id_menu_detail','$var_price_menu_detail','$var_desc_menu_detail','$var_qty_menu_detail','$var_permissible','$var_cuisine','$var_preparationTime')");    
                                 echo "<script> alert('Product Added'); 
-                                location.href = 'dashboard.php';
                                 </script>";
+                                header("location: dashboard?access=".$name);
                             
                             }
         

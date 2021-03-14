@@ -1,5 +1,11 @@
 <?php
 //WORKING - Xavier
+
+    include ("../db-connect.php");
+
+    if(!isset($_REQUEST["access"])){
+        header("Location:../admin/index");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +25,8 @@
             padding: 0; 
             height: 100%; 
             overflow: hidden;
+            background-color: #E4F6E6
+
         }
         .page{
             position:absolute; 
@@ -36,6 +44,19 @@
 <?php
     
     include "navbar.php";
+
+    if(isset($_REQUEST["access"])){
+        $name = $_REQUEST["access"];
+
+        $result = mysqli_query($connect, "SELECT username from staff_acc WHERE hashed = '$name'");
+        $staff_username1 = mysqli_fetch_assoc($result);
+        
+    }
+
+    //echo $staff_username1["username"];
+
+    $staff_username = $staff_username1["username"];
+
 ?>
 
     <iframe width="100%" height="100%" src="del-prod_iframe.php" frameborder="0" class="page"></iframe>

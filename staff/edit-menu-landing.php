@@ -4,7 +4,12 @@
     include "../db-connect.php";
     //session_start();
     ob_start();
-    $_SESSION['staffuname'];
+    //$_SESSION['staffuname'];
+    if(!isset($_REQUEST["access"])){
+        header("Location:../admin/index");
+    }
+
+
 ?>
     <html>
         <head> 
@@ -59,10 +64,26 @@
 
         </head>
         
-        <body style="background-color: #E4F6E6">
+        <body>
 
             <?php
                 include("navbar.php");
+
+                if(isset($_REQUEST["access"])){
+                    $name = $_REQUEST["access"];
+            
+                    $result = mysqli_query($connect, "SELECT username from staff_acc WHERE hashed = '$name'");
+                    $staff_username1 = mysqli_fetch_assoc($result);
+                    
+                }
+            
+                //echo $staff_username1["username"];
+            
+                $staff_username = $staff_username1["username"];
+            
+                //echo "<br>";
+            
+                //echo $staff_username;
             ?>
 
             <div class="container">
@@ -86,9 +107,9 @@
 
                     <?php 
                       
-                        $staff_username = $_SESSION['staffuname'];
+                        //$staff_username = $_SESSION['staffuname'];
 
-                        $query_select_menu_landing = mysqli_query($connect, "SELECT * FROM menu WHERE username = '$staff_username' ");
+                        $query_select_menu_landing = mysqli_query($connect, "SELECT * FROM menu");  //WHERE username = '$staff_username' 
                         $numrow = mysqli_num_rows($query_select_menu_landing);
                     ?>
 
@@ -118,7 +139,7 @@
                                     <td><?php echo $db_dish_desc; ?></td>
                                     <td><?php echo $db_dish_qty; ?></td>
                                     <td><?php echo $db_dish_price; ?></td>
-                                    <td><a class="btn btn-primary" href="edit-menu-detail.php?id=<?php echo $row['id']; ?>" role="button">Update</a></td>
+                                    <td><a class="btn btn-primary" href="edit-menu-detail.php?id=<?php echo $row['id']; ?>&access=<?php echo $name ?>" role="button">Update</a></td>
                                 </tr>   
                            <?php
 
@@ -134,6 +155,7 @@
                     </tbody>
                 </table>
             </div>
+            <br><br><br><br>
 
             <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>   
