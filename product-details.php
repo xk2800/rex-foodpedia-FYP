@@ -240,17 +240,19 @@
         <?php 
 
             if(isset($_POST['add-to-cart'])){
+                
                 $var_email = $email;
                 $var_dish_name = $db_dish_name;
                 $var_dish_price = $db_dish_price;
                 $var_dish_special_instruction = $_POST['dish-special-instruction'];
                 $var_dish_quantity = $_POST['dish-quantity'];
                 $var_dish_total = $var_dish_price * $var_dish_quantity;
+                $db_dish_img = $db_dish_img;
 
                 if(!empty($var_dish_quantity)){
 
-                    $cart = mysqli_query($connect, "INSERT INTO cart(email,dish_name, dish_price,dish_total, dish_qty) 
-                    VALUES ('$var_email' ,'$var_dish_name' , '$var_dish_price','$var_dish_total','$var_dish_quantity')");
+                    $cart = mysqli_query($connect, "INSERT INTO cart(email,dish_name, dish_price,dish_total, dish_qty, cloudinary_link) 
+                    VALUES ('$var_email' ,'$var_dish_name' , '$var_dish_price','$var_dish_total','$var_dish_quantity', '$db_dish_img')");
 
                             if($cart)
                             {

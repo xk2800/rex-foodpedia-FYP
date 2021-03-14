@@ -279,7 +279,6 @@
                             {                      
                             $query_menu_detail = mysqli_query($connect, "INSERT INTO menu(username, cloudinary_link, dish_name, dish_id, price, description, stock_qty, permissible, cuisine, preparationTime) 
                             VALUES ('$var_username', '$url_cloud', '$var_name_menu_detail','$var_id_menu_detail','$var_price_menu_detail','$var_desc_menu_detail','$var_qty_menu_detail','$var_permissible','$var_cuisine','$var_preparationTime')");    
-                           
                                 echo "<script> alert('Product Added'); 
                                 location.href = 'dashboard.php';
                                 </script>";
