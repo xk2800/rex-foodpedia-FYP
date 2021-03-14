@@ -71,6 +71,9 @@
         $staff_username1 = mysqli_fetch_assoc($result);
         
     }
+
+    $staff_username = $staff_username1["username"];
+
 ?>
 
     <iframe width="100%" height="100%" src="check-order-page.php" frameborder="0" class="page"></iframe>

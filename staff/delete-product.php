@@ -15,6 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Product | REX Foodipedia</title>
+    <link rel="icon" type="image/png" href= "../img/logo/logo.png">
 
     <style>
     *{
@@ -52,8 +53,6 @@
         $staff_username1 = mysqli_fetch_assoc($result);
         
     }
-
-    //echo $staff_username1["username"];
 
     $staff_username = $staff_username1["username"];
 
