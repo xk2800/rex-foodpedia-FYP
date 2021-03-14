@@ -7,6 +7,7 @@
 <?php
     include "db-connect.php";
     //session_start();
+    ob_start();
 
 ?>
 <html>
@@ -38,7 +39,7 @@
     <?php
 
 
-        include("nav.php");
+        //include("nav.php");
 
 
         $time = time();
@@ -46,7 +47,7 @@
 
         $email              = $_SESSION['email'];
         //$email = "xavierkhew00@gmail.com";
-        echo $email;
+        //echo $email;
 
 
          $check_receipt_id = mysqli_query($connect, "SELECT * from transaction ORDER BY receipt_id DESC");
@@ -95,7 +96,7 @@
         <br><br>
     <div class="paper">
         <br>
-        <img src="img/logo/logo.png" alt="REX Foodipedia Logo" id="logo">
+        <img src="https://res.cloudinary.com/rexfoodipediafyp/image/upload/v1615748209/logo/logo_ggxua4.png" alt="REX Foodipedia Logo" id="logo">
         <p id="hori-line"><hr></p>
         <div class="sidechange">
             <p id="receipt title"><b>RECEIPT</b></p>
@@ -189,38 +190,6 @@
             ?>
                         </th>
                     </tr>
-                    <!-- <tr>
-                        <td id="discount">- Discount</td>
-                        <td id="db-discount">RM
-            <?php
-                                    /*$discount = $row ["discount"];
-                                    echo number_format((float)$discount, 2, '.', '');*/
-            ?></td>
-                    </tr>
-                    <tr>
-                        <td id="voucher">- Voucher
-                                            <?php //echo $row ["voucher"];
-                                                /*if(!$row ["voucher_code"]){
-
-
-                                                } else{
-                                                    echo "<br>";
-                                                    echo "Voucher Code: ";
-                                                }*/
-                                            ?>
-                        </td>
-                        <td id="db-voucher"><?php //echo $row ["voucher"];
-                                               /* if(!$row ["voucher_code"]){
-                                                    echo "RM 0";
-
-                                                } else{
-                                                    echo "RM ".$row ["voucher"];
-                                                    echo "<br>";
-                                                    echo $row ["voucher_code"];
-                                                }*/
-                                            ?>
-                        </td>
-                    </tr> -->
                     <tr>
                         <td id="tax">+Service Tax (6%)</td>
             <?php
@@ -260,11 +229,10 @@
             </span>
         <br>
     </div>
-
+    <button type="submit" name="submitbtn" class="btn btn-light btn-md rounded-pill submitbtn">Resend Email Receipt</button>
     <br><br><br>
-
+        
     </div>
-
 
 <!--THIS IS BOOTSTRAP JAVASRIPT PART START-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -274,3 +242,13 @@
 
 </body>
 </html>
+<?php
+    if(isset($_POST["submitbtn"])){
+
+        $emailTo = $email;
+        include ("emailreceipt.php");
+    }else{
+        $emailTo = $email;
+        include_once ("emailreceipt.php");
+    }
+?>
