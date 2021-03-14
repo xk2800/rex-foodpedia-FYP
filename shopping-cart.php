@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <?php
     include("db-connect.php");
+    if(!isset($_SESSION['email'])){
+        header("Location:user-login");
+    }
     $email = $_SESSION["email"];
     //session_start();
 ?>

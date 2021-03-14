@@ -8,6 +8,9 @@
     //session_start();
     include "db-connect.php";
     ob_start();
+    if(!isset($_SESSION['email'])){
+        header("Location:user-login");
+    }
     $_SESSION["cardnum"];
 
 ?>

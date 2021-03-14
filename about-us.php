@@ -144,7 +144,7 @@
         </div>
 
         <?php
-            include ("foot.html")
+            include ("foot.php")
         ?>
     </div>    
 </body>
