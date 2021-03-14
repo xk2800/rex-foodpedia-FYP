@@ -1,11 +1,11 @@
 <?php
     //session_start();
     include("../db-connect.php");
-    echo $_SESSION['adminuname'];
+    //echo $_SESSION['adminuname'];
 
-    if(!isset($_SESSION['adminuname'])){
+    /*if(!isset($_SESSION['adminuname'])){
         header("Location:../admin");
-    }
+    }*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,6 +43,31 @@
 
 </head>
 <body>
+
+<?php
+    include ('navbar.php');
+
+    if(isset($_REQUEST["access"])){
+        $name = $_REQUEST["access"];
+
+        $result = mysqli_query($connect, "SELECT username from admin_acc WHERE hashed = '$name'");
+        $admin_username1 = mysqli_fetch_assoc($result);
+        
+    }
+
+    echo $admin_username1["username"];
+
+    $admin_username = $admin_username1["username"];
+
+    echo "<br>";
+
+    echo $admin_username;
+
+
+    if(!isset($_REQUEST["access"])){
+        //header("Location:index");
+    }
+?>
     
     
         <!-- <div id="outside">

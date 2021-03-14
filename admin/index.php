@@ -210,10 +210,11 @@ if(isset($_POST["loginbtn"])){
         } else{
 
             if(mysqli_num_rows($admin_result)>0){
-                session_start();
-                $admin_username = $admin_uname;
-                $_SESSION['adminuname'] = $admin_username;
-                header("location: dashboard");
+                //session_start();
+                //$admin_username = $admin_uname;
+                //$_SESSION['adminuname'] = $admin_username;
+                $admin_username = md5($admin_uname);
+                header("location: dashboard?access=".$admin_username);
                 //echo "test";
             }else{
                 header("location: index?incorrect+credentials");

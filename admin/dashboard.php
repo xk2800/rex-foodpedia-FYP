@@ -2,13 +2,35 @@
 
     include "../db-connect.php";
     //session_start();
-    ob_start();
+    //ob_start();
 
-    $_SESSION['adminuname'];
+    //echo $_SESSION['adminuname'];
 
-    if(!isset($_SESSION['adminuname'])){
-        header("Location:index");
+    if(isset($_REQUEST["access"])){
+        $name = $_REQUEST["access"];
+
+        $result = mysqli_query($connect, "SELECT username from admin_acc WHERE hashed = '$name'");
+        $admin_username1 = mysqli_fetch_assoc($result);
+        
     }
+
+    echo $admin_username1["username"];
+
+    $admin_username = $admin_username1["username"];
+
+    echo "<br>";
+
+    echo $name;
+
+
+    /*if(!isset($_REQUEST["access"])){
+        header("Location:index");
+    }*/
+
+    $hashed = $name;
+
+    $cash = $hashed;
+    $_SESSION['hashed'] = $cash;
 ?>
 <!DOCTYPE html>
 <?php
@@ -47,9 +69,9 @@
 
 
 <?php
-    $admin_username = $_SESSION['adminuname'];
+    //$admin_username = $_SESSION['adminuname'];
     //echo $admin_username;
-    $_SESSION['adminuname'] = $admin_username;
+    //$_SESSION['adminuname'] = $admin_username;
 
     //echo "<br>hello";
     $time_now = time();
