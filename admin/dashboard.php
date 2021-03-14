@@ -49,6 +49,7 @@
 <?php
     $admin_username = $_SESSION['adminuname'];
     //echo $admin_username;
+    $_SESSION['adminuname'] = $admin_username;
 
     //echo "<br>hello";
     $time_now = time();
