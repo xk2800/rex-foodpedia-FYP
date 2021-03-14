@@ -9,13 +9,13 @@
         $name = $_REQUEST["access"];
 
         $result = mysqli_query($connect, "SELECT username from staff_acc WHERE hashed = '$name'");
-        $admin_username1 = mysqli_fetch_assoc($result);
+        $staff_username1 = mysqli_fetch_assoc($result);
         
     }
 
-    echo $admin_username1["username"];
+    echo $staff_username1["username"];
 
-    $admin_username = $admin_username1["username"];
+    $staff_username = $staff_username1["username"];
 
     echo "<br>";
 
@@ -56,7 +56,7 @@
 ?>
 
 <?php
-    $staff_username = $_SESSION['staffuname'];
+    //$staff_username = $_SESSION['staffuname'];
     //echo $staff_username;
 
     //echo "<br>hello";

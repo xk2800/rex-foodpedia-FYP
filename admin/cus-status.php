@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php 
     include("../db-connect.php");
+
+    if(!isset($_REQUEST["access"])){
+        header("Location:index");
+    }
 ?>
     <html>
         <head>
@@ -62,19 +66,9 @@
                     $admin_username1 = mysqli_fetch_assoc($result);
                     
                 }
-            
-                echo $admin_username1["username"];
-            
+                        
                 $admin_username = $admin_username1["username"];
             
-                echo "<br>";
-            
-                echo $admin_username;
-            
-            
-                if(!isset($_REQUEST["access"])){
-                    //header("Location:index");
-                }
             ?>
 
             <div class="container" id="cover">

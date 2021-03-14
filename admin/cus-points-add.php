@@ -3,6 +3,11 @@
     
     include("../db-connect.php");        
     ob_start();
+
+    if(!isset($_REQUEST["access"])){
+        header("Location:index");
+    }
+
     $email = $_GET['email'];
 ?>
 <html>
@@ -63,18 +68,9 @@
                 
             }
         
-            echo $admin_username1["username"];
-        
             $admin_username = $admin_username1["username"];
         
-            echo "<br>";
         
-            echo $admin_username;
-        
-        
-            if(!isset($_REQUEST["access"])){
-                //header("Location:index");
-            }
         ?>
         
         <?php  

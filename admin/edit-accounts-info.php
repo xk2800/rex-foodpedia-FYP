@@ -10,6 +10,10 @@
     include "../db-connect.php";
     ob_start();
 
+    if(!isset($_REQUEST["access"])){
+        header("Location:index");
+    }
+
 
     if(isset($_REQUEST["admin_username"]) && ($_REQUEST["account"])){
         $admin_username = $_REQUEST["admin_username"];
@@ -83,17 +87,22 @@
 
     <?php
             include("navbar.php");
-            //$admin_username = '123';
+
+            if(isset($_REQUEST["access"])){
+                $name = $_REQUEST["access"];
+        
+                $result = mysqli_query($connect, "SELECT username from admin_acc WHERE hashed = '$name'");
+                $admin_username1 = mysqli_fetch_assoc($result);
+                
+            }
+        
+            $admin_username = $admin_username1["username"];
     ?>
         <div class="container">
     <?php
-            if(isset($_REQUEST["staff_id"]) && ($_REQUEST["account"])){
+            if(isset($_REQUEST["staff_id"]) && ($_REQUEST["account"] == 'admin')){
                 $admin_username = $_REQUEST["staff_id"];
                 $account_type   = $_REQUEST["account"];
-
-                echo $admin_username;
-                echo "<br>";
-                echo $account_type;
 
 
                 $findadmin          = mysqli_query($connect, "SELECT * FROM admin_acc WHERE staff_id='$admin_username'");
@@ -129,7 +138,7 @@
 
                     if($admin_insert){
 
-                        header("location: edit-accounts?admin=updated");
+                        header("location: edit-accounts?admin=updated&access=$name");
                         //echo "updated";
                     }else{
                         $fullUrl ="https:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -173,13 +182,10 @@
 
 
 
-            }else if(isset($_REQUEST["staff_id"]) && ($_REQUEST["account"])){
+            }else if(isset($_REQUEST["staff_id"]) && ($_REQUEST["account"] == 'staff')){
                 $staff_username = $_REQUEST["staff_id"];
                 $account_type   = $_REQUEST["account"];
 
-                echo $staff_username;
-                echo "<br>";
-                echo $account_type;
 
                 $findstaff          = mysqli_query($connect, "SELECT * FROM staff_acc WHERE staff_id='$staff_username'");
                 $findstaff_output   = mysqli_fetch_assoc($findstaff);
@@ -235,7 +241,7 @@
 
                     if($staff_insert){
 
-                        header("location: edit-accounts?staff=updated");
+                        header("location: edit-accounts?staff=updated&access=$name");
                         //echo "updated";
                     }else{
                         $fullUrl ="https:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -267,3 +273,9 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     </body>
 </html>
+
+<?php
+    if((isset($_POST["cancelstaff"])) || (isset($_POST["canceladmin"]))){
+        header("location: edit-accounts?access=$name");
+    }
+?>

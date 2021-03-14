@@ -223,7 +223,7 @@
                                         }
     ?>
                                     </td>
-                                    <td><a href="edit-accounts-info?staff_id=<?php echo $admin_output["staff_id"];?>&account=admin"><button type="submit">Edit</button></a></td>
+                                    <td><a href="edit-accounts-info?staff_id=<?php echo $admin_output["staff_id"];?>&account=admin&access=<?php echo $name ?>"><button type="submit">Edit</button></a></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -273,7 +273,7 @@
                                         }
     ?>
                                         </td>
-                                        <td><a href="edit-accounts-info?staff_id=<?php echo $staff_output['staff_id'];?>&account=staff"><button type="submit" name="action_admin">Edit</button></a></td>
+                                        <td><a href="edit-accounts-info?staff_id=<?php echo $staff_output['staff_id'];?>&account=staff&access=<?php echo $name ?>"><button type="submit" name="action_admin">Edit</button></a></td>
                                     </tr>
                                 </tbody>
                             </table>
