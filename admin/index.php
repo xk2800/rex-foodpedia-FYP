@@ -191,10 +191,11 @@ if(isset($_POST["loginbtn"])){
         } else{
 
             if(mysqli_num_rows($staff_result)>0){
-                session_start();
-                $staff_username         = $staff_uname;
-                $_SESSION['staffuname'] = $staff_username;
-                header("location: ../staff/dashboard.php");
+                //session_start();
+                //$staff_username         = $staff_uname;
+                //$_SESSION['staffuname'] = $staff_username;
+                $staff_username = md5($staff_uname);
+                header("location: ../staff/dashboard?access=".$staff_username);
                 //echo "test";
             }else{
                 header("location: index?incorrect+credentials");

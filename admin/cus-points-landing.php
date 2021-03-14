@@ -45,10 +45,31 @@
 
         </head>
         
-        <body style="background-color: #4C5C68;">
+        <body>
 
             <?php
                 include("navbar.php");
+
+                if(isset($_REQUEST["access"])){
+                    $name = $_REQUEST["access"];
+            
+                    $result = mysqli_query($connect, "SELECT username from admin_acc WHERE hashed = '$name'");
+                    $admin_username1 = mysqli_fetch_assoc($result);
+                    
+                }
+            
+                echo $admin_username1["username"];
+            
+                $admin_username = $admin_username1["username"];
+            
+                echo "<br>";
+            
+                echo $admin_username;
+            
+            
+                if(!isset($_REQUEST["access"])){
+                    //header("Location:index");
+                }
             ?>
 
             <div class="container">
@@ -99,7 +120,7 @@
                 <ul class="pagination" style="margin: 40px 0px 40px 0px;">
                     <?php 
                         if($page_no > 1) {
-                            echo "<li style='padding-right: 30px;'><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=1'>
+                            echo "<li style='padding-right: 30px;'><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=1&access=$name'>
                                                                     <i class='fa fa-fast-backward' aria-hidden='true'></i>
                                                                    </a> &emsp; 
                                   </li>";
@@ -107,18 +128,18 @@
                     ?>
                     <li style="padding-right: 30px;" <?php if($page_no <= 1) { echo "class='disabled'"; } ?> >
                         <a style="margin-right: 30px;" class="btn btn-secondary btn-block " <?php if($page_no > 1) {
-                                    echo "href='?page_no=$previous_page'";
+                                    echo "href='?page_no=$previous_page&access=$name'";
                                 } ?>><i class="fa fa-backward" aria-hidden="true"></i>
                         </a>
                     </li>
                     <li style="padding-right: 30px;" <?php if($page_no >= $total_no_of_pages) { echo "class='disabled'"; } ?> >
                         <a style="margin-right: 30px;" class="btn btn-secondary btn-block " <?php if($page_no < $total_no_of_pages) {
-                                    echo "href='?page_no=$next_page'";
+                                    echo "href='?page_no=$next_page&access=$name'";
                                 } ?>><i class="fa fa-forward" aria-hidden="true"></i>
                         </a>
                     </li>
                     <?php if($page_no < $total_no_of_pages) { 
-                                echo "<li><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=$total_no_of_pages'>
+                                echo "<li><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=$total_no_of_pages&access=$name'>
                                             <i class='fa fa-step-forward' aria-hidden='true'></i>
                                           </a> 
                                       </li>"; 
@@ -164,8 +185,8 @@
                                         <td><?php echo $db_lpoints_cus_points_landing; ?></td>
                                         <td><?php echo $db_lpoints_valid_cus_points_landing; ?></td>
                                         <td><?php echo  $db_status_cus_status_string; ?></td>
-                                        <td ><a href="cus-points-add.php?email=<?php echo $row['email']; ?>">Edit</a>&emsp;
-                                        <a onclick="return confirm('Delete this record?')" href="cus-points-delete.php?email=<?php echo $row['email']; ?>">Delete</a>
+                                        <td ><a href="cus-points-add?access=<?php echo $name ?>&email=<?php echo $row['email']; ?>">Edit</a>&emsp;
+                                        <a onclick="return confirm('Delete this record?')" href="cus-points-delete?email=<?php echo $row['email']; ?>">Delete</a>
                                         </td>
                                     </tr>
                         <?php

@@ -77,7 +77,7 @@
     }
 </style>
 </head>
-<body style="background-color: #e8ded2">
+<body>
 
 <?php
         include("navbar.php");

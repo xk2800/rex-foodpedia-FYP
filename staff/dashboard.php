@@ -3,7 +3,23 @@
     include "../db-connect.php";
     //session_start();
     ob_start();
-    $_SESSION['staffuname'];
+    //$_SESSION['staffuname'];
+
+    if(isset($_REQUEST["access"])){
+        $name = $_REQUEST["access"];
+
+        $result = mysqli_query($connect, "SELECT username from staff_acc WHERE hashed = '$name'");
+        $admin_username1 = mysqli_fetch_assoc($result);
+        
+    }
+
+    echo $admin_username1["username"];
+
+    $admin_username = $admin_username1["username"];
+
+    echo "<br>";
+
+    echo $name;
 ?>
 <!DOCTYPE html>
 <?php
