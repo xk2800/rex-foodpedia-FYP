@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 
 <?php
+
     include "../db-connect.php"; 
     //session_start();
-    $admin_username = $_SESSION['staffuname'];
+    ob_start();
+    echo $_SESSION['adminuname'];
 ?>
     <html>
         <head>
@@ -74,7 +76,7 @@
             </style>    
         </head>
 
-        <body style="background-color: #4C5C68;">
+        <body style="background-color: #e8ded2;">
                 
             <?php
                 include("navbar.php");
@@ -172,6 +174,14 @@
                     $var_staffpassword = $_POST["staffpassword"];
                     $var_staffemail = $_POST["emails"];
 
+                    $md_var_staffpassword = md5($var_staffpassword);
+
+                    //salt variable
+                    $salt = "!2y$10*GJIZkOgbCNwTH5ji^JZ0mGev36Cj&2EKuRdLp#HP.crF.VQy751493147";
+
+                    //salt added passowrd variable
+                    $salted_var_staffpassword = $salt.$md_var_staffpassword;
+
                     if(!empty($var_staffid) && !empty($var_staffname) && !empty($var_staffuname) && !empty($var_staffpassword) && !empty($var_staffemail)) {
                         
                         //!empty($var_dish_menu_detail)
@@ -183,7 +193,7 @@
                         //harcode a temp dish_id session
 
                         $query_add_staff = mysqli_query($connect, "INSERT INTO staff_acc(fname, staff_id, username, pwd, email) 
-                        VALUES ('$var_staffname','$var_staffid','$var_staffuname','$var_staffpassword','$var_staffemail')");
+                        VALUES ('$var_staffname','$var_staffid','$var_staffuname','$salted_var_staffpassword','$var_staffemail')");
 
                         echo "<script>
                                     alert('Staff Added');

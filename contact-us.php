@@ -1,3 +1,8 @@
+<?php
+//WORKING: Xavier
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -115,14 +120,6 @@
             .submit-text{
                 font-size: 37px;
             }
-            /*#text-section, #desc{
-                margin: 0 0 0 100px;
-            }
-
-            #form-section{
-                width: 100%;
-                margin: 0 0 0 100px;
-            }*/
         }
 
     </style>

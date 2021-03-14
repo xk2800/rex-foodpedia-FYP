@@ -158,9 +158,9 @@
                         ?>
                             <td class="col-sm-8 col-md-6">
                             <div class="media">
-                                <a class="thumbnail pull-left" href="#"> 
+                                <!-- <a class="thumbnail pull-left" href="#"> 
                                     <img src="../img/food1.jpg" style="width: 72px; height: 72px;">
-                                </a>
+                                </a> -->
                                 <div class="media-body">
                                     <h5>#<?php echo $db_id;?></h5>
                                     <h6>Description: <br> <?php echo $db_dish_name;?></h6>

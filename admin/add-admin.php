@@ -1,6 +1,11 @@
 <?php
+    //session_start();
     include("../db-connect.php");
-    session_start();
+    echo $_SESSION['adminuname'];
+
+    if(!isset($_SESSION['adminuname'])){
+        header("Location:../admin");
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,13 +45,13 @@
 <body>
     
     
-        <div id="outside">
+        <!-- <div id="outside">
             <span><img class="logo" src="../img/logo/logo.png"/></span></div>
-        <div id="bottom"></div>
+        <div id="bottom"></div> -->
 
     <div class="container">
 
-        <p class="panel">Register staff for REX Foodipedia admin account</p>
+        <p class="panel">Register Admin for REX Foodipedia admin account</p>
         <div class="gap"></div>
 
         <div class="box">
@@ -56,7 +61,7 @@
             <span class="input"><input type="text" name="name"></span>
             <br><br>
 
-            <span class="label">Staff ID Number:</span><br>
+            <span class="label">Admin's Staff ID Number:</span><br>
             <span class="input"><input type="text" name="staff_id"></span>
             <br><br>
 
@@ -80,7 +85,7 @@
 
             <br><br>
             <button type="submit" name="regbtn">Register Staff</button>
-            <button type="submit" name="cancelbtn" href="connect.php">Cancel</button>
+            <button type="submit" name="cancelbtn" href="dashboard.php">Cancel</button>
 
         </form>
         </div>
@@ -151,6 +156,10 @@
         //echo $role;
 
         
+    }
+
+    if(isset($_POST["cancelbtn"])){
+
     }
 
 /**
