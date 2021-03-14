@@ -102,10 +102,6 @@
         $result = mysqli_query($connect, "SELECT * from user_acc WHERE email = '$email'");
         $row = mysqli_fetch_assoc($result);
 
-        /*$card_result = mysqli_query($connect, "SELECT * from user_acc WHERE email = '$email'");
-        $card_output = mysqli_fetch_assoc($card_result);*/
-
-        
 
         //session carry
         $delivery_type = $_SESSION['delivery_type'];
