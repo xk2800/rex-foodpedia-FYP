@@ -4,7 +4,7 @@
 ?>
     <html>
         <head>
-            <title>Account Statuses | REX Foodipedia</title>
+            <title>User Account Status | REX Foodipedia</title>
 
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,11 +42,15 @@
                    margin-top: 13px;
                 }
 
+                #cover, body{
+                    background-color: #e8ded2;
+                }
+
             </style>
 
         </head>
         
-        <body style="background-color: #4C5C68;">
+        <body>
 
             <?php
                 include("navbar.php");
@@ -73,9 +77,9 @@
                 }
             ?>
 
-            <div class="container">
+            <div class="container" id="cover">
                 
-                <p id="p-status">Account Statuses
+                <p id="p-status">User Account Status
                     <!-- <a href="cus-status-edit.php" class="btn btn-primary" id="button-status">+ Account Statuses</a> -->
                 </p> 
                 
@@ -122,7 +126,7 @@
                 <ul class="pagination" style="margin: 40px 0px 40px 0px;">
                     <?php 
                         if($page_no > 1) {
-                            echo "<li style='padding-right: 30px;'><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=1'>
+                            echo "<li style='padding-right: 30px;'><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=1&access=$name'>
                                                                     <i class='fa fa-fast-backward' aria-hidden='true'></i>
                                                                     </a> &emsp; 
                                 </li>";
@@ -130,18 +134,18 @@
                     ?>
                     <li style="padding-right: 30px;" <?php if($page_no <= 1) { echo "class='disabled'"; } ?> >
                         <a style="margin-right: 30px;" class="btn btn-secondary btn-block " <?php if($page_no > 1) {
-                                    echo "href='?page_no=$previous_page'";
+                                    echo "href='?page_no=$previous_page&access=$name'";
                                 } ?>><i class="fa fa-backward" aria-hidden="true"></i>
                         </a>
                     </li>
                     <li style="padding-right: 30px;" <?php if($page_no >= $total_no_of_pages) { echo "class='disabled'"; } ?> >
                         <a style="margin-right: 30px;" class="btn btn-secondary btn-block " <?php if($page_no < $total_no_of_pages) {
-                                    echo "href='?page_no=$next_page'";
+                                    echo "href='?page_no=$next_page&access=$name'";
                                 } ?>><i class="fa fa-forward" aria-hidden="true"></i>
                         </a>
                     </li>
                     <?php if($page_no < $total_no_of_pages) { 
-                                echo "<li><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=$total_no_of_pages'>
+                                echo "<li><a style='margin-right: 30px;' class='btn btn-secondary btn-block' href='?page_no=$total_no_of_pages&access=$name'>
                                             <i class='fa fa-step-forward' aria-hidden='true'></i>
                                         </a> 
                                         </li>"; 

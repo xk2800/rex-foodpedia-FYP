@@ -59,6 +59,10 @@
         #navbar{
             background-color: #5eaaa8;
         }
+
+        body{
+            background-color: #e8ded2;
+        }
     </style>
 </head>
 <body>
