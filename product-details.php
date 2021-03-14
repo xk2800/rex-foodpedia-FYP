@@ -109,6 +109,12 @@
         #home .row{
             margin-bottom: 15%;
         }
+
+        .vendor-list-item{
+            display:inline-block;
+            width:22%;
+            margin:10px 10px 10px 10px;
+        }
         </style>
     <!--CSS END-->
 
@@ -197,36 +203,32 @@
                     
                                         <!-- <div class="container" style="display:flex; background-color:blue;"> -->
                                     <div class="row">
-                                            <div class="column" style="float:left;">
-                                                    <div class="container" style="display:flex; flex-direction:row; width:100%;">
-
-                                                            <?php 
-                                                                if($numrowrandom != 0)
-                                                                {
-                                                                    while($row = mysqli_fetch_assoc($display_other_menu))
-                                                                    {
-                                                                        $db_other_dish_name = $row['dish_name'];
-                                                                        $db_other_dish_description = $row['description'];
-                                                                        $db_other_dish_price = $row['price'];
-                                                                        $db_other_dish_img = $row['cloudinary_link'];
-                                                                ?>
-
+                                                <ul class="vendor-list" style="width:100%;">
+                                                    <?php 
+                                                    if($numrow != 0)
+                                                    {
+                                                        while($row = mysqli_fetch_assoc($display_other_menu))
+                                                        {
+                                                            $db_dish_name = $row['dish_name'];
+                                                            $db_dish_description = $row['description'];
+                                                            $db_dish_price = $row['price'];
+                                                            $db_dish_image = $row['cloudinary_link'];
+                                                    ?>
+                                                
                                                             
-                                                                <div class="container" style="width:50%;">
-                                                                    <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
-                                                                        <!-- <img src="img/food1.jpg" style="width:100%"> -->
-                                                                        <img src="<?php echo $db_dish_img ?>" alt="" class="images" style="width:100%">
-                                                                    
-                                                                    <div style="margin:10px 0 0 0; text-decoration:none;">
-                                                                        <p><?php echo $db_other_dish_name ?> <br> <b>RM <?php echo $db_other_dish_price?></b></p>
-                                                                    </div></a>
-                                                                </div>
-                                        
-                                                            <?php 
+                                                                <li class="vendor-list-item">
+                                                                
+                                                                            <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
+                                                                                <!-- <img src="img/food1.jpg" style="width:100%"> -->
+                                                                                <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:100%">
+                                                                                <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
+                                                                            </a>
+                                                                </li>
+                                                    <?php
                                                             }
                                                         }
-                                                        ?>
-                                                    </div>
+                                                    ?>
+                                                </ul>          
                                             </div>
                                     </div>
                         </div>
