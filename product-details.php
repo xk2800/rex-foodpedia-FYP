@@ -2,6 +2,7 @@
 
 <?php
     include("db-connect.php");
+    ob_start();
     $id = $_GET['id'];
     //session_start();
 ?>
