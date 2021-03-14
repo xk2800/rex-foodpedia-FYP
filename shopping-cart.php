@@ -69,7 +69,7 @@
                     </thead>
 
                     <?php
-                        $shopping_cart_query = mysqli_query($connect, "SELECT dish_name,dish_price,dish_id,dish_qty,id FROM cart WHERE email = '$email' ");
+                        $shopping_cart_query = mysqli_query($connect, "SELECT dish_name,dish_price,dish_id,dish_qty,id,cloudinary_link FROM cart WHERE email = '$email' ");
                         $shopping_subtotal = "SELECT  SUM(dish_total) as subtotal FROM cart WHERE email ='$email'";
 
                         $numrow = mysqli_num_rows($shopping_cart_query);
@@ -86,6 +86,7 @@
                                         $db_dish_price = $row['dish_price'];
                                         $db_dish_id = $row['dish_id'];
                                         $db_dish_qty = $row['dish_qty'];
+                                        $db_dish_img = $row['cloudinary_link'];
                                         // $subtotal = $row['SUM(dish_total)'];
                                         $shipping_fee = 5;
                         ?>
@@ -93,7 +94,7 @@
                                         <td class="col-sm-8 col-md-6">
                                             <div class="media">
                                                 <a class="thumbnail pull-left" href="#">
-                                                    <img src="img/food1.jpg" style="width: 72px; height: 72px;">
+                                                    <img src="<?php echo $db_dish_img ?>" style="width: 72px; height: 72px;">
                                                 </a>
                                                     <div class="media-body">
                                                         <!-- <a href="product-details.php?id=<?php echo $row['id']?>"> </a>-->
