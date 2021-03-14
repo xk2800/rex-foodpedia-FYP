@@ -57,13 +57,13 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-10 col-md-offset-1">
-                <table class="table table-hover">
+                <table class="table table-hover" style="margin-left:6em; margin-top:5em;">
                     <thead>
                         <tr>
                             <th>Product</th>
                             <th>Quantity</th>
                             <th class="text-center">Price(RM)</th>
-                            <th class="text-center">Total</th>
+                            <th>Total</th>
                             <th> </th>
                         </tr>
                     </thead>
@@ -155,20 +155,24 @@
                         <tr>
                             <td>   </td>
                             <td>   </td>
-                            <td>   </td>
                             <td><h4>Total</h4></td>
-                            <td class="text-right"><h3><strong>
-                            <?php
+                            <td class="text-right">
+                                <h3>
+                                    <strong>
+                                        <?php
 
 
-                            $total = 0;
-                            $total = $total +$subtotal;
-                                echo "RM".number_format((float)$total,2,'.','');
-                            ?>
-                            </strong></h3></td>
+                                        $total = 0;
+                                        $total = $total +$subtotal;
+                                            echo "RM".number_format((float)$total,2,'.','');
+                                        ?>
+                                    </strong>
+                                </h3>
+                            </td>
+                            <td></td>
                         </tr>
 
-                        <tr>
+                        <tr style="margin-right:5em;">
                             <td>
                             <a href="menu.php" style="text-decoration:none;">
                                 <button type="button" class="btn btn-default" id="continue-shopping">
@@ -178,20 +182,16 @@
                             </td>
                             <td></td>
                             <td></td>
-                            <td></td>
                             <td>
+                                <a href="pickup-checkout" class="btn btn-light btn-md rounded-pill add-newbtn words" id="checkout">Self Pick Up</a>
+                            </td>
+                            <td><a href="delivery-checkout" class="btn btn-light btn-md rounded-pill add-newbtn words" id="checkout">Delivery</a></td>
                             <!-- <a href="pickup_delivery_selection.php">
                                 <button type="button" class="btn btn-success" id="checkout">
                                     <span>Checkout</span>
                                 </button></td>
                             </a> -->
-                                <a href="pickup-checkout" class="btn btn-light btn-md rounded-pill add-newbtn words" id="checkout">
-                                    Self Pick Up
-                                </a>
-                            </td>
-                            <td>
-                                <a href="delivery-checkout" class="btn btn-light btn-md rounded-pill add-newbtn words" id="checkout">Delivery</a>
-                            </td>
+                            <td></td>
                             </tr>
                     </tbody>
                 </table>

@@ -209,10 +209,10 @@
                                                     {
                                                         while($row = mysqli_fetch_assoc($display_other_menu))
                                                         {
-                                                            $db_dish_name = $row['dish_name'];
-                                                            $db_dish_description = $row['description'];
-                                                            $db_dish_price = $row['price'];
-                                                            $db_dish_image = $row['cloudinary_link'];
+                                                            $random_name = $row['dish_name'];
+                                                            $random_description = $row['description'];
+                                                            $random_price = $row['price'];
+                                                            $random_image = $row['cloudinary_link'];
                                                     ?>
                                                 
                                                             
@@ -220,8 +220,8 @@
                                                                 
                                                                             <a href="product-details.php?id=<?php echo $row['id'];?>" style="text-decoration:none;">
                                                                                 <!-- <img src="img/food1.jpg" style="width:100%"> -->
-                                                                                <img src="<?php echo $db_dish_image ?>" alt="" class="images" style="width:100%">
-                                                                                <p><?php echo $db_dish_name ?> <br> <b>RM <?php echo $db_dish_price?></b></p>                
+                                                                                <img src="<?php echo $random_image ?>" alt="" class="images" style="width:100%">
+                                                                                <p><?php echo $random_name ?> <br> <b>RM <?php echo $random_price?></b></p>                
                                                                             </a>
                                                                 </li>
                                                     <?php
@@ -247,12 +247,12 @@
                 $var_dish_special_instruction = $_POST['dish-special-instruction'];
                 $var_dish_quantity = $_POST['dish-quantity'];
                 $var_dish_total = $var_dish_price * $var_dish_quantity;
-                $db_dish_img = $db_dish_img;
+                $image = $db_dish_img;
 
                 if(!empty($var_dish_quantity)){
 
                     $cart = mysqli_query($connect, "INSERT INTO cart(email,dish_name, dish_price,dish_total, dish_qty, cloudinary_link) 
-                    VALUES ('$var_email' ,'$var_dish_name' , '$var_dish_price','$var_dish_total','$var_dish_quantity', '$db_dish_img')");
+                    VALUES ('$var_email' ,'$var_dish_name' , '$var_dish_price','$var_dish_total','$var_dish_quantity', '$image')");
 
                             if($cart)
                             {
