@@ -176,12 +176,6 @@
 
     <!-- Menu Nav Start-->
     <div class="text-center">
-        <!--a class="active" type="button" href="#">Home</a>
-        <a type="button" href="#">Chinese Cuisine</a>
-        <a type="button" href="#">Malaysian Cuisine</a>
-        <a type="button" href="#">Japanese Cuisine</a>
-        <a type="button" href="https://www.youtube.com/">Indian Cuisine</a-->
-        <!--div class="tab"-->
         <button id="btns" class="tablinks active" onclick="openCity(event, 'home')">Home</button>
         <button id="btns" class="tablinks" onclick="openCity(event, 'Malaysian')">Malaysian Cuisine</button>
         <button id="btns" class="tablinks" onclick="openCity(event, 'Japanese')">Japanese Cuisine</button>
@@ -190,9 +184,6 @@
         <!--/div-->
     </div>
     <!-- Menu Nav End -->
-
-
-    
 
     <!-- Random Menu -->
         <div id="home" class="tabcontent">

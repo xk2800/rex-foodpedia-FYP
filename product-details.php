@@ -127,6 +127,7 @@
         
         $product_details_query = mysqli_query($connect, "SELECT * FROM menu WHERE id = '$id'");
         $display_other_menu = mysqli_query($connect,"SELECT * FROM menu ORDER BY RAND() LIMIT 4");
+        $numrowrandom = mysqli_num_rows($display_other_menu);
         $numrow = mysqli_num_rows($product_details_query);
     ?>
 
@@ -184,7 +185,7 @@
 
        
 
-                <div>
+                <div style="margin-left:25px; margin-bottom:30px;">
                     <p class="description"><b>Description</b></p>
                     <p style="font-size: large;"><?php echo $db_dish_description;?></p>
                 </div>
@@ -193,7 +194,6 @@
                         <div class="container">
                                         <p>Random Picks</p>
                                         <hr>
-                                
                     
                                         <!-- <div class="container" style="display:flex; background-color:blue;"> -->
                                     <div class="row">
@@ -201,7 +201,7 @@
                                                     <div class="container" style="display:flex; flex-direction:row; width:100%;">
 
                                                             <?php 
-                                                                if($numrow != 0)
+                                                                if($numrowrandom != 0)
                                                                 {
                                                                     while($row = mysqli_fetch_assoc($display_other_menu))
                                                                     {

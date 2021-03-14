@@ -90,33 +90,6 @@
 
             <div class="container">
 
-                <!-- <div class="card" id="card-whole-add-product">
-                    <h6 class="card-header" id="card-title">Add Products</h6>
-                    
-                    <div class="card-body">
-                        <div id="card-input-add-product">
-                                <form name="form_menu_detail" method="POST" onsubmit="return alert('Details are updated successfuly');" 
-                                  enctype="multipart/form-data" action="add-menu-cloudinary-upload.php">
-
-                                    <div class="form-group" style="margin-left: 15px;">
-                                        <label for="card-dish-add-product">Image</label>
-                                        <div class="custom-file">  
-                                            <div class="row">
-                                                <div class="col">
-                                                    <input type="file" class="custom-file-input" id="card-dish-add-product" name="file">
-                                                    <label class="custom-file-label" for="card-dish-add-product">Choose file</label>
-                                                </div>
-                                                <div class="col">
-                                                    <button type="submit" class="btn btn-info" style="margin-left: 30px;">Submit</button>
-                                                </div>    
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </form>
-                        </div>
-                    </div>            
-                </div> -->
-        
                 <div class="card" id="card-whole-add-product">
                     <h6 class="card-header" id="card-title">Add Products</h6>
                   
