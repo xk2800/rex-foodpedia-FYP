@@ -122,8 +122,8 @@
                             Manage Orders
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                            <a class="dropdown-item" href="edit-menu">Edit Menu</a>
-                            <a class="dropdown-item" href="view-order">View Order List</a>
+                            <!-- <a class="dropdown-item" href="edit-menu">Edit Menu</a> -->
+                            <a class="dropdown-item" href="check-order">View Order List</a>
                             <!--a class="dropdown-item" href="delete-products">Delete Current Products</a-->
                         </div>
                     </li>

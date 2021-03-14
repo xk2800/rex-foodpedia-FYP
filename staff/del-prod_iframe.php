@@ -25,6 +25,9 @@
     /* .tabledit-edit-button{
         display: none !important;
     } */
+    body{
+        background-color: #e7ded2;
+    }
 </style>
 </head>
 
@@ -32,7 +35,7 @@
     <div class="container">
     <br />
         <div class="panel panel-default">
-            <div class="panel-heading">Sample Data</div>
+            <div class="panel-heading">Delete Product</div>
             <div class="panel-body">
                 <div class="table-responsive">
                     <table id="menu_data" class="table table-bordered table-striped">

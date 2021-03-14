@@ -36,24 +36,25 @@
     });
 </script>
 
-    <style>
-        body{
-            margin-top: 10rem;
-            }
-
-        .media-body{
-            margin-left:20px;
-        }
-        
-        .lower-button button{
-            width: 100%;
+<style>
+    body{
+        margin-top: 10rem;
+        background-color: #e7ded2;
         }
 
-        #continue-shopping{
-            width:auto;
-        }
+    .media-body{
+        margin-left:20px;
+    }
+    
+    .lower-button button{
+        width: 100%;
+    }
 
-    </style>
+    #continue-shopping{
+        width:auto;
+    }
+
+</style>
 
 </head>
 
