@@ -38,6 +38,8 @@
     <?php
 
 
+        include("nav.php");
+
 
         $time = time();
         $actual_time = date('Y-m-d H:i:s', $time);
