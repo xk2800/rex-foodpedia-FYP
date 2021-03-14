@@ -3,14 +3,14 @@
     include("../db-connect.php");
     //echo $_SESSION['adminuname'];
 
-    /*if(!isset($_SESSION['adminuname'])){
-        header("Location:../admin");
-    }*/
+    if(!isset($_REQUEST["access"])){
+        header("Location:index");
+    }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ADMIN LOGIN PAGE | REX Foodipedia ADMIN</title>
+    <title>Add Admin Page | REX Foodipedia ADMIN</title>
     
     <link rel="icon" type="image/png" href= "../img/logo/logo.png">
 
@@ -55,28 +55,14 @@
         
     }
 
-    echo $admin_username1["username"];
-
     $admin_username = $admin_username1["username"];
 
-    echo "<br>";
-
-    echo $admin_username;
-
-
-    if(!isset($_REQUEST["access"])){
-        //header("Location:index");
-    }
 ?>
-    
-    
-        <!-- <div id="outside">
-            <span><img class="logo" src="../img/logo/logo.png"/></span></div>
-        <div id="bottom"></div> -->
+
 
     <div class="container">
 
-        <p class="panel">Register Admin for REX Foodipedia admin account</p>
+        <p class="panel">Register admin for REX Foodipedia admin account</p>
         <div class="gap"></div>
 
         <div class="box">
@@ -116,12 +102,6 @@
         </div>
         <br><br>
     </div>
-    <!--FOOTER START-->
-    <!--div class="footer">
-        <p>&#9400; <script>document.write(new Date().getFullYear())</script> REX Foodipedia Copyright
-            <div id="access">Restricted Access For Admins Only</div></p>
-    </div-->
-    <!--FOOTER END-->
         <style>
             #re a:link, #re a:visited
             {
@@ -177,8 +157,6 @@
                 echo $mysqli->error;
             }
         }
-
-        //echo $role;
 
         
     }

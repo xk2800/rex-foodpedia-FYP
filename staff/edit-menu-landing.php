@@ -19,7 +19,7 @@
             <meta name="viewpoint" content="width=device-width">
     
             <!--INCLUDE START HERE-->
-            <link rel="icon" type="image/png" href= "image/MYRUN 1.png">
+            <link rel="icon" type="image/png" href= "../img/logo/logo.png">
 
             <!--THIS IS FONT AWESOME JAVASCRIPT START-->
             <script src="https://kit.fontawesome.com/daa253e478.js" crossorigin="anonymous"></script>

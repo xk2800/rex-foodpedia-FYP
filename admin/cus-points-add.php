@@ -3,6 +3,11 @@
     
     include("../db-connect.php");        
     ob_start();
+
+    if(!isset($_REQUEST["access"])){
+        header("Location:index");
+    }
+
     $email = $_GET['email'];
 ?>
 <html>
@@ -12,7 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     
         <!--INCLUDE START HERE-->
-        <link rel="icon" type="image/png" href= "img/logo/logo.png">
+        <link rel="icon" type="image/png" href= "../img/logo/logo.png">
 
         <!--THIS IS FONT AWESOME JAVASCRIPT START-->
         <script src="https://kit.fontawesome.com/daa253e478.js" crossorigin="anonymous"></script>
@@ -63,18 +68,9 @@
                 
             }
         
-            echo $admin_username1["username"];
-        
             $admin_username = $admin_username1["username"];
         
-            echo "<br>";
         
-            echo $admin_username;
-        
-        
-            if(!isset($_REQUEST["access"])){
-                //header("Location:index");
-            }
         ?>
         
         <?php  

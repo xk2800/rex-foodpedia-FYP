@@ -22,7 +22,7 @@
     <meta name="viewpoint" content="width=device-width">
     
 <!--INCLUDE START HERE-->
-    <link rel="icon" type="image/png" href= "image/MYRUN 1.png">
+<link rel="icon" type="image/png" href= "../img/logo/logo.png">
 
 <!--THIS IS FONT AWESOME JAVASCRIPT START-->
     <script src="https://kit.fontawesome.com/daa253e478.js" crossorigin="anonymous"></script>
@@ -223,7 +223,7 @@
                                         }
     ?>
                                     </td>
-                                    <td><a href="edit-accounts-info?staff_id=<?php echo $admin_output["staff_id"];?>&account=admin"><button type="submit">Edit</button></a></td>
+                                    <td><a href="edit-accounts-info?staff_id=<?php echo $admin_output["staff_id"];?>&account=admin&access=<?php echo $name ?>"><button type="submit">Edit</button></a></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -273,7 +273,7 @@
                                         }
     ?>
                                         </td>
-                                        <td><a href="edit-accounts-info?staff_id=<?php echo $staff_output['staff_id'];?>&account=staff"><button type="submit" name="action_admin">Edit</button></a></td>
+                                        <td><a href="edit-accounts-info?staff_id=<?php echo $staff_output['staff_id'];?>&account=staff&access=<?php echo $name ?>"><button type="submit" name="action_admin">Edit</button></a></td>
                                     </tr>
                                 </tbody>
                             </table>
