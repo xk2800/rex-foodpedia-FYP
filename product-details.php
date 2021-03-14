@@ -175,7 +175,7 @@
                     <hr style="border:1px solid black; width:100%;">
                     <p><b>Types of Cuisine:</b><b class="text-primary"> <?php echo $db_dish_cuisine;?> Cuisine</b> </p>
                     <p><b>Preparation time:</b><b class="text-warning"> <?php echo $db_dish_prep; ?> Minutes</b></p>
-                    <p><b>Permissible:</b><?php echo $db_dish_permissible == 'yes' ? '<b class="text-success"> Halal Certified!</b>' : '<b class="text-danger"> Not Halal</b>'; ?></p>
+                    <p><b>Permissible:</b><?php echo $db_dish_permissible == 'Yes' ? '<b class="text-success"> Halal Certified!</b>' : '<b class="text-danger"> Not Halal</b>'; ?></p>
                     
                     
                     <p><b>Special Instruction</b></p>

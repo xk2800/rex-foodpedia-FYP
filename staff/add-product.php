@@ -295,24 +295,24 @@
                     $check_dish_name = "SELECT * FROM menu WHERE dish_id = $var_id_menu_detail";
                     $res = mysqli_query($connect,$check_dish_name);
 
-                            if(mysqli_num_rows($res) > 0)
+                            if(!empty($var_name_menu_detail) && !empty($var_price_menu_detail) && !empty($var_qty_menu_detail) && !empty($var_desc_menu_detail))
                             {
-                                echo "<script> alert('Dish ID Already Taken,Please Enter Another One'); </script>";
-                                exit();
+                                $query_menu_detail = mysqli_query($connect, "INSERT INTO menu(username, cloudinary_link, dish_name, dish_id, price, description, stock_qty, permissible, cuisine, preparationTime) 
+                                                            VALUES ('$var_username', '$url_cloud', '$var_name_menu_detail','$var_id_menu_detail','$var_price_menu_detail','$var_desc_menu_detail','$var_qty_menu_detail','$var_permissible','$var_cuisine','$var_preparationTime')");    
+                                                                echo "<script> alert('Product Added'); 
+                                                                location.href = 'dashboard.php';
+                                                                </script>";
+
+                                 
+                                // echo "<script> alert('Dish ID Already Taken,Please Enter Another One'); </script>";
+                                // exit();
                             }
                             else
                             {                      
-                            $query_menu_detail = mysqli_query($connect, "INSERT INTO menu(username, cloudinary_link, dish_name, dish_id, price, description, stock_qty, permissible, cuisine, preparationTime) 
-                            VALUES ('$var_username', '$url_cloud', '$var_name_menu_detail','$var_id_menu_detail','$var_price_menu_detail','$var_desc_menu_detail','$var_qty_menu_detail','$var_permissible','$var_cuisine','$var_preparationTime')");    
-                                echo "<script> alert('Product Added'); 
-                                location.href = 'dashboard.php';
-                                </script>";
-                            
+                            echo "<script> alert('Please fill in all the inputs!'); </script>"; 
                             }
         
-                } else {
-                    echo "<script> alert('Please fill in all the inputs!'); </script>";
-                }
+                }  
 
             ?>
                 
