@@ -481,7 +481,7 @@
                                         $pretax             = $total_price /((6/100)+1);
                                         $tax                = $total_price - $pretax;
                     ?>
-                            <td id="tax">+Service Tax(6%)</td>
+                            <td id="tax">(Inclusive) Service Tax(6%)</td>
                             <td id="db-tax" class="db-rows">RM <?php echo number_format((float)$tax, 2, '.', '') ?></td>
                         </tr>
                         <tr>

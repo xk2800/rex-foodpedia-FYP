@@ -191,7 +191,7 @@
                         </th>
                     </tr>
                     <tr>
-                        <td id="tax">+Service Tax (6%)</td>
+                        <td id="tax">(Inclusive) Service Tax (6%)</td>
             <?php
                                         $pretax = $subtotal /((6/100)+1);
                                         $tax = $subtotal - $pretax;

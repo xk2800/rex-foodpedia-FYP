@@ -1,6 +1,9 @@
 <?php
 //WORKING: Xavier
-
+    include ('db-connect.php');
+    ob_start();
+    $email = $_SESSION["email"];
+    //echo $email;
 ?>
 
 <!DOCTYPE html>
@@ -147,10 +150,19 @@
             <div class="field-container">
                 <label for="securitycode">CVV</label><input id="securitycode" type="password" pattern="[0-9]*" inputmode="numeric" name="cvv-num" required>
             </div>
+
+            <div class="field-container">
+                <label for="cardtype">Card Type</label><br><select name="card_type" id="cardtype" required></p>
+                                                                <option style='display:none;'>Select a Card Type</option>
+                                                                <option value="American Express">American Express</option>
+                                                                <option value="Mastercard">Mastercard</option>
+                                                                <option value="Visa">Visa</option>
+                                                                </select>
+            </div>
         </div>
         <div class="buttons">    
-            <button type="submit" name="paybtn">Make payment</button>
-            <button type="submit" name="cancelbtn">Back to checkout</button>
+            <button type="submit" name="paybtn">Add Card</button>
+            <button type="submit" name="cancelbtn">Back to profile</button>
             <br><br>
         </div>
     </form>
@@ -193,7 +205,7 @@ var cardnumber_mask = new IMask(cardnumber, {
         {
             mask: '0000 0000 0000 0000',
             regex: '^(5[1-5]\\d{0,2}|22[2-9]\\d{0,1}|2[3-7]\\d{0,2})\\d{0,12}',
-            cardtype: 'mastercard'
+            cardtype: 'mastercard',
         },
         // {
         //     mask: '0000-0000-0000-0000',
@@ -230,11 +242,11 @@ var cardnumber_mask = new IMask(cardnumber, {
             regex: '^4\\d{0,15}',
             cardtype: 'visa'
         },
-        {
+        /*{
             mask: '0000 0000 0000 0000',
             regex: '^62\\d{0,14}',
             cardtype: 'unionpay'
-        },
+        },*/
         {
             mask: '0000 0000 0000 0000',
             cardtype: 'Unknown'
@@ -438,6 +450,7 @@ securitycode.addEventListener('focus', function () {
 });
 };
 </script>
+
 </body>
 </html>
 <?php
@@ -449,13 +462,27 @@ cvv: cvv-num
 
 */
 
+    $fullUrl ="https:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+    if(strpos($fullUrl, "card_add=success") == true){
+        //echo '<script>document.getElementById("error").innerHTML = "You did not fill in all fields</span><br><br>"</script>';
+        echo "<div class='container'>
+                <div class='alert alert-success words' role='alert'>
+                    Card successfully added, you will be redirected back to profile within 5 seconds.
+                </div>
+            </div>";
+    }
+
     if(isset($_POST["paybtn"])){
         
-        $name_card  = ($_POST["name-card"]);
-        $card_num   = ($_POST["card-number"]);
-        $exp_date   = ($_POST["exp-date"]);
-        $cvv        =  ($_POST["cvv-num"]);
+        $name_card  = $_POST["name-card"];
+        $card_num   = $_POST["card-number"];
+        $exp_date   = $_POST["exp-date"];
+        $cvv        = $_POST["cvv-num"];
+        $card_type  = $_POST['card_type'];
 
+        echo $email;
+        echo '<br>';
         echo $name_card;
         echo '<br>';
         echo $card_num;
@@ -463,6 +490,14 @@ cvv: cvv-num
         echo $exp_date;
         echo '<br>';
         echo $cvv;
+
+        $insert_sql = $mysqli->query("INSERT INTO card_info(email, card_type, card_num, exp_date, name_on_card, cvv) 
+        VALUES ('$email', '$card_type', '$card_num', '$exp_date', '$name_card', '$cvv')");
+
+
+        if($insert_sql){
+            header('location: user-profile?card_add=success');
+        }
     }
 
 ?>

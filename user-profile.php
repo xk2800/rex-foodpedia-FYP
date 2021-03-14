@@ -4,6 +4,7 @@
     include("db-connect.php");
     //include("db_connection.php");
     //session_start();
+    ob_start();
 ?>
     <html lang="en">
         <head>
@@ -76,6 +77,16 @@
 
             <?php
                 include("nav.php");
+                $fullUrl ="https:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+                if(strpos($fullUrl, "card_add=success") == true){
+                    //echo '<script>document.getElementById("error").innerHTML = "You did not fill in all fields</span><br><br>"</script>';
+                    echo "<br><br><div class='container'>
+                            <div class='alert alert-success words' role='alert'>
+                                Card successfully added.
+                            </div>
+                        </div>";
+                }
             ?>
 
             <?php
