@@ -1,3 +1,8 @@
+<?php
+    include("db-connect.php");
+    $_SESSION['email'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

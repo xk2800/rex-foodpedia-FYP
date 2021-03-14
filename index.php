@@ -146,7 +146,7 @@
 <br>
 <!--LEVEL 5-->
 <?php
-    include ("foot.html")
+    include ("foot.php")
 ?>
 <!--LEVEL 5 END-->
 

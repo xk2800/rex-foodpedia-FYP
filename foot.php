@@ -1,3 +1,32 @@
+<?php
+    //include "db-connect.php";
+    ob_start();
+
+    //error_reporting(E_ERROR | E_PARSE);
+
+    if(isset($_SESSION['google_id']) /*||  $_SESSION["email"] == true*/){
+
+        echo $id = $_SESSION['google_id']; 
+        $google = $_SESSION['google_id'];
+        $convert_google_id = mysqli_query($connect, "SELECT email FROM user_acc WHERE google_id='$id'");
+        $output_change = mysqli_fetch_assoc($convert_google_id);
+        
+        echo $output_change["email"];
+
+        if ($converted_google_output = $output_change["email"]){
+            $_SESSION['email'] = $output_change["email"];
+        }else if($var_email_login = $_SESSION['email']){
+            $_SESSION['email'];
+        }
+
+
+        if(!empty($_SESSION['email'])){
+            echo "has session";
+        }else{
+            echo "no session";
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,8 +91,12 @@
             </ul>
             <ul class="links-container">
                 <h4>Quick Links</h4>
-                <li><a href="order-history.php">My Orders</a></li>
-                <li><a href="user-profile.php">Profile</a></li>
+        <?php
+                if(!empty($_SESSION['email'])){
+                    echo '<li><a href="order-history.php">My Orders</a></li>';
+                    echo '<li><a href="user-profile.php">Profile</a></li>';
+                }
+        ?>
                 <li><a href="user-rating.php">Feedback To Us</a></li>
             </ul>
         </div>

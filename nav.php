@@ -90,6 +90,13 @@
                     <li class="nav-item active">
                         <a class="nav-link text-center" href="how-to-use">How To Use</a>
                     </li>
+    <?php
+                if(!empty($_SESSION['email'])){
+                    echo '<li class="nav-item active">';
+                        echo '<a class="nav-link text-center" href="menu">Menu</a>';
+                    echo '</li>';
+                }
+    ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             About Us

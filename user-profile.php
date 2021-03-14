@@ -126,7 +126,7 @@
                                         <div class="form-group col-md-6 pl-5 pb-3">
                                             <i class="fa fa-user" aria-hidden="true"></i>
                                             &ensp;
-                                            <label for="card-firstname-profile">Username</label>
+                                            <label for="card-firstname-profile">Full Name</label>
                                             <input type="text" class="form-control" id="card-firstname-profile" name="firstname_profile" value="<?php echo $row_table_1["name"]?>">
                                         </div>
 
