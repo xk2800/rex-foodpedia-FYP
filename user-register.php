@@ -93,7 +93,7 @@
                     <?php
                             $fullUrl ="http:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-                            if(strpos($fullUrl, "email=exist") == true){
+                            if(strpos($fullUrl, "email=exist") == true) {
                                 echo '<div class="container">
                                         <div class="alert alert-warning words" role="alert">
                                             Email already exist in system. Try login in <a href="user-login">here</a>
@@ -101,7 +101,7 @@
                                       </div>';
                             }
 
-                            if(strpos($fullUrl, "phone_number=exist") == true){
+                            if(strpos($fullUrl, "phone_number=exist") == true) {
                                 echo '<div class="container">
                                         <div class="alert alert-warning words" role="alert">
                                             Phone number already exist in system. Kindly recheck your phone number and try again.</a>

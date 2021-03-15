@@ -101,7 +101,7 @@
         
             $admin_username = $admin_username1["username"];
     ?>
-        <div class="container" style="margin: 150px 0px 0px 50em">
+        <div class="container" style="margin: 125px 0px 0px 50em">
     <?php
             if(isset($_REQUEST["staff_id"]) && ($_REQUEST["account"] == 'admin')){
                 $admin_username = $_REQUEST["staff_id"];
