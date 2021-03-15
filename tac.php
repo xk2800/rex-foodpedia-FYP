@@ -108,10 +108,10 @@
 
         //session carry
         $delivery_type = $_SESSION['delivery_type'];
-        echo $delivery_type;
+        //echo $delivery_type;
 
         $payment_type = $_SESSION['payment_types'];
-        echo $payment_type;
+        //echo $payment_type;
 ?>
 
     <br><br>
@@ -177,12 +177,12 @@
     $time = time();
     $actual_time = date('Y-m-d H:i:s', $time);
 
-    echo $actual_time."<br>";
-    echo $pay_transfer."<br>";
-    echo $cardnum."<br>";
-    echo $del_pass_address;
+    //echo $actual_time."<br>";
+    //echo $pay_transfer."<br>";
+    //echo $cardnum."<br>";
+    //echo $del_pass_address;
 
-echo "<br>".$email;
+//echo "<br>".$email;
 
 
 //while($run_test_out = mysqli_fetch_assoc($run_test)){

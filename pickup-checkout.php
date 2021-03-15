@@ -461,10 +461,10 @@ $fullUrl ="https:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     $time = time();
     $actual_time = date('Y-m-d H:i:s', $time);
 
-    echo $actual_time;
+    //echo $actual_time;
 
 
-echo "<br>".$email;
+//echo "<br>".$email;
 
     if(isset($_POST["make_paymentbtn"])){
         
