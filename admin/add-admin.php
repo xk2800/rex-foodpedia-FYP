@@ -119,7 +119,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="name">admin Name</label>
+                                    <label for="name">Admin Name</label>
                                     <div class="custom-file">
                                         <input type="text" name="adminname" id="name" style="width: 80%;" required>
                                     </div>
