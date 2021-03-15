@@ -110,7 +110,7 @@
                             }
                     ?>
                     
-                    <form name="register-form" method="POST">
+                    <form name="register-form" method="POST" onsubmit="return alert('Registered successfully');">
                         <div id="card-input-register"> 
                             <div class="form-group">
                                 <i class="fa fa-envelope-open" aria-hidden="true"></i>
