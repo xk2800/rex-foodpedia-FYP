@@ -165,7 +165,7 @@
                 $check_dup_email = "SELECT * FROM user_acc WHERE email = '$var_email'";
                 $res = mysqli_query($connect, $check_dup_email);
 
-                $check_dup_number = "SELECT * FROM user_acc";
+                $check_dup_number = "SELECT phone_number FROM user_acc";
                 $res_number = mysqli_query($connect, $check_dup_number);
 
                 if(mysqli_num_rows($res) > 0){
@@ -175,12 +175,12 @@
 
                 }
                 
-                if(mysqli_num_rows($res_number) > 0){
+                /*if(mysqli_num_rows($res_number) > 0){
 
                     header('location: user-register?phone_number=exist');
                     exit();
 
-                }
+                }*/
 
                 //$salted_pass = password_hash($var_password, PASSWORD_BCRYPT);
                 $salted_pass = md5($var_password);
