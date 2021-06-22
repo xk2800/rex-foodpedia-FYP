@@ -546,7 +546,7 @@ $fullUrl ="https:// $_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
             $delete_test = mysqli_query($connects, "DELETE FROM cart WHERE email='$email'");
 
             //add into order record table
-            $insert_test = $mysqli->query("INSERT INTO order_rec(email, receipt_id, dish_name, dish_price, dish_id, dish_qty, date)
+            $insert_test = mysqli_query($connect,"INSERT INTO order_rec(email, receipt_id, dish_name, dish_price, dish_id, dish_qty, date)
             VALUES ('$email', '$number', '$dish_name', '$dish_price', '$dish_id', '$dish_qty','$input_time')");
 
         }

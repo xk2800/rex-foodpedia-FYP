@@ -3,7 +3,7 @@
 <?php
     include("db-connect.php");
     //include("db_connection.php");
-    //session_start();
+    session_start();
     ob_start();
 ?>
     <html lang="en">
