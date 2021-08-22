@@ -1,7 +1,7 @@
 <?php
 
 \Cloudinary::config(array(
-    'cloud_name' => 'rexfoodipediafyp',
-    'api_key' => '692999355687826',
-    'api_secret' => 'WIQ5w6E77zf2yOhmgGtr_6dE6AQ'
+    'cloud_name' => CLOUDINARY_CLOUDNAME,
+    'api_key' => CLOUDINARY_API_KEY,
+    'api_secret' => CLOUDINARY_API_SECRET
 ));
